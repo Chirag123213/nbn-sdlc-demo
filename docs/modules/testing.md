@@ -82,3 +82,27 @@ The repository uses `gitleaks/gitleaks-action@v3` as part of the Security Scan C
 During the run, GitHub successfully resolved and downloaded `gitleaks/gitleaks-action@v3`. The action executed Gitleaks version 8.24.3, scanned five commits and completed successfully with no leaks detected.
 
 This confirms that the configured Gitleaks action resolves correctly and that the secret-scanning job actually executes in the CI pipeline.
+
+## Gitleaks Failure Verification
+
+A synthetic AWS-style credential was committed to the temporary `feature/gitleaks-verification` branch and submitted through PR #38 to verify that the secret-scanning gate rejects committed credentials.
+
+The Gitleaks Security Scan detected the credential in `gitleaks-test.txt` on line 2 and classified it under the `aws-access-token` rule. The scan reported one leak and the Security Scan job failed as expected.
+
+The relevant Gitleaks output was:
+
+```text
+Finding:     ...aws_access_key_id = REDACTED
+Secret:      REDACTED
+RuleID:      aws-access-token
+File:        gitleaks-test.txt
+Line:        2
+
+1 commits scanned.
+leaks found: 1
+
+🛑 Leaks detected, see job summary for details
+```
+
+
+This confirms that Gitleaks not only executes in the CI pipeline, but also detects a test credential and prevents the security check from passing.
