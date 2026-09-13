@@ -1,0 +1,2 @@
+# Synthetic credential used only to verify if Gitleaks detects this as a vulnerability.
+aws_access_key_id = AKIALALEMEL33243OLIB
