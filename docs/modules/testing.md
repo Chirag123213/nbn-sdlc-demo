@@ -34,4 +34,18 @@ The verification problem arises when an AI agent writes both the implementation 
 | Manual smoke test                           | Human          | Requires a person to exercise the change against a development Firebase project.                                 |
 | Test adequacy / reviewer judgement          | Human          | A human decides whether the tests actually cover the intended behaviour and are trustworthy.                     |
 
-Hooks and CI checks provide automated, deterministic checks against predefined rules. Hooks run at specific points in the local or agent workflow, while CI checks run in the repository's GitHub Actions pipeline. These automated checks can identify rule violations, test failures, type errors, exposed secrets and other predefined problems, but they cannot independently judge whether the implementation or its tests are suitable for the intended requirements. Therefore, Human judgement is required to assess test adequacy, correctness and whether the change actually satisfies its intended purpose.
+Hooks and CI checks provide automated, deterministic checks against predefined rules. Hooks run at specific points in the local or agent workflow, while CI checks run in the repository's GitHub Actions pipeline. These automated checks can identify rule violations, test failures, type errors, exposed secrets and other predefined problems, but they cannot independently judge whether the implementation or its tests are suitable for the intended requirements. Therefore, human judgement is required to assess test adequacy, correctness and whether the change actually satisfies its intended purpose.
+
+
+## Mutation Testing
+
+Mutation testing is the operational answer to the question, "Are the tests correct?" A passing test suite only shows that the implementation satisfies the tests that were written. It does not prove that those tests are capable of detecting real defects in the code.
+
+Therefore, mutation testing checks the quality of a test suite by deliberately making small changes, called mutants, to the implementation and then running the tests again. For example, a comparison operator could be changed or a return value could be altered.
+
+If the tests fails after the change, the mutant is considered killed, which provides evidence that the tests detected the introduced fault. If the tests still pass, it means that the mutant survives, indicating that the test suite may not adequately detect that type of defect.
+
+The mutation score measures the proportion of mutants that are killed by the test suite. A higher score generally indicates that the tests are better at detecting faults, while surviving mutants highlight areas where the test suite may be weak.
+
+For AI-generated tests, the mutation score should be recorded before a human modifies the generated tests so that the original quality of the AI-generated test suite can be measured. A minimum acceptable mutation-score threshold should also be defined before mutation testing is used as a gate.
+
