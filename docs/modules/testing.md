@@ -49,3 +49,18 @@ The mutation score measures the proportion of mutants that are killed by the tes
 
 For AI-generated tests, the mutation score should be recorded before a human modifies the generated tests so that the original quality of the AI-generated test suite can be measured. A minimum acceptable mutation-score threshold should also be defined before mutation testing is used as a gate.
 
+## Accountability Chain
+
+AI-assisted work should have a clear accountability chain so that responsibility does not become unclear when an agent contributes to a change and issues are discovered later.
+
+The accountability chain consists of four roles:
+
+1. **Committer**: the human who commits the change and is the author of record in Git.
+
+2. **Agent co-author**: the AI agent that contributed to producing the change, recorded through provenance such as a co-author trailer.
+
+3. **Non-requesting approver**: a human reviewer who did not request the AI-assisted change and independently approves it before merge.
+
+4. **Accountable owner**: the person recorded in the governance register who remains responsible for the AI use and its outcomes beyond the individual commit or merge.
+
+Together, these roles make it clear who created the change, where AI was involved, who independently approved it, and who remains accountable for the use of AI after the change is merged. This ensures that responsibility for a change is clearly defined if issues are later discovered in the code.
