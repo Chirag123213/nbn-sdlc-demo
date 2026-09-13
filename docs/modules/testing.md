@@ -73,3 +73,12 @@ Together, these roles make it clear who created the change, where AI was involve
 | Agent co-author | Not captured | GitHub supports co-author trailers, but the repository does not currently record AI contributions using `Co-Authored-By` trailers. |
 | Non-requesting approver | Partially captured | GitHub records the human who approves a pull request, but it does not record whether that reviewer was the person who originally requested the AI-assisted change. |
 | Accountable owner | Not captured | There is currently no implemented governance register that assigns an accountable owner to each AI use. |
+
+
+## Gitleaks CI Verification
+
+The repository uses `gitleaks/gitleaks-action@v3` as part of the Security Scan CI job. The action was verified through the CI run for PR #31.
+
+During the run, GitHub successfully resolved and downloaded `gitleaks/gitleaks-action@v3`. The action executed Gitleaks version 8.24.3, scanned five commits and completed successfully with no leaks detected.
+
+This confirms that the configured Gitleaks action resolves correctly and that the secret-scanning job actually executes in the CI pipeline.
