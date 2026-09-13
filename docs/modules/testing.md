@@ -34,7 +34,7 @@ The verification problem arises when an AI agent writes both the implementation 
 | Manual smoke test                           | Human          | Requires a person to exercise the change against a development Firebase project.                                 |
 | Test adequacy / reviewer judgement          | Human          | A human decides whether the tests actually cover the intended behaviour and are trustworthy.                     |
 
-Hooks and CI checks provide automated, deterministic checks against predefined rules. Hooks run at specific points in the local or agent workflow, while CI checks run in the repository's GitHub Actions pipeline. These automated checks can identify rule violations, test failures, type errors, exposed secrets and other predefined problems, but they cannot independently judge whether the implementation or its tests are suitable for the intended requirements. Therefore, human judgement is required to assess test adequacy, correctness and whether the change actually satisfies its intended purpose.
+Hooks and CI checks provide automated, repeatable checks against predefined rules. Hooks run at specific points in the local or agent workflow, while CI checks run in the repository's GitHub Actions pipeline. These automated checks can identify rule violations, test failures, type errors, exposed secrets and other predefined problems, but they cannot independently judge whether the implementation or its tests are suitable for the intended requirements. Therefore, human judgement is required to assess test adequacy, correctness and whether the change actually satisfies its intended purpose.
 
 
 ## Mutation Testing
@@ -43,7 +43,7 @@ Mutation testing is the operational answer to the question, "Are the tests corre
 
 Therefore, mutation testing checks the quality of a test suite by deliberately making small changes, called mutants, to the implementation and then running the tests again. For example, a comparison operator could be changed or a return value could be altered.
 
-If the tests fails after the change, the mutant is considered killed, which provides evidence that the tests detected the introduced fault. If the tests still pass, it means that the mutant survives, indicating that the test suite may not adequately detect that type of defect.
+If the tests fail after the change, the mutant is considered killed, which provides evidence that the tests detected the introduced fault. If the tests still pass, it means that the mutant survives, indicating that the test suite may not adequately detect that type of defect.
 
 The mutation score measures the proportion of mutants that are killed by the test suite. A higher score generally indicates that the tests are better at detecting faults, while surviving mutants highlight areas where the test suite may be weak.
 
@@ -64,3 +64,12 @@ The accountability chain consists of four roles:
 4. **Accountable owner**: the person recorded in the governance register who remains responsible for the AI use and its outcomes beyond the individual commit or merge.
 
 Together, these roles make it clear who created the change, where AI was involved, who independently approved it, and who remains accountable for the use of AI after the change is merged. This ensures that responsibility for a change is clearly defined if issues are later discovered in the code.
+
+### Current Repository Coverage
+
+| Accountability role | Status | Current repository evidence |
+|---|---|---|
+| Committer | Captured | Git records the human author/committer as part of the commit history. |
+| Agent co-author | Not captured | GitHub supports co-author trailers, but the repository does not currently record AI contributions using `Co-Authored-By` trailers. |
+| Non-requesting approver | Partially captured | GitHub records the human who approves a pull request, but it does not record whether that reviewer was the person who originally requested the AI-assisted change. |
+| Accountable owner | Not captured | There is currently no implemented governance register that assigns an accountable owner to each AI use. |
