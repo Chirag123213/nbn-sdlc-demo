@@ -47,7 +47,7 @@ If the tests fail after the change, the mutant is considered killed, which provi
 
 The mutation score measures the proportion of mutants that are killed by the test suite. A higher score generally indicates that the tests are better at detecting faults, while surviving mutants highlight areas where the test suite may be weak.
 
-For AI-generated tests, the mutation score should be recorded before a human modifies the generated tests so that the original quality of the AI-generated test suite can be measured. A minimum acceptable mutation-score threshold should also be defined before mutation testing is used as a gate.
+For AI-generated tests, the mutation score should be recorded before a human modifies the generated tests so that the original quality of the AI-generated test suite can be measured. A minimum acceptable mutation-score threshold is required before mutation testing can be used as a gate. The repository does not currently define a numerical threshold, so this must be agreed by the team before the gate is introduced.
 
 ## Accountability Chain
 
