@@ -78,3 +78,14 @@ Required GitHub Actions secrets were also confirmed:
 - `FIREBASE_SERVICE_ACCOUNT_KEY_BASE64`
 
 **Result:** PASS — Firestore security rule changes can now be deployed automatically when merged to `main`.
+
+
+## Test 4: Copilot approvals do not count toward merge requirements
+
+**Control type:** Human
+
+The repository Copilot settings were inspected.
+
+No Copilot Code review configuration page or approval setting is available for this repository. GitHub documentation states that Copilot approvals are disabled by default and do not count toward required pull request approvals unless explicitly enabled.
+
+**Result:** PASS — no repository configuration was found that allows Copilot approvals to satisfy merge requirements.
