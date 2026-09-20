@@ -1,4 +1,4 @@
-## Unapproved PR merge blocking
+## Test 1: Unapproved PR merge blocking
 
 **Control type:** Human / GitHub ruleset
 
@@ -24,3 +24,20 @@ Evidence from Chirag123213 account (owner)
 ![Collaborator account blocked from merging](image-1.png)
 
 **Result:** PASS — an unapproved PR cannot be merged by either the repository owner or a collaborator.
+
+
+## Test 2: Unanswered AI declaration fails CI
+
+**Control type:** CI check
+
+**Test PR:** #43
+
+The AI-use declaration was edited so that neither declaration option was selected.
+
+Result: PASS — the required `AI Declaration` CI check failed while the remaining checks passed.
+
+![Unanswered AI declaration causes required CI failure](image-2.png)
+
+After verification, the correct AI-assisted option was restored and the `AI Declaration` check passed again.
+
+![Answered AI declaration causes required CI pass](image-3.png)
