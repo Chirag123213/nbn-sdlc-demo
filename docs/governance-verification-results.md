@@ -89,3 +89,25 @@ The repository Copilot settings were inspected.
 No Copilot Code review configuration page or approval setting is available for this repository. GitHub documentation states that Copilot approvals are disabled by default and do not count toward required pull request approvals unless explicitly enabled.
 
 **Result:** PASS — no repository configuration was found that allows Copilot approvals to satisfy merge requirements.
+
+## Test 5: Agent attribution preserved after squash merge
+
+**Control type:** Human
+
+PR #47 was squash merged into `main`.
+
+The original Claude Code commit contained:
+
+`Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>`
+
+GitHub automatically preserved the Claude attribution in the generated squash commit message.
+
+The resulting commit on `main` is:
+
+`2c9a95897bf9e8af9fb5aab7967f7f4fcf6e5dde`
+
+and contains:
+
+`Co-authored-by: Claude Sonnet 5 <noreply@anthropic.com>`
+
+**Result:** PASS — agent attribution remained on `main` after the squash merge.
