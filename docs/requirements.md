@@ -312,3 +312,196 @@ As a developer, I want the model to clearly show when merging a change also depl
 ## Pass 2 note
 
 These requirements add the build-level mechanics identified in Research Slice 2. The existing Pass 1 lifecycle requirements remain unchanged. Findings from the build spike can be used to refine these stories later.
+
+---
+
+# PRD-7 - Sprint 2 Backlog
+
+**Owner:** Ahmed Falulur Rahuman
+
+**Planner card:** [PRD] - Convert the map into the Sprint 2 backlog : 120
+
+**Sources:** D3 SDLC Research Report, D4 Lifecycle Map, Lifecycle Task Map, existing Pass 1 and Pass 2 requirements
+
+## Purpose
+
+This backlog carries the existing lifecycle and build requirements into Sprint 2, adds requirements surfaced by the finished lifecycle map, and gives each story a rough size for Sprint 2 planning.
+
+## Rough sizing
+
+The following sizes are initial planning estimates:
+
+- **S** - Small
+- **M** - Medium
+- **L** - Large
+
+---
+
+## Updates to existing requirements
+
+### US-03 - Check AI-generated requirements and user insights
+
+**Map update:** The finished map uses task-level colours rather than recolouring the whole stage. In Stage 2, AI drafting is GREEN at task 2.2, while the Definition of Ready and backlog acceptance gate at task 2.4 is RED. Journey mapping is AMBER at task 4.2 because AI-generated hypotheses still require human validation.
+
+### US-04 - Verify AI-generated work before accepting it
+
+Add to the acceptance criteria:
+
+- The model identifies the RED human decision or verification task in each lifecycle stage.
+
+### US-05 - Record AI involvement and responsibility
+
+Add to the acceptance criteria:
+
+- AI-assisted work identifies the human committer, AI co-author where applicable, non-requesting approver, and accountable owner.
+- Important AI use is recorded in the project register.
+
+### US-06 - Put safeguards around AI agents
+
+Add to the acceptance criteria:
+
+- Every governance control identifies whether it is held by a human, hook, CI check, or has no enforceable gate.
+- A prompt, rules file, skill, or sub-agent is not treated as a hard control by itself.
+- The governance rules identified in Module 6.12 name who or what holds each rule.
+- The Commonwealth AI policy is treated as a model for NBN Co rather than a binding obligation.
+
+### US-07 - Show when AI can be given more responsibility
+
+Add to the acceptance criteria:
+
+- A task moves towards GREEN only when a deterministic check or measured threshold supports the automation.
+- A rules file or skill alone does not justify moving a task to GREEN.
+- Deployment execution may be automated behind deterministic controls, while production promotion and incident decisions remain human-controlled.
+
+### US-08 - Show how AI affects teamwork and review
+
+Add to the acceptance criteria:
+
+- Human review time is recorded so the review load created by AI-generated work can be measured.
+
+---
+
+## Additional Sprint 2 stories
+
+### US-17 - Start AI development from a ready issue
+
+**Source:** D3 Module 6.1 - Issue to branch
+
+**Rough size:** M
+
+**User story:**
+
+As a developer, I want AI development to start from a clearly defined issue and acceptance criteria, so the agent understands what to build and what is outside the scope of the task.
+
+**Acceptance criteria:**
+
+- The issue contains testable acceptance criteria before implementation begins.
+- The issue contains an out-of-scope list where required.
+- The agent reads the issue and acceptance criteria before generating code.
+- The agent produces a plan before implementation begins.
+- A human confirms or redirects the plan before code is written.
+- Work is performed on a separate branch rather than directly on `main`.
+
+---
+
+### US-18 - Record AI usage, review effort and token cost
+
+**Source:** D3 Module 6.9 - Token accounting and cost
+
+**Rough size:** M
+
+**User story:**
+
+As a delivery lead, I want AI usage, review effort and token consumption recorded, so the team can see the cost and actual effort of AI-assisted work.
+
+**Acceptance criteria:**
+
+- AI generation time is recorded.
+- Human review time is recorded separately.
+- Tokens consumed are recorded where available.
+- Each AI use has an accountable owner.
+- The record is stored in a shared project register.
+
+---
+
+### US-19 - Store important prompts as versioned project files
+
+**Source:** D3 Module 6.11 - Prompt practice
+
+**Rough size:** M
+
+**User story:**
+
+As a developer, I want important AI instructions to be stored and versioned with the project, so the team can reuse, review and improve them.
+
+**Acceptance criteria:**
+
+- Important reusable AI instructions are stored as project files.
+- Changes to those files are version controlled.
+- Changes can be reviewed through the normal pull-request process.
+- Shared instructions are available to the team rather than remaining only in private chat history.
+- A prompt or rules file is not treated as a hard control unless an external mechanism enforces the rule.
+
+---
+
+## Sprint 2 story sizing
+
+| Story | Rough size |
+| --- | --- |
+| US-01 - Show where AI fits in the lifecycle | M |
+| US-02 - Explain the red, amber and green model | S |
+| US-03 - Check AI-generated requirements and user insights | M |
+| US-04 - Verify AI-generated work before accepting it | M |
+| US-05 - Record AI involvement and responsibility | M |
+| US-06 - Put safeguards around AI agents | L |
+| US-07 - Show when AI can be given more responsibility | M |
+| US-08 - Show how AI affects teamwork and review | M |
+| US-09 - Show when a prototype can be used as the specification | S |
+| US-10 - Show what happens inside each lifecycle stage | L |
+| US-11 - Keep each commit focused on one change | S |
+| US-12 - Require independent approval for AI-assisted pull requests | M |
+| US-13 - Add secret scanning to CI | M |
+| US-14 - Check whether AI-written tests actually catch bugs | M |
+| US-15 - Enforce the design system during build | M |
+| US-16 - Make the deployment gate clear | M |
+| US-17 - Start AI development from a ready issue | M |
+| US-18 - Record AI usage, review effort and token cost | M |
+| US-19 - Store important prompts as versioned project files | M |
+
+---
+
+## Module coverage
+
+| D3 module | Requirement |
+| --- | --- |
+| 6.1 Issue to branch | US-17 |
+| 6.2 How a commit is done | US-11 |
+| 6.3 How branches become merges | US-12 |
+| 6.4 How harnesses are used | US-13, US-14 |
+| 6.5 Design-system enforcement in build | US-15 |
+| 6.6 Deploy mechanics | US-16 |
+| 6.7 Collaboration with an agent in the loop | US-08, US-09 |
+| 6.8 Guardrails | US-06 |
+| 6.9 Token accounting and cost | US-18 |
+| 6.10 Liability, provenance and code authorship | US-05 |
+| 6.11 Prompt practice | US-19 |
+| 6.12 Regulatory codification for NBN Co | US-06 |
+
+---
+
+## Brief module coverage
+
+| Brief area | Requirement |
+| --- | --- |
+| Testing | US-13, US-14 |
+| Code generation | US-17 |
+| Infrastructure | US-13, US-16 |
+| Git commits | US-11 |
+
+---
+
+## PRD-6 walkthrough status
+
+PRD-6 walkthrough findings were not available when this backlog was prepared. No walkthrough gaps have been invented or inferred from the research.
+
+If PRD-6 produces additional gaps, they should be added to the Sprint 2 backlog as stories rather than left as notes.
