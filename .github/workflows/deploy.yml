@@ -3,6 +3,8 @@ name: Deploy to Production
 on:
   push:
     branches: [main]
+    paths:
+      - "firebase/firestore.rules"
   workflow_dispatch:
 
 concurrency:
