@@ -45,7 +45,7 @@ After verification, the correct AI-assisted option was restored and the `AI Decl
 
 ## Test 3: Slice 2 deployment checks
 
-**Control type:** Human verification
+**Control type:** Human
 
 ### Vercel preview URLs
 
