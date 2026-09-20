@@ -26,11 +26,11 @@ jobs:
           noAISelected=0
           aiSelected=0
 
-          if printf '%s\n' "$PR_BODY" | grep -Eq '^- \[[xX]\] No AI-assisted tools were used to create this change\.$'; then
+          if printf '%s\n' "$PR_BODY" | tr -d '\r' | grep -Eq '^- \[[xX]\] No AI-assisted tools were used to create this change\.$'; then
             noAISelected=1
           fi
 
-          if printf '%s\n' "$PR_BODY" | grep -Eq '^- \[[xX]\] AI-assisted tools were used to create this change\.$'; then
+          if printf '%s\n' "$PR_BODY" | tr -d '\r' | grep -Eq '^- \[[xX]\] AI-assisted tools were used to create this change\.$'; then
             aiSelected=1
           fi
 
