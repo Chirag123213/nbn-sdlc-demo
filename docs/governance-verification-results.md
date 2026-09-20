@@ -1,6 +1,6 @@
 ## Test 1: Unapproved PR merge blocking
 
-**Control type:** Human / GitHub ruleset
+**Control type:** Human
 
 **Test PR:** #43
 
@@ -41,3 +41,40 @@ Result: PASS — the required `AI Declaration` CI check failed while the remaini
 After verification, the correct AI-assisted option was restored and the `AI Declaration` check passed again.
 
 ![Answered AI declaration causes required CI pass](image-3.png)
+
+
+## Test 3: Slice 2 deployment checks
+
+**Control type:** Human verification
+
+### Vercel preview URLs
+
+Verified that Vercel creates branch-specific preview deployments for pull requests.
+
+Evidence was confirmed on PRs #9, #14, and #43, where Vercel posted working preview URLs.
+
+**Result:** PASS — PR preview deployment is active.
+
+### Firestore deployment workflow
+
+The repository previously contained:
+
+`.github/workflows/deploy.yml_notinuse`
+
+so GitHub Actions did not execute the Firestore deployment workflow.
+
+After team approval, the workflow was enabled as:
+
+`.github/workflows/deploy.yml`
+
+The automatic trigger is restricted to changes to:
+
+`firebase/firestore.rules`
+
+on pushes to `main`.
+
+Required GitHub Actions secrets were also confirmed:
+- `FIREBASE_PROJECT_ID`
+- `FIREBASE_SERVICE_ACCOUNT_KEY_BASE64`
+
+**Result:** PASS — Firestore security rule changes can now be deployed automatically when merged to `main`.
