@@ -110,3 +110,21 @@ If the guidance is useful beyond a single repository or needs to be shared with 
 The Space can contain relevant repository files, documentation, issues and other context so team members can use Copilot with the same shared knowledge.
 
 Only reviewed and stable material should be promoted from the repository into a shared Space.
+
+
+## Human review gate
+
+Before a new or changed prompt, instruction or a skill is accepted as shared team guidance, it must be reviewed by another team member.
+
+The reviewer checks that:
+1. **Purpose is clear:** the file clearly states copilot is expected to do.
+2. **Scope is bounded:** the instructions state relevant limits and do not encourage unrelated changes.
+3. **Expected outcome is defined:** the result produced by copilot is understandable and testable where possible.
+4. **No sensitive information is included:** the prompts contain no credentials, secrets or inappropriate project data.
+5. **Repository conventions are followed:** the file is stored in the agreed location and follows the expected structure.
+6. **The correct artifact type is used:** a simple reusable request remains a prompt, while a skill satisfies the team's skill-promotion criteria.
+7. **The example has been tested:** the author has successfully used the prompt or procedure before proposing it as shared guidance.
+
+If any of these checks fail, the reviewer requests changes before the prompt is accepted into the shared set.
+
+**Gate: Human**
