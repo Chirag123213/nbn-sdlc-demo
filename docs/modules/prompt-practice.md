@@ -30,3 +30,32 @@ This repository demonstrates the agreed copilot storage structure using real fil
 - Repeated multi-step procedures that become skills are stored as `.github/skills/<skill-name>/SKILL.md`.
 
 These files are committed to the repository, so they can be reviewed, versioned and reused by the team.
+
+## When a prompt becomes a skill
+
+A prompt should remain a reusable prompt when it mainly saves a request when trying to complete a specific task.
+
+However, a prompt should become a skill when the team repeatedly uses the same multi-step procedure and wants Copilot to follow that process consistently.
+
+A reusable prompt should be considered for a skill when it meets all of the following conditions:
+1. **Repeated use:** The prompt has been used successfully for at least three separate tasks.
+2. **Team reuse:** At least two different team members could reasonably use the same procedure.
+3. **Multi-step process:** the procedure contains at least three repeatable steps that should normally be performed in the same order.
+4. **Stable instructions:** the core procedure has worked for at least two consecutive uses without requiring major changes.
+5. **Human review:** A team member reviews the procedure before it is added to `.github/skills/`.
+
+If these conditions are not met, the procedure should remain as a reusable prompt in the `.github/prompts/` while it continues to be tested.
+
+### Example
+
+If `example-review.prompt.md` is used once to review a pull request, it remains a reusable prompt.
+
+If the team repeatedly uses a verification process that always involves:
+
+1. checking the acceptance criteria
+2. running the relevant tests
+3. running lint and type checking
+4. identifying failures
+5. reporting the results
+
+and the process satisfies the criteria above, it can be promoted to a reusable skill such as `.github/skills/verify-change/SKILL.md`.
