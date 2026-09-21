@@ -17,3 +17,16 @@ Once stored in the repository, the prompt is versioned through Git like an other
 ### Shared
 
 After a prompt has been tested and reviewed, it can be made available to other developers instead of remaining personal knowledge. Repository-level prompts allow the team to reuse the same guidance, while more mature shared practices can later be distributed more broadly through GitHub Copilot.
+
+
+## Where the Prompts are stored in the Repository
+
+Prompt-related knowledge is stored as files in the repository rather than being left only in personal Copilot chats.
+
+This repository demonstrates the agreed copilot storage structure using real files:
+
+- Reusable task prompts are stored as `.github/prompts/<name>.prompt.md`.
+- Repository-wide Copilot guidance is stored in `.github/copilot-instructions.md`.
+- Repeated multi-step procedures that become skills are stored as `.github/skills/<skill-name>/SKILL.md`.
+
+These files are committed to the repository, so they can be reviewed, versioned and reused by the team.
