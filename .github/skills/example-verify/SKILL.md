@@ -1,3 +1,8 @@
+---
+name: example-verify
+description: Verify a completed implementation against its acceptance criteria and repository checks before review.
+---
+
 # Verify a change
 
 Use this skill when a completed implementation needs to be verified before review.
@@ -9,4 +14,3 @@ Use this skill when a completed implementation needs to be verified before revie
 5. Summarise the results for the developer.
 
 Do not approve or merge the change.
-  
