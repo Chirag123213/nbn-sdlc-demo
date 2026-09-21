@@ -1,3 +1,21 @@
+# Prompt Practice
+
+## Worked Example
+
+A developer asks GitHub Copilot to review a code change for bugs, missing tests and unnecessary changes.
+
+The prompt works well, so the developer uses it again on several other tasks. Instead of leaving it only in their personal Copilot chat, they save it in the repository as:
+
+`.github/prompts/example-review.prompt.md`
+
+Because the prompt is now stored in Git, other team members can review it, suggest improvements and reuse the same prompt.
+
+If the team later turns that prompt into a repeatable process with several steps, such as checking acceptance criteria, running tests, running lint and reporting the results, it can be promoted to a reusable skill under:
+
+`.github/skills/<skill-name>/SKILL.md`
+
+The important point is that useful Copilot knowledge moves from one person's chat into a reviewed, versioned and reusable team resource.
+
 ## Prompt Lifecycle
 
 Any useful prompt identified by a team member should not only remain in the developer's chat history, but it should be moved through the four stages: written, stored, versioned and shared.
