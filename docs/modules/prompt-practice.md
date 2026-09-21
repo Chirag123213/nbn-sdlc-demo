@@ -59,3 +59,36 @@ If the team repeatedly uses a verification process that always involves:
 5. reporting the results
 
 and the process satisfies the criteria above, it can be promoted to a reusable skill such as `.github/skills/verify-change/SKILL.md`.
+
+## Sharing Copilot prompts
+
+Reusable Copilot knowledge should move through three levels of sharing.
+
+### 1. Personal experimentation
+
+A developer can first test and refine a prompt privately in Copilot Chat.
+
+At this stage:
+- the prompt may still be experimental;
+- it does not need to be shared with the team;
+- it should not be treated as an agreed team procedure.
+
+### 2. Repository sharing
+
+Once the prompt is useful and repeatable, it should be moved into the repository.
+
+Depending on its purpose, it is stored as:
+
+- `.github/prompts/<name>.prompt.md` for reusable prompts;
+- `.github/copilot-instructions.md` for repository-wide instructions;
+- `.github/skills/<skill-name>/SKILL.md` for reusable multi-step procedures.
+
+The file then goes through Git and pull-request review so the team can inspect and version the change.
+
+### 3. Shared Copilot Space
+
+If the guidance is useful beyond a single repository or needs to be shared with a wider group, it can be added to a shared GitHub Copilot Space.
+
+The Space can contain relevant repository files, documentation, issues and other context so team members can use Copilot with the same shared knowledge.
+
+Only reviewed and stable material should be promoted from the repository into a shared Space.
