@@ -3,7 +3,8 @@
     "PreToolUse": [
       {
         "type": "command",
-        "command": "python3 .github/hooks/student-plan-test.py"
+        "command": "python3 .github/hooks/student-plan-test.py",
+        "timeout": 1
       }
     ]
   }

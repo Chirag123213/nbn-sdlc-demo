@@ -23,3 +23,4 @@ If no direct Copilot equivalent exists, it is recorded explicitly.
 | 22 Sep 2026 | Repository instructions | Added a temporary instruction to `.github/copilot-instructions.md` and queried it through Copilot Chat in VS Code | Pass |
 | 22 Sep 2026 | Custom agent | Selected `.github/agents/student-plan-test.agent.md` in VS Code and verified that its custom response instruction was applied | Pass |
 | 22 Sep 2026 | `PreToolUse` hook | Requested `echo COPILOT_HOOK_TEST` in Copilot Agent mode; the hook blocked the terminal command before execution | Pass |
+| 22 Sep 2026 | `PreToolUse` timeout | Configured a 1-second hook timeout and delayed the hook for 3 seconds; the hook timed out and the command proceeded, confirming Copilot's fail-open timeout behaviour | Pass |
