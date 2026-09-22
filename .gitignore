@@ -1,5 +1,6 @@
 # Dependencies
 node_modules/
+.pnpm-store/
 .pnp
 .pnp.js
 
@@ -49,6 +50,8 @@ Thumbs.db
 *.tsbuildinfo
 .turbo/
 service-account.json
+**/.stryker-tmp/
+**/reports/mutation/
 docs/BOILERPLATE-COMPARISON.md
 docs/BOILERPLATE-BENCHMARK.md
 

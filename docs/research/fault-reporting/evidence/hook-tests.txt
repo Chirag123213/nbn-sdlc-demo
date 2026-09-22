@@ -1,0 +1,19 @@
+✔ deny git push origin main (0.473833ms)
+✔ deny git push (0.081542ms)
+✔ deny git push origin HEAD:main (0.033ms)
+✔ deny git -C /tmp/repo push --force (0.030125ms)
+✔ deny git status && git push (0.034125ms)
+✔ deny "git" "push" origin main (0.341709ms)
+✔ read-only command preserves normal permissions (0.254791ms)
+✔ non-shell tools preserve normal permissions (0.041708ms)
+✔ string arguments and PowerShell are supported (0.085125ms)
+✔ malformed shell arguments denied (0.085208ms)
+✔ stdin protocol returns a single denial JSON object (20.28ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 52.353208

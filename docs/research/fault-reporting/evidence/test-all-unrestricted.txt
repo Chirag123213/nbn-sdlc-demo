@@ -1,0 +1,27 @@
+
+ RUN  v3.2.7 /Users/zafirhasan/Uni/ProgrammingProject/nbn-sdlc-demo/backend
+
+ ✓ tests/unit/routes/health.test.ts (3 tests) 13ms
+ ✓ tests/unit/conventions.test.ts (2 tests) 1ms
+
+ Test Files  2 passed (2)
+      Tests  5 passed (5)
+   Start at  21:57:54
+   Duration  241ms (transform 34ms, setup 12ms, collect 108ms, tests 14ms, environment 0ms, prepare 34ms)
+
+
+ RUN  v3.2.7 /Users/zafirhasan/Uni/ProgrammingProject/nbn-sdlc-demo/frontend
+
+ ✓ tests/unit/lib/utils.test.ts (6 tests) 3ms
+
+ Test Files  1 passed (1)
+      Tests  6 passed (6)
+   Start at  21:57:55
+   Duration  473ms (transform 18ms, setup 87ms, collect 8ms, tests 3ms, environment 228ms, prepare 31ms)
+
+
+$ pnpm run test && pnpm run test:component
+$ pnpm --filter backend test
+$ vitest run tests/unit
+$ pnpm --filter frontend test
+$ vitest run
