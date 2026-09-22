@@ -24,3 +24,19 @@ If no direct Copilot equivalent exists, it is recorded explicitly.
 | 22 Sep 2026 | Custom agent | Selected `.github/agents/student-plan-test.agent.md` in VS Code and verified that its custom response instruction was applied | Pass |
 | 22 Sep 2026 | `PreToolUse` hook | Requested `echo COPILOT_HOOK_TEST` in Copilot Agent mode; the hook blocked the terminal command before execution | Pass |
 | 22 Sep 2026 | `PreToolUse` timeout | Configured a 1-second hook timeout and delayed the hook for 3 seconds; the hook timed out and the command proceeded, confirming Copilot's fail-open timeout behaviour | Pass |
+| 22 Sep 2026 | `PreToolUse` through subagent | Invoked `hook-subagent-test` as a subagent; its attempt to run `echo COPILOT_HOOK_TEST` was blocked by the workspace hook | Pass |
+
+## Enterprise-managed controls
+
+The following controls are not available as ordinary Student-plan repository mechanisms and require centrally managed GitHub Copilot organization or enterprise capabilities.
+
+| Control | Requirement | Purpose |
+|---|---|---|
+| Enterprise Copilot policies | Copilot Business or Copilot Enterprise with enterprise administration | Centrally enable or disable Copilot features, agents, models and clients |
+| Organization / enterprise content exclusion | Copilot Business or Copilot Enterprise | Prevent specified repository content from being used by supported Copilot features |
+| Enterprise MCP allowlist / denylist | Copilot Business or Copilot Enterprise | Restrict which MCP servers developers can use |
+| Enterprise agent management | Enterprise AI Controls | Centrally control agent availability and inspect agent activity |
+| Enterprise-managed Copilot settings | Enterprise administration | Centrally restrict client behaviour such as plugins, bypass settings and defaults |
+
+
+These controls were not tested on the Student plan and are listed separately so that repository-level Copilot mechanisms are not confused with centrally enforced enterprise governance.
