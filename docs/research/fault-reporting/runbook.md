@@ -1,11 +1,11 @@
 # FR-01: setup and measured-run handoff
 
-This checklist prepares the experiment. The deliverable to build later is the fault-reporting feature in `feature-brief.md`. Do not implement it during setup. Preparation was performed with Codex; it is not a Copilot result or a human-only control.
+This checklist prepares the experiment. The deliverable to build later is the fault-reporting feature in `feature-brief.md`. Do not implement it during setup. Preparation was performed with Codex assistance; it is not a Copilot result or a human-only control.
 
 ## What is ready
 
 - Source baseline: current main `c2461d276426f2372ae09a65aae59a8fbd5e955b` (PR #52), captured on 22 September 2026.
-- Setup branch: `codex/fault-reporting-setup`. Original `docs/success-metrics` branch preserved. Zac's source document copied from commit `72e54f6` for traceability.
+- Setup branch: `chore/fault-reporting-setup`. Original `docs/success-metrics` branch preserved. Zac's source document copied from commit `72e54f6` for traceability.
 - Feature rationale, six acceptance criteria, exclusions and proposed file scope: `feature-brief.md`.
 - Repository instructions and `.github/hooks/fault-reporting.json` committed with this setup. Local hook contract: `node --test scripts/copilot/pre-tool-use.test.cjs`.
 - Baseline register and raw evidence: `baseline.md` and `evidence/`.
@@ -21,19 +21,11 @@ The sign-in UI renders and read-only Firebase Auth/Firestore probes succeed. A f
 
 The commit that adds this runbook and baseline is the setup freeze. Resolve it with `git log -1 --format=%H -- docs/research/fault-reporting/baseline.md` and record it at the beginning of FR-01. Keep the original evidence immutable; append subsequent observations in a new run folder. Recheck credentials/connectivity and branch controls if setup changes before FR-01. Use the same mutation scope for comparisons; if implementation is in the frontend, add frontend mutation configuration and measure that existing suite before implementation rather than comparing a frontend result with this backend baseline.
 
-## Remaining human and Copilot gates
+## Handoff to the next task
 
-1. Zafir approves or edits the detailed feature criteria, names an independent reviewer and records capacity in `decisions.md`. The proposed brief is AI-assisted; the human must take ownership of the final criteria. Never claim Stage 5.3 was human-only drafting.
-2. Complete the application sign-in smoke test and have a teammate verify access to the chosen shared environment. Resolve or record the default build's environment restriction.
-3. Review the baseline gaps with Zac, especially mutation scope, missing historical human times, and lack of a comparable human-only feature PR. Agree a mutation floor explicitly; `break: 0` currently collects evidence and imposes no quality floor.
-4. Once Student access is approved, authenticate Copilot CLI, record its version/plan, and verify that the instructions and hook load in an actual session. The hook's synthetic local tests do not establish runtime integration. For cloud agent, merge hook configuration to the default branch before using it.
-5. Open the feature issue using the human-approved brief and record its URL. No GitHub issue or public PR was posted during this setup.
-6. Start `credit-log.md` with actual usage readings. Save a timestamped screenshot/export before and after each stage. Record the displayed model or `Auto; underlying model not shown`. Setup usage is separate. Do not infer credit use from request counts or mark an unobserved counter as zero.
-7. Give Copilot the prompt below; approve the resulting plan before implementation. Record revision count, criterion coverage and human instruction minutes.
-8. During development record commits, scope changes, hook blocks, PR size and attribution. During testing map AC1–AC6 to actual tests, retain CI/mutation reports, record human judgement before/after seeing mutation results, and disposition separate-review findings. Use isolated disposable patches for seeded defects; never deploy them.
-9. Before merge require independent approval and actual green quality checks; current rules only require AI Declaration. Record the named release owner and approval before promotion. Record deployment URL/SHA and feed lessons into a reviewed repo change.
+The feature issue, implementation-plan approval, measured development and testing, feature PR review, and release approval belong to the later feature task. Follow the Stage 5–8 gates in `../lifecycle-task-map.md` when that task begins. These activities are not completion requirements for the current setup task.
 
-## First measured prompt
+### First measured prompt — use in the next task
 
 > Read the approved fault-reporting issue, `.github/copilot-instructions.md`, and the frozen baseline. Map AC1–AC6 to implementation steps and tests. List exact files, dependencies and unresolved choices. Produce a plan only and wait for human approval before editing feature code. Report the model if the interface exposes it; do not guess.
 
