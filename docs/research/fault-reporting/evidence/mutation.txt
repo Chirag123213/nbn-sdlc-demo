@@ -1,0 +1,668 @@
+[32m22:09:07 (22418) INFO ProjectReader[39m Found 7 of 20 file(s) to be mutated.
+[32m22:09:07 (22418) INFO Instrumenter[39m Instrumented 7 source file(s) with 97 mutant(s)
+[32m22:09:07 (22418) INFO ConcurrencyTokenProvider[39m Creating 2 test runner process(es).
+[32m22:09:07 (22418) INFO DryRunExecutor[39m Starting initial test run (vitest test runner with "perTest" coverage analysis). This may take a while.
+[32m22:09:07 (22418) INFO DryRunExecutor[39m Initial test run succeeded. Ran 3 tests in 0 seconds (net 10.820209000000034 ms, overhead 144.17979099999997 ms).
+[33m22:09:07 (22418) WARN MutantTestPlanner[39m Detected 22 static mutants (23% of total) that are estimated to take 78% of the time running the tests!
+  You might want to enable "ignoreStatic" to ignore these static mutants for your next run. 
+  For more information about static mutants visit: https://stryker-mutator.io/docs/mutation-testing-elements/static-mutants
+  (disable "warnings.slow" to ignore this warning)
+
+All tests/health.test.ts
+  ✓ GET /api/health returns 200 with status ok (killed 5)
+  ✓ GET /api/health returns 401 for protected routes without a token (killed 5)
+  ✓ GET /api/health returns 404 for truly unknown public routes (killed 1)
+
+[NoCoverage] BlockStatement
+src/lib/errors.ts:27:48
+-     static badRequest(detail: string): HttpError {
+-       return new HttpError(400, 'Bad Request', detail)
+-     }
++     static badRequest(detail: string): HttpError {}
+
+[NoCoverage] StringLiteral
+src/lib/errors.ts:28:31
+-       return new HttpError(400, 'Bad Request', detail)
++       return new HttpError(400, "", detail)
+
+[NoCoverage] StringLiteral
+src/lib/errors.ts:31:32
+-     static unauthorized(detail = 'Authentication required'): HttpError {
++     static unauthorized(detail = ""): HttpError {
+
+[NoCoverage] StringLiteral
+src/lib/errors.ts:35:29
+-     static forbidden(detail = 'You do not have access to this resource'): HttpError {
++     static forbidden(detail = ""): HttpError {
+
+[NoCoverage] BlockStatement
+src/lib/errors.ts:35:83
+-     static forbidden(detail = 'You do not have access to this resource'): HttpError {
+-       return new HttpError(403, 'Forbidden', detail)
+-     }
++     static forbidden(detail = 'You do not have access to this resource'): HttpError {}
+
+[NoCoverage] StringLiteral
+src/lib/errors.ts:36:31
+-       return new HttpError(403, 'Forbidden', detail)
++       return new HttpError(403, "", detail)
+
+[NoCoverage] BlockStatement
+src/lib/errors.ts:39:61
+-     static notFound(resource: string, id?: string): HttpError {
+-       return new HttpError(404, 'Not Found', id ? `${resource} '${id}' not found` : `${resource} not found`)
+-     }
++     static notFound(resource: string, id?: string): HttpError {}
+
+[NoCoverage] StringLiteral
+src/lib/errors.ts:40:31
+-       return new HttpError(404, 'Not Found', id ? `${resource} '${id}' not found` : `${resource} not found`)
++       return new HttpError(404, "", id ? `${resource} '${id}' not found` : `${resource} not found`)
+
+[NoCoverage] StringLiteral
+src/lib/errors.ts:40:49
+-       return new HttpError(404, 'Not Found', id ? `${resource} '${id}' not found` : `${resource} not found`)
++       return new HttpError(404, 'Not Found', id ? `` : `${resource} not found`)
+
+[NoCoverage] StringLiteral
+src/lib/errors.ts:40:83
+-       return new HttpError(404, 'Not Found', id ? `${resource} '${id}' not found` : `${resource} not found`)
++       return new HttpError(404, 'Not Found', id ? `${resource} '${id}' not found` : ``)
+
+[NoCoverage] BlockStatement
+src/lib/errors.ts:43:46
+-     static conflict(detail: string): HttpError {
+-       return new HttpError(409, 'Conflict', detail)
+-     }
++     static conflict(detail: string): HttpError {}
+
+[NoCoverage] StringLiteral
+src/lib/errors.ts:44:31
+-       return new HttpError(409, 'Conflict', detail)
++       return new HttpError(409, "", detail)
+
+[NoCoverage] StringLiteral
+src/lib/errors.ts:47:28
+-     static internal(detail = 'An unexpected error occurred'): HttpError {
++     static internal(detail = ""): HttpError {
+
+[NoCoverage] BlockStatement
+src/lib/errors.ts:47:71
+-     static internal(detail = 'An unexpected error occurred'): HttpError {
+-       return new HttpError(500, 'Internal Server Error', detail)
+-     }
++     static internal(detail = 'An unexpected error occurred'): HttpError {}
+
+[NoCoverage] StringLiteral
+src/lib/errors.ts:48:31
+-       return new HttpError(500, 'Internal Server Error', detail)
++       return new HttpError(500, "", detail)
+
+[Survived] StringLiteral
+src/lib/errors.ts:20:17
+-       this.name = 'HttpError'
++       this.name = ""
+Tests ran:
+    GET /api/health returns 401 for protected routes without a token
+
+
+[Survived] LogicalOperator
+src/lib/errors.ts:24:17
+-       this.type = type ?? `https://httpstatuses.io/${status}`
++       this.type = type && `https://httpstatuses.io/${status}`
+Tests ran:
+    GET /api/health returns 401 for protected routes without a token
+
+
+[Survived] StringLiteral
+src/lib/errors.ts:24:25
+-       this.type = type ?? `https://httpstatuses.io/${status}`
++       this.type = type ?? ``
+Tests ran:
+    GET /api/health returns 401 for protected routes without a token
+
+
+[Survived] StringLiteral
+src/lib/errors.ts:32:31
+-       return new HttpError(401, 'Unauthorized', detail)
++       return new HttpError(401, "", detail)
+Tests ran:
+    GET /api/health returns 401 for protected routes without a token
+
+
+[NoCoverage] BlockStatement
+src/lib/zodConverter.ts:23:30
+-   ): FirestoreDataConverter<T> {
+-     return {
+-       toFirestore(data: T): DocumentData {
+-         return data as DocumentData
+-       },
+-       fromFirestore(snapshot: QueryDocumentSnapshot): T {
+-         const raw = snapshot.data() as Record<string, unknown>
+-         const storedVersion = typeof raw['_schemaVersion'] === 'number' ? raw['_schemaVersion'] : 0
+-         const migrated =
+-           storedVersion < currentVersion && migrate ? migrate(raw, storedVersion) : raw
+-         const result = schema.safeParse(migrated)
+-         if (!result.success) {
+-           throw new Error(
+-             `Firestore schema validation failed at ${snapshot.ref.path}: ${result.error.message}`,
+-           )
+-         }
+-         return result.data
+-       },
+-     }
+-   }
++   ): FirestoreDataConverter<T> {}
+
+[NoCoverage] ObjectLiteral
+src/lib/zodConverter.ts:24:10
+-     return {
+-       toFirestore(data: T): DocumentData {
+-         return data as DocumentData
+-       },
+-       fromFirestore(snapshot: QueryDocumentSnapshot): T {
+-         const raw = snapshot.data() as Record<string, unknown>
+-         const storedVersion = typeof raw['_schemaVersion'] === 'number' ? raw['_schemaVersion'] : 0
+-         const migrated =
+-           storedVersion < currentVersion && migrate ? migrate(raw, storedVersion) : raw
+-         const result = schema.safeParse(migrated)
+-         if (!result.success) {
+-           throw new Error(
+-             `Firestore schema validation failed at ${snapshot.ref.path}: ${result.error.message}`,
+-           )
+-         }
+-         return result.data
+-       },
+-     }
++     return {}
+
+[NoCoverage] BlockStatement
+src/lib/zodConverter.ts:25:40
+-       toFirestore(data: T): DocumentData {
+-         return data as DocumentData
+-       },
++       toFirestore(data: T): DocumentData {},
+
+[NoCoverage] BlockStatement
+src/lib/zodConverter.ts:29:55
+-       fromFirestore(snapshot: QueryDocumentSnapshot): T {
+-         const raw = snapshot.data() as Record<string, unknown>
+-         const storedVersion = typeof raw['_schemaVersion'] === 'number' ? raw['_schemaVersion'] : 0
+-         const migrated =
+-           storedVersion < currentVersion && migrate ? migrate(raw, storedVersion) : raw
+-         const result = schema.safeParse(migrated)
+-         if (!result.success) {
+-           throw new Error(
+-             `Firestore schema validation failed at ${snapshot.ref.path}: ${result.error.message}`,
+-           )
+-         }
+-         return result.data
+-       },
++       fromFirestore(snapshot: QueryDocumentSnapshot): T {},
+
+[NoCoverage] ConditionalExpression
+src/lib/zodConverter.ts:31:29
+-         const storedVersion = typeof raw['_schemaVersion'] === 'number' ? raw['_schemaVersion'] : 0
++         const storedVersion = true ? raw['_schemaVersion'] : 0
+
+[NoCoverage] ConditionalExpression
+src/lib/zodConverter.ts:31:29
+-         const storedVersion = typeof raw['_schemaVersion'] === 'number' ? raw['_schemaVersion'] : 0
++         const storedVersion = false ? raw['_schemaVersion'] : 0
+
+[NoCoverage] EqualityOperator
+src/lib/zodConverter.ts:31:29
+-         const storedVersion = typeof raw['_schemaVersion'] === 'number' ? raw['_schemaVersion'] : 0
++         const storedVersion = typeof raw['_schemaVersion'] !== 'number' ? raw['_schemaVersion'] : 0
+
+[NoCoverage] StringLiteral
+src/lib/zodConverter.ts:31:40
+-         const storedVersion = typeof raw['_schemaVersion'] === 'number' ? raw['_schemaVersion'] : 0
++         const storedVersion = typeof raw[""] === 'number' ? raw['_schemaVersion'] : 0
+
+[NoCoverage] StringLiteral
+src/lib/zodConverter.ts:31:62
+-         const storedVersion = typeof raw['_schemaVersion'] === 'number' ? raw['_schemaVersion'] : 0
++         const storedVersion = typeof raw['_schemaVersion'] === "" ? raw['_schemaVersion'] : 0
+
+[NoCoverage] StringLiteral
+src/lib/zodConverter.ts:31:77
+-         const storedVersion = typeof raw['_schemaVersion'] === 'number' ? raw['_schemaVersion'] : 0
++         const storedVersion = typeof raw['_schemaVersion'] === 'number' ? raw[""] : 0
+
+[NoCoverage] ConditionalExpression
+src/lib/zodConverter.ts:34:9
+-           storedVersion < currentVersion && migrate ? migrate(raw, storedVersion) : raw
++           true ? migrate(raw, storedVersion) : raw
+
+[NoCoverage] ConditionalExpression
+src/lib/zodConverter.ts:34:9
+-           storedVersion < currentVersion && migrate ? migrate(raw, storedVersion) : raw
++           false ? migrate(raw, storedVersion) : raw
+
+[NoCoverage] LogicalOperator
+src/lib/zodConverter.ts:34:9
+-           storedVersion < currentVersion && migrate ? migrate(raw, storedVersion) : raw
++           storedVersion < currentVersion || migrate ? migrate(raw, storedVersion) : raw
+
+[NoCoverage] ConditionalExpression
+src/lib/zodConverter.ts:34:9
+-           storedVersion < currentVersion && migrate ? migrate(raw, storedVersion) : raw
++           true && migrate ? migrate(raw, storedVersion) : raw
+
+[NoCoverage] EqualityOperator
+src/lib/zodConverter.ts:34:9
+-           storedVersion < currentVersion && migrate ? migrate(raw, storedVersion) : raw
++           storedVersion <= currentVersion && migrate ? migrate(raw, storedVersion) : raw
+
+[NoCoverage] EqualityOperator
+src/lib/zodConverter.ts:34:9
+-           storedVersion < currentVersion && migrate ? migrate(raw, storedVersion) : raw
++           storedVersion >= currentVersion && migrate ? migrate(raw, storedVersion) : raw
+
+[NoCoverage] BooleanLiteral
+src/lib/zodConverter.ts:37:11
+-         if (!result.success) {
++         if (result.success) {
+
+[NoCoverage] ConditionalExpression
+src/lib/zodConverter.ts:37:11
+-         if (!result.success) {
++         if (true) {
+
+[NoCoverage] ConditionalExpression
+src/lib/zodConverter.ts:37:11
+-         if (!result.success) {
++         if (false) {
+
+[NoCoverage] BlockStatement
+src/lib/zodConverter.ts:37:28
+-         if (!result.success) {
+-           throw new Error(
+-             `Firestore schema validation failed at ${snapshot.ref.path}: ${result.error.message}`,
+-           )
+-         }
++         if (!result.success) {}
+
+[NoCoverage] StringLiteral
+src/lib/zodConverter.ts:39:11
+-             `Firestore schema validation failed at ${snapshot.ref.path}: ${result.error.message}`,
++             ``,
+
+[NoCoverage] BlockStatement
+src/middleware/auth.ts:18:66
+-   export const verifyFirebaseToken: VerifyToken = async (token) => {
+-     const decoded = await adminAuth.verifyIdToken(token)
+-     return {
+-       uid: decoded.uid,
+-       email: decoded.email,
+-       claims: decoded as Record<string, unknown>,
+-     }
+-   }
++   export const verifyFirebaseToken: VerifyToken = async (token) => {}
+
+[NoCoverage] ObjectLiteral
+src/middleware/auth.ts:20:10
+-     return {
+-       uid: decoded.uid,
+-       email: decoded.email,
+-       claims: decoded as Record<string, unknown>,
+-     }
++     return {}
+
+[NoCoverage] StringLiteral
+src/middleware/auth.ts:42:33
+-       if (!authHeader?.startsWith('Bearer ')) {
++       if (!authHeader?.startsWith("")) {
+
+[NoCoverage] BlockStatement
+src/middleware/auth.ts:47:9
+-       try {
+-         ;(req as AuthenticatedRequest).user = await verifyToken(authHeader.slice(7))
+-         next()
+-       } catch {
++       try {} catch {
+
+[NoCoverage] MethodExpression
+src/middleware/auth.ts:48:63
+-         ;(req as AuthenticatedRequest).user = await verifyToken(authHeader.slice(7))
++         ;(req as AuthenticatedRequest).user = await verifyToken(authHeader)
+
+[NoCoverage] BlockStatement
+src/middleware/auth.ts:50:13
+-       } catch {
+-         next(HttpError.unauthorized('Invalid or expired token'))
+-       }
++       } catch {}
+
+[NoCoverage] StringLiteral
+src/middleware/auth.ts:51:35
+-         next(HttpError.unauthorized('Invalid or expired token'))
++         next(HttpError.unauthorized(""))
+
+[Survived] BooleanLiteral
+src/middleware/auth.ts:42:9
+-       if (!authHeader?.startsWith('Bearer ')) {
++       if (authHeader?.startsWith('Bearer ')) {
+Tests ran:
+    GET /api/health returns 401 for protected routes without a token
+
+
+[Survived] ConditionalExpression
+src/middleware/auth.ts:42:9
+-       if (!authHeader?.startsWith('Bearer ')) {
++       if (true) {
+Tests ran:
+    GET /api/health returns 401 for protected routes without a token
+
+
+[Survived] ConditionalExpression
+src/middleware/auth.ts:42:9
+-       if (!authHeader?.startsWith('Bearer ')) {
++       if (false) {
+Tests ran:
+    GET /api/health returns 401 for protected routes without a token
+
+
+[Survived] MethodExpression
+src/middleware/auth.ts:42:10
+-       if (!authHeader?.startsWith('Bearer ')) {
++       if (!authHeader?.endsWith('Bearer ')) {
+Tests ran:
+    GET /api/health returns 401 for protected routes without a token
+
+
+[Survived] BlockStatement
+src/middleware/auth.ts:42:45
+-       if (!authHeader?.startsWith('Bearer ')) {
+-         next(HttpError.unauthorized('Missing or invalid Authorization header'))
+-         return
+-       }
++       if (!authHeader?.startsWith('Bearer ')) {}
+Tests ran:
+    GET /api/health returns 401 for protected routes without a token
+
+
+[Survived] StringLiteral
+src/middleware/auth.ts:43:35
+-         next(HttpError.unauthorized('Missing or invalid Authorization header'))
++         next(HttpError.unauthorized(""))
+Tests ran:
+    GET /api/health returns 401 for protected routes without a token
+
+
+[Survived] BlockStatement
+src/middleware/auth.ts:35:64
+-   export function createAuthMiddleware(verifyToken: VerifyToken) {
+-     return async function authMiddleware(
+-       req: Request,
+-       _res: Response,
+-       next: NextFunction,
+-     ): Promise<void> {
+-       const authHeader = req.headers.authorization
+-       if (!authHeader?.startsWith('Bearer ')) {
+-         next(HttpError.unauthorized('Missing or invalid Authorization header'))
+-         return
+-       }
+-       try {
+-         ;(req as AuthenticatedRequest).user = await verifyToken(authHeader.slice(7))
+-         next()
+-       } catch {
+-         next(HttpError.unauthorized('Invalid or expired token'))
+-       }
+-     }
+-   }
++   export function createAuthMiddleware(verifyToken: VerifyToken) {}
+Ran all tests for this mutant.
+
+[NoCoverage] BlockStatement
+src/middleware/errorHandler.ts:14:32
+-     if (httpError.status >= 500) {
+-       console.error(`[${httpError.status}]`, err.message, err.stack)
+-     }
++     if (httpError.status >= 500) {}
+
+[NoCoverage] StringLiteral
+src/middleware/errorHandler.ts:15:19
+-       console.error(`[${httpError.status}]`, err.message, err.stack)
++       console.error(``, err.message, err.stack)
+
+[Survived] ConditionalExpression
+src/middleware/errorHandler.ts:14:7
+-     if (httpError.status >= 500) {
++     if (true) {
+Tests ran:
+    GET /api/health returns 401 for protected routes without a token
+
+
+[Survived] ConditionalExpression
+src/middleware/errorHandler.ts:14:7
+-     if (httpError.status >= 500) {
++     if (false) {
+Tests ran:
+    GET /api/health returns 401 for protected routes without a token
+
+
+[Survived] EqualityOperator
+src/middleware/errorHandler.ts:14:7
+-     if (httpError.status >= 500) {
++     if (httpError.status > 500) {
+Tests ran:
+    GET /api/health returns 401 for protected routes without a token
+
+
+[Survived] EqualityOperator
+src/middleware/errorHandler.ts:14:7
+-     if (httpError.status >= 500) {
++     if (httpError.status < 500) {
+Tests ran:
+    GET /api/health returns 401 for protected routes without a token
+
+
+[Survived] ObjectLiteral
+src/middleware/errorHandler.ts:18:37
+-     res.status(httpError.status).json({
+-       type: httpError.type,
+-       title: httpError.title,
+-       status: httpError.status,
+-       detail: httpError.detail,
+-     })
++     res.status(httpError.status).json({})
+Tests ran:
+    GET /api/health returns 401 for protected routes without a token
+
+
+[NoCoverage] StringLiteral
+src/routes/health.ts:13:42
+-       environment: process.env.NODE_ENV ?? 'development',
++       environment: process.env.NODE_ENV ?? "",
+
+[Survived] LogicalOperator
+src/routes/health.ts:13:18
+-       environment: process.env.NODE_ENV ?? 'development',
++       environment: process.env.NODE_ENV && 'development',
+Tests ran:
+    GET /api/health returns 200 with status ok
+
+
+[Survived] StringLiteral
+src/routes/health.ts:9:12
+-   router.get('/', (_req, res) => {
++   router.get("", (_req, res) => {
+Ran all tests for this mutant.
+
+[Survived] ObjectLiteral
+src/app.ts:60:26
+-       res.status(404).json({
+-         type: 'https://httpstatuses.io/404',
+-         title: 'Not Found',
+-         status: 404,
+-         detail: 'The requested resource does not exist',
+-       })
++       res.status(404).json({})
+Tests ran:
+    GET /api/health returns 404 for truly unknown public routes
+
+
+[Survived] StringLiteral
+src/app.ts:61:13
+-         type: 'https://httpstatuses.io/404',
++         type: "",
+Tests ran:
+    GET /api/health returns 404 for truly unknown public routes
+
+
+[Survived] StringLiteral
+src/app.ts:62:14
+-         title: 'Not Found',
++         title: "",
+Tests ran:
+    GET /api/health returns 404 for truly unknown public routes
+
+
+[Survived] StringLiteral
+src/app.ts:64:15
+-         detail: 'The requested resource does not exist',
++         detail: "",
+Tests ran:
+    GET /api/health returns 404 for truly unknown public routes
+
+
+[Survived] ObjectLiteral
+src/app.ts:15:33
+-   const globalLimiter = rateLimit({
+-     windowMs: 15 * 60 * 1000,
+-     max: 300,
+-     standardHeaders: true,
+-     legacyHeaders: false,
+-     message: {
+-       type: 'https://httpstatuses.io/429',
+-       title: 'Too Many Requests',
+-       status: 429,
+-       detail: 'Too many requests, please try again later',
+-     },
+-   })
++   const globalLimiter = rateLimit({})
+Ran all tests for this mutant.
+
+[Survived] ArithmeticOperator
+src/app.ts:16:13
+-     windowMs: 15 * 60 * 1000,
++     windowMs: 15 * 60 / 1000,
+Ran all tests for this mutant.
+
+[Survived] ArithmeticOperator
+src/app.ts:16:13
+-     windowMs: 15 * 60 * 1000,
++     windowMs: 15 / 60 * 1000,
+Ran all tests for this mutant.
+
+[Survived] BooleanLiteral
+src/app.ts:18:20
+-     standardHeaders: true,
++     standardHeaders: false,
+Ran all tests for this mutant.
+
+[Survived] BooleanLiteral
+src/app.ts:19:18
+-     legacyHeaders: false,
++     legacyHeaders: true,
+Ran all tests for this mutant.
+
+[Survived] ObjectLiteral
+src/app.ts:20:12
+-     message: {
+-       type: 'https://httpstatuses.io/429',
+-       title: 'Too Many Requests',
+-       status: 429,
+-       detail: 'Too many requests, please try again later',
+-     },
++     message: {},
+Ran all tests for this mutant.
+
+[Survived] StringLiteral
+src/app.ts:21:11
+-       type: 'https://httpstatuses.io/429',
++       type: "",
+Ran all tests for this mutant.
+
+[Survived] StringLiteral
+src/app.ts:22:12
+-       title: 'Too Many Requests',
++       title: "",
+Ran all tests for this mutant.
+
+[Survived] StringLiteral
+src/app.ts:24:13
+-       detail: 'Too many requests, please try again later',
++       detail: "",
+Ran all tests for this mutant.
+
+[Survived] ObjectLiteral
+src/app.ts:43:16
+-     app.use(cors({ origin: process.env.CORS_ORIGIN ?? false }))
++     app.use(cors({}))
+Ran all tests for this mutant.
+
+[Survived] LogicalOperator
+src/app.ts:43:26
+-     app.use(cors({ origin: process.env.CORS_ORIGIN ?? false }))
++     app.use(cors({ origin: process.env.CORS_ORIGIN && false }))
+Ran all tests for this mutant.
+
+[Survived] BooleanLiteral
+src/app.ts:43:53
+-     app.use(cors({ origin: process.env.CORS_ORIGIN ?? false }))
++     app.use(cors({ origin: process.env.CORS_ORIGIN ?? true }))
+Ran all tests for this mutant.
+
+[Survived] ObjectLiteral
+src/app.ts:49:24
+-     app.use(express.json({ limit: '1mb' }))
++     app.use(express.json({}))
+Ran all tests for this mutant.
+
+[Survived] StringLiteral
+src/app.ts:49:33
+-     app.use(express.json({ limit: '1mb' }))
++     app.use(express.json({ limit: "" }))
+Ran all tests for this mutant.
+
+[Survived] ObjectLiteral
+src/app.ts:50:30
+-     app.use(express.urlencoded({ extended: true, limit: '1mb' }))
++     app.use(express.urlencoded({}))
+Ran all tests for this mutant.
+
+[Survived] BooleanLiteral
+src/app.ts:50:42
+-     app.use(express.urlencoded({ extended: true, limit: '1mb' }))
++     app.use(express.urlencoded({ extended: false, limit: '1mb' }))
+Ran all tests for this mutant.
+
+[Survived] StringLiteral
+src/app.ts:50:55
+-     app.use(express.urlencoded({ extended: true, limit: '1mb' }))
++     app.use(express.urlencoded({ extended: true, limit: "" }))
+Ran all tests for this mutant.
+
+Ran 0.84 tests per mutant on average.
+------------------|------------------|----------|-----------|------------|----------|----------|
+                  | % Mutation score |          |           |            |          |          |
+File              |  total | covered | # killed | # timeout | # survived | # no cov | # errors |
+------------------|--------|---------|----------|-----------|------------|----------|----------|
+All files         |  12.37 |   23.53 |       11 |         1 |         39 |       46 |        0 |
+ lib              |   4.76 |   33.33 |        2 |         0 |          4 |       36 |        0 |
+  errors.ts       |   9.52 |   33.33 |        2 |         0 |          4 |       15 |        0 |
+  zodConverter.ts |   0.00 |    0.00 |        0 |         0 |          0 |       21 |        0 |
+ middleware       |  12.50 |   20.00 |        3 |         0 |         12 |        9 |        0 |
+  auth.ts         |  12.50 |   22.22 |        2 |         0 |          7 |        7 |        0 |
+  errorHandler.ts |  12.50 |   16.67 |        1 |         0 |          5 |        2 |        0 |
+ routes           |  50.00 |   60.00 |        3 |         0 |          2 |        1 |        0 |
+  health.ts       |  50.00 |   60.00 |        3 |         0 |          2 |        1 |        0 |
+ app.ts           |  16.00 |   16.00 |        3 |         1 |         21 |        0 |        0 |
+------------------|--------|---------|----------|-----------|------------|----------|----------|
+[32m22:09:20 (22418) INFO MutationTestReportHelper[39m Final mutation score of 12.37 is greater than or equal to break threshold 0
+[32m22:09:20 (22418) INFO JsonReporter[39m Your report can be found at: file:///Users/zafirhasan/Uni/ProgrammingProject/nbn-sdlc-demo/backend/reports/mutation/mutation.json
+[32m22:09:20 (22418) INFO HtmlReporter[39m Your report can be found at: file:///Users/zafirhasan/Uni/ProgrammingProject/nbn-sdlc-demo/backend/reports/mutation/index.html
+[32m22:09:20 (22418) INFO MutationTestExecutor[39m Done in 13 seconds.
