@@ -1,0 +1,22 @@
+[
+  {
+    "pr": 31,
+    "title": "Secret scanning",
+    "files": 6,
+    "linesChanged": 449,
+    "firstReviewMinutes": 3078.0333333333333,
+    "reviewCount": 1,
+    "humanReviewMinutes": null,
+    "provenance": "Claude attribution present; contribution extent unknown"
+  },
+  {
+    "pr": 52,
+    "title": "Docs/prompt practice module",
+    "files": 4,
+    "linesChanged": 166,
+    "firstReviewMinutes": 30.233333333333334,
+    "reviewCount": 2,
+    "humanReviewMinutes": null,
+    "provenance": "Human-only self-declaration; documentation PR, not comparable feature control"
+  }
+]

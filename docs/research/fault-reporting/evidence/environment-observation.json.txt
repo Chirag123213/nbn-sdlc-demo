@@ -1,0 +1,10 @@
+{
+  "capturedAt": "2026-09-22T12:06:13.861Z",
+  "localUrl": "http://localhost:3000/auth/signin",
+  "httpStatus": 200,
+  "browser": "Rendered Sign in heading, Google button, Email and Password fields",
+  "authenticatedJourney": "not performed",
+  "sharedPreview": "https://nbn-sdlc-demo-frontend-e0kod4bxp-treeko.vercel.app",
+  "sharedPreviewResult": "redirects to Vercel login; not public app access",
+  "firebaseEvidence": "firebase-connectivity.json.txt"
+}

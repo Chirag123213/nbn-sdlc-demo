@@ -1,0 +1,14 @@
+[
+  {
+    "command": "pnpm run test:all",
+    "startedAt": "2026-09-22T11:57:53.000Z",
+    "durationSeconds": 3.004,
+    "exitCode": 0
+  },
+  {
+    "command": "pnpm run build",
+    "startedAt": "2026-09-22T11:57:56.005Z",
+    "durationSeconds": 2.907,
+    "exitCode": 1
+  }
+]

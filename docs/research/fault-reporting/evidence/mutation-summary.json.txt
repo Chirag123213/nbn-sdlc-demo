@@ -1,0 +1,14 @@
+{
+  "capturedAt": "2026-09-22T12:10:43.573Z",
+  "sourceCommit": "c2461d276426f2372ae09a65aae59a8fbd5e955b",
+  "stryker": "9.6.1",
+  "scope": "backend/src excluding index.ts and lib/firebase.ts",
+  "counts": {
+    "NoCoverage": 46,
+    "Killed": 11,
+    "Survived": 39,
+    "Timeout": 1
+  },
+  "score": 12.371134020618557,
+  "note": "Existing suite provenance mixed/unverified; not human-only. Timeout counts as detected."
+}

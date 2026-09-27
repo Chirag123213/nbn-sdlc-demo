@@ -1,0 +1,32 @@
+{
+  "capturedAt": "2026-09-22T12:12:31.039Z",
+  "sourceCommit": "c2461d276426f2372ae09a65aae59a8fbd5e955b",
+  "applicationSourceChanged": false,
+  "lint": "pass",
+  "typecheck": "pass",
+  "cleanFrontendTypecheck": "pass",
+  "unitTests": {
+    "backend": 5,
+    "frontend": 6,
+    "passed": 11
+  },
+  "hookContract": {
+    "passed": 11
+  },
+  "defaultBuild": "blocked: Turbopack port binding EPERM",
+  "webpackFrontendBuild": "pass",
+  "audit": {
+    "high": 0,
+    "critical": 0,
+    "moderate": 5
+  },
+  "mutation": {
+    "version": "9.6.1",
+    "score": 12.371134020618557
+  },
+  "copilotRuntime": "not tested: entitlement pending",
+  "authenticatedUserJourney": "not tested",
+  "sharedPreview": "Vercel login required",
+  "backendBuild": "pass",
+  "commitFormatHook": "formatter unavailable; existing hook masks failure; direct formatting performed"
+}

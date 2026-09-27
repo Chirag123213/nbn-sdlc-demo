@@ -1,0 +1,7 @@
+src/app/(auth)/auth/signin/page.tsx(22,27): error TS2345: Argument of type 'ZodObject<{ email: ZodString; password: ZodString; }, "strip", ZodTypeAny, { email: string; password: string; }, { email: string; password: string; }>' is not assignable to parameter of type 'ZodSchema<FieldValues, any, any>'.
+  Type 'ZodObject<{ email: ZodString; password: ZodString; }, "strip", ZodTypeAny, { email: string; password: string; }, { email: string; password: string; }>' is missing the following properties from type 'ZodType<FieldValues, any, any>': def, type, toJSONSchema, check, and 20 more.
+src/app/(auth)/auth/signup/page.tsx(22,27): error TS2345: Argument of type 'ZodEffects<ZodObject<{ displayName: ZodString; email: ZodString; password: ZodString; confirmPassword: ZodString; }, "strip", ZodTypeAny, { ...; }, { ...; }>, { ...; }, { ...; }>' is not assignable to parameter of type 'ZodSchema<FieldValues, any, any>'.
+  Type 'ZodEffects<ZodObject<{ displayName: ZodString; email: ZodString; password: ZodString; confirmPassword: ZodString; }, "strip", ZodTypeAny, { ...; }, { ...; }>, { ...; }, { ...; }>' is missing the following properties from type 'ZodType<FieldValues, any, any>': def, type, toJSONSchema, check, and 20 more.
+undefined
+/Users/zafirhasan/Uni/ProgrammingProject/nbn-sdlc-demo/frontend:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 2: tsc --noEmit --incremental false

@@ -1,0 +1,32 @@
+[
+  {
+    "command": "pnpm run lint",
+    "startedAt": "2026-09-22T11:54:09.136Z",
+    "durationSeconds": 1.489,
+    "exitCode": 0
+  },
+  {
+    "command": "pnpm run typecheck",
+    "startedAt": "2026-09-22T11:54:10.625Z",
+    "durationSeconds": 2.252,
+    "exitCode": 0
+  },
+  {
+    "command": "pnpm run test:all",
+    "startedAt": "2026-09-22T11:54:12.877Z",
+    "durationSeconds": 1.575,
+    "exitCode": 1
+  },
+  {
+    "command": "pnpm run build",
+    "startedAt": "2026-09-22T11:54:14.452Z",
+    "durationSeconds": 17.907,
+    "exitCode": 1
+  },
+  {
+    "command": "pnpm run validate",
+    "startedAt": "2026-09-22T11:54:32.359Z",
+    "durationSeconds": 0.222,
+    "exitCode": 0
+  }
+]

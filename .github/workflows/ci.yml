@@ -3,6 +3,7 @@ name: CI
 on:
   pull_request:
     branches: [main]
+    types: [opened, synchronize, reopened, edited]
   push:
     branches: [main]
 
@@ -11,6 +12,41 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+
+  ai-declaration:
+    name: AI Declaration
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Validate AI use declaration
+        env:
+          PR_BODY: ${{github.event.pull_request.body}}
+        run: |
+          noAISelected=0
+          aiSelected=0
+
+          if printf '%s\n' "$PR_BODY" | tr -d '\r' | grep -Eq '^- \[[xX]\] No AI-assisted tools were used to create this change\.$'; then
+            noAISelected=1
+          fi
+
+          if printf '%s\n' "$PR_BODY" | tr -d '\r' | grep -Eq '^- \[[xX]\] AI-assisted tools were used to create this change\.$'; then
+            aiSelected=1
+          fi
+
+          if [ "$noAISelected" -eq 0 ] && [ "$aiSelected" -eq 0 ]; then
+            echo "::error::AI use declaration must be answered."
+            exit 1
+          fi
+
+          if [ "$noAISelected" -eq 1 ] && [ "$aiSelected" -eq 1 ]; then
+            echo "::error::Select exactly one AI use declaration option."
+            exit 1
+          fi
+
+          echo "AI use declaration is valid."
+
+
   lint-typecheck:
     name: Lint & Typecheck
     runs-on: ubuntu-latest
