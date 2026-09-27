@@ -38,7 +38,7 @@ As a developer, tester or architect, I want to see where AI fits across the SDLC
 
 **Source:** Slice 1 - red/amber/green model
 
-**User story:**  
+**User story:**
 
 As a developer, tester or architect, I want AI tasks to be clearly marked as red, amber or green, so I can quickly understand how much human involvement is needed.
 
@@ -49,7 +49,7 @@ As a developer, tester or architect, I want AI tasks to be clearly marked as red
 - Green means AI can carry out the task while a human monitors it.
 - Colours are applied to tasks, not the whole stage.
 
-**Flag:** Leon's worked examples may still change how the red, amber and green model is explained.
+**Resolved in later research:** The task-level lifecycle map confirmed that a single stage can contain different colours. For example, in Stage 2, drafting user stories is GREEN, drafting acceptance criteria is AMBER, and the Definition of Ready and backlog acceptance step is RED.
 
 ---
 
@@ -57,17 +57,17 @@ As a developer, tester or architect, I want AI tasks to be clearly marked as red
 
 **Source:** Slice 1 - Stage 2 and Stage 4
 
-**User story:**  
+**User story:**
 
 As a BA or developer, I want AI-generated requirements and user insights to be checked by a human, so incorrect assumptions do not get treated as real requirements.
 
 **Acceptance criteria:**
 
-- AI-generated user stories are treated as drafts until a human checks them.
+- AI-generated user stories remain drafts until they pass the human Definition of Ready and backlog acceptance check.
 - Requirements have clear and testable acceptance criteria before they are treated as ready.
 - AI-generated user journeys or user insights are checked against real users, stakeholders or existing evidence.
 
-**Flag:** Slice 1 proposes changing Stage 2 from GREEN to AMBER and journey mapping from GREEN to AMBER.
+**Resolved in later research:** The model now uses task-level colours. In Stage 2, AI drafting is GREEN while the Definition of Ready and backlog acceptance decision is RED. Journey mapping is AMBER because AI-generated hypotheses still require human validation.
 
 ---
 
@@ -184,18 +184,18 @@ As a developer, tester or architect, I want each lifecycle stage to show the act
 
 ---
 
-## Unresolved questions
+## Earlier open questions
 
-These still need clarification:
+The following questions were raised during Pass 1. Later research has resolved some of them:
 
-1. What is the minimum human check required at each stage?
-2. What AI audit information does NBN need to keep?
-3. What should allow a task to move from amber to green?
-4. Does the team agree with changing Stage 2 from GREEN to AMBER?
-5. Does the team agree with changing journey mapping from GREEN to AMBER?
-6. Which NBN rules or regulations need to be enforced as hard limits?
-7. How much control should AI have over deployment and rollback?
-8. What should be the default way of handling collaboration and review when AI speeds up development?
+1. What is the minimum human check required at each stage? - Refined in the task-level lifecycle map.
+2. What AI audit information does NBN need to keep? - Refined through Slice 3 provenance and governance research.
+3. What should allow a task to move from amber to green? - Resolved: deterministic checks or measured thresholds are required.
+4. Should Stage 2 change from GREEN to AMBER? - Resolved: colour is applied at task level rather than to the whole stage.
+5. Should journey mapping change from GREEN to AMBER? - Resolved: journey mapping is AMBER because AI-generated hypotheses require human validation.
+6. Which NBN rules or regulations need to be enforced as hard limits? - Refined in Slice 3 Module 6.
+7. How much control should AI have over deployment and rollback? - Refined through US-07 and US-16.
+8. What should be the default way of handling collaboration and review when AI speeds up development? - Refined through Slice 3 Module 1 and US-08.
 
 ## Pass 1 note
 
@@ -505,3 +505,206 @@ As a developer, I want important AI instructions to be stored and versioned with
 PRD-6 walkthrough findings were not available when this backlog was prepared. No walkthrough gaps have been invented or inferred from the research.
 
 If PRD-6 produces additional gaps, they should be added to the Sprint 2 backlog as stories rather than left as notes.
+
+---
+
+# Pass 3 - Slice 3, Interview Findings and Proof-of-Concept Acceptance Criteria
+
+**Owner:** Ahmed Falulur Rahuman
+
+**Planner card:** [PRD] - Requirements pass 3 and proof-of-concept acceptance criteria : 240
+
+**Pass:** 3 - Research Slice 3 and developer interviews
+
+## Purpose
+
+This pass applies the governance, collaboration, prompt-practice and accountability findings from Slice 3 and incorporates the two developer interviews.
+
+The interviews did not directly invalidate an earlier research slice. They did show that organisations use different levels of AI autonomy and different approaches to recording AI involvement. The common points were clearer requirements and context, human validation, scoped AI work and human responsibility for the final result.
+
+This pass also converts the existing fault-reporting proof-of-concept criteria into Given/When/Then form so another team member can check them independently.
+
+## Updates to existing requirements
+
+### US-05 - Record AI involvement and responsibility
+
+**Pass 3 source:** Slice 3 - Module 4: Liability, provenance and code authorship; developer interviews
+
+Keep the existing acceptance criteria and PRD-7 updates.
+
+**Interview note:** The two interviews showed different provenance practices. One organisation records the AI model used for each story, while the other does not identify AI-generated portions of repository code directly. The provenance requirements in this model are therefore a governance choice for the proposed SDLC, not a claim that all organisations already work this way.
+
+---
+
+### US-06 - Put safeguards around AI agents
+
+**Pass 3 source:** Slice 3 - Module 2: Guardrails; Module 6: Regulatory codification for NBN Co; developer interviews
+
+Keep the existing PRD-7 acceptance criteria.
+
+The interviews support keeping AI work scoped to a feature or defined area rather than treating wider codebase access as permission to change anything.
+
+---
+
+### US-08 - Show how AI affects teamwork and review
+
+**Pass 3 source:** Slice 3 - Module 1: Collaboration with an agent in the loop
+
+Keep the existing acceptance criteria and the PRD-7 requirement to record human review time.
+
+The shared acceptance criteria, smaller handoffs and review-time measurement already cover the main Slice 3 collaboration findings, so no separate story is needed.
+
+---
+
+### US-14 - Check whether AI-written tests actually catch bugs
+
+**Pass 3 source:** Slice 2 - Module 4: How harnesses are used; developer interview findings
+
+Add to the acceptance criteria:
+
+- AI-written tests are checked against the intended acceptance criteria, not only against the implementation they were generated from.
+
+---
+
+### US-17 - Start AI development from a ready issue
+
+**Pass 3 source:** D3 Module 6.1 - Issue to branch; developer interview findings
+
+Add to the acceptance criteria:
+
+- The issue contains the business and system context needed to understand the feature before AI implementation begins.
+
+The second interview supports the existing plan-first approach for larger features, so the rest of US-17 does not need to be rewritten.
+
+---
+
+### US-18 - Record AI usage, review effort and token cost
+
+**Pass 3 source:** Slice 3 - Module 3: Token accounting and cost; D3 Module 6.9
+
+No change to the existing user story or acceptance criteria is required.
+
+---
+
+### US-19 - Store important prompts as versioned project files
+
+**Pass 3 source:** Slice 3 - Module 5: Prompt practice; D3 Module 6.11
+
+No change to the existing user story or acceptance criteria is required.
+
+---
+
+## Slice 3 traceability
+
+| Slice 3 module | Requirement |
+| --- | --- |
+| Module 1 - Collaboration with an agent in the loop | US-08, US-09 |
+| Module 2 - Guardrails | US-06 |
+| Module 3 - Token accounting and cost | US-18 |
+| Module 4 - Liability, provenance and code authorship | US-05 |
+| Module 5 - Prompt practice | US-19 |
+| Module 6 - Regulatory codification for NBN Co | US-06 |
+
+No extra story has been added where an existing requirement already covers the mechanic.
+
+---
+
+# Fault-reporting proof-of-concept acceptance criteria
+
+**Status:** Proposed acceptance criteria. Human approval of the feature criteria and scope is still required before implementation begins.
+
+**User story:**
+
+As a signed-in user, I want to submit a fault and retrieve my own reports, so I have a durable reference for the problem.
+
+### POC-AC1 - Submit a valid fault
+
+**Given** the user is signed in  
+**And** the category is `no-service`, `intermittent` or `slow-speed`  
+**And** the trimmed description is between 10 and 1000 characters  
+**When** the user submits the fault  
+**Then** the submission is accepted.
+
+**Evidence:** Valid submission test and deployed smoke test.
+
+---
+
+### POC-AC2 - Reject invalid input
+
+**Given** the category is missing or is not one of the allowed categories  
+**Or** the trimmed description is shorter than 10 characters or longer than 1000 characters  
+**When** the user submits the fault  
+**Then** the request is rejected by the server  
+**And** no fault record is written.
+
+**Evidence:** Tests at 9, 10, 1000 and 1001 characters, plus blank, whitespace-only and invalid-category cases.
+
+---
+
+### POC-AC3 - Store trusted fault details
+
+**Given** a signed-in user submits a valid fault  
+**When** the fault is stored  
+**Then** the server assigns a unique reference  
+**And** records the authenticated user as the owner  
+**And** records a server timestamp  
+**And** sets the initial status to `submitted`  
+**And** owner or status values supplied by the client cannot override those values.
+
+**Evidence:** Persistence test and forged owner/status tests.
+
+---
+
+### POC-AC4 - Retrieve a submitted fault
+
+**Given** a signed-in user has submitted a fault successfully  
+**When** the submission completes  
+**Then** the user is shown the fault reference.
+
+**Given** the same user refreshes or returns to the report  
+**When** the report is retrieved  
+**Then** the same fault remains available to that user.
+
+**Evidence:** Confirmation test and persistence smoke test.
+
+---
+
+### POC-AC5 - Prevent unauthorised access
+
+**Given** a user is not signed in  
+**When** they try to create or read a fault  
+**Then** the request is rejected.
+
+**Given** a fault belongs to another signed-in user  
+**When** a different user tries to read it, including by using its direct ID  
+**Then** access is rejected.
+
+**Evidence:** Unauthenticated and cross-user negative tests.
+
+---
+
+### POC-AC6 - Handle a failed save
+
+**Given** a valid fault cannot be saved  
+**When** the persistence operation fails  
+**Then** the user is shown a useful error  
+**And** no success confirmation is shown.
+
+**Evidence:** Forced storage-failure test.
+
+---
+
+## Open points before implementation
+
+- A named independent reviewer still needs to be assigned.
+- The proof-of-concept criteria and detailed scope still need human approval.
+- Operator and reviewer capacity still needs to be confirmed.
+- The approved implementation plan will decide whether the feature uses the existing Server Action path or the Express API path.
+- Firestore rule or index changes are only required if the selected storage design needs them.
+- The developer interviews covered experienced developers only. The junior or student audience was not represented.
+
+## Pass 3 note
+
+The interviews showed different levels of AI adoption and different provenance practices, but neither interview directly invalidated the existing research.
+
+Requirements already supported by Slice 3 have been refined rather than duplicated. The proof-of-concept criteria use the existing fault-reporting feature brief and do not assume an implementation path that has not yet been approved.
