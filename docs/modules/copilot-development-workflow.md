@@ -174,3 +174,20 @@ Each gate in this workflow is labelled by the mechanism that actually holds it.
 | Agent-authored change accepted | **Human** | A human reviewer inspects the diff and decides whether the implementation is correct, appropriately scoped and suitable to merge. |
 
 Repository instructions, prompt files, skills, custom agents and Copilot's own summaries can guide how work is performed, but they do not themselves hold a gate. A gate is only treated as enforced when it is held by a hook, a CI check or a human decision.
+
+## Issue readiness before assigning to Copilot
+
+A GitHub issue must be complete before it is assigned to Copilot. Assigning an incomplete issue transfers ambiguity to the agent and increases the chance of scope creep, incorrect assumptions and unnecessary changes.
+
+Before assignment, a human confirms that the issue contains or references:
+
+1. **Task definition**: what change is required and why.
+2. **Acceptance criteria**: observable conditions that define when the task is complete.
+3. **Scope**: the parts of the system that may need to change.
+4. **Exclusions**: functionality or files that are explicitly outside the task.
+5. **Repository context**: relevant specifications, architecture documents or other repository files needed to understand the task.
+6. **Dependencies and constraints**: existing functionality, security requirements or other conditions that affect implementation.
+
+If any required information is missing or still awaiting a decision, the issue should remain with a human rather than being assigned to Copilot.
+
+**Gate mechanism: Human.** A person decides whether the issue is sufficiently complete to delegate. Repository instructions can tell Copilot how to behave after assignment, but they cannot determine whether the original requirements are correct or complete.
