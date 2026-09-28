@@ -1,5 +1,21 @@
 # Copilot Development Workflow
 
+## Worked example
+
+A developer is asked to add fault reporting to the application.
+
+Before Copilot is involved, the team completes the GitHub issue. The issue explains what the feature should do, what is in and out of scope, and the acceptance criteria that define when the work is complete. The supporting fault-reporting brief is stored in the repository so that the requirements are shared and versioned rather than existing only in someone's chat history.
+
+A human checks that the task is ready and then hands it to Copilot.
+
+Copilot reads the issue, the acceptance criteria and the relevant repository context. It implements the requested change and returns a reviewable set of code changes.
+
+The developer or reviewer does not accept the implementation simply because Copilot says it is finished. They inspect the diff, check that it follows the repository's existing patterns, confirm that it stayed within scope, compare the implementation with each acceptance criterion, inspect the tests and security-sensitive behaviour, and review the results of the automated checks.
+
+If the implementation does not satisfy those checks, it is revised. Only after the automated checks pass and a human is satisfied with the actual change should it proceed towards merge.
+
+The detailed sections below show how each part of this workflow is performed with GitHub Copilot.
+
 ## What is handed to Copilot
 
 Before Copilot begins implementation, it should receive a complete task package rather than only a short coding request. The handoff consists of the issue, its acceptance criteria, and the repository context needed to implement the change correctly.
