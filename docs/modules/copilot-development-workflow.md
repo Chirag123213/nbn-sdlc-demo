@@ -145,3 +145,19 @@ The review should be performed in the following order:
 After these checks are complete, only then the reviewer should approve the change.
 
 **Gate mechanism: Human.** Automated hooks and CI checks can reject known violations, but they cannot approve whether the implementation is appropriate, complete and correct for the intended requirement.
+
+## Failure mode
+
+The main failure mode is **rubber-stamping an agent-authored change**.
+
+Copilot can produce a plausible implementation, a convincing explanation and passing automated checks. This can encourage a reviewer to trust the agent's summary or the green CI result instead of examining whether the diff actually satisfies the issue and fits the repository.
+
+The evidence already recorded in this repository shows why this is a risk.
+
+The research in `docs/research/slice2-build-modules.md` records the METR finding that experienced developers believed AI assistance made them approximately 20% faster while they were actually measured as approximately 19% slower. The gap between perceived and measured performance shows that confidence in AI assistance does not necessarily reflect its actual result.
+
+The same research also records that agent-authored pull requests were more likely to contain multiple objectives than comparable human pull requests (40.0% compared with 12.2%). Large or complex pull requests were also recorded as a reason for rejection. This means an agent-generated change may appear complete while containing additional scope that makes effective human review harder.
+
+For this workflow, the defence is therefore not to accept Copilot's description of the change as proof that the task is complete. The reviewer must inspect the diff against the issue, acceptance criteria and repository conventions using the ordered human review gate above.
+
+A passing CI result is supporting evidence, not approval of the change.
