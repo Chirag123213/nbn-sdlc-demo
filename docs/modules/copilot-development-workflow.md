@@ -16,6 +16,23 @@ If the implementation does not satisfy those checks, it is revised. Only after t
 
 The detailed sections below show how each part of this workflow is performed with GitHub Copilot.
 
+## Issue readiness before assigning to Copilot
+
+A GitHub issue must be complete before it is assigned to Copilot. Assigning an incomplete issue transfers ambiguity to the agent and increases the chance of scope creep, incorrect assumptions and unnecessary changes.
+
+Before assignment, a human confirms that the issue contains or references:
+
+1. **Task definition**: what change is required and why.
+2. **Acceptance criteria**: observable conditions that define when the task is complete.
+3. **Scope**: the parts of the system that may need to change.
+4. **Exclusions**: functionality or files that are explicitly outside the task.
+5. **Repository context**: relevant specifications, architecture documents or other repository files needed to understand the task.
+6. **Dependencies and constraints**: existing functionality, security requirements or other conditions that affect implementation.
+
+If any required information is missing or still awaiting a decision, the issue should remain with a human rather than being assigned to Copilot.
+
+**Gate mechanism: Human.** A person decides whether the issue is sufficiently complete to delegate. Repository instructions can tell Copilot how to behave after assignment, but they cannot determine whether the original requirements are correct or complete.
+
 ## What is handed to Copilot
 
 Before Copilot begins implementation, it should receive a complete task package rather than only a short coding request. The handoff consists of the issue, its acceptance criteria, and the repository context needed to implement the change correctly.
@@ -64,6 +81,56 @@ The handoff should identify:
 - any explicit scope or exclusions that prevent unrelated changes
 
 The agent should not be expected to infer missing requirements. If important information is not written in the issue or referenced repository context, the task is not ready to be delegated.
+
+
+## Copilot workflow examples
+
+The same development task can be handed to Copilot in different ways. The following examples use the fault-reporting feature to show the difference between Copilot cloud agent and Copilot Agent mode in VS Code.
+
+### Example 1: Copilot cloud agent
+
+A complete GitHub issue exists for the fault-reporting feature. The issue contains the task description and acceptance criteria and references:
+
+`docs/research/fault-reporting/feature-brief.md`
+
+The developer opens the issue on GitHub and assigns it to Copilot.
+
+Copilot receives the issue title, description and comments as task context and can also use the repository's `.github/copilot-instructions.md` and referenced repository files while working.
+
+Assigning the issue to Copilot cloud agent starts the task and creates a pull request. Copilot works on its own branch and updates the pull request with its implementation.
+
+When Copilot finishes, the human reviews the pull request rather than accepting the agent's completion message as evidence. The reviewer checks the diff against the issue and acceptance criteria, reviews the tests and automated checks, and either requests further changes or approves the implementation.
+
+The flow is therefore:
+
+`Complete issue → Assign to Copilot → Copilot branch and PR → Human reviews diff → Revise or approve`
+
+For issue assignment, the pull request is created automatically. There is not a mandatory GitHub approval step between assigning the issue and Copilot beginning the task. Any instruction asking Copilot to produce a plan first helps shape its behaviour, but should not be treated as a mechanically enforced pre-implementation gate.
+
+### Example 2: Copilot Agent mode in VS Code
+
+The developer opens the repository in VS Code and starts Copilot in Agent mode.
+
+Using the **+ (Add Context)** button, the developer attaches the GitHub issue and, where useful, explicitly references:
+
+`docs/research/fault-reporting/feature-brief.md`
+
+The developer can then ask:
+
+> Read the attached issue and the fault-reporting feature brief. Map every acceptance criterion to an implementation step, proposed files and a test. Produce the plan before changing feature code.
+
+The developer reviews the proposed plan and redirects it if necessary.
+
+After the plan is accepted, the developer asks Copilot to implement it. Agent mode can inspect repository files, edit the implementation and run relevant commands and tests.
+
+The resulting changes remain reviewable through the VS Code diff and Source Control views. The developer inspects the changed files using the same human review gate defined in this module.
+
+If the implementation is accepted, the developer commits the changes to the feature branch, pushes the branch and opens a pull request through the repository's normal Git workflow.
+
+The flow is therefore:
+
+`Complete issue → Add issue as Agent context → Review plan → Agent changes workspace → Human reviews diff → Commit and PR`
+
 
 ## The output recieved from Copilot
 
@@ -190,20 +257,3 @@ Each gate in this workflow is labelled by the mechanism that actually holds it.
 | Agent-authored change accepted | **Human** | A human reviewer inspects the diff and decides whether the implementation is correct, appropriately scoped and suitable to merge. |
 
 Repository instructions, prompt files, skills, custom agents and Copilot's own summaries can guide how work is performed, but they do not themselves hold a gate. A gate is only treated as enforced when it is held by a hook, a CI check or a human decision.
-
-## Issue readiness before assigning to Copilot
-
-A GitHub issue must be complete before it is assigned to Copilot. Assigning an incomplete issue transfers ambiguity to the agent and increases the chance of scope creep, incorrect assumptions and unnecessary changes.
-
-Before assignment, a human confirms that the issue contains or references:
-
-1. **Task definition**: what change is required and why.
-2. **Acceptance criteria**: observable conditions that define when the task is complete.
-3. **Scope**: the parts of the system that may need to change.
-4. **Exclusions**: functionality or files that are explicitly outside the task.
-5. **Repository context**: relevant specifications, architecture documents or other repository files needed to understand the task.
-6. **Dependencies and constraints**: existing functionality, security requirements or other conditions that affect implementation.
-
-If any required information is missing or still awaiting a decision, the issue should remain with a human rather than being assigned to Copilot.
-
-**Gate mechanism: Human.** A person decides whether the issue is sufficiently complete to delegate. Repository instructions can tell Copilot how to behave after assignment, but they cannot determine whether the original requirements are correct or complete.
