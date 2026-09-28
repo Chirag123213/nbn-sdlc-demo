@@ -161,3 +161,16 @@ The same research also records that agent-authored pull requests were more likel
 For this workflow, the defence is therefore not to accept Copilot's description of the change as proof that the task is complete. The reviewer must inspect the diff against the issue, acceptance criteria and repository conventions using the ordered human review gate above.
 
 A passing CI result is supporting evidence, not approval of the change.
+
+## Gate mechanisms
+
+Each gate in this workflow is labelled by the mechanism that actually holds it.
+
+| Gate | Mechanism | What holds the gate |
+|---|---|---|
+| Task is ready to be delegated to Copilot | **Human** | A person confirms that the issue, acceptance criteria, context and scope are complete before the task is handed to the agent. |
+| Repository rules checked during development | **Hook** | Deterministic repository hooks can block known violations when the relevant action occurs. |
+| Automated verification before merge | **CI check** | GitHub Actions runs the repository's linting, type checking, tests and security checks and reports whether they pass. |
+| Agent-authored change accepted | **Human** | A human reviewer inspects the diff and decides whether the implementation is correct, appropriately scoped and suitable to merge. |
+
+Repository instructions, prompt files, skills, custom agents and Copilot's own summaries can guide how work is performed, but they do not themselves hold a gate. A gate is only treated as enforced when it is held by a hook, a CI check or a human decision.
