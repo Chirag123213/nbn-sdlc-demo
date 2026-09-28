@@ -2,7 +2,7 @@
 
 **Status:** Draft for team review
 
-**Date:** 27 Sep 2027
+**Date:** 27 Sep 2026
 
 **Owner:** Sidney Zeng (PM)
 
@@ -33,7 +33,7 @@ Slice 3 Module 4 states the rule: every change carries four names, and no ambigu
 | 1 | Human author of record | The committer | Git author on the commit |
 | 2 | Agent co-author | The agent that contributed | `Co-Authored-By` trailer on the commit |
 | 3 | Human approver | A person who is not the requester | Pull request review, enforced by the `main` ruleset |
-| 4 | Accountable owner | Named in the AI register | `docs/AI-REGISTER.md` |
+| 4 | Accountable owner | Named in the AI register | `docs/AI-register.md` |
 
 **Accountability does not end at merge.** Liu et al. found 24.2 percent of issues introduced by AI-authored commits still present at repository HEAD, with security issues surviving at 41.1 percent. The accountable owner's obligation therefore runs **until the next release**, recorded on each register row.
 
@@ -45,7 +45,7 @@ Slice 3 Module 4 states the rule: every change carries four names, and no ambigu
 | Agent co-author | Yes, for Claude Code | Commit `20755e0c` carries `Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>`; attribution survived the squash merge into `main` at `2c9a958` |
 | Agent co-author, Copilot | Documented, not tested | Copilot cloud-agent access was unavailable on the test account, so GitHub's documented behaviour is recorded rather than verified |
 | Human approver | Yes | The `main` ruleset requires two approving reviews; merge was blocked for both the repository owner and a collaborator on PR #43 |
-| Accountable owner | **Not until now** | The register did not exist. `docs/AI-REGISTER.md` is created with this document |
+| Accountable owner | **Not until now** | The register did not exist. `docs/AI-register.md` is created with this document |
 
 Three of the four names were already automatic. The fourth, the one the regulator actually asks for, existed in no tooling at all.
 
@@ -172,7 +172,7 @@ Three numbers per task, recorded in the credit log at `docs/research/fault-repor
 
 ## 8. The AI register
 
-`docs/AI-REGISTER.md`, owned by the PM, one row per AI use case.
+`docs/AI-register.md`, owned by the PM, one row per AI use case.
 
 Each row records the use case, the accountable owner, the tool and model, where it runs, what a task may cost, and the obligation period. The obligation runs **until the next release**.
 
