@@ -92,3 +92,56 @@ If the changes are accepted, they can then be committed, pushed to the feature b
 Regardless of which Copilot mode is used, the implementation itself is the artifact that must be reviewed.
 
 A statement from Copilot that the task is complete, that tests pass, or that the acceptance criteria have been satisfied is not sufficient evidence on its own. The reviewer should inspect the resulting diff and the relevant validation evidence before accepting the change.
+
+
+## Human review gate
+
+An agent-authored change must be reviewed by a human before it is accepted. The reviewer should inspect the actual diff rather than relying on Copilot's summary of what it changed.
+
+The review should be performed in the following order:
+
+1. **Check repository conventions**
+
+   Confirm that the implementation follows the patterns already used in the repository. This includes architecture, file locations, naming, validation, authentication, imports and other project conventions.
+
+   An implementation can work technically while still being the wrong implementation for this codebase.
+
+2. **Check scope**
+
+   Confirm that the diff represents one logical change and stays within the issue's requested scope.
+
+   Look for unrelated refactoring, dependency changes, formatting changes or additional functionality that was not required by the issue.
+
+3. **Check related documentation and configuration**
+
+   Check whether the implementation changed behaviour that also requires updates to documentation, configuration, schemas, rules or other repository artifacts.
+
+   The code and the repository context should remain consistent after the change.
+
+4. **Check correctness against the acceptance criteria**
+
+   Compare the implementation directly with each acceptance criterion from the issue.
+
+   The reviewer should verify that every required behaviour is implemented and that the agent has not silently changed or omitted a requirement.
+
+5. **Check the tests**
+
+   Confirm that tests exist for the required behaviour and that they test meaningful outcomes rather than merely reproducing the implementation.
+
+   A passing test suite is evidence, but it does not by itself prove that the tests are adequate.
+
+6. **Check security and failure paths**
+
+   Inspect authentication, authorization, input validation, error handling, secrets and other security-sensitive behaviour relevant to the change.
+
+   Pay particular attention to negative cases such as unauthorised access, invalid input and failed operations.
+
+7. **Check the validation evidence**
+
+   Review the results of the repository's automated checks, such as linting, type checking, unit tests, security scanning and other CI checks.
+
+   Copilot stating that a check passed is not enough. The reviewer should use the actual tool or CI result as the evidence.
+
+After these checks are complete, only then the reviewer should approve the change.
+
+**Gate mechanism: Human.** Automated hooks and CI checks can reject known violations, but they cannot approve whether the implementation is appropriate, complete and correct for the intended requirement.
