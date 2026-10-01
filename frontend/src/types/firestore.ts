@@ -7,8 +7,6 @@ import type { Timestamp } from 'firebase/firestore'
  *   - src/lib/firebase/firestore.ts  (typed collection exports)
  *   - firebase/firestore.rules       (security rules)
  *   - docs/FIRESTORE-SCHEMA.md       (schema documentation)
- *
- * When adding a new collection, use the /firebase-collection skill.
  */
 
 export interface UserProfile {
@@ -23,3 +21,15 @@ export interface UserProfile {
 }
 
 export type CreateUserProfileInput = Omit<UserProfile, 'createdAt' | 'updatedAt'>
+
+export type FaultReportCategory = 'no-service' | 'intermittent' | 'slow-speed'
+export type FaultReportStatus = 'submitted'
+
+export interface FaultReport {
+  uid: string
+  category: FaultReportCategory
+  description: string
+  createdAt: Timestamp
+  status: FaultReportStatus
+  _schemaVersion: 1
+}

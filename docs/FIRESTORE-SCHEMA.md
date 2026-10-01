@@ -47,3 +47,20 @@ This enables **lazy migration** — when a document is read, check `_schemaVersi
 ---
 
 <!-- Add new collection schemas below using the /firebase-collection skill -->
+
+
+## `faultReports` collection
+
+**Path:** `/faultReports/{reportId}`
+**Access:** Server-only through authenticated Server Actions; direct client reads and writes are denied by Firestore rules.
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `uid` | `string` | Yes | Authenticated Firebase UID that owns the report |
+| `category` | `no-service \| intermittent \| slow-speed` | Yes | Fault category |
+| `description` | `string` | Yes | Trimmed description, 10–1000 characters |
+| `createdAt` | `Timestamp` | Yes | Server timestamp |
+| `status` | `submitted` | Yes | Initial immutable status |
+| `_schemaVersion` | `1` | Yes | Schema version |
+
+The document ID is the user-visible report reference. Server-side listing filters by `uid` and orders by `createdAt` descending. If Firestore requires a composite index for this query, add only that generated index.

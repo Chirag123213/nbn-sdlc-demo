@@ -1,0 +1,4 @@
+$ node scripts/validate-placeholders.js
+✅ No unreplaced placeholders found.
+
+environment-validation-exit=0

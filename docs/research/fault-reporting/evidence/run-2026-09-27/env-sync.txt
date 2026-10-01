@@ -1,0 +1,45 @@
+Scope: all 3 workspace projects
+✓ Lockfile passes supply-chain policies (verified 4d ago)
+Lockfile is up to date, resolution step is skipped
+Progress: resolved 1, reused 0, downloaded 0, added 0
+Packages: +897
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+   ╭─────────────────────────────────────────╮
+   │                                         │
+   │   Update available! 11.20.0 → 12.6.0.   │
+   │   Changelog: https://pnpm.io/v/12.6.0   │
+   │    To update, run: pnpm add -g pnpm     │
+   │                                         │
+   ╰─────────────────────────────────────────╯
+
+Packages are cloned from the content-addressable store to the virtual store.
+  Content-addressable store is at: /Users/zafirhasan/Library/pnpm/store/v11
+  Virtual store is at:             node_modules/.pnpm
+Progress: resolved 897, reused 890, downloaded 0, added 164
+Progress: resolved 897, reused 890, downloaded 0, added 676
+Progress: resolved 897, reused 890, downloaded 0, added 895
+Progress: resolved 897, reused 890, downloaded 0, added 897, done
+.../node_modules/protobufjs postinstall$ node scripts/postinstall
+.../node_modules/unrs-resolver postinstall$ node postinstall.js
+.../node_modules/lefthook postinstall$ node postinstall.js
+.../node_modules/protobufjs postinstall: Done
+.../node_modules/unrs-resolver postinstall: Done
+.../node_modules/lefthook postinstall: sync hooks: ✔️ (pre-commit, commit-msg)
+.../node_modules/lefthook postinstall: Done
+
+devDependencies:
++ lefthook 1.13.6
++ next 16.3.4
+
+. prepare$ lefthook install
+. prepare: sync hooks: ✔️ (pre-commit, commit-msg)
+. prepare: Done
+Done in 5.2s using pnpm v11.20.0
+$ node scripts/sync-env.js
+[31mNo .env file found at the repo root.[0m
+Create it first:  cp .env.example .env  (then fill in your Firebase values)
+See docs/ENV-VARS.md for what each variable is.
+[ELIFECYCLE] Command failed with exit code 1.
+
+env-sync-exit=1
