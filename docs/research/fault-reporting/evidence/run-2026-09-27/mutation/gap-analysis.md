@@ -1,6 +1,8 @@
-# FR-01 mutation gap analysis
+# FR-01 mutation gap analysis — before focused revision
 
-The first post-implementation measurement is preserved unchanged: 88 valid
+Historical findings; consult [run history](revised-gap-analysis.md) and the AC matrix for subsequent corrections.
+
+The initial completed implementation checkpoint is preserved unchanged: 88 valid
 mutants, 56 killed, 14 survived, 18 uncovered, 0 errors, 63.64% detected.
 No score threshold applies.
 

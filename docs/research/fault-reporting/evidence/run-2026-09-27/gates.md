@@ -1,42 +1,23 @@
-# FR-01 remaining gates
+# FR-01 acceptance gates
 
-## Before implementation
+Implementation, focused automated tests and local-app/Firebase integration are
+recorded as complete to the extent described in [ac-matrix.md](ac-matrix.md).
+Issue #57, plan approval, server-only architecture, synthetic accounts and the
+no-threshold mutation policy are recorded. Development rules are deployed and
+the human-created index was verified READY. These are not application-preview
+or final human acceptance.
 
-- Publish the approved GitHub issue and record its URL in `issue-draft.md`.
-- Supply exact approval date/timezone for the recorded `9:43` time.
-- Confirm capacity allocation.
-- Supply local Firebase configuration through the ignored root `.env`; run `pnpm run env:sync`.
-- Confirm synthetic test account access and explicitly authorize creation of remote synthetic records.
-- Approve the frontend mutation comparison basis and numeric threshold, if any.
-- Decide whether a raw transcript export is required for the verbatim planning exchange artifact.
-- Keep implementation within the approved file scope; record any rescope before editing.
+Remaining gates in the available evidence:
+- Chirag Wadehra reviews code/test correctness and records dispositions.
+- Dependency advisories are remediated or explicitly dispositioned; see
+  [tooling-and-security.md](tooling-and-security.md).
+- Actual Gitleaks/required CI results are recorded; local unavailability is not a pass.
+- Preview URL and deployed commit are recorded and preview smoke tests completed.
+- Available AI usage/time readings and prompt provenance are consolidated; missing
+  values stay unavailable, not zero or inferred.
+- Final human acceptance and any release/promotion approval are recorded separately.
 
-## Before testing or deployed smoke tests
-
-- Complete the approved feature implementation and targeted tests.
-- Verify Firebase Auth and Firestore access with synthetic data only.
-- Confirm a second synthetic account for cross-owner tests.
-- Determine whether the `where('uid', '==', session.uid).orderBy('createdAt', 'desc')` query requires a Firestore composite index in the target project; add only the required index.
-- Run and record lint, typecheck, all tests, build, security checks, and the approved mutation procedure.
-- Obtain a reachable preview/deployment URL and record the deployed commit SHA.
-- Obtain explicit confirmation before creating any remote test records.
-
-## Before merge or release
-
-- Chirag Wadehra completes the independent review and records dispositions.
-- Human judges test correctness and mutation evidence; no automated result substitutes for that decision.
-- CI is green or every failure is honestly recorded and dispositioned.
-- Complete the AI-use declaration with the exposed client/model value or `not disclosed`, session reference, human edits, and stage measurements.
-- Record release approval separately; do not infer it from deployment availability or repository ruleset configuration.
-- Record smoke-test evidence and feed approved findings back into repository context.
-
-## Current status after local Firebase integration
-
-- Approved implementation and focused tests completed locally.
-- Human-created `faultReports` composite index in `nbn-sdlc-demo` verified `READY` and matched to `firebase/firestore.indexes.json`.
-- Approved `faultReports` deny rules are deployed and direct client denial evidence is recorded.
-- User A local-app Firebase listing, refresh persistence, newest-first ordering, and live whitespace rejection passed.
-- User B local-app owner-filtered listing passed; no reports were shown.
-- Deployed-preview acceptance remains pending because no application preview URL/commit SHA has been recorded.
-- Chirag Wadehra human review, dependency disposition, Gitleaks, and final human acceptance remain pending.
-- No push, merge, application deployment, production promotion, or further rules/IAM change was performed.
+Live Server Action negative-path and storage-failure limitations remain explicit
+in the AC matrix. Automated evidence requires human judgement. Historical records
+of “no push/deployment” apply to their checkpoint and do not assert current remote
+state; remote PR/CI state was not rechecked during this documentation cleanup.

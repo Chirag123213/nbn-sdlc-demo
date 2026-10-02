@@ -1,20 +1,5 @@
 # FR-01 synthetic Firebase accounts
 
-Creation was authorized by Zafir Hasan on 27 September 2026. No accounts were
-created during this readiness pass because the local Firebase configuration is
-not present (`.env`, `frontend/.env.local`, and `backend/.env` are absent).
-No existing users were inspected or modified.
+User A and User B creation and email verification were human-confirmed before the recorded integration checks. User A submission/list/refresh and User B list isolation were exercised; see [integration-results.md](integration-results.md). Exact account-creation timestamps were not recorded.
 
-Reserved test identities:
-
-| Label | Firebase UID | Email | Status |
-|---|---|---|---|
-| User A | withheld | withheld | Not created |
-| User B | withheld | withheld | Not created |
-
-When configuration is available, create both accounts through the existing
-sign-up flow where possible, using synthetic email addresses and passwords
-handled locally. Do not place passwords, tokens, full email addresses, or UID
-values in chat, logs, committed files, or evidence. Record only User A/User B
-and creation success, then retain the accounts through testing and independent
-review. Cleanup requires a separate explicit decision after review.
+The earlier readiness observation that accounts were not created is superseded. Account creation was authorised on 27 September 2026. Credentials remain local and ignored; no credentials are included here. Retain test accounts through review; cleanup is a separate decision.

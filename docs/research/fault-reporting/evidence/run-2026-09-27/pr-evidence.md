@@ -2,8 +2,9 @@
 
 ## Status
 
-Implemented locally; independent review, integration testing and deployed
-acceptance pending. Do not describe this as fully accepted.
+Implemented locally with automated and recorded local Firebase integration evidence.
+Independent human review, security disposition and deployed-preview acceptance remain pending.
+See `gates.md`; this is not full acceptance.
 
 ## Issue and session
 
@@ -13,7 +14,7 @@ acceptance pending. Do not describe this as fully accepted.
 - Source baseline: `c2461d276426f2372ae09a65aae59a8fbd5e955b`
 - Setup freeze: `b62e009b6e8bc51779744a6f67d1e0c92cf3003e`
 - Client/model: not disclosed by the interface
-- Implementation author: current project session `8b0a3925-489a-4983-82d5-794b8316898e` / branch `s4084016-shiny-broccoli`
+- Implementation author: current project session `8b0a3925-489a-4983-82d5-794b8316898e` / worktree folder `s4084016-shiny-broccoli`
 - Earlier informed review: background agent `7fce3b71-5019-4aaf-859f-ab6cb1121084`; it was told the seeded-fault types, so blind discovery is unverified
 - Fresh post-revision review: background agent `b0eda045-3399-4d51-990e-85a28b1bd439`; read-only, no prior report supplied, no seeded-fault exercise
 
@@ -27,13 +28,13 @@ records are in `decisions.md`.
 
 ## Time and usage readings
 
-Actual AI Credits, instruction time, generation elapsed time, active human review
-time, manual correction time, and command execution time are unavailable unless
-measured from the interface/run records. The command outputs record pass/fail and
-wall-clock runtimes where available, but those are not substitutes for human or
-AI usage readings. Do not infer them from token counts or
-wall-clock gaps. Capacity estimates are separate: Zafir approximately 2 hours;
-Chirag 1 hour.
+Retrospective operator estimates: approximately **4 hours generating time including
+prompting**, and **35 minutes Zafir review time**. Supplied GitHub daily figures
+sum to **69.05 AI Credits** and **$0.69 displayed amounts**; attribution to FR-01
+alone is provisional. See [usage and time estimates](usage-and-time-estimates.md)
+for the daily entries, definitions and limitations. Per-stage readings and
+Chirag's actual review time remain unavailable. Capacity estimates and command
+runtimes are not substitutes for these measurements.
 
 ## Methodology exception
 

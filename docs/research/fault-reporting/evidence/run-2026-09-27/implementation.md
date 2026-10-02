@@ -1,4 +1,6 @@
-# FR-01 implementation evidence — final local revision
+# FR-01 implementation evidence — initial completed local revision
+
+> Historical checkpoint (17 frontend tests). Later focused tests, review and Firebase integration supersede its pending-status statements. Current evidence: [AC matrix](ac-matrix.md), [integration results](integration-results.md), [gates](gates.md). “final” in raw filenames identifies this checkpoint, not the latest run.
 
 ## Scope implemented
 
@@ -47,8 +49,8 @@ must be used for any later final-revision comparison.
 - Raw report: `mutation/frontend-mutation-final.json`
 - Command output: `mutation/frontend-mutation-final.txt`
 
-This is the first measurement after implementation and tests, not a pre-feature
-baseline. The approved methodology exception applies because no comparable
+This is the first retained comparison checkpoint after initial implementation, not a pre-feature
+baseline. A preliminary 87-mutant run also exists; see [mutation history](mutation/revised-gap-analysis.md). The approved methodology exception applies because no comparable
 fault-reporting frontend code existed before implementation. It is not compared
 with the historical backend score, and no human-only test provenance is claimed.
 

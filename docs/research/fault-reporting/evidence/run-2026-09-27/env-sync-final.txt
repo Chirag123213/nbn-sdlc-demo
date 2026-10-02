@@ -1,4 +1,0 @@
-$ node scripts/sync-env.js
-env:sync  .env → frontend/.env.local, backend/.env
-
-env-sync-exit=0

@@ -6,7 +6,7 @@
 - Approval timestamp: 27 Sep 9:43pm Melbourne
 - Independent reviewer: Chirag Wadehra
 - Hosted issue: https://github.com/Chirag123213/nbn-sdlc-demo/issues/57 (open; verified)
-- Capacity allocation: Pending
+- Capacity estimates subsequently recorded in `pr-evidence.md`: Zafir approximately 2 hours; Chirag 1 hour. These are not measured durations.
 - AC1–AC6 and feature exclusions: approved
 - Architecture: frontend Server Actions with Firebase Admin and verified session cookie
 - Backend: no Express changes
@@ -19,7 +19,7 @@
 - Access: server-only; explicit client read/write denial in Firestore rules
 - Missing and non-owned IDs: same user-safe result without report disclosure
 
-Capacity remains pending. Hosted issue and exact approval date/timezone are now recorded.
+Hosted issue and approval date/timezone are recorded. Capacity estimates are distinct from actual time measurements.
 
 ## Actual starting commits
 
@@ -30,29 +30,14 @@ Capacity remains pending. Hosted issue and exact approval date/timezone are now 
 
 The source baseline and setup freeze are historical/current commit identifiers, not claims that the feature is implemented.
 
-## Local environment verification
+## Environment history and current recorded status
 
-Rechecked 2026-09-30 in the active worktree. The root `.env`, `.env.fr01-test.local`, `frontend/.env.local`, and `backend/.env` are readable and Git-ignored. Their contents were not displayed. `env:sync` may now be run; User A and User B remain not created until human sign-up confirmation.
-
-Observed without reading or exposing secret values:
-
-- `.env`: absent
-- `frontend/.env.local`: absent
-- `backend/.env`: absent
-- Configuration status: still pending based on the filesystem recheck
-- No Firebase sign-in, report write, or remote test record was attempted.
-- No credentials or environment files were created.
-
-Required human setup before Firebase checks:
-
-1. Create or provide the local root `.env` from `.env.example`, keeping credentials local and uncommitted.
-2. Run `pnpm run env:sync` to generate ignored package env files.
-3. Confirm Firebase Auth access and a permitted synthetic test account.
-4. Create two synthetic Firebase Auth accounts through the existing sign-up flow where possible; record only User A/User B.
-5. Confirm a reachable preview/deployment environment before deployed smoke tests.
-6. Account creation was authorized, but no accounts could be created until configuration is supplied; explicit report-record creation authorization remains in force.
-
-The existing baseline's Firebase connectivity and preview observations remain historical until rechecked.
+Initial readiness checks found configuration missing in the separate worktree;
+see `env-sync.txt` and [consolidated checks](routine-checks.md). Configuration was
+subsequently supplied and env:sync succeeded. User A/B creation and verification
+were human-confirmed; local Firebase checks followed. See [account record](account-creation.md)
+and [integration results](integration-results.md). No credentials are recorded here.
+Preview acceptance remains pending in the available evidence.
 
 ## Measurement record
 
@@ -67,9 +52,4 @@ The first planning exchange is included in FR-01 Stage 5. No initial readings we
 
 Record each stage with separate start/end timestamps and actual readings. Do not infer credits from prompt count or elapsed wall-clock time. Human review is active review time; check execution is command/runtime time.
 
-| Stage | Instruction time | Generation elapsed | Human review | Manual correction | Check execution | AI Credits | Evidence |
-|---|---:|---:|---:|---:|---:|---|---|
-| 5 planning/readiness | unavailable | unavailable | unavailable | unavailable | unavailable | unavailable | this run |
-| 6 development | pending | pending | pending | pending | pending | pending | pending |
-| 7 testing/review | pending | pending | pending | pending | pending | pending | pending |
-| 8 deployment/learning | pending | pending | pending | pending | pending | pending | pending |
+Actual per-stage readings are maintained in `../../credit-log.md`; the initial planning readings remain unavailable. Do not use capacity or command runtimes as substitutes.
