@@ -1,0 +1,62 @@
+$ vitest run -- --run tests/unit/actions/faults.actions.test.ts
+
+ RUN  v3.2.7 /Users/zafirhasan/Uni/ProgrammingProject/copilot-worktrees/nbn-sdlc-demo/s4084016-shiny-broccoli/frontend
+
+ ✓ tests/unit/lib/utils.test.ts (6 tests) 3ms
+ ❯ tests/unit/actions/faults.actions.test.ts (15 tests | 1 failed) 6ms
+   ✓ createFaultReport > rejects missing category without writing 1ms
+   ✓ createFaultReport > rejects unknown category without writing 0ms
+   ✓ createFaultReport > rejects missing description without writing 0ms
+   ✓ createFaultReport > rejects a description of 9 characters without writing 0ms
+   ✓ createFaultReport > rejects a description of 1001 characters without writing 0ms
+   × createFaultReport > accepts exactly 1000 trimmed characters 3ms
+     → expected { success: false, …(1) } to deeply equal { success: true, …(1) }
+   ✓ createFaultReport > rejects blank descriptions and unknown fields without writing 0ms
+   ✓ createFaultReport > returns a useful error when storage fails 0ms
+   ✓ createFaultReport > does not swallow authentication redirects/errors 0ms
+   ✓ fault report reads > uses the authenticated owner filter and descending createdAt query contract 0ms
+   ✓ fault report reads > returns a safe error when listing fails 0ms
+   ✓ fault report reads > preserves authentication redirects for listing 0ms
+   ✓ fault report reads > returns the same safe result for missing and non-owned IDs 0ms
+   ✓ fault report reads > returns a safe error when direct-ID storage fails 0ms
+   ✓ fault report reads > preserves authentication redirects for direct-ID reads 0ms
+ ✓ tests/unit/features/faults/components/FaultReportForm.test.tsx (3 tests) 132ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/actions/faults.actions.test.ts > createFaultReport > accepts exactly 1000 trimmed characters
+AssertionError: expected { success: false, …(1) } to deeply equal { success: true, …(1) }
+
+[32m- Expected[39m
+[31m+ Received[39m
+
+[2m  {[22m
+[32m-   "data": {[39m
+[32m-     "reference": "report-123",[39m
+[32m-   },[39m
+[32m-   "success": true,[39m
+[31m+   "error": "String must contain at most 1000 character(s)",[39m
+[31m+   "success": false,[39m
+[2m  }[22m
+
+ ❯ tests/unit/actions/faults.actions.test.ts:47:20
+     45|     const result = await createFaultReport({ category: 'slow-speed', d…
+     46| 
+     47|     expect(result).toEqual({ success: true, data: { reference: 'report…
+       |                    ^
+     48|     expect(set).toHaveBeenCalledWith(expect.objectContaining({
+     49|       uid: 'owner-a',
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  1 failed | 23 passed (24)
+   Start at  16:38:56
+   Duration  532ms (transform 53ms, setup 161ms, collect 173ms, tests 141ms, environment 405ms, prepare 101ms)
+
+/Users/zafirhasan/Uni/ProgrammingProject/copilot-worktrees/nbn-sdlc-demo/s4084016-shiny-broccoli/frontend:
+[ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL] frontend@0.1.0 test: `vitest run -- --run tests/unit/actions/faults.actions.test.ts`
+Exit status 1
+
+seeded-fault-exit=1
