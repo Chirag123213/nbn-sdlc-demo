@@ -39,7 +39,7 @@ The environment. NBN Co is a wholly owned Government Business Enterprise, wholes
 
 ---
 
-## 3. The framework as given, and what the testing found
+## 3. The framework as given, and what the desk research found
 
 ### 3.1 The baseline
 
