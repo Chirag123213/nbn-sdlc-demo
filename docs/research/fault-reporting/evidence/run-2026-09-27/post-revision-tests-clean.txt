@@ -1,0 +1,15 @@
+$ vitest run
+
+ RUN  v3.2.7 /Users/zafirhasan/Uni/ProgrammingProject/copilot-worktrees/nbn-sdlc-demo/s4084016-shiny-broccoli/frontend
+
+ ✓ tests/unit/lib/utils.test.ts (6 tests) 3ms
+ ✓ tests/unit/actions/faults.actions.test.ts (15 tests) 4ms
+ ✓ tests/unit/features/faults/components/FaultReportForm.test.tsx (3 tests) 128ms
+
+ Test Files  3 passed (3)
+      Tests  24 passed (24)
+   Start at  16:36:31
+   Duration  515ms (transform 52ms, setup 157ms, collect 170ms, tests 135ms, environment 402ms, prepare 88ms)
+
+
+post-revision-tests-exit=0
