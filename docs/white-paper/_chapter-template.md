@@ -35,7 +35,7 @@
 
 #### Task [6.2]: [name of the task, as on the D4 map]
 
-**Steps.** What the developer runs or clicks, in order. Real commands, real paths.
+**Steps.** What the developer runs or clicks, in order. Copy commands and paths from the repository.
 
 ```bash
 [command]
@@ -47,7 +47,7 @@
 | --------------------- | ------- | ------------------- |
 | [What stops the work] | [Label] | `[path or setting]` |
 
-**Failure mode.** What goes wrong when the gate is missing or ignored. One real case from this repository if there is one, with its pull request or commit.
+**Failure mode.** What goes wrong when the gate is missing or ignored. Use a case from this repository if there is one, with its pull request or commit.
 
 **Worked example.** One pass through the steps on the fault report or a trial build: what was typed, what came back.
 
@@ -124,7 +124,7 @@
 
 ## 5. Limits and open questions
 
-> Chapter 9 is built from these tables across all chapters. Put anything unfinished, undecided or untested here, and nowhere else.
+> Chapter 9 is built from these tables across all chapters. Anything unfinished or undecided goes here and nowhere else.
 
 | #   | Limit or open question | Owner  | What it blocks       |
 | --- | ---------------------- | ------ | -------------------- |

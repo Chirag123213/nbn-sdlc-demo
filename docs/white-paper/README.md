@@ -43,7 +43,7 @@ The order is my proposal for the assembled paper. Owners come from the Sprint 3 
 
 ## 3. Rules for every chapter
 
-These exist so that assembly is joining, not rewriting.
+Follow these and I can join the chapters at assembly without rewriting them.
 
 **The reader.** A junior developer at NBN who has Copilot and has not used it under a process (client meeting, 17 Sep 2026). Write what they would do on Monday. If a paragraph does not change what the reader does or believes, cut it.
 
@@ -62,13 +62,13 @@ These exist so that assembly is joining, not rewriting.
 
 **Evidence status.** Every claim carries one of five labels. They are the only ones the paper uses.
 
-| Label                   | Means                                                                     |
-| ----------------------- | ------------------------------------------------------------------------- |
-| **Run**                 | Someone on the team did it and a file, pull request or commit shows it    |
-| **Run once**            | As above, one time, so it is an observation and not a rate                |
-| **Mocked**              | Shown by a test against a mock, not against the live system               |
-| **Estimate**            | A person's recollection or judgement, with their name                     |
-| **Documented, not run** | Taken from vendor documentation or published research. Nobody here ran it |
+| Label               | Means                                                                     |
+| ------------------- | ------------------------------------------------------------------------- |
+| Run                 | Someone on the team did it and a file, pull request or commit shows it    |
+| Run once            | As above, one time, so it is an observation and not a rate                |
+| Mocked              | Shown by a test against a mock, not against the live system               |
+| Estimate            | A person's recollection or judgement, with their name                     |
+| Documented, not run | Taken from vendor documentation or published research. Nobody here ran it |
 
 **Numbers.** A number has a source, a date and a unit in the same sentence or the same table row. Copilot usage is in AI Credits. People's time is in minutes or hours and says whether it was measured or estimated.
 
@@ -78,7 +78,7 @@ These exist so that assembly is joining, not rewriting.
 
 **AI involvement.** The header block says which tool drafted the chapter, what it was given, and who checked it. This paper is about attribution, so it carries its own.
 
-**Formatting.** Markdown only. Tables for anything with more than two attributes. Code blocks carry real commands and real file contents from this repository, with the path above the block. No em dashes.
+**Formatting.** Markdown only. Tables for anything with more than two attributes. Code blocks carry commands and file contents copied from this repository, with the path above the block. No em dashes.
 
 ## 4. Review and assembly
 
