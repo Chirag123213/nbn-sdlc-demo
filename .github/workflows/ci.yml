@@ -47,6 +47,33 @@ jobs:
           echo "AI use declaration is valid."
 
 
+  ai-attribution:
+    name: AI Attribution
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: PR title is Conventional and an AI-declared PR carries an agent trailer
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          BASE: origin/${{ github.base_ref }}
+        run: |
+          if ! printf '%s\n' "$PR_TITLE" | grep -Eq '^(feat|fix|docs|style|refactor|test|chore|build|ci|perf|revert)(\([a-z0-9-]+\))?!?: \S'; then
+            echo "::error::PR title becomes the squash commit on main and must follow Conventional Commits."
+            exit 1
+          fi
+          if printf '%s\n' "$PR_BODY" | tr -d '\r' | grep -Eq '^- \[[xX]\] AI-assisted tools were used to create this change\.$'; then
+            count=$(git log "$BASE"..HEAD --format='%(trailers:key=Co-authored-by,valueonly)' | grep -ciE 'copilot|claude|anthropic|openai|codex' || true)
+            if [ "$count" -eq 0 ]; then
+              echo "::error::AI use is declared but no commit carries an agent Co-authored-by trailer."
+              exit 1
+            fi
+          fi
+          echo "AI attribution check passed."
+
   lint-typecheck:
     name: Lint & Typecheck
     runs-on: ubuntu-latest

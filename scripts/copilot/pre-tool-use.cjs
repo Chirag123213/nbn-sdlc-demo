@@ -25,8 +25,21 @@ function decide(input) {
   const command = args.command.replace(/["']/g, "");
   if (/\bgit\b[^\n;&|]*\bpush\b/i.test(command)) {
     return deny(
-      "Remote git pushes require a human during the fault-reporting experiment. Keep the change local and request review.",
+      "Remote git pushes require a human during the build experiment. Keep the change local and request review.",
     );
+  }
+  // Stop the agent skipping lefthook (commit-msg and pre-commit).
+  if (
+    /\bgit\b[^\n;&|]*\b(commit|merge|push)\b[^\n;&|]*(--no-verify|\s-n\b|\s-[a-z]*n[a-z]*\b)/i.test(
+      command,
+    )
+  ) {
+    return deny(
+      "--no-verify skips the repository's git hooks. Fix the commit message or the lint error instead.",
+    );
+  }
+  if (/\bcore\.hooksPath\b|\bLEFTHOOK=0\b/i.test(command)) {
+    return deny("Changing or disabling git hooks is not allowed for the agent.");
   }
   return {}; // Preserve Copilot's normal permission checks; do not auto-allow tools.
 }

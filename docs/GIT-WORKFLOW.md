@@ -14,10 +14,10 @@ hotfix/*     ← urgent fixes (branched from main, PR back to main)
 
 ## Branch Naming
 
-| Type | Pattern | Example |
-|------|---------|---------|
-| Feature | `feature/{kebab-case}` | `feature/notes` |
-| Hotfix | `hotfix/{kebab-case}` | `hotfix/auth-token-expiry` |
+| Type    | Pattern                | Example                    |
+| ------- | ---------------------- | -------------------------- |
+| Feature | `feature/{kebab-case}` | `feature/notes`            |
+| Hotfix  | `hotfix/{kebab-case}`  | `hotfix/auth-token-expiry` |
 
 ## Workflow
 
@@ -59,12 +59,23 @@ change.
 
 ## Protected Branch
 
-`main` is protected — no direct pushes. All changes go through a pull request.
+`main` is protected by a ruleset — no direct pushes, no force pushes, squash merge only. All changes go
+through a pull request with two approving reviews from people with write access (your own approval
+does not count). The PR title becomes the squash commit, so it must follow Conventional Commits too.
 
-CI must pass before merge:
-- Lint + typecheck
-- Unit tests
-- Dependency vulnerability audit (`pnpm audit`)
+These checks must pass before merge:
+
+- AI Declaration — the PR body answers the AI-use question
+- AI Attribution — the PR title is Conventional, and an AI-declared PR has at least one commit with
+  an agent `Co-authored-by` trailer
+- Lint & Typecheck
+- Frontend Tests
+- Backend Unit Tests
+- Security Scan — gitleaks secret scan and `pnpm audit --audit-level=high`
+
+Locally, lefthook runs the same secret scan on every commit when gitleaks is installed
+(`winget install Gitleaks.Gitleaks` or `brew install gitleaks`), and the commit-msg hook rejects
+non-Conventional subjects.
 
 ## Tagging a milestone (optional)
 

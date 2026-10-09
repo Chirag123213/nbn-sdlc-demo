@@ -56,11 +56,6 @@ service cloud.firestore {
       allow delete: if false; // soft-delete only — set deletedAt field instead
     }
 
-    // faultReports are accessed only by authenticated Server Actions via Firebase Admin.
-    match /faultReports/{reportId} {
-      allow read, write: if false;
-    }
-
     // Add new collection rules above this comment using the /firebase-collection skill.
 
     // ── Default deny ───────────────────────────────────────────────────────

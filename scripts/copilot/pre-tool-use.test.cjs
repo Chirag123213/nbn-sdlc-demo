@@ -49,3 +49,26 @@ test("stdin protocol returns a single denial JSON object", () => {
   assert.equal(r.status, 0);
   assert.equal(JSON.parse(r.stdout).permissionDecision, "deny");
 });
+for (const command of [
+  "git commit --no-verify -m 'feat: x'",
+  "git commit -n -m 'feat: x'",
+  "git commit -nm 'feat: x'",
+  "LEFTHOOK=0 git commit -m 'feat: x'",
+  "git -c core.hooksPath=/dev/null commit -m 'feat: x'",
+]) {
+  test(`deny hook bypass: ${command}`, () =>
+    assert.equal(
+      decide({ toolName: "bash", toolArgs: { command } }).permissionDecision,
+      "deny",
+    ));
+}
+for (const command of [
+  "git commit -m 'feat: x'",
+  "git commit -am 'feat: x'",
+  "git log -n 5",
+  "git merge --no-ff feature/x",
+  "pnpm run lint",
+]) {
+  test(`allow ordinary command: ${command}`, () =>
+    assert.deepEqual(decide({ toolName: "bash", toolArgs: { command } }), {}));
+}

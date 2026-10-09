@@ -1,3 +1,0 @@
-✅ No unreplaced placeholders found.
-
-$ node scripts/validate-placeholders.js

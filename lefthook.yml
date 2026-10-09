@@ -1,5 +1,8 @@
 pre-commit:
   commands:
+    secret-scan:
+      run: node scripts/check-secrets.js
+
     validate-placeholders:
       run: node scripts/validate-placeholders.js
 

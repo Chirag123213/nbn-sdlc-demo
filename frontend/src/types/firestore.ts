@@ -21,15 +21,3 @@ export interface UserProfile {
 }
 
 export type CreateUserProfileInput = Omit<UserProfile, 'createdAt' | 'updatedAt'>
-
-export type FaultReportCategory = 'no-service' | 'intermittent' | 'slow-speed'
-export type FaultReportStatus = 'submitted'
-
-export interface FaultReport {
-  uid: string
-  category: FaultReportCategory
-  description: string
-  createdAt: Timestamp
-  status: FaultReportStatus
-  _schemaVersion: 1
-}

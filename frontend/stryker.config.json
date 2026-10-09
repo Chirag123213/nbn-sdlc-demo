@@ -4,14 +4,15 @@
   "plugins": ["@stryker-mutator/vitest-runner"],
   "vitest": { "configFile": "vitest.config.ts" },
   "mutate": [
-    "src/actions/faults.actions.ts",
-    "src/lib/validations/faults.ts",
-    "src/features/faults/**/*.ts",
-    "src/features/faults/**/*.tsx"
+    "src/actions/**/*.ts",
+    "src/lib/validations/**/*.ts",
+    "src/features/**/*.ts",
+    "src/features/**/*.tsx",
+    "!src/features/example-feature/**"
   ],
   "reporters": ["clear-text", "json", "html"],
-  "jsonReporter": { "fileName": "reports/mutation/fault-reporting.json" },
-  "htmlReporter": { "fileName": "reports/mutation/fault-reporting.html" },
+  "jsonReporter": { "fileName": "reports/mutation/frontend.json" },
+  "htmlReporter": { "fileName": "reports/mutation/frontend.html" },
   "coverageAnalysis": "perTest",
   "concurrency": 2,
   "thresholds": { "break": 0 }
