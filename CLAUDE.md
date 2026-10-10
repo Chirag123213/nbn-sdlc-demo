@@ -3,6 +3,21 @@
 This file provides full context for Claude Code. Read it before making any changes.
 Client projects that fork this repo should update this file with their own project details.
 
+
+## Mandatory AI Development Gates
+
+For every development task:
+
+1. Read the requirements and prepare an implementation plan covering scope, files, tests, and risks.
+2. Present the plan and STOP until explicit human approval.
+3. After approval, write and run tests before implementation code.
+4. Implement only the approved changes.
+5. Run relevant verification checks and submit results for human review.
+
+Do not interpret the original task request as approval to implement.
+If the approved scope changes, stop and request approval again.
+These gates take precedence over any permissions or autonomous workflows described elsewhere in this file.
+
 ---
 
 ## Project Overview
@@ -171,21 +186,32 @@ Run these with `/skill-name` in Claude Code:
 
 ---
 
+
 ## Agent Permissions
 
-**CAN do autonomously:**
-- Create feature branches from `main` and commit/push to them
-- Create draft PRs targeting `main`
-- Read, edit, and create files within the repo
-- Run `pnpm` commands (lint, typecheck, test, build)
-- Use MCP tools (context7, firebase, stitch)
+**CAN do before plan approval:**
+- Read and inspect repository files.
+- Analyse requirements and acceptance criteria.
+- Prepare and present an implementation plan.
+- Run non-mutating commands needed for planning.
 
-**CANNOT do without explicit user approval:**
-- Merge or close PRs
-- Push to `main` directly
-- Delete branches
-- Deploy to production (`firebase deploy`)
-- Modify CI/CD workflow files
+**CAN do after explicit human approval of the plan:**
+- Create or modify tests before implementation code.
+- Implement changes within the approved scope.
+- Run tests, linting, type checks, and builds.
+- Create feature branches and commits as permitted by the approved workflow.
+- Create draft PRs targeting `main` when authorised.
+
+**CANNOT do without explicit human approval:**
+- Begin implementation or modify test files before plan approval.
+- Make changes outside the approved scope.
+- Merge or close PRs.
+- Push to `main` directly.
+- Delete branches.
+- Deploy to production (`firebase deploy`).
+- Modify CI/CD workflow files.
+
+Human review and approval remain required before accepting final changes.
 
 ---
 
