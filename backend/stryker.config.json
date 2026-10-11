@@ -9,5 +9,5 @@
   "htmlReporter": { "fileName": "reports/mutation/index.html" },
   "coverageAnalysis": "perTest",
   "concurrency": 2,
-  "thresholds": { "high": 80, "low": 60, "break": 0 }
+  "thresholds": { "high": 80, "low": 60, "break": 10 }
 }

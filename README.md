@@ -114,8 +114,8 @@ Restart the dev server after changing `.env` — `NEXT_PUBLIC_*` variables are b
 | `'next' is not recognized` / `Command "next" not found` | Run `pnpm install` from the **repo root**. If it persists, delete all `node_modules` folders and reinstall. |
 | Ignored build scripts warning from pnpm | Build approvals live in `pnpm-workspace.yaml` (`allowBuilds`) — re-run `pnpm install`. |
 | "Missing or insufficient permissions" | Firestore security rules don't allow that access — add rules in `firebase/firestore.rules`, then deploy them (`npx firebase-tools deploy --only firestore:rules`). |
-| Commit rejected | Message must be Conventional Commits (`feat: …`, `fix: …`). |
-| Your PR shows a red **Security Scan** check | `pnpm audit --audit-level=high` failed. Two known high-severity findings have a documented fix: see [Known `pnpm audit` findings](#known-pnpm-audit-findings-manual-fix). |
+| Commit rejected | Message must use Conventional Commits and declare `AI-Assisted: yes` or `AI-Assisted: no`; AI-assisted commits also need an AI `Co-authored-by` trailer. |
+| Your PR shows a red **AI Declaration** check | The required PR check also runs `pnpm audit --audit-level=high`; inspect the job output for dependency advisories. |
 
 More beginner-oriented pitfalls: [docs/GUIDE.md § Common pitfalls](docs/GUIDE.md#6-common-pitfalls).
 
@@ -168,23 +168,15 @@ pnpm run validate         # Check for unreplaced template placeholders
 
 Security is enforced in independent layers — Claude Code guard hooks, HTTP hardening (helmet/CORS/rate limits), token + session-cookie auth, Zod input validation, default-deny Firestore rules, and CI scanning (`pnpm audit`). See [docs/SECURITY.md](docs/SECURITY.md).
 
-### Known `pnpm audit` findings (manual fix)
+### Dependency audit exception
 
-CI runs `pnpm audit --audit-level=high` as the **Security Scan** job, so an outstanding high-severity finding turns that check red on every pull request. Two are currently flagged, both transitive and dev/build-time only, neither runtime-reachable:
+CI runs `pnpm audit --audit-level=high` inside the required **AI Declaration** PR check. The current lockfile updates patched Next.js, `proxy-addr`, `sharp`, `source-map-js`, and `@fastify/busboy` to fixed versions. One dev-only advisory is explicitly ignored because no patched `braces` 3.x release is published yet:
 
 | Package | Issue | Pulled in by |
 |---------|-------|--------------|
-| `js-yaml` | CVE-2026-59870 — quadratic CPU DoS on `!!omap` resolution | eslint's dependency chain (lint-time only) |
-| `nanoid` | Infinite loop when a custom generator's `size` is 0 | postcss, used by Tailwind/Next/Vitest builds (build-time only) |
+| `braces@3.0.3` | GHSA-vfj7-8cjw-p6xm; advisory lists `3.0.4` as patched, but the registry currently publishes no `3.0.4` | `eslint-config-next` → `fast-glob` (development lint tooling) |
 
-To patch: add these two lines under `overrides:` in `pnpm-workspace.yaml`, then run `pnpm install`:
-
-```yaml
-  js-yaml: '^4.3.1'
-  nanoid: '^3.3.18'
-```
-
-Confirm with `pnpm audit` — should show 0 high/critical findings.
+The exception is listed as `auditConfig.ignoreGhsas` in `pnpm-workspace.yaml`. Recheck the registry and remove it once a patched `braces` release is available.
 
 ## Git Workflow
 
