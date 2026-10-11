@@ -6,10 +6,17 @@ on:
       - "backend/src/**"
       - "backend/tests/**"
       - "backend/stryker.config.json"
+      - "pnpm-workspace.yaml"
       - "backend/vitest.config.ts"
       - "backend/package.json"
       - "pnpm-lock.yaml"
       - ".github/workflows/mutation.yml"
+      - ".github/workflows/ci.yml"
+      - ".github/workflows/deploy.yml"
+      - "lefthook.yml"
+      - "package.json"
+      - "scripts/check-commit-msg*"
+      - "scripts/lifecycle-guards.test.cjs"
       - ".github/hooks/**"
       - "scripts/copilot/**"
 permissions:
@@ -22,7 +29,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - run: node --test scripts/copilot/pre-tool-use.test.cjs
+      - run: node --test scripts/copilot/pre-tool-use.test.cjs scripts/check-commit-msg.test.cjs scripts/lifecycle-guards.test.cjs
   mutation:
     runs-on: ubuntu-latest
     timeout-minutes: 15
