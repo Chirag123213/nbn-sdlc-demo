@@ -222,12 +222,12 @@ Each `review.md` carries the same header block as this file and a claims table i
 
 These are Sidney's to make, in the Team 2 channel, so all three builders hear the same thing.
 
-1. **Fixture loading.** Technician administration is out of scope, so no build is required to offer a way to add technicians. Each build therefore needs some way for the reviewer to get T1 to T4 in: a seed script, hard-coded data, or the reviewer writing them directly to Firestore. My recommendation is to tell builders that the reviewer will write technician records straight into their Firestore project if the build offers no other way, and that whatever shape their technician record takes must be documented in their run record so the reviewer can map section 3c onto it. This adds no required behaviour.
-2. **Who sees section 3 and section 5.** Sidney's test plan keeps operators isolated from each other, not from the protocol. If builders may read this file, they all read it before anyone clocks on, or none do. My recommendation is that they see sections 3 and 4 and not section 5, so the attacks test what they built rather than what they were told to defend.
-3. **The model line.** The test plan does not name the model. Chirag's post of 23 Sep 2026 fixed trial one at GPT-5.6 Sol, thinking set to high. The lane rules for trial two need the model and effort in writing, and the record check TJ17 will read whatever is there.
-4. **The hourly rate** for the cost figure is still "[Agreed rate with Alessio]" in the test plan. It does not affect this review, but the results table needs it.
+1. **Fixture loading.** Every build uses the same four technicians. Sections 3a to 3c go into all three repositories as `fixtures/technicians.json` before anyone clocks on, and prompt 2 of the run sheet tells every AI to use that file. If a build still keeps its technicians where the reviewer can't reach them, the reviewer writes T1 to T4 straight into its Firestore project at review. Builders are not asked to document their technician record: in lane A that would mean reading the code, which the method rules out, and the reviewer reads the code at review.
+2. **Who sees what.** Builders see the technician file only. They do not see the jobs in section 3d, the test jobs in section 4 or the attacks in section 5 until their build is frozen, and they do not open this pull request until then. Lanes B and C have a person who could steer the build toward known tests, while lane A's AI only ever sees prompts 1 and 2, so showing the tests to people would favour B and C.
+3. **The model line.** GPT-5.6 Sol, thinking set to high, in all three lanes: Codex for A and C, ChatGPT for B, the same as trial one. It is written in the run sheet, and each builder screenshots the setting before prompt 1, so TJ17 has it in writing.
+4. **The hourly rate.** A$100 an hour, the rate trial one's costs used, so the two trials compare. If it was never agreed with Alessio, the paper says it is the team's assumption.
+5. **Issues that escaped, for the prediction.** This review runs far more checks than trial one's did. For the registered prediction, the escaped-issue count uses only findings from checks trial one also ran, and every other finding is reported beside it. The reviewer marks those checks in section 5 before the first clock-on.
 
-Once merged, sections 3 to 7 are frozen for Trial Two in the same way as the brief. A change after any build has started is recorded as an amendment with its date and is applied to all three builds.
 
 ## 10. Claims
 
