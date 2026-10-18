@@ -1,0 +1,29 @@
+
+> frontend@0.1.0 mutation C:\Users\zac\AppData\Local\Temp\claude\C--Users-zac-Documents-projects-nbn-sdlc-demo\54b9f3d5-93b3-4ddf-bc37-7fd149d033e2\scratchpad\review\chirag\frontend
+> stryker run
+
+23:13:32 (36736) INFO ProjectReader Found 6 of 64 file(s) to be mutated.
+23:13:32 (36736) INFO Instrumenter Instrumented 6 source file(s) with 200 mutant(s)
+23:13:32 (36736) INFO ConcurrencyTokenProvider Creating 2 test runner process(es).
+23:13:34 (36736) INFO DryRunExecutor Starting initial test run (vitest test runner with "perTest" coverage analysis). This may take a while.
+23:13:35 (2816) WARN VitestTestRunner Vitest failed to find test files related to mutated files. Either disable `vitest.related` or import your source files directly from your test files. See https://stryker-mutator.io/docs/stryker-js/troubleshooting/#vitest-failed-to-find-test-files-related-to-mutated-files
+23:13:35 (36736) INFO DryRunExecutor No tests were found
+23:13:35 (36736) ERROR Stryker No tests were executed. Stryker will exit prematurely. Please check your configuration.
+file:///C:/Users/zac/AppData/Local/Temp/claude/C--Users-zac-Documents-projects-nbn-sdlc-demo/54b9f3d5-93b3-4ddf-bc37-7fd149d033e2/scratchpad/review/chirag/node_modules/@stryker-mutator/core/dist/src/process/3-dry-run-executor.js:47
+            throw new ConfigError('No tests were executed. Stryker will exit prematurely. Please check your configuration.');
+                  ^
+
+ConfigError: No tests were executed. Stryker will exit prematurely. Please check your configuration.
+    at DryRunExecutor.execute (file:///C:/Users/zac/AppData/Local/Temp/claude/C--Users-zac-Documents-projects-nbn-sdlc-demo/54b9f3d5-93b3-4ddf-bc37-7fd149d033e2/scratchpad/review/chirag/node_modules/@stryker-mutator/core/dist/src/process/3-dry-run-executor.js:47:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async Stryker.run (file:///C:/Users/zac/AppData/Local/Temp/claude/C--Users-zac-Documents-projects-nbn-sdlc-demo/54b9f3d5-93b3-4ddf-bc37-7fd149d033e2/scratchpad/review/chirag/node_modules/@stryker-mutator/core/dist/src/stryker.js:52:53)
+    at async Stryker.runMutationTest (file:///C:/Users/zac/AppData/Local/Temp/claude/C--Users-zac-Documents-projects-nbn-sdlc-demo/54b9f3d5-93b3-4ddf-bc37-7fd149d033e2/scratchpad/review/chirag/node_modules/@stryker-mutator/core/dist/src/stryker.js:27:20)
+    at async Command.<anonymous> (file:///C:/Users/zac/AppData/Local/Temp/claude/C--Users-zac-Documents-projects-nbn-sdlc-demo/54b9f3d5-93b3-4ddf-bc37-7fd149d033e2/scratchpad/review/chirag/node_modules/@stryker-mutator/core/dist/src/stryker-cli.js:51:13) {
+  innerError: undefined
+}
+
+Node.js v24.15.0
+C:\Users\zac\AppData\Local\Temp\claude\C--Users-zac-Documents-projects-nbn-sdlc-demo\54b9f3d5-93b3-4ddf-bc37-7fd149d033e2\scratchpad\review\chirag\frontend:
+ ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL  frontend@0.1.0 mutation: `stryker run`
+Exit status 1
+exit 1

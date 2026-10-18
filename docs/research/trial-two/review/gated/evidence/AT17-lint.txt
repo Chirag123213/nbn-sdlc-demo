@@ -1,0 +1,10 @@
+
+> garage-boilerplate@0.1.0 lint C:\Users\zac\AppData\Local\Temp\claude\C--Users-zac-Documents-projects-nbn-sdlc-demo\54b9f3d5-93b3-4ddf-bc37-7fd149d033e2\scratchpad\review\zafir
+> pnpm -r lint
+
+Scope: 2 of 3 workspace projects
+frontend lint$ eslint src/
+backend lint$ eslint src/
+backend lint: Done
+frontend lint: Done
+exit 0

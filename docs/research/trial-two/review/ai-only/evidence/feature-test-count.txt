@@ -1,0 +1,4 @@
+Base 6af6a5b: backend 5 tests, frontend 6 tests (git grep of it/test blocks).
+Final commit f1611e0: backend 5, frontend 17 (pnpm run test:all, 18 Oct 2026 23:12).
+Feature tests = frontend total minus 6 base = 11.
+Files: `TechnicianDispatchFlow.test.tsx` (5), `matching.test.ts` (6)

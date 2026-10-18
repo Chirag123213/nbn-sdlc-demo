@@ -1,0 +1,3567 @@
+
+> frontend@0.1.0 mutation C:\Users\zac\AppData\Local\Temp\claude\C--Users-zac-Documents-projects-nbn-sdlc-demo\54b9f3d5-93b3-4ddf-bc37-7fd149d033e2\scratchpad\review\zafir\frontend
+> stryker run
+
+23:13:38 (17232) INFO ProjectReader Found 9 of 69 file(s) to be mutated.
+23:13:38 (17232) INFO Instrumenter Instrumented 9 source file(s) with 396 mutant(s)
+23:13:38 (17232) INFO ConcurrencyTokenProvider Creating 2 test runner process(es).
+23:13:39 (17232) INFO DryRunExecutor Starting initial test run (vitest test runner with "perTest" coverage analysis). This may take a while.
+23:13:44 (17232) INFO DryRunExecutor Initial test run succeeded. Ran 11 tests in 4 seconds (net 5.584300000000894 ms, overhead 4096.4157 ms).
+23:13:44 (17232) WARN MutantTestPlanner Detected 29 static mutants (7% of total) that are estimated to take 100% of the time running the tests!
+  You might want to enable "ignoreStatic" to ignore these static mutants for your next run. 
+  For more information about static mutants visit: https://stryker-mutator.io/docs/mutation-testing-elements/static-mutants
+  (disable "warnings.slow" to ignore this warning)
+
+All tests/validation.test.ts
+  ✓ technician dispatch validation accepts a complete dispatch request (killed 5)
+  ✘ technician dispatch validation rejects blank premises (covered 0)
+  ✘ technician dispatch validation rejects overlong premises (covered 0)
+  ✘ technician dispatch validation rejects blank fault (covered 0)
+  ✘ technician dispatch validation rejects blank access requirement (covered 0)
+  ✘ technician dispatch validation rejects unexpected protected fields (covered 0)
+  ✓ technician dispatch validation accepts a complete scheduling request (killed 3)
+  ✘ technician dispatch validation rejects blank request identifier (covered 0)
+  ✘ technician dispatch validation rejects blank technician identifier (covered 0)
+  ✘ technician dispatch validation rejects invalid visit date (covered 0)
+  ✘ technician dispatch validation rejects unexpected ownership data (covered 0)
+
+[NoCoverage] StringLiteral
+src/actions/auth.actions.ts:8:29
+-   const SESSION_COOKIE_NAME = '__session'
++   const SESSION_COOKIE_NAME = ""
+
+[NoCoverage] BlockStatement
+src/actions/auth.actions.ts:14:42
+-   export async function getServerSession() {
+-     const cookieStore = await cookies()
+-     const sessionCookie = cookieStore.get(SESSION_COOKIE_NAME)?.value
+-   
+-     if (!sessionCookie) return null
+-   
+-     try {
+-       const decoded = await adminAuth.verifySessionCookie(sessionCookie, true)
+-       return decoded
+-     } catch {
+-       return null
+-     }
+-   }
++   export async function getServerSession() {}
+
+[NoCoverage] OptionalChaining
+src/actions/auth.actions.ts:16:25
+-     const sessionCookie = cookieStore.get(SESSION_COOKIE_NAME)?.value
++     const sessionCookie = cookieStore.get(SESSION_COOKIE_NAME).value
+
+[NoCoverage] BooleanLiteral
+src/actions/auth.actions.ts:18:7
+-     if (!sessionCookie) return null
++     if (sessionCookie) return null
+
+[NoCoverage] ConditionalExpression
+src/actions/auth.actions.ts:18:7
+-     if (!sessionCookie) return null
++     if (true) return null
+
+[NoCoverage] ConditionalExpression
+src/actions/auth.actions.ts:18:7
+-     if (!sessionCookie) return null
++     if (false) return null
+
+[NoCoverage] BlockStatement
+src/actions/auth.actions.ts:20:7
+-     try {
+-       const decoded = await adminAuth.verifySessionCookie(sessionCookie, true)
+-       return decoded
+-     } catch {
++     try {} catch {
+
+[NoCoverage] BooleanLiteral
+src/actions/auth.actions.ts:21:72
+-       const decoded = await adminAuth.verifySessionCookie(sessionCookie, true)
++       const decoded = await adminAuth.verifySessionCookie(sessionCookie, false)
+
+[NoCoverage] BlockStatement
+src/actions/auth.actions.ts:23:11
+-     } catch {
+-       return null
+-     }
++     } catch {}
+
+[NoCoverage] BlockStatement
+src/actions/auth.actions.ts:32:37
+-   export async function requireAuth() {
+-     const session = await getServerSession()
+-     if (!session) {
+-       redirect('/auth/signin')
+-     }
+-     return session
+-   }
++   export async function requireAuth() {}
+
+[NoCoverage] BooleanLiteral
+src/actions/auth.actions.ts:34:7
+-     if (!session) {
++     if (session) {
+
+[NoCoverage] ConditionalExpression
+src/actions/auth.actions.ts:34:7
+-     if (!session) {
++     if (true) {
+
+[NoCoverage] ConditionalExpression
+src/actions/auth.actions.ts:34:7
+-     if (!session) {
++     if (false) {
+
+[NoCoverage] BlockStatement
+src/actions/auth.actions.ts:34:17
+-     if (!session) {
+-       redirect('/auth/signin')
+-     }
++     if (!session) {}
+
+[NoCoverage] StringLiteral
+src/actions/auth.actions.ts:35:14
+-       redirect('/auth/signin')
++       redirect("")
+
+[NoCoverage] BlockStatement
+src/actions/auth.actions.ts:43:62
+-   export async function serverSignOut(): Promise<ActionResult> {
+-     try {
+-       const cookieStore = await cookies()
+-       cookieStore.delete(SESSION_COOKIE_NAME)
+-       return { success: true }
+-     } catch {
+-       return { success: false, error: 'Failed to sign out' }
+-     }
+-   }
++   export async function serverSignOut(): Promise<ActionResult> {}
+
+[NoCoverage] BlockStatement
+src/actions/auth.actions.ts:44:7
+-     try {
+-       const cookieStore = await cookies()
+-       cookieStore.delete(SESSION_COOKIE_NAME)
+-       return { success: true }
+-     } catch {
++     try {} catch {
+
+[NoCoverage] ObjectLiteral
+src/actions/auth.actions.ts:47:12
+-       return { success: true }
++       return {}
+
+[NoCoverage] BooleanLiteral
+src/actions/auth.actions.ts:47:23
+-       return { success: true }
++       return { success: false }
+
+[NoCoverage] BlockStatement
+src/actions/auth.actions.ts:48:11
+-     } catch {
+-       return { success: false, error: 'Failed to sign out' }
+-     }
++     } catch {}
+
+[NoCoverage] ObjectLiteral
+src/actions/auth.actions.ts:49:12
+-       return { success: false, error: 'Failed to sign out' }
++       return {}
+
+[NoCoverage] BooleanLiteral
+src/actions/auth.actions.ts:49:23
+-       return { success: false, error: 'Failed to sign out' }
++       return { success: true, error: 'Failed to sign out' }
+
+[NoCoverage] StringLiteral
+src/actions/auth.actions.ts:49:37
+-       return { success: false, error: 'Failed to sign out' }
++       return { success: false, error: "" }
+
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:16:28
+-   const dispatchCollection = 'dispatchRequests'
++   const dispatchCollection = ""
+
+[NoCoverage] BlockStatement
+src/features/technician-dispatch/actions/dispatch.actions.ts:18:78
+-   function firstValidationError(error: { issues: Array<{ message: string }> }) {
+-     return error.issues[0]?.message ?? 'Invalid dispatch details.'
+-   }
++   function firstValidationError(error: { issues: Array<{ message: string }> }) {}
+
+[NoCoverage] LogicalOperator
+src/features/technician-dispatch/actions/dispatch.actions.ts:19:10
+-     return error.issues[0]?.message ?? 'Invalid dispatch details.'
++     return error.issues[0]?.message && 'Invalid dispatch details.'
+
+[NoCoverage] OptionalChaining
+src/features/technician-dispatch/actions/dispatch.actions.ts:19:10
+-     return error.issues[0]?.message ?? 'Invalid dispatch details.'
++     return error.issues[0].message ?? 'Invalid dispatch details.'
+
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:19:38
+-     return error.issues[0]?.message ?? 'Invalid dispatch details.'
++     return error.issues[0]?.message ?? ""
+
+[NoCoverage] BlockStatement
+src/features/technician-dispatch/actions/dispatch.actions.ts:24:46
+-   ): Promise<ActionResult<CreateDispatchData>> {
+-     const session = await requireAuth()
+-     const parsed = createDispatchRequestSchema.safeParse(input)
+-   
+-     if (!parsed.success) {
+-       return { success: false, error: firstValidationError(parsed.error) }
+-     }
+-   
+-     const fault = technicianCatalog.faults.find((item) => item.id === parsed.data.faultId)
+-     if (!fault) return { success: false, error: 'Unknown fault.' }
+-   
+-     const accessRequirement = technicianCatalog.accessRequirements.find(
+-       (item) => item.id === parsed.data.accessRequirementId
+-     )
+-     if (!accessRequirement) return { success: false, error: 'Unknown access requirement.' }
+-   
+-     const matches = findCompatibleTechnicians(fault.id, accessRequirement.id, technicianCatalog)
+-   
+-     try {
+-       const now = new Date()
+-       const request: StoredDispatchRequest = {
+-         _schemaVersion: 1,
+-         ownerId: session.uid,
+-         premises: parsed.data.premises,
+-         fault: { id: fault.id, name: fault.name },
+-         accessRequirement: { id: accessRequirement.id, name: accessRequirement.name },
+-         status: 'matching',
+-         selectedTechnician: null,
+-         matchedEquipment: [],
+-         scheduledVisit: null,
+-         createdAt: now,
+-         updatedAt: now,
+-       }
+-   
+-       const document = await adminDb.collection(dispatchCollection).add(request)
+-   
+-       return {
+-         success: true,
+-         data: {
+-           request: {
+-             id: document.id,
+-             premises: request.premises,
+-             fault: request.fault,
+-             accessRequirement: request.accessRequirement,
+-           },
+-           matches,
+-         },
+-       }
+-     } catch {
+-       return {
+-         success: false,
+-         error: 'Unable to create the dispatch request. Please try again.',
+-       }
+-     }
+-   }
++   ): Promise<ActionResult<CreateDispatchData>> {}
+
+[NoCoverage] BooleanLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:28:7
+-     if (!parsed.success) {
++     if (parsed.success) {
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/actions/dispatch.actions.ts:28:7
+-     if (!parsed.success) {
++     if (true) {
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/actions/dispatch.actions.ts:28:7
+-     if (!parsed.success) {
++     if (false) {
+
+[NoCoverage] BlockStatement
+src/features/technician-dispatch/actions/dispatch.actions.ts:28:24
+-     if (!parsed.success) {
+-       return { success: false, error: firstValidationError(parsed.error) }
+-     }
++     if (!parsed.success) {}
+
+[NoCoverage] ObjectLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:29:12
+-       return { success: false, error: firstValidationError(parsed.error) }
++       return {}
+
+[NoCoverage] BooleanLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:29:23
+-       return { success: false, error: firstValidationError(parsed.error) }
++       return { success: true, error: firstValidationError(parsed.error) }
+
+[NoCoverage] ArrowFunction
+src/features/technician-dispatch/actions/dispatch.actions.ts:32:47
+-     const fault = technicianCatalog.faults.find((item) => item.id === parsed.data.faultId)
++     const fault = technicianCatalog.faults.find(() => undefined)
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/actions/dispatch.actions.ts:32:57
+-     const fault = technicianCatalog.faults.find((item) => item.id === parsed.data.faultId)
++     const fault = technicianCatalog.faults.find((item) => true)
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/actions/dispatch.actions.ts:32:57
+-     const fault = technicianCatalog.faults.find((item) => item.id === parsed.data.faultId)
++     const fault = technicianCatalog.faults.find((item) => false)
+
+[NoCoverage] EqualityOperator
+src/features/technician-dispatch/actions/dispatch.actions.ts:32:57
+-     const fault = technicianCatalog.faults.find((item) => item.id === parsed.data.faultId)
++     const fault = technicianCatalog.faults.find((item) => item.id !== parsed.data.faultId)
+
+[NoCoverage] BooleanLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:33:7
+-     if (!fault) return { success: false, error: 'Unknown fault.' }
++     if (fault) return { success: false, error: 'Unknown fault.' }
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/actions/dispatch.actions.ts:33:7
+-     if (!fault) return { success: false, error: 'Unknown fault.' }
++     if (true) return { success: false, error: 'Unknown fault.' }
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/actions/dispatch.actions.ts:33:7
+-     if (!fault) return { success: false, error: 'Unknown fault.' }
++     if (false) return { success: false, error: 'Unknown fault.' }
+
+[NoCoverage] ObjectLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:33:22
+-     if (!fault) return { success: false, error: 'Unknown fault.' }
++     if (!fault) return {}
+
+[NoCoverage] BooleanLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:33:33
+-     if (!fault) return { success: false, error: 'Unknown fault.' }
++     if (!fault) return { success: true, error: 'Unknown fault.' }
+
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:33:47
+-     if (!fault) return { success: false, error: 'Unknown fault.' }
++     if (!fault) return { success: false, error: "" }
+
+[NoCoverage] ArrowFunction
+src/features/technician-dispatch/actions/dispatch.actions.ts:36:5
+-       (item) => item.id === parsed.data.accessRequirementId
++       () => undefined
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/actions/dispatch.actions.ts:36:15
+-       (item) => item.id === parsed.data.accessRequirementId
++       (item) => true
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/actions/dispatch.actions.ts:36:15
+-       (item) => item.id === parsed.data.accessRequirementId
++       (item) => false
+
+[NoCoverage] EqualityOperator
+src/features/technician-dispatch/actions/dispatch.actions.ts:36:15
+-       (item) => item.id === parsed.data.accessRequirementId
++       (item) => item.id !== parsed.data.accessRequirementId
+
+[NoCoverage] BooleanLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:38:7
+-     if (!accessRequirement) return { success: false, error: 'Unknown access requirement.' }
++     if (accessRequirement) return { success: false, error: 'Unknown access requirement.' }
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/actions/dispatch.actions.ts:38:7
+-     if (!accessRequirement) return { success: false, error: 'Unknown access requirement.' }
++     if (true) return { success: false, error: 'Unknown access requirement.' }
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/actions/dispatch.actions.ts:38:7
+-     if (!accessRequirement) return { success: false, error: 'Unknown access requirement.' }
++     if (false) return { success: false, error: 'Unknown access requirement.' }
+
+[NoCoverage] ObjectLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:38:34
+-     if (!accessRequirement) return { success: false, error: 'Unknown access requirement.' }
++     if (!accessRequirement) return {}
+
+[NoCoverage] BooleanLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:38:45
+-     if (!accessRequirement) return { success: false, error: 'Unknown access requirement.' }
++     if (!accessRequirement) return { success: true, error: 'Unknown access requirement.' }
+
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:38:59
+-     if (!accessRequirement) return { success: false, error: 'Unknown access requirement.' }
++     if (!accessRequirement) return { success: false, error: "" }
+
+[NoCoverage] BlockStatement
+src/features/technician-dispatch/actions/dispatch.actions.ts:42:7
+-     try {
+-       const now = new Date()
+-       const request: StoredDispatchRequest = {
+-         _schemaVersion: 1,
+-         ownerId: session.uid,
+-         premises: parsed.data.premises,
+-         fault: { id: fault.id, name: fault.name },
+-         accessRequirement: { id: accessRequirement.id, name: accessRequirement.name },
+-         status: 'matching',
+-         selectedTechnician: null,
+-         matchedEquipment: [],
+-         scheduledVisit: null,
+-         createdAt: now,
+-         updatedAt: now,
+-       }
+-   
+-       const document = await adminDb.collection(dispatchCollection).add(request)
+-   
+-       return {
+-         success: true,
+-         data: {
+-           request: {
+-             id: document.id,
+-             premises: request.premises,
+-             fault: request.fault,
+-             accessRequirement: request.accessRequirement,
+-           },
+-           matches,
+-         },
+-       }
+-     } catch {
++     try {} catch {
+
+[NoCoverage] ObjectLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:44:44
+-       const request: StoredDispatchRequest = {
+-         _schemaVersion: 1,
+-         ownerId: session.uid,
+-         premises: parsed.data.premises,
+-         fault: { id: fault.id, name: fault.name },
+-         accessRequirement: { id: accessRequirement.id, name: accessRequirement.name },
+-         status: 'matching',
+-         selectedTechnician: null,
+-         matchedEquipment: [],
+-         scheduledVisit: null,
+-         createdAt: now,
+-         updatedAt: now,
+-       }
++       const request: StoredDispatchRequest = {}
+
+[NoCoverage] ObjectLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:48:14
+-         fault: { id: fault.id, name: fault.name },
++         fault: {},
+
+[NoCoverage] ObjectLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:49:26
+-         accessRequirement: { id: accessRequirement.id, name: accessRequirement.name },
++         accessRequirement: {},
+
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:50:15
+-         status: 'matching',
++         status: "",
+
+[NoCoverage] ArrayDeclaration
+src/features/technician-dispatch/actions/dispatch.actions.ts:52:25
+-         matchedEquipment: [],
++         matchedEquipment: ["Stryker was here"],
+
+[NoCoverage] ObjectLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:60:12
+-       return {
+-         success: true,
+-         data: {
+-           request: {
+-             id: document.id,
+-             premises: request.premises,
+-             fault: request.fault,
+-             accessRequirement: request.accessRequirement,
+-           },
+-           matches,
+-         },
+-       }
++       return {}
+
+[NoCoverage] BooleanLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:61:16
+-         success: true,
++         success: false,
+
+[NoCoverage] ObjectLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:62:13
+-         data: {
+-           request: {
+-             id: document.id,
+-             premises: request.premises,
+-             fault: request.fault,
+-             accessRequirement: request.accessRequirement,
+-           },
+-           matches,
+-         },
++         data: {},
+
+[NoCoverage] ObjectLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:63:18
+-           request: {
+-             id: document.id,
+-             premises: request.premises,
+-             fault: request.fault,
+-             accessRequirement: request.accessRequirement,
+-           },
++           request: {},
+
+[NoCoverage] BlockStatement
+src/features/technician-dispatch/actions/dispatch.actions.ts:72:11
+-     } catch {
+-       return {
+-         success: false,
+-         error: 'Unable to create the dispatch request. Please try again.',
+-       }
+-     }
++     } catch {}
+
+[NoCoverage] ObjectLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:73:12
+-       return {
+-         success: false,
+-         error: 'Unable to create the dispatch request. Please try again.',
+-       }
++       return {}
+
+[NoCoverage] BooleanLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:74:16
+-         success: false,
++         success: true,
+
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:75:14
+-         error: 'Unable to create the dispatch request. Please try again.',
++         error: "",
+
+[NoCoverage] BlockStatement
+src/features/technician-dispatch/actions/dispatch.actions.ts:82:48
+-   ): Promise<ActionResult<ScheduleDispatchData>> {
+-     const session = await requireAuth()
+-     const parsed = scheduleDispatchSchema.safeParse(input)
+-   
+-     if (!parsed.success) {
+-       return { success: false, error: firstValidationError(parsed.error) }
+-     }
+-   
+-     try {
+-       const document = adminDb.collection(dispatchCollection).doc(parsed.data.requestId)
+-       return await adminDb.runTransaction(
+-         async (transaction): Promise<ActionResult<ScheduleDispatchData>> => {
+-           const snapshot = await transaction.get(document)
+-           const request = snapshot.exists
+-             ? (snapshot.data() as StoredDispatchRequest | undefined)
+-             : undefined
+-   
+-           if (!request || request.ownerId !== session.uid) {
+-             return { success: false, error: 'Dispatch request not found.' }
+-           }
+-   
+-           if (request.status === 'scheduled') {
+-             return { success: false, error: 'This dispatch has already been scheduled.' }
+-           }
+-   
+-           const fault = technicianCatalog.faults.find((item) => item.id === request.fault.id)
+-           const accessRequirement = technicianCatalog.accessRequirements.find(
+-             (item) => item.id === request.accessRequirement.id
+-           )
+-           const match = findCompatibleTechnicians(
+-             request.fault.id,
+-             request.accessRequirement.id,
+-             technicianCatalog
+-           ).find((item) => item.technician.id === parsed.data.technicianId)
+-   
+-           if (!fault || !accessRequirement || !match) {
+-             return {
+-               success: false,
+-               error: 'The selected technician is not compatible with this request.',
+-             }
+-           }
+-   
+-           const scheduledVisit = new Date(parsed.data.scheduledVisit)
+-           const selectedTechnician = {
+-             id: match.technician.id,
+-             name: match.technician.name,
+-           }
+-   
+-           transaction.update(document, {
+-             status: 'scheduled',
+-             selectedTechnician,
+-             matchedEquipment: match.matchedEquipment,
+-             scheduledVisit,
+-             updatedAt: new Date(),
+-           })
+-   
+-           return {
+-             success: true,
+-             data: {
+-               dispatch: {
+-                 id: snapshot.id,
+-                 premises: request.premises,
+-                 fault: { id: fault.id, name: fault.name },
+-                 accessRequirement: { id: accessRequirement.id, name: accessRequirement.name },
+-                 technician: selectedTechnician,
+-                 matchedEquipment: match.matchedEquipment,
+-                 scheduledVisit: scheduledVisit.toISOString(),
+-               },
+-             },
+-           }
+-         }
+-       )
+-     } catch {
+-       return {
+-         success: false,
+-         error: 'Unable to schedule the dispatch. Please try again.',
+-       }
+-     }
+-   }
++   ): Promise<ActionResult<ScheduleDispatchData>> {}
+
+[NoCoverage] BooleanLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:86:7
+-     if (!parsed.success) {
++     if (parsed.success) {
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/actions/dispatch.actions.ts:86:7
+-     if (!parsed.success) {
++     if (true) {
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/actions/dispatch.actions.ts:86:7
+-     if (!parsed.success) {
++     if (false) {
+
+[NoCoverage] BlockStatement
+src/features/technician-dispatch/actions/dispatch.actions.ts:86:24
+-     if (!parsed.success) {
+-       return { success: false, error: firstValidationError(parsed.error) }
+-     }
++     if (!parsed.success) {}
+
+[NoCoverage] ObjectLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:87:12
+-       return { success: false, error: firstValidationError(parsed.error) }
++       return {}
+
+[NoCoverage] BooleanLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:87:23
+-       return { success: false, error: firstValidationError(parsed.error) }
++       return { success: true, error: firstValidationError(parsed.error) }
+
+[NoCoverage] BlockStatement
+src/features/technician-dispatch/actions/dispatch.actions.ts:90:7
+-     try {
+-       const document = adminDb.collection(dispatchCollection).doc(parsed.data.requestId)
+-       return await adminDb.runTransaction(
+-         async (transaction): Promise<ActionResult<ScheduleDispatchData>> => {
+-           const snapshot = await transaction.get(document)
+-           const request = snapshot.exists
+-             ? (snapshot.data() as StoredDispatchRequest | undefined)
+-             : undefined
+-   
+-           if (!request || request.ownerId !== session.uid) {
+-             return { success: false, error: 'Dispatch request not found.' }
+-           }
+-   
+-           if (request.status === 'scheduled') {
+-             return { success: false, error: 'This dispatch has already been scheduled.' }
+-           }
+-   
+-           const fault = technicianCatalog.faults.find((item) => item.id === request.fault.id)
+-           const accessRequirement = technicianCatalog.accessRequirements.find(
+-             (item) => item.id === request.accessRequirement.id
+-           )
+-           const match = findCompatibleTechnicians(
+-             request.fault.id,
+-             request.accessRequirement.id,
+-             technicianCatalog
+-           ).find((item) => item.technician.id === parsed.data.technicianId)
+-   
+-           if (!fault || !accessRequirement || !match) {
+-             return {
+-               success: false,
+-               error: 'The selected technician is not compatible with this request.',
+-             }
+-           }
+-   
+-           const scheduledVisit = new Date(parsed.data.scheduledVisit)
+-           const selectedTechnician = {
+-             id: match.technician.id,
+-             name: match.technician.name,
+-           }
+-   
+-           transaction.update(document, {
+-             status: 'scheduled',
+-             selectedTechnician,
+-             matchedEquipment: match.matchedEquipment,
+-             scheduledVisit,
+-             updatedAt: new Date(),
+-           })
+-   
+-           return {
+-             success: true,
+-             data: {
+-               dispatch: {
+-                 id: snapshot.id,
+-                 premises: request.premises,
+-                 fault: { id: fault.id, name: fault.name },
+-                 accessRequirement: { id: accessRequirement.id, name: accessRequirement.name },
+-                 technician: selectedTechnician,
+-                 matchedEquipment: match.matchedEquipment,
+-                 scheduledVisit: scheduledVisit.toISOString(),
+-               },
+-             },
+-           }
+-         }
+-       )
+-     } catch {
++     try {} catch {
+
+[NoCoverage] BlockStatement
+src/features/technician-dispatch/actions/dispatch.actions.ts:93:75
+-         async (transaction): Promise<ActionResult<ScheduleDispatchData>> => {
+-           const snapshot = await transaction.get(document)
+-           const request = snapshot.exists
+-             ? (snapshot.data() as StoredDispatchRequest | undefined)
+-             : undefined
+-   
+-           if (!request || request.ownerId !== session.uid) {
+-             return { success: false, error: 'Dispatch request not found.' }
+-           }
+-   
+-           if (request.status === 'scheduled') {
+-             return { success: false, error: 'This dispatch has already been scheduled.' }
+-           }
+-   
+-           const fault = technicianCatalog.faults.find((item) => item.id === request.fault.id)
+-           const accessRequirement = technicianCatalog.accessRequirements.find(
+-             (item) => item.id === request.accessRequirement.id
+-           )
+-           const match = findCompatibleTechnicians(
+-             request.fault.id,
+-             request.accessRequirement.id,
+-             technicianCatalog
+-           ).find((item) => item.technician.id === parsed.data.technicianId)
+-   
+-           if (!fault || !accessRequirement || !match) {
+-             return {
+-               success: false,
+-               error: 'The selected technician is not compatible with this request.',
+-             }
+-           }
+-   
+-           const scheduledVisit = new Date(parsed.data.scheduledVisit)
+-           const selectedTechnician = {
+-             id: match.technician.id,
+-             name: match.technician.name,
+-           }
+-   
+-           transaction.update(document, {
+-             status: 'scheduled',
+-             selectedTechnician,
+-             matchedEquipment: match.matchedEquipment,
+-             scheduledVisit,
+-             updatedAt: new Date(),
+-           })
+-   
+-           return {
+-             success: true,
+-             data: {
+-               dispatch: {
+-                 id: snapshot.id,
+-                 premises: request.premises,
+-                 fault: { id: fault.id, name: fault.name },
+-                 accessRequirement: { id: accessRequirement.id, name: accessRequirement.name },
+-                 technician: selectedTechnician,
+-                 matchedEquipment: match.matchedEquipment,
+-                 scheduledVisit: scheduledVisit.toISOString(),
+-               },
+-             },
+-           }
+-         }
++         async (transaction): Promise<ActionResult<ScheduleDispatchData>> => {}
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/actions/dispatch.actions.ts:99:13
+-           if (!request || request.ownerId !== session.uid) {
++           if (true) {
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/actions/dispatch.actions.ts:99:13
+-           if (!request || request.ownerId !== session.uid) {
++           if (false) {
+
+[NoCoverage] LogicalOperator
+src/features/technician-dispatch/actions/dispatch.actions.ts:99:13
+-           if (!request || request.ownerId !== session.uid) {
++           if (!request && request.ownerId !== session.uid) {
+
+[NoCoverage] BooleanLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:99:13
+-           if (!request || request.ownerId !== session.uid) {
++           if (request || request.ownerId !== session.uid) {
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/actions/dispatch.actions.ts:99:25
+-           if (!request || request.ownerId !== session.uid) {
++           if (!request || false) {
+
+[NoCoverage] EqualityOperator
+src/features/technician-dispatch/actions/dispatch.actions.ts:99:25
+-           if (!request || request.ownerId !== session.uid) {
++           if (!request || request.ownerId === session.uid) {
+
+[NoCoverage] BlockStatement
+src/features/technician-dispatch/actions/dispatch.actions.ts:99:58
+-           if (!request || request.ownerId !== session.uid) {
+-             return { success: false, error: 'Dispatch request not found.' }
+-           }
++           if (!request || request.ownerId !== session.uid) {}
+
+[NoCoverage] ObjectLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:100:18
+-             return { success: false, error: 'Dispatch request not found.' }
++             return {}
+
+[NoCoverage] BooleanLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:100:29
+-             return { success: false, error: 'Dispatch request not found.' }
++             return { success: true, error: 'Dispatch request not found.' }
+
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:100:43
+-             return { success: false, error: 'Dispatch request not found.' }
++             return { success: false, error: "" }
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/actions/dispatch.actions.ts:103:13
+-           if (request.status === 'scheduled') {
++           if (true) {
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/actions/dispatch.actions.ts:103:13
+-           if (request.status === 'scheduled') {
++           if (false) {
+
+[NoCoverage] EqualityOperator
+src/features/technician-dispatch/actions/dispatch.actions.ts:103:13
+-           if (request.status === 'scheduled') {
++           if (request.status !== 'scheduled') {
+
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:103:32
+-           if (request.status === 'scheduled') {
++           if (request.status === "") {
+
+[NoCoverage] BlockStatement
+src/features/technician-dispatch/actions/dispatch.actions.ts:103:45
+-           if (request.status === 'scheduled') {
+-             return { success: false, error: 'This dispatch has already been scheduled.' }
+-           }
++           if (request.status === 'scheduled') {}
+
+[NoCoverage] ObjectLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:104:18
+-             return { success: false, error: 'This dispatch has already been scheduled.' }
++             return {}
+
+[NoCoverage] BooleanLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:104:29
+-             return { success: false, error: 'This dispatch has already been scheduled.' }
++             return { success: true, error: 'This dispatch has already been scheduled.' }
+
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:104:43
+-             return { success: false, error: 'This dispatch has already been scheduled.' }
++             return { success: false, error: "" }
+
+[NoCoverage] ArrowFunction
+src/features/technician-dispatch/actions/dispatch.actions.ts:107:53
+-           const fault = technicianCatalog.faults.find((item) => item.id === request.fault.id)
++           const fault = technicianCatalog.faults.find(() => undefined)
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/actions/dispatch.actions.ts:107:63
+-           const fault = technicianCatalog.faults.find((item) => item.id === request.fault.id)
++           const fault = technicianCatalog.faults.find((item) => true)
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/actions/dispatch.actions.ts:107:63
+-           const fault = technicianCatalog.faults.find((item) => item.id === request.fault.id)
++           const fault = technicianCatalog.faults.find((item) => false)
+
+[NoCoverage] EqualityOperator
+src/features/technician-dispatch/actions/dispatch.actions.ts:107:63
+-           const fault = technicianCatalog.faults.find((item) => item.id === request.fault.id)
++           const fault = technicianCatalog.faults.find((item) => item.id !== request.fault.id)
+
+[NoCoverage] ArrowFunction
+src/features/technician-dispatch/actions/dispatch.actions.ts:109:11
+-             (item) => item.id === request.accessRequirement.id
++             () => undefined
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/actions/dispatch.actions.ts:109:21
+-             (item) => item.id === request.accessRequirement.id
++             (item) => true
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/actions/dispatch.actions.ts:109:21
+-             (item) => item.id === request.accessRequirement.id
++             (item) => false
+
+[NoCoverage] EqualityOperator
+src/features/technician-dispatch/actions/dispatch.actions.ts:109:21
+-             (item) => item.id === request.accessRequirement.id
++             (item) => item.id !== request.accessRequirement.id
+
+[NoCoverage] ArrowFunction
+src/features/technician-dispatch/actions/dispatch.actions.ts:115:16
+-           ).find((item) => item.technician.id === parsed.data.technicianId)
++           ).find(() => undefined)
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/actions/dispatch.actions.ts:115:26
+-           ).find((item) => item.technician.id === parsed.data.technicianId)
++           ).find((item) => true)
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/actions/dispatch.actions.ts:115:26
+-           ).find((item) => item.technician.id === parsed.data.technicianId)
++           ).find((item) => false)
+
+[NoCoverage] EqualityOperator
+src/features/technician-dispatch/actions/dispatch.actions.ts:115:26
+-           ).find((item) => item.technician.id === parsed.data.technicianId)
++           ).find((item) => item.technician.id !== parsed.data.technicianId)
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/actions/dispatch.actions.ts:117:13
+-           if (!fault || !accessRequirement || !match) {
++           if (true) {
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/actions/dispatch.actions.ts:117:13
+-           if (!fault || !accessRequirement || !match) {
++           if (false) {
+
+[NoCoverage] LogicalOperator
+src/features/technician-dispatch/actions/dispatch.actions.ts:117:13
+-           if (!fault || !accessRequirement || !match) {
++           if ((!fault || !accessRequirement) && !match) {
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/actions/dispatch.actions.ts:117:13
+-           if (!fault || !accessRequirement || !match) {
++           if (false || !match) {
+
+[NoCoverage] LogicalOperator
+src/features/technician-dispatch/actions/dispatch.actions.ts:117:13
+-           if (!fault || !accessRequirement || !match) {
++           if (!fault && !accessRequirement || !match) {
+
+[NoCoverage] BooleanLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:117:13
+-           if (!fault || !accessRequirement || !match) {
++           if (fault || !accessRequirement || !match) {
+
+[NoCoverage] BooleanLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:117:23
+-           if (!fault || !accessRequirement || !match) {
++           if (!fault || accessRequirement || !match) {
+
+[NoCoverage] BooleanLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:117:45
+-           if (!fault || !accessRequirement || !match) {
++           if (!fault || !accessRequirement || match) {
+
+[NoCoverage] BlockStatement
+src/features/technician-dispatch/actions/dispatch.actions.ts:117:53
+-           if (!fault || !accessRequirement || !match) {
+-             return {
+-               success: false,
+-               error: 'The selected technician is not compatible with this request.',
+-             }
+-           }
++           if (!fault || !accessRequirement || !match) {}
+
+[NoCoverage] ObjectLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:118:18
+-             return {
+-               success: false,
+-               error: 'The selected technician is not compatible with this request.',
+-             }
++             return {}
+
+[NoCoverage] BooleanLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:119:22
+-               success: false,
++               success: true,
+
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:120:20
+-               error: 'The selected technician is not compatible with this request.',
++               error: "",
+
+[NoCoverage] ObjectLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:125:36
+-           const selectedTechnician = {
+-             id: match.technician.id,
+-             name: match.technician.name,
+-           }
++           const selectedTechnician = {}
+
+[NoCoverage] ObjectLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:130:38
+-           transaction.update(document, {
+-             status: 'scheduled',
+-             selectedTechnician,
+-             matchedEquipment: match.matchedEquipment,
+-             scheduledVisit,
+-             updatedAt: new Date(),
+-           })
++           transaction.update(document, {})
+
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:131:19
+-             status: 'scheduled',
++             status: "",
+
+[NoCoverage] ObjectLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:138:16
+-           return {
+-             success: true,
+-             data: {
+-               dispatch: {
+-                 id: snapshot.id,
+-                 premises: request.premises,
+-                 fault: { id: fault.id, name: fault.name },
+-                 accessRequirement: { id: accessRequirement.id, name: accessRequirement.name },
+-                 technician: selectedTechnician,
+-                 matchedEquipment: match.matchedEquipment,
+-                 scheduledVisit: scheduledVisit.toISOString(),
+-               },
+-             },
+-           }
++           return {}
+
+[NoCoverage] BooleanLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:139:20
+-             success: true,
++             success: false,
+
+[NoCoverage] ObjectLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:140:17
+-             data: {
+-               dispatch: {
+-                 id: snapshot.id,
+-                 premises: request.premises,
+-                 fault: { id: fault.id, name: fault.name },
+-                 accessRequirement: { id: accessRequirement.id, name: accessRequirement.name },
+-                 technician: selectedTechnician,
+-                 matchedEquipment: match.matchedEquipment,
+-                 scheduledVisit: scheduledVisit.toISOString(),
+-               },
+-             },
++             data: {},
+
+[NoCoverage] ObjectLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:141:23
+-               dispatch: {
+-                 id: snapshot.id,
+-                 premises: request.premises,
+-                 fault: { id: fault.id, name: fault.name },
+-                 accessRequirement: { id: accessRequirement.id, name: accessRequirement.name },
+-                 technician: selectedTechnician,
+-                 matchedEquipment: match.matchedEquipment,
+-                 scheduledVisit: scheduledVisit.toISOString(),
+-               },
++               dispatch: {},
+
+[NoCoverage] ObjectLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:144:22
+-                 fault: { id: fault.id, name: fault.name },
++                 fault: {},
+
+[NoCoverage] ObjectLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:145:34
+-                 accessRequirement: { id: accessRequirement.id, name: accessRequirement.name },
++                 accessRequirement: {},
+
+[NoCoverage] BlockStatement
+src/features/technician-dispatch/actions/dispatch.actions.ts:154:11
+-     } catch {
+-       return {
+-         success: false,
+-         error: 'Unable to schedule the dispatch. Please try again.',
+-       }
+-     }
++     } catch {}
+
+[NoCoverage] ObjectLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:155:12
+-       return {
+-         success: false,
+-         error: 'Unable to schedule the dispatch. Please try again.',
+-       }
++       return {}
+
+[NoCoverage] BooleanLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:156:16
+-         success: false,
++         success: true,
+
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:157:14
+-         error: 'Unable to schedule the dispatch. Please try again.',
++         error: "",
+
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:23:3
+-     'block w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm shadow-sm focus:border-zinc-500 focus:ring-2 focus:ring-zinc-500/20 focus:outline-none aria-invalid:border-red-500 dark:border-zinc-700 dark:bg-zinc-900'
++     ""
+
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:25:3
+-     'inline-flex items-center justify-center rounded-md bg-zinc-900 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-zinc-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-900 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-200'
++     ""
+
+[NoCoverage] ObjectLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:27:49
+-   const equipmentLabels: Record<string, string> = {
+-     ladder: 'Ladder',
+-     'elevated-work-platform': 'Elevated work platform',
+-     'pit-access': 'Pit access',
+-   }
++   const equipmentLabels: Record<string, string> = {}
+
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:28:11
+-     ladder: 'Ladder',
++     ladder: "",
+
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:29:29
+-     'elevated-work-platform': 'Elevated work platform',
++     'elevated-work-platform': "",
+
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:30:17
+-     'pit-access': 'Pit access',
++     'pit-access': "",
+
+[NoCoverage] BlockStatement
+src/features/technician-dispatch/components/DispatchFlow.tsx:33:45
+-   function equipmentText(equipment: string[]) {
+-     if (equipment.length === 0) return 'No equipment required'
+-     return equipment.map((item) => equipmentLabels[item] ?? item).join(', ')
+-   }
++   function equipmentText(equipment: string[]) {}
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:34:7
+-     if (equipment.length === 0) return 'No equipment required'
++     if (true) return 'No equipment required'
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:34:7
+-     if (equipment.length === 0) return 'No equipment required'
++     if (false) return 'No equipment required'
+
+[NoCoverage] EqualityOperator
+src/features/technician-dispatch/components/DispatchFlow.tsx:34:7
+-     if (equipment.length === 0) return 'No equipment required'
++     if (equipment.length !== 0) return 'No equipment required'
+
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:34:38
+-     if (equipment.length === 0) return 'No equipment required'
++     if (equipment.length === 0) return ""
+
+[NoCoverage] ArrowFunction
+src/features/technician-dispatch/components/DispatchFlow.tsx:35:24
+-     return equipment.map((item) => equipmentLabels[item] ?? item).join(', ')
++     return equipment.map(() => undefined).join(', ')
+
+[NoCoverage] LogicalOperator
+src/features/technician-dispatch/components/DispatchFlow.tsx:35:34
+-     return equipment.map((item) => equipmentLabels[item] ?? item).join(', ')
++     return equipment.map((item) => equipmentLabels[item] && item).join(', ')
+
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:35:70
+-     return equipment.map((item) => equipmentLabels[item] ?? item).join(', ')
++     return equipment.map((item) => equipmentLabels[item] ?? item).join("")
+
+[NoCoverage] BlockStatement
+src/features/technician-dispatch/components/DispatchFlow.tsx:38:72
+-   function handleSelectArrowKey(event: KeyboardEvent<HTMLSelectElement>) {
+-     if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return
+-   
+-     event.preventDefault()
+-     const direction = event.key === 'ArrowDown' ? 1 : -1
+-     const nextIndex = Math.min(
+-       Math.max(event.currentTarget.selectedIndex + direction, 0),
+-       event.currentTarget.options.length - 1
+-     )
+-   
+-     if (nextIndex === event.currentTarget.selectedIndex) return
+-     event.currentTarget.selectedIndex = nextIndex
+-     event.currentTarget.dispatchEvent(new Event('change', { bubbles: true }))
+-   }
++   function handleSelectArrowKey(event: KeyboardEvent<HTMLSelectElement>) {}
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:39:7
+-     if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return
++     if (true) return
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:39:7
+-     if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return
++     if (false) return
+
+[NoCoverage] LogicalOperator
+src/features/technician-dispatch/components/DispatchFlow.tsx:39:7
+-     if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return
++     if (event.key !== 'ArrowDown' || event.key !== 'ArrowUp') return
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:39:7
+-     if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return
++     if (true && event.key !== 'ArrowUp') return
+
+[NoCoverage] EqualityOperator
+src/features/technician-dispatch/components/DispatchFlow.tsx:39:7
+-     if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return
++     if (event.key === 'ArrowDown' && event.key !== 'ArrowUp') return
+
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:39:21
+-     if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return
++     if (event.key !== "" && event.key !== 'ArrowUp') return
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:39:36
+-     if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return
++     if (event.key !== 'ArrowDown' && true) return
+
+[NoCoverage] EqualityOperator
+src/features/technician-dispatch/components/DispatchFlow.tsx:39:36
+-     if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return
++     if (event.key !== 'ArrowDown' && event.key === 'ArrowUp') return
+
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:39:50
+-     if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return
++     if (event.key !== 'ArrowDown' && event.key !== "") return
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:42:21
+-     const direction = event.key === 'ArrowDown' ? 1 : -1
++     const direction = true ? 1 : -1
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:42:21
+-     const direction = event.key === 'ArrowDown' ? 1 : -1
++     const direction = false ? 1 : -1
+
+[NoCoverage] EqualityOperator
+src/features/technician-dispatch/components/DispatchFlow.tsx:42:21
+-     const direction = event.key === 'ArrowDown' ? 1 : -1
++     const direction = event.key !== 'ArrowDown' ? 1 : -1
+
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:42:35
+-     const direction = event.key === 'ArrowDown' ? 1 : -1
++     const direction = event.key === "" ? 1 : -1
+
+[NoCoverage] UnaryOperator
+src/features/technician-dispatch/components/DispatchFlow.tsx:42:53
+-     const direction = event.key === 'ArrowDown' ? 1 : -1
++     const direction = event.key === 'ArrowDown' ? 1 : +1
+
+[NoCoverage] MethodExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:43:21
+-     const nextIndex = Math.min(
+-       Math.max(event.currentTarget.selectedIndex + direction, 0),
+-       event.currentTarget.options.length - 1
+-     )
++     const nextIndex = Math.max(Math.max(event.currentTarget.selectedIndex + direction, 0), event.currentTarget.options.length - 1)
+
+[NoCoverage] MethodExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:44:5
+-       Math.max(event.currentTarget.selectedIndex + direction, 0),
++       Math.min(event.currentTarget.selectedIndex + direction, 0),
+
+[NoCoverage] ArithmeticOperator
+src/features/technician-dispatch/components/DispatchFlow.tsx:44:14
+-       Math.max(event.currentTarget.selectedIndex + direction, 0),
++       Math.max(event.currentTarget.selectedIndex - direction, 0),
+
+[NoCoverage] ArithmeticOperator
+src/features/technician-dispatch/components/DispatchFlow.tsx:45:5
+-       event.currentTarget.options.length - 1
++       event.currentTarget.options.length + 1
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:48:7
+-     if (nextIndex === event.currentTarget.selectedIndex) return
++     if (true) return
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:48:7
+-     if (nextIndex === event.currentTarget.selectedIndex) return
++     if (false) return
+
+[NoCoverage] EqualityOperator
+src/features/technician-dispatch/components/DispatchFlow.tsx:48:7
+-     if (nextIndex === event.currentTarget.selectedIndex) return
++     if (nextIndex !== event.currentTarget.selectedIndex) return
+
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:50:47
+-     event.currentTarget.dispatchEvent(new Event('change', { bubbles: true }))
++     event.currentTarget.dispatchEvent(new Event("", { bubbles: true }))
+
+[NoCoverage] ObjectLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:50:57
+-     event.currentTarget.dispatchEvent(new Event('change', { bubbles: true }))
++     event.currentTarget.dispatchEvent(new Event('change', {}))
+
+[NoCoverage] BooleanLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:50:68
+-     event.currentTarget.dispatchEvent(new Event('change', { bubbles: true }))
++     event.currentTarget.dispatchEvent(new Event('change', { bubbles: false }))
+
+[NoCoverage] BlockStatement
+src/features/technician-dispatch/components/DispatchFlow.tsx:53:75
+-   function RequestSummary({ request }: { request: DispatchRequestSummary }) {
+-     return (
+-       <dl className="grid gap-4 rounded-lg border border-zinc-200 bg-zinc-50 p-4 text-sm sm:grid-cols-3 dark:border-zinc-800 dark:bg-zinc-900">
+-         <div>
+-           <dt className="font-medium text-zinc-500">Customer premises</dt>
+-           <dd className="mt-1 text-zinc-900 dark:text-zinc-100">{request.premises}</dd>
+-         </div>
+-         <div>
+-           <dt className="font-medium text-zinc-500">Fault or problem</dt>
+-           <dd className="mt-1 text-zinc-900 dark:text-zinc-100">{request.fault.name}</dd>
+-         </div>
+-         <div>
+-           <dt className="font-medium text-zinc-500">Access requirement</dt>
+-           <dd className="mt-1 text-zinc-900 dark:text-zinc-100">{request.accessRequirement.name}</dd>
+-         </div>
+-       </dl>
+-     )
+-   }
++   function RequestSummary({ request }: { request: DispatchRequestSummary }) {}
+
+[NoCoverage] BlockStatement
+src/features/technician-dispatch/components/DispatchFlow.tsx:72:74
+-   function ScheduledSummary({ dispatch }: { dispatch: ScheduledDispatch }) {
+-     const visit = new Intl.DateTimeFormat('en-AU', {
+-       dateStyle: 'long',
+-       timeStyle: 'short',
+-     }).format(new Date(dispatch.scheduledVisit))
+-   
+-     return (
+-       <section className="space-y-6" aria-labelledby="scheduled-heading">
+-         <div className="flex items-start gap-3 rounded-lg border border-green-200 bg-green-50 p-4 text-green-950 dark:border-green-900 dark:bg-green-950 dark:text-green-100">
+-           <CheckCircle2 className="mt-0.5 size-6 shrink-0" aria-hidden="true" />
+-           <div>
+-             <h2 id="scheduled-heading" className="text-xl font-semibold">
+-               Dispatch scheduled
+-             </h2>
+-             <p className="mt-1 text-sm">The technician visit has been recorded successfully.</p>
+-           </div>
+-         </div>
+-   
+-         <dl className="grid gap-5 rounded-lg border border-zinc-200 bg-white p-6 sm:grid-cols-2 dark:border-zinc-800 dark:bg-zinc-900">
+-           <div>
+-             <dt className="text-sm font-medium text-zinc-500">Customer premises</dt>
+-             <dd className="mt-1">{dispatch.premises}</dd>
+-           </div>
+-           <div>
+-             <dt className="text-sm font-medium text-zinc-500">Scheduled visit</dt>
+-             <dd className="mt-1">{visit}</dd>
+-           </div>
+-           <div>
+-             <dt className="text-sm font-medium text-zinc-500">Fault or problem</dt>
+-             <dd className="mt-1">{dispatch.fault.name}</dd>
+-           </div>
+-           <div>
+-             <dt className="text-sm font-medium text-zinc-500">Access requirement</dt>
+-             <dd className="mt-1">{dispatch.accessRequirement.name}</dd>
+-           </div>
+-           <div>
+-             <dt className="text-sm font-medium text-zinc-500">Technician</dt>
+-             <dd className="mt-1">{dispatch.technician.name}</dd>
+-           </div>
+-           <div>
+-             <dt className="text-sm font-medium text-zinc-500">Equipment used for the match</dt>
+-             <dd className="mt-1">{equipmentText(dispatch.matchedEquipment)}</dd>
+-           </div>
+-         </dl>
+-       </section>
+-     )
+-   }
++   function ScheduledSummary({ dispatch }: { dispatch: ScheduledDispatch }) {}
+
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:73:41
+-     const visit = new Intl.DateTimeFormat('en-AU', {
++     const visit = new Intl.DateTimeFormat("", {
+
+[NoCoverage] ObjectLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:73:50
+-     const visit = new Intl.DateTimeFormat('en-AU', {
+-       dateStyle: 'long',
+-       timeStyle: 'short',
+-     }).format(new Date(dispatch.scheduledVisit))
++     const visit = new Intl.DateTimeFormat('en-AU', {}).format(new Date(dispatch.scheduledVisit))
+
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:74:16
+-       dateStyle: 'long',
++       dateStyle: "",
+
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:75:16
+-       timeStyle: 'short',
++       timeStyle: "",
+
+[NoCoverage] BlockStatement
+src/features/technician-dispatch/components/DispatchFlow.tsx:120:75
+-   export function DispatchFlow({ catalog }: { catalog: TechnicianCatalog }) {
+-     const [request, setRequest] = useState<DispatchRequestSummary | null>(null)
+-     const [matches, setMatches] = useState<TechnicianMatch[]>([])
+-     const [scheduledDispatch, setScheduledDispatch] = useState<ScheduledDispatch | null>(null)
+-     const [requestError, setRequestError] = useState<string | null>(null)
+-     const [scheduleError, setScheduleError] = useState<string | null>(null)
+-   
+-     const requestForm = useForm<CreateDispatchInput>({
+-       resolver: zodResolver(createDispatchRequestSchema),
+-       defaultValues: { premises: '', faultId: '', accessRequirementId: '' },
+-     })
+-     const scheduleForm = useForm<ScheduleSelectionInput>({
+-       resolver: zodResolver(scheduleSelectionSchema),
+-       defaultValues: { technicianId: '', scheduledVisit: '' },
+-     })
+-   
+-     async function submitRequest(values: CreateDispatchInput) {
+-       setRequestError(null)
+-       const result = await createDispatchRequest(values)
+-   
+-       if (!result.success || !result.data) {
+-         const error = result.error ?? 'Unable to create the dispatch request.'
+-         setRequestError(error)
+-         toast.error(error)
+-         return
+-       }
+-   
+-       setRequest(result.data.request)
+-       setMatches(result.data.matches)
+-       toast.success('Dispatch request created.')
+-     }
+-   
+-     async function submitSchedule(values: ScheduleSelectionInput) {
+-       if (!request) return
+-       setScheduleError(null)
+-   
+-       const result = await scheduleDispatch({
+-         requestId: request.id,
+-         technicianId: values.technicianId,
+-         scheduledVisit: new Date(values.scheduledVisit).toISOString(),
+-       })
+-   
+-       if (!result.success || !result.data) {
+-         const error = result.error ?? 'Unable to schedule the dispatch.'
+-         setScheduleError(error)
+-         toast.error(error)
+-         return
+-       }
+-   
+-       setScheduledDispatch(result.data.dispatch)
+-       toast.success('Dispatch scheduled.')
+-     }
+-   
+-     if (scheduledDispatch) return <ScheduledSummary dispatch={scheduledDispatch} />
+-   
+-     if (request) {
+-       return (
+-         <section className="space-y-6" aria-labelledby="matching-heading">
+-           <div>
+-             <h2 id="matching-heading" className="text-xl font-semibold">
+-               {matches.length > 0 ? 'Compatible technicians' : 'No compatible technician found'}
+-             </h2>
+-             <p className="mt-1 text-sm text-zinc-500">
+-               {matches.length > 0
+-                 ? 'Select a technician whose fault skills and equipment satisfy this request.'
+-                 : 'No technician and equipment combination satisfies the recorded request.'}
+-             </p>
+-           </div>
+-   
+-           <RequestSummary request={request} />
+-   
+-           {matches.length > 0 && (
+-             <form
+-               onSubmit={scheduleForm.handleSubmit(submitSchedule)}
+-               className="space-y-6"
+-               noValidate
+-             >
+-               <fieldset className="space-y-3">
+-                 <legend className="text-sm font-semibold">Select a compatible technician</legend>
+-                 {matches.map((match) => {
+-                   const descriptionId = `match-description-${match.technician.id}`
+-                   return (
+-                     <label
+-                       key={match.technician.id}
+-                       data-testid={`technician-match-${match.technician.id}`}
+-                       className="flex cursor-pointer gap-3 rounded-lg border border-zinc-200 bg-white p-4 focus-within:ring-2 focus-within:ring-zinc-500 focus-within:ring-offset-2 hover:border-zinc-400 dark:border-zinc-800 dark:bg-zinc-900"
+-                     >
+-                       <input
+-                         type="radio"
+-                         value={match.technician.id}
+-                         aria-describedby={descriptionId}
+-                         className="mt-1 size-4"
+-                         {...scheduleForm.register('technicianId')}
+-                       />
+-                       <span className="min-w-0 flex-1">
+-                         <span className="flex flex-wrap items-center gap-2">
+-                           <span className="font-semibold">{match.technician.name}</span>
+-                           <span className="inline-flex items-center gap-1 rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-800 dark:bg-green-950 dark:text-green-200">
+-                             <CheckCircle2 className="size-3.5" aria-hidden="true" />
+-                             Compatible match
+-                           </span>
+-                         </span>
+-                         <span id={descriptionId} className="mt-3 flex items-center gap-2 text-sm">
+-                           <HardHat
+-                             className="size-5 shrink-0 text-zinc-500"
+-                             aria-hidden="true"
+-                             data-testid="equipment-icon"
+-                           />
+-                           <span>
+-                             <span className="font-medium">
+-                               Compatible match. <span>Equipment required</span>:{' '}
+-                             </span>
+-                             {equipmentText(match.matchedEquipment)}
+-                           </span>
+-                         </span>
+-                       </span>
+-                     </label>
+-                   )
+-                 })}
+-                 {scheduleForm.formState.errors.technicianId && (
+-                   <p className="text-sm text-red-600" role="alert">
+-                     {scheduleForm.formState.errors.technicianId.message}
+-                   </p>
+-                 )}
+-               </fieldset>
+-   
+-               <div className="max-w-md space-y-1.5">
+-                 <label htmlFor="scheduledVisit" className="text-sm font-medium">
+-                   Scheduled visit
+-                 </label>
+-                 <input
+-                   id="scheduledVisit"
+-                   type="datetime-local"
+-                   required
+-                   aria-invalid={Boolean(scheduleForm.formState.errors.scheduledVisit)}
+-                   className={fieldClassName}
+-                   {...scheduleForm.register('scheduledVisit')}
+-                 />
+-                 {scheduleForm.formState.errors.scheduledVisit && (
+-                   <p className="text-sm text-red-600" role="alert">
+-                     {scheduleForm.formState.errors.scheduledVisit.message}
+-                   </p>
+-                 )}
+-               </div>
+-   
+-               {scheduleError && (
+-                 <p className="text-sm text-red-600" role="alert" aria-live="polite">
+-                   {scheduleError}
+-                 </p>
+-               )}
+-   
+-               <button
+-                 type="submit"
+-                 disabled={scheduleForm.formState.isSubmitting}
+-                 className={primaryButtonClassName}
+-               >
+-                 {scheduleForm.formState.isSubmitting ? 'Scheduling…' : 'Schedule dispatch'}
+-               </button>
+-             </form>
+-           )}
+-         </section>
+-       )
+-     }
+-   
+-     return (
+-       <section className="space-y-6" aria-labelledby="create-dispatch-heading">
+-         <div>
+-           <h2 id="create-dispatch-heading" className="text-xl font-semibold">
+-             Create a dispatch request
+-           </h2>
+-           <p className="mt-1 text-sm text-zinc-500">
+-             Record the customer premises, fault, and access needs to find a compatible technician.
+-           </p>
+-         </div>
+-   
+-         <form
+-           onSubmit={requestForm.handleSubmit(submitRequest)}
+-           className="max-w-2xl space-y-5"
+-           noValidate
+-         >
+-           <div className="space-y-1.5">
+-             <label htmlFor="premises" className="text-sm font-medium">
+-               Customer premises
+-             </label>
+-             <div className="relative">
+-               <MapPin
+-                 className="pointer-events-none absolute top-2.5 left-3 size-4 text-zinc-400"
+-                 aria-hidden="true"
+-               />
+-               <input
+-                 id="premises"
+-                 type="text"
+-                 required
+-                 maxLength={200}
+-                 autoComplete="street-address"
+-                 aria-invalid={Boolean(requestForm.formState.errors.premises)}
+-                 className={`${fieldClassName} pl-9`}
+-                 {...requestForm.register('premises')}
+-               />
+-             </div>
+-             {requestForm.formState.errors.premises && (
+-               <p className="text-sm text-red-600" role="alert">
+-                 {requestForm.formState.errors.premises.message}
+-               </p>
+-             )}
+-           </div>
+-   
+-           <div className="space-y-1.5">
+-             <label htmlFor="faultId" className="text-sm font-medium">
+-               Fault or problem
+-             </label>
+-             <select
+-               id="faultId"
+-               required
+-               onKeyDown={handleSelectArrowKey}
+-               aria-invalid={Boolean(requestForm.formState.errors.faultId)}
+-               className={fieldClassName}
+-               {...requestForm.register('faultId')}
+-             >
+-               <option value="">Select a fault or problem</option>
+-               {catalog.faults.map((fault) => (
+-                 <option key={fault.id} value={fault.id}>
+-                   {fault.name}
+-                 </option>
+-               ))}
+-             </select>
+-             {requestForm.formState.errors.faultId && (
+-               <p className="text-sm text-red-600" role="alert">
+-                 {requestForm.formState.errors.faultId.message}
+-               </p>
+-             )}
+-           </div>
+-   
+-           <div className="space-y-1.5">
+-             <label htmlFor="accessRequirementId" className="text-sm font-medium">
+-               Access or equipment requirement
+-             </label>
+-             <select
+-               id="accessRequirementId"
+-               required
+-               onKeyDown={handleSelectArrowKey}
+-               aria-invalid={Boolean(requestForm.formState.errors.accessRequirementId)}
+-               className={fieldClassName}
+-               {...requestForm.register('accessRequirementId')}
+-             >
+-               <option value="">Select an access or equipment requirement</option>
+-               {catalog.accessRequirements.map((requirement) => (
+-                 <option key={requirement.id} value={requirement.id}>
+-                   {requirement.name}
+-                 </option>
+-               ))}
+-             </select>
+-             {requestForm.formState.errors.accessRequirementId && (
+-               <p className="text-sm text-red-600" role="alert">
+-                 {requestForm.formState.errors.accessRequirementId.message}
+-               </p>
+-             )}
+-           </div>
+-   
+-           {requestError && (
+-             <p className="text-sm text-red-600" role="alert" aria-live="polite">
+-               {requestError}
+-             </p>
+-           )}
+-   
+-           <button
+-             type="submit"
+-             disabled={requestForm.formState.isSubmitting}
+-             className={primaryButtonClassName}
+-           >
+-             <Wrench className="mr-2 size-4" aria-hidden="true" />
+-             {requestForm.formState.isSubmitting
+-               ? 'Finding technicians…'
+-               : 'Find compatible technicians'}
+-           </button>
+-         </form>
+-       </section>
+-     )
+-   }
++   export function DispatchFlow({ catalog }: { catalog: TechnicianCatalog }) {}
+
+[NoCoverage] ArrayDeclaration
+src/features/technician-dispatch/components/DispatchFlow.tsx:122:61
+-     const [matches, setMatches] = useState<TechnicianMatch[]>([])
++     const [matches, setMatches] = useState<TechnicianMatch[]>(["Stryker was here"])
+
+[NoCoverage] ObjectLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:127:52
+-     const requestForm = useForm<CreateDispatchInput>({
+-       resolver: zodResolver(createDispatchRequestSchema),
+-       defaultValues: { premises: '', faultId: '', accessRequirementId: '' },
+-     })
++     const requestForm = useForm<CreateDispatchInput>({})
+
+[NoCoverage] ObjectLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:129:20
+-       defaultValues: { premises: '', faultId: '', accessRequirementId: '' },
++       defaultValues: {},
+
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:129:32
+-       defaultValues: { premises: '', faultId: '', accessRequirementId: '' },
++       defaultValues: { premises: "Stryker was here!", faultId: '', accessRequirementId: '' },
+
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:129:45
+-       defaultValues: { premises: '', faultId: '', accessRequirementId: '' },
++       defaultValues: { premises: '', faultId: "Stryker was here!", accessRequirementId: '' },
+
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:129:70
+-       defaultValues: { premises: '', faultId: '', accessRequirementId: '' },
++       defaultValues: { premises: '', faultId: '', accessRequirementId: "Stryker was here!" },
+
+[NoCoverage] ObjectLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:131:56
+-     const scheduleForm = useForm<ScheduleSelectionInput>({
+-       resolver: zodResolver(scheduleSelectionSchema),
+-       defaultValues: { technicianId: '', scheduledVisit: '' },
+-     })
++     const scheduleForm = useForm<ScheduleSelectionInput>({})
+
+[NoCoverage] ObjectLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:133:20
+-       defaultValues: { technicianId: '', scheduledVisit: '' },
++       defaultValues: {},
+
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:133:36
+-       defaultValues: { technicianId: '', scheduledVisit: '' },
++       defaultValues: { technicianId: "Stryker was here!", scheduledVisit: '' },
+
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:133:56
+-       defaultValues: { technicianId: '', scheduledVisit: '' },
++       defaultValues: { technicianId: '', scheduledVisit: "Stryker was here!" },
+
+[NoCoverage] BlockStatement
+src/features/technician-dispatch/components/DispatchFlow.tsx:136:61
+-     async function submitRequest(values: CreateDispatchInput) {
+-       setRequestError(null)
+-       const result = await createDispatchRequest(values)
+-   
+-       if (!result.success || !result.data) {
+-         const error = result.error ?? 'Unable to create the dispatch request.'
+-         setRequestError(error)
+-         toast.error(error)
+-         return
+-       }
+-   
+-       setRequest(result.data.request)
+-       setMatches(result.data.matches)
+-       toast.success('Dispatch request created.')
+-     }
++     async function submitRequest(values: CreateDispatchInput) {}
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:140:9
+-       if (!result.success || !result.data) {
++       if (true) {
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:140:9
+-       if (!result.success || !result.data) {
++       if (false) {
+
+[NoCoverage] LogicalOperator
+src/features/technician-dispatch/components/DispatchFlow.tsx:140:9
+-       if (!result.success || !result.data) {
++       if (!result.success && !result.data) {
+
+[NoCoverage] BooleanLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:140:9
+-       if (!result.success || !result.data) {
++       if (result.success || !result.data) {
+
+[NoCoverage] BooleanLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:140:28
+-       if (!result.success || !result.data) {
++       if (!result.success || result.data) {
+
+[NoCoverage] BlockStatement
+src/features/technician-dispatch/components/DispatchFlow.tsx:140:42
+-       if (!result.success || !result.data) {
+-         const error = result.error ?? 'Unable to create the dispatch request.'
+-         setRequestError(error)
+-         toast.error(error)
+-         return
+-       }
++       if (!result.success || !result.data) {}
+
+[NoCoverage] LogicalOperator
+src/features/technician-dispatch/components/DispatchFlow.tsx:141:21
+-         const error = result.error ?? 'Unable to create the dispatch request.'
++         const error = result.error && 'Unable to create the dispatch request.'
+
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:141:37
+-         const error = result.error ?? 'Unable to create the dispatch request.'
++         const error = result.error ?? ""
+
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:149:19
+-       toast.success('Dispatch request created.')
++       toast.success("")
+
+[NoCoverage] BlockStatement
+src/features/technician-dispatch/components/DispatchFlow.tsx:152:65
+-     async function submitSchedule(values: ScheduleSelectionInput) {
+-       if (!request) return
+-       setScheduleError(null)
+-   
+-       const result = await scheduleDispatch({
+-         requestId: request.id,
+-         technicianId: values.technicianId,
+-         scheduledVisit: new Date(values.scheduledVisit).toISOString(),
+-       })
+-   
+-       if (!result.success || !result.data) {
+-         const error = result.error ?? 'Unable to schedule the dispatch.'
+-         setScheduleError(error)
+-         toast.error(error)
+-         return
+-       }
+-   
+-       setScheduledDispatch(result.data.dispatch)
+-       toast.success('Dispatch scheduled.')
+-     }
++     async function submitSchedule(values: ScheduleSelectionInput) {}
+
+[NoCoverage] BooleanLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:153:9
+-       if (!request) return
++       if (request) return
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:153:9
+-       if (!request) return
++       if (true) return
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:153:9
+-       if (!request) return
++       if (false) return
+
+[NoCoverage] ObjectLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:156:43
+-       const result = await scheduleDispatch({
+-         requestId: request.id,
+-         technicianId: values.technicianId,
+-         scheduledVisit: new Date(values.scheduledVisit).toISOString(),
+-       })
++       const result = await scheduleDispatch({})
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:162:9
+-       if (!result.success || !result.data) {
++       if (true) {
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:162:9
+-       if (!result.success || !result.data) {
++       if (false) {
+
+[NoCoverage] LogicalOperator
+src/features/technician-dispatch/components/DispatchFlow.tsx:162:9
+-       if (!result.success || !result.data) {
++       if (!result.success && !result.data) {
+
+[NoCoverage] BooleanLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:162:9
+-       if (!result.success || !result.data) {
++       if (result.success || !result.data) {
+
+[NoCoverage] BooleanLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:162:28
+-       if (!result.success || !result.data) {
++       if (!result.success || result.data) {
+
+[NoCoverage] BlockStatement
+src/features/technician-dispatch/components/DispatchFlow.tsx:162:42
+-       if (!result.success || !result.data) {
+-         const error = result.error ?? 'Unable to schedule the dispatch.'
+-         setScheduleError(error)
+-         toast.error(error)
+-         return
+-       }
++       if (!result.success || !result.data) {}
+
+[NoCoverage] LogicalOperator
+src/features/technician-dispatch/components/DispatchFlow.tsx:163:21
+-         const error = result.error ?? 'Unable to schedule the dispatch.'
++         const error = result.error && 'Unable to schedule the dispatch.'
+
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:163:37
+-         const error = result.error ?? 'Unable to schedule the dispatch.'
++         const error = result.error ?? ""
+
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:170:19
+-       toast.success('Dispatch scheduled.')
++       toast.success("")
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:173:7
+-     if (scheduledDispatch) return <ScheduledSummary dispatch={scheduledDispatch} />
++     if (true) return <ScheduledSummary dispatch={scheduledDispatch} />
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:173:7
+-     if (scheduledDispatch) return <ScheduledSummary dispatch={scheduledDispatch} />
++     if (false) return <ScheduledSummary dispatch={scheduledDispatch} />
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:175:7
+-     if (request) {
++     if (true) {
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:175:7
+-     if (request) {
++     if (false) {
+
+[NoCoverage] BlockStatement
+src/features/technician-dispatch/components/DispatchFlow.tsx:175:16
+-     if (request) {
+-       return (
+-         <section className="space-y-6" aria-labelledby="matching-heading">
+-           <div>
+-             <h2 id="matching-heading" className="text-xl font-semibold">
+-               {matches.length > 0 ? 'Compatible technicians' : 'No compatible technician found'}
+-             </h2>
+-             <p className="mt-1 text-sm text-zinc-500">
+-               {matches.length > 0
+-                 ? 'Select a technician whose fault skills and equipment satisfy this request.'
+-                 : 'No technician and equipment combination satisfies the recorded request.'}
+-             </p>
+-           </div>
+-   
+-           <RequestSummary request={request} />
+-   
+-           {matches.length > 0 && (
+-             <form
+-               onSubmit={scheduleForm.handleSubmit(submitSchedule)}
+-               className="space-y-6"
+-               noValidate
+-             >
+-               <fieldset className="space-y-3">
+-                 <legend className="text-sm font-semibold">Select a compatible technician</legend>
+-                 {matches.map((match) => {
+-                   const descriptionId = `match-description-${match.technician.id}`
+-                   return (
+-                     <label
+-                       key={match.technician.id}
+-                       data-testid={`technician-match-${match.technician.id}`}
+-                       className="flex cursor-pointer gap-3 rounded-lg border border-zinc-200 bg-white p-4 focus-within:ring-2 focus-within:ring-zinc-500 focus-within:ring-offset-2 hover:border-zinc-400 dark:border-zinc-800 dark:bg-zinc-900"
+-                     >
+-                       <input
+-                         type="radio"
+-                         value={match.technician.id}
+-                         aria-describedby={descriptionId}
+-                         className="mt-1 size-4"
+-                         {...scheduleForm.register('technicianId')}
+-                       />
+-                       <span className="min-w-0 flex-1">
+-                         <span className="flex flex-wrap items-center gap-2">
+-                           <span className="font-semibold">{match.technician.name}</span>
+-                           <span className="inline-flex items-center gap-1 rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-800 dark:bg-green-950 dark:text-green-200">
+-                             <CheckCircle2 className="size-3.5" aria-hidden="true" />
+-                             Compatible match
+-                           </span>
+-                         </span>
+-                         <span id={descriptionId} className="mt-3 flex items-center gap-2 text-sm">
+-                           <HardHat
+-                             className="size-5 shrink-0 text-zinc-500"
+-                             aria-hidden="true"
+-                             data-testid="equipment-icon"
+-                           />
+-                           <span>
+-                             <span className="font-medium">
+-                               Compatible match. <span>Equipment required</span>:{' '}
+-                             </span>
+-                             {equipmentText(match.matchedEquipment)}
+-                           </span>
+-                         </span>
+-                       </span>
+-                     </label>
+-                   )
+-                 })}
+-                 {scheduleForm.formState.errors.technicianId && (
+-                   <p className="text-sm text-red-600" role="alert">
+-                     {scheduleForm.formState.errors.technicianId.message}
+-                   </p>
+-                 )}
+-               </fieldset>
+-   
+-               <div className="max-w-md space-y-1.5">
+-                 <label htmlFor="scheduledVisit" className="text-sm font-medium">
+-                   Scheduled visit
+-                 </label>
+-                 <input
+-                   id="scheduledVisit"
+-                   type="datetime-local"
+-                   required
+-                   aria-invalid={Boolean(scheduleForm.formState.errors.scheduledVisit)}
+-                   className={fieldClassName}
+-                   {...scheduleForm.register('scheduledVisit')}
+-                 />
+-                 {scheduleForm.formState.errors.scheduledVisit && (
+-                   <p className="text-sm text-red-600" role="alert">
+-                     {scheduleForm.formState.errors.scheduledVisit.message}
+-                   </p>
+-                 )}
+-               </div>
+-   
+-               {scheduleError && (
+-                 <p className="text-sm text-red-600" role="alert" aria-live="polite">
+-                   {scheduleError}
+-                 </p>
+-               )}
+-   
+-               <button
+-                 type="submit"
+-                 disabled={scheduleForm.formState.isSubmitting}
+-                 className={primaryButtonClassName}
+-               >
+-                 {scheduleForm.formState.isSubmitting ? 'Scheduling…' : 'Schedule dispatch'}
+-               </button>
+-             </form>
+-           )}
+-         </section>
+-       )
+-     }
++     if (request) {}
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:180:14
+-               {matches.length > 0 ? 'Compatible technicians' : 'No compatible technician found'}
++               {true ? 'Compatible technicians' : 'No compatible technician found'}
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:180:14
+-               {matches.length > 0 ? 'Compatible technicians' : 'No compatible technician found'}
++               {false ? 'Compatible technicians' : 'No compatible technician found'}
+
+[NoCoverage] EqualityOperator
+src/features/technician-dispatch/components/DispatchFlow.tsx:180:14
+-               {matches.length > 0 ? 'Compatible technicians' : 'No compatible technician found'}
++               {matches.length >= 0 ? 'Compatible technicians' : 'No compatible technician found'}
+
+[NoCoverage] EqualityOperator
+src/features/technician-dispatch/components/DispatchFlow.tsx:180:14
+-               {matches.length > 0 ? 'Compatible technicians' : 'No compatible technician found'}
++               {matches.length <= 0 ? 'Compatible technicians' : 'No compatible technician found'}
+
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:180:35
+-               {matches.length > 0 ? 'Compatible technicians' : 'No compatible technician found'}
++               {matches.length > 0 ? "" : 'No compatible technician found'}
+
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:180:62
+-               {matches.length > 0 ? 'Compatible technicians' : 'No compatible technician found'}
++               {matches.length > 0 ? 'Compatible technicians' : ""}
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:183:14
+-               {matches.length > 0
++               {true
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:183:14
+-               {matches.length > 0
++               {false
+
+[NoCoverage] EqualityOperator
+src/features/technician-dispatch/components/DispatchFlow.tsx:183:14
+-               {matches.length > 0
++               {matches.length >= 0
+
+[NoCoverage] EqualityOperator
+src/features/technician-dispatch/components/DispatchFlow.tsx:183:14
+-               {matches.length > 0
++               {matches.length <= 0
+
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:184:17
+-                 ? 'Select a technician whose fault skills and equipment satisfy this request.'
++                 ? ""
+
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:185:17
+-                 : 'No technician and equipment combination satisfies the recorded request.'}
++                 : ""}
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:191:10
+-           {matches.length > 0 && (
+-             <form
+-               onSubmit={scheduleForm.handleSubmit(submitSchedule)}
+-               className="space-y-6"
+-               noValidate
+-             >
+-               <fieldset className="space-y-3">
+-                 <legend className="text-sm font-semibold">Select a compatible technician</legend>
+-                 {matches.map((match) => {
+-                   const descriptionId = `match-description-${match.technician.id}`
+-                   return (
+-                     <label
+-                       key={match.technician.id}
+-                       data-testid={`technician-match-${match.technician.id}`}
+-                       className="flex cursor-pointer gap-3 rounded-lg border border-zinc-200 bg-white p-4 focus-within:ring-2 focus-within:ring-zinc-500 focus-within:ring-offset-2 hover:border-zinc-400 dark:border-zinc-800 dark:bg-zinc-900"
+-                     >
+-                       <input
+-                         type="radio"
+-                         value={match.technician.id}
+-                         aria-describedby={descriptionId}
+-                         className="mt-1 size-4"
+-                         {...scheduleForm.register('technicianId')}
+-                       />
+-                       <span className="min-w-0 flex-1">
+-                         <span className="flex flex-wrap items-center gap-2">
+-                           <span className="font-semibold">{match.technician.name}</span>
+-                           <span className="inline-flex items-center gap-1 rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-800 dark:bg-green-950 dark:text-green-200">
+-                             <CheckCircle2 className="size-3.5" aria-hidden="true" />
+-                             Compatible match
+-                           </span>
+-                         </span>
+-                         <span id={descriptionId} className="mt-3 flex items-center gap-2 text-sm">
+-                           <HardHat
+-                             className="size-5 shrink-0 text-zinc-500"
+-                             aria-hidden="true"
+-                             data-testid="equipment-icon"
+-                           />
+-                           <span>
+-                             <span className="font-medium">
+-                               Compatible match. <span>Equipment required</span>:{' '}
+-                             </span>
+-                             {equipmentText(match.matchedEquipment)}
+-                           </span>
+-                         </span>
+-                       </span>
+-                     </label>
+-                   )
+-                 })}
+-                 {scheduleForm.formState.errors.technicianId && (
+-                   <p className="text-sm text-red-600" role="alert">
+-                     {scheduleForm.formState.errors.technicianId.message}
+-                   </p>
+-                 )}
+-               </fieldset>
+-   
+-               <div className="max-w-md space-y-1.5">
+-                 <label htmlFor="scheduledVisit" className="text-sm font-medium">
+-                   Scheduled visit
+-                 </label>
+-                 <input
+-                   id="scheduledVisit"
+-                   type="datetime-local"
+-                   required
+-                   aria-invalid={Boolean(scheduleForm.formState.errors.scheduledVisit)}
+-                   className={fieldClassName}
+-                   {...scheduleForm.register('scheduledVisit')}
+-                 />
+-                 {scheduleForm.formState.errors.scheduledVisit && (
+-                   <p className="text-sm text-red-600" role="alert">
+-                     {scheduleForm.formState.errors.scheduledVisit.message}
+-                   </p>
+-                 )}
+-               </div>
+-   
+-               {scheduleError && (
+-                 <p className="text-sm text-red-600" role="alert" aria-live="polite">
+-                   {scheduleError}
+-                 </p>
+-               )}
+-   
+-               <button
+-                 type="submit"
+-                 disabled={scheduleForm.formState.isSubmitting}
+-                 className={primaryButtonClassName}
+-               >
+-                 {scheduleForm.formState.isSubmitting ? 'Scheduling…' : 'Schedule dispatch'}
+-               </button>
+-             </form>
+-           )}
++           {true}
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:191:10
+-           {matches.length > 0 && (
+-             <form
+-               onSubmit={scheduleForm.handleSubmit(submitSchedule)}
+-               className="space-y-6"
+-               noValidate
+-             >
+-               <fieldset className="space-y-3">
+-                 <legend className="text-sm font-semibold">Select a compatible technician</legend>
+-                 {matches.map((match) => {
+-                   const descriptionId = `match-description-${match.technician.id}`
+-                   return (
+-                     <label
+-                       key={match.technician.id}
+-                       data-testid={`technician-match-${match.technician.id}`}
+-                       className="flex cursor-pointer gap-3 rounded-lg border border-zinc-200 bg-white p-4 focus-within:ring-2 focus-within:ring-zinc-500 focus-within:ring-offset-2 hover:border-zinc-400 dark:border-zinc-800 dark:bg-zinc-900"
+-                     >
+-                       <input
+-                         type="radio"
+-                         value={match.technician.id}
+-                         aria-describedby={descriptionId}
+-                         className="mt-1 size-4"
+-                         {...scheduleForm.register('technicianId')}
+-                       />
+-                       <span className="min-w-0 flex-1">
+-                         <span className="flex flex-wrap items-center gap-2">
+-                           <span className="font-semibold">{match.technician.name}</span>
+-                           <span className="inline-flex items-center gap-1 rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-800 dark:bg-green-950 dark:text-green-200">
+-                             <CheckCircle2 className="size-3.5" aria-hidden="true" />
+-                             Compatible match
+-                           </span>
+-                         </span>
+-                         <span id={descriptionId} className="mt-3 flex items-center gap-2 text-sm">
+-                           <HardHat
+-                             className="size-5 shrink-0 text-zinc-500"
+-                             aria-hidden="true"
+-                             data-testid="equipment-icon"
+-                           />
+-                           <span>
+-                             <span className="font-medium">
+-                               Compatible match. <span>Equipment required</span>:{' '}
+-                             </span>
+-                             {equipmentText(match.matchedEquipment)}
+-                           </span>
+-                         </span>
+-                       </span>
+-                     </label>
+-                   )
+-                 })}
+-                 {scheduleForm.formState.errors.technicianId && (
+-                   <p className="text-sm text-red-600" role="alert">
+-                     {scheduleForm.formState.errors.technicianId.message}
+-                   </p>
+-                 )}
+-               </fieldset>
+-   
+-               <div className="max-w-md space-y-1.5">
+-                 <label htmlFor="scheduledVisit" className="text-sm font-medium">
+-                   Scheduled visit
+-                 </label>
+-                 <input
+-                   id="scheduledVisit"
+-                   type="datetime-local"
+-                   required
+-                   aria-invalid={Boolean(scheduleForm.formState.errors.scheduledVisit)}
+-                   className={fieldClassName}
+-                   {...scheduleForm.register('scheduledVisit')}
+-                 />
+-                 {scheduleForm.formState.errors.scheduledVisit && (
+-                   <p className="text-sm text-red-600" role="alert">
+-                     {scheduleForm.formState.errors.scheduledVisit.message}
+-                   </p>
+-                 )}
+-               </div>
+-   
+-               {scheduleError && (
+-                 <p className="text-sm text-red-600" role="alert" aria-live="polite">
+-                   {scheduleError}
+-                 </p>
+-               )}
+-   
+-               <button
+-                 type="submit"
+-                 disabled={scheduleForm.formState.isSubmitting}
+-                 className={primaryButtonClassName}
+-               >
+-                 {scheduleForm.formState.isSubmitting ? 'Scheduling…' : 'Schedule dispatch'}
+-               </button>
+-             </form>
+-           )}
++           {false}
+
+[NoCoverage] LogicalOperator
+src/features/technician-dispatch/components/DispatchFlow.tsx:191:10
+-           {matches.length > 0 && (
+-             <form
+-               onSubmit={scheduleForm.handleSubmit(submitSchedule)}
+-               className="space-y-6"
+-               noValidate
+-             >
+-               <fieldset className="space-y-3">
+-                 <legend className="text-sm font-semibold">Select a compatible technician</legend>
+-                 {matches.map((match) => {
+-                   const descriptionId = `match-description-${match.technician.id}`
+-                   return (
+-                     <label
+-                       key={match.technician.id}
+-                       data-testid={`technician-match-${match.technician.id}`}
+-                       className="flex cursor-pointer gap-3 rounded-lg border border-zinc-200 bg-white p-4 focus-within:ring-2 focus-within:ring-zinc-500 focus-within:ring-offset-2 hover:border-zinc-400 dark:border-zinc-800 dark:bg-zinc-900"
+-                     >
+-                       <input
+-                         type="radio"
+-                         value={match.technician.id}
+-                         aria-describedby={descriptionId}
+-                         className="mt-1 size-4"
+-                         {...scheduleForm.register('technicianId')}
+-                       />
+-                       <span className="min-w-0 flex-1">
+-                         <span className="flex flex-wrap items-center gap-2">
+-                           <span className="font-semibold">{match.technician.name}</span>
+-                           <span className="inline-flex items-center gap-1 rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-800 dark:bg-green-950 dark:text-green-200">
+-                             <CheckCircle2 className="size-3.5" aria-hidden="true" />
+-                             Compatible match
+-                           </span>
+-                         </span>
+-                         <span id={descriptionId} className="mt-3 flex items-center gap-2 text-sm">
+-                           <HardHat
+-                             className="size-5 shrink-0 text-zinc-500"
+-                             aria-hidden="true"
+-                             data-testid="equipment-icon"
+-                           />
+-                           <span>
+-                             <span className="font-medium">
+-                               Compatible match. <span>Equipment required</span>:{' '}
+-                             </span>
+-                             {equipmentText(match.matchedEquipment)}
+-                           </span>
+-                         </span>
+-                       </span>
+-                     </label>
+-                   )
+-                 })}
+-                 {scheduleForm.formState.errors.technicianId && (
+-                   <p className="text-sm text-red-600" role="alert">
+-                     {scheduleForm.formState.errors.technicianId.message}
+-                   </p>
+-                 )}
+-               </fieldset>
+-   
+-               <div className="max-w-md space-y-1.5">
+-                 <label htmlFor="scheduledVisit" className="text-sm font-medium">
+-                   Scheduled visit
+-                 </label>
+-                 <input
+-                   id="scheduledVisit"
+-                   type="datetime-local"
+-                   required
+-                   aria-invalid={Boolean(scheduleForm.formState.errors.scheduledVisit)}
+-                   className={fieldClassName}
+-                   {...scheduleForm.register('scheduledVisit')}
+-                 />
+-                 {scheduleForm.formState.errors.scheduledVisit && (
+-                   <p className="text-sm text-red-600" role="alert">
+-                     {scheduleForm.formState.errors.scheduledVisit.message}
+-                   </p>
+-                 )}
+-               </div>
+-   
+-               {scheduleError && (
+-                 <p className="text-sm text-red-600" role="alert" aria-live="polite">
+-                   {scheduleError}
+-                 </p>
+-               )}
+-   
+-               <button
+-                 type="submit"
+-                 disabled={scheduleForm.formState.isSubmitting}
+-                 className={primaryButtonClassName}
+-               >
+-                 {scheduleForm.formState.isSubmitting ? 'Scheduling…' : 'Schedule dispatch'}
+-               </button>
+-             </form>
+-           )}
++           {matches.length > 0 || <form onSubmit={scheduleForm.handleSubmit(submitSchedule)} className="space-y-6" noValidate>
++               <fieldset className="space-y-3">
++                 <legend className="text-sm font-semibold">Select a compatible technician</legend>
++                 {matches.map(match => {
++         const descriptionId = `match-description-${match.technician.id}`;
++         return <label key={match.technician.id} data-testid={`technician-match-${match.technician.id}`} className="flex cursor-pointer gap-3 rounded-lg border border-zinc-200 bg-white p-4 focus-within:ring-2 focus-within:ring-zinc-500 focus-within:ring-offset-2 hover:border-zinc-400 dark:border-zinc-800 dark:bg-zinc-900">
++                       <input type="radio" value={match.technician.id} aria-describedby={descriptionId} className="mt-1 size-4" {...scheduleForm.register('technicianId')} />
++                       <span className="min-w-0 flex-1">
++                         <span className="flex flex-wrap items-center gap-2">
++                           <span className="font-semibold">{match.technician.name}</span>
++                           <span className="inline-flex items-center gap-1 rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-800 dark:bg-green-950 dark:text-green-200">
++                             <CheckCircle2 className="size-3.5" aria-hidden="true" />
++                             Compatible match
++                           </span>
++                         </span>
++                         <span id={descriptionId} className="mt-3 flex items-center gap-2 text-sm">
++                           <HardHat className="size-5 shrink-0 text-zinc-500" aria-hidden="true" data-testid="equipment-icon" />
++                           <span>
++                             <span className="font-medium">
++                               Compatible match. <span>Equipment required</span>:{' '}
++                             </span>
++                             {equipmentText(match.matchedEquipment)}
++                           </span>
++                         </span>
++                       </span>
++                     </label>;
++       })}
++                 {scheduleForm.formState.errors.technicianId && <p className="text-sm text-red-600" role="alert">
++                     {scheduleForm.formState.errors.technicianId.message}
++                   </p>}
++               </fieldset>
++   
++               <div className="max-w-md space-y-1.5">
++                 <label htmlFor="scheduledVisit" className="text-sm font-medium">
++                   Scheduled visit
++                 </label>
++                 <input id="scheduledVisit" type="datetime-local" required aria-invalid={Boolean(scheduleForm.formState.errors.scheduledVisit)} className={fieldClassName} {...scheduleForm.register('scheduledVisit')} />
++                 {scheduleForm.formState.errors.scheduledVisit && <p className="text-sm text-red-600" role="alert">
++                     {scheduleForm.formState.errors.scheduledVisit.message}
++                   </p>}
++               </div>
++   
++               {scheduleError && <p className="text-sm text-red-600" role="alert" aria-live="polite">
++                   {scheduleError}
++                 </p>}
++   
++               <button type="submit" disabled={scheduleForm.formState.isSubmitting} className={primaryButtonClassName}>
++                 {scheduleForm.formState.isSubmitting ? 'Scheduling…' : 'Schedule dispatch'}
++               </button>
++             </form>}
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:191:10
+-           {matches.length > 0 && (
++           {true && (
+
+[NoCoverage] EqualityOperator
+src/features/technician-dispatch/components/DispatchFlow.tsx:191:10
+-           {matches.length > 0 && (
++           {matches.length >= 0 && (
+
+[NoCoverage] EqualityOperator
+src/features/technician-dispatch/components/DispatchFlow.tsx:191:10
+-           {matches.length > 0 && (
++           {matches.length <= 0 && (
+
+[NoCoverage] BlockStatement
+src/features/technician-dispatch/components/DispatchFlow.tsx:199:39
+-                 {matches.map((match) => {
+-                   const descriptionId = `match-description-${match.technician.id}`
+-                   return (
+-                     <label
+-                       key={match.technician.id}
+-                       data-testid={`technician-match-${match.technician.id}`}
+-                       className="flex cursor-pointer gap-3 rounded-lg border border-zinc-200 bg-white p-4 focus-within:ring-2 focus-within:ring-zinc-500 focus-within:ring-offset-2 hover:border-zinc-400 dark:border-zinc-800 dark:bg-zinc-900"
+-                     >
+-                       <input
+-                         type="radio"
+-                         value={match.technician.id}
+-                         aria-describedby={descriptionId}
+-                         className="mt-1 size-4"
+-                         {...scheduleForm.register('technicianId')}
+-                       />
+-                       <span className="min-w-0 flex-1">
+-                         <span className="flex flex-wrap items-center gap-2">
+-                           <span className="font-semibold">{match.technician.name}</span>
+-                           <span className="inline-flex items-center gap-1 rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-800 dark:bg-green-950 dark:text-green-200">
+-                             <CheckCircle2 className="size-3.5" aria-hidden="true" />
+-                             Compatible match
+-                           </span>
+-                         </span>
+-                         <span id={descriptionId} className="mt-3 flex items-center gap-2 text-sm">
+-                           <HardHat
+-                             className="size-5 shrink-0 text-zinc-500"
+-                             aria-hidden="true"
+-                             data-testid="equipment-icon"
+-                           />
+-                           <span>
+-                             <span className="font-medium">
+-                               Compatible match. <span>Equipment required</span>:{' '}
+-                             </span>
+-                             {equipmentText(match.matchedEquipment)}
+-                           </span>
+-                         </span>
+-                       </span>
+-                     </label>
+-                   )
+-                 })}
++                 {matches.map((match) => {})}
+
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:200:39
+-                   const descriptionId = `match-description-${match.technician.id}`
++                   const descriptionId = ``
+
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:204:34
+-                       data-testid={`technician-match-${match.technician.id}`}
++                       data-testid={``}
+
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:212:49
+-                         {...scheduleForm.register('technicianId')}
++                         {...scheduleForm.register("")}
+
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:230:80
+-                               Compatible match. <span>Equipment required</span>:{' '}
++                               Compatible match. <span>Equipment required</span>:{""}
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:239:16
+-                 {scheduleForm.formState.errors.technicianId && (
+-                   <p className="text-sm text-red-600" role="alert">
+-                     {scheduleForm.formState.errors.technicianId.message}
+-                   </p>
+-                 )}
++                 {true}
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:239:16
+-                 {scheduleForm.formState.errors.technicianId && (
+-                   <p className="text-sm text-red-600" role="alert">
+-                     {scheduleForm.formState.errors.technicianId.message}
+-                   </p>
+-                 )}
++                 {false}
+
+[NoCoverage] LogicalOperator
+src/features/technician-dispatch/components/DispatchFlow.tsx:239:16
+-                 {scheduleForm.formState.errors.technicianId && (
+-                   <p className="text-sm text-red-600" role="alert">
+-                     {scheduleForm.formState.errors.technicianId.message}
+-                   </p>
+-                 )}
++                 {scheduleForm.formState.errors.technicianId || <p className="text-sm text-red-600" role="alert">
++                     {scheduleForm.formState.errors.technicianId.message}
++                   </p>}
+
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:256:43
+-                   {...scheduleForm.register('scheduledVisit')}
++                   {...scheduleForm.register("")}
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:258:16
+-                 {scheduleForm.formState.errors.scheduledVisit && (
+-                   <p className="text-sm text-red-600" role="alert">
+-                     {scheduleForm.formState.errors.scheduledVisit.message}
+-                   </p>
+-                 )}
++                 {true}
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:258:16
+-                 {scheduleForm.formState.errors.scheduledVisit && (
+-                   <p className="text-sm text-red-600" role="alert">
+-                     {scheduleForm.formState.errors.scheduledVisit.message}
+-                   </p>
+-                 )}
++                 {false}
+
+[NoCoverage] LogicalOperator
+src/features/technician-dispatch/components/DispatchFlow.tsx:258:16
+-                 {scheduleForm.formState.errors.scheduledVisit && (
+-                   <p className="text-sm text-red-600" role="alert">
+-                     {scheduleForm.formState.errors.scheduledVisit.message}
+-                   </p>
+-                 )}
++                 {scheduleForm.formState.errors.scheduledVisit || <p className="text-sm text-red-600" role="alert">
++                     {scheduleForm.formState.errors.scheduledVisit.message}
++                   </p>}
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:265:14
+-               {scheduleError && (
+-                 <p className="text-sm text-red-600" role="alert" aria-live="polite">
+-                   {scheduleError}
+-                 </p>
+-               )}
++               {true}
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:265:14
+-               {scheduleError && (
+-                 <p className="text-sm text-red-600" role="alert" aria-live="polite">
+-                   {scheduleError}
+-                 </p>
+-               )}
++               {false}
+
+[NoCoverage] LogicalOperator
+src/features/technician-dispatch/components/DispatchFlow.tsx:265:14
+-               {scheduleError && (
+-                 <p className="text-sm text-red-600" role="alert" aria-live="polite">
+-                   {scheduleError}
+-                 </p>
+-               )}
++               {scheduleError || <p className="text-sm text-red-600" role="alert" aria-live="polite">
++                   {scheduleError}
++                 </p>}
+
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:276:54
+-                 {scheduleForm.formState.isSubmitting ? 'Scheduling…' : 'Schedule dispatch'}
++                 {scheduleForm.formState.isSubmitting ? "" : 'Schedule dispatch'}
+
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:276:70
+-                 {scheduleForm.formState.isSubmitting ? 'Scheduling…' : 'Schedule dispatch'}
++                 {scheduleForm.formState.isSubmitting ? 'Scheduling…' : ""}
+
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:316:26
+-                 className={`${fieldClassName} pl-9`}
++                 className={``}
+
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:317:40
+-                 {...requestForm.register('premises')}
++                 {...requestForm.register("")}
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:320:12
+-             {requestForm.formState.errors.premises && (
+-               <p className="text-sm text-red-600" role="alert">
+-                 {requestForm.formState.errors.premises.message}
+-               </p>
+-             )}
++             {true}
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:320:12
+-             {requestForm.formState.errors.premises && (
+-               <p className="text-sm text-red-600" role="alert">
+-                 {requestForm.formState.errors.premises.message}
+-               </p>
+-             )}
++             {false}
+
+[NoCoverage] LogicalOperator
+src/features/technician-dispatch/components/DispatchFlow.tsx:320:12
+-             {requestForm.formState.errors.premises && (
+-               <p className="text-sm text-red-600" role="alert">
+-                 {requestForm.formState.errors.premises.message}
+-               </p>
+-             )}
++             {requestForm.formState.errors.premises || <p className="text-sm text-red-600" role="alert">
++                 {requestForm.formState.errors.premises.message}
++               </p>}
+
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:337:38
+-               {...requestForm.register('faultId')}
++               {...requestForm.register("")}
+
+[NoCoverage] ArrowFunction
+src/features/technician-dispatch/components/DispatchFlow.tsx:340:33
+-               {catalog.faults.map((fault) => (
+-                 <option key={fault.id} value={fault.id}>
+-                   {fault.name}
+-                 </option>
+-               ))}
++               {catalog.faults.map(() => undefined)}
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:346:12
+-             {requestForm.formState.errors.faultId && (
+-               <p className="text-sm text-red-600" role="alert">
+-                 {requestForm.formState.errors.faultId.message}
+-               </p>
+-             )}
++             {true}
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:346:12
+-             {requestForm.formState.errors.faultId && (
+-               <p className="text-sm text-red-600" role="alert">
+-                 {requestForm.formState.errors.faultId.message}
+-               </p>
+-             )}
++             {false}
+
+[NoCoverage] LogicalOperator
+src/features/technician-dispatch/components/DispatchFlow.tsx:346:12
+-             {requestForm.formState.errors.faultId && (
+-               <p className="text-sm text-red-600" role="alert">
+-                 {requestForm.formState.errors.faultId.message}
+-               </p>
+-             )}
++             {requestForm.formState.errors.faultId || <p className="text-sm text-red-600" role="alert">
++                 {requestForm.formState.errors.faultId.message}
++               </p>}
+
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:363:38
+-               {...requestForm.register('accessRequirementId')}
++               {...requestForm.register("")}
+
+[NoCoverage] ArrowFunction
+src/features/technician-dispatch/components/DispatchFlow.tsx:366:45
+-               {catalog.accessRequirements.map((requirement) => (
+-                 <option key={requirement.id} value={requirement.id}>
+-                   {requirement.name}
+-                 </option>
+-               ))}
++               {catalog.accessRequirements.map(() => undefined)}
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:372:12
+-             {requestForm.formState.errors.accessRequirementId && (
+-               <p className="text-sm text-red-600" role="alert">
+-                 {requestForm.formState.errors.accessRequirementId.message}
+-               </p>
+-             )}
++             {true}
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:372:12
+-             {requestForm.formState.errors.accessRequirementId && (
+-               <p className="text-sm text-red-600" role="alert">
+-                 {requestForm.formState.errors.accessRequirementId.message}
+-               </p>
+-             )}
++             {false}
+
+[NoCoverage] LogicalOperator
+src/features/technician-dispatch/components/DispatchFlow.tsx:372:12
+-             {requestForm.formState.errors.accessRequirementId && (
+-               <p className="text-sm text-red-600" role="alert">
+-                 {requestForm.formState.errors.accessRequirementId.message}
+-               </p>
+-             )}
++             {requestForm.formState.errors.accessRequirementId || <p className="text-sm text-red-600" role="alert">
++                 {requestForm.formState.errors.accessRequirementId.message}
++               </p>}
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:379:10
+-           {requestError && (
+-             <p className="text-sm text-red-600" role="alert" aria-live="polite">
+-               {requestError}
+-             </p>
+-           )}
++           {true}
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:379:10
+-           {requestError && (
+-             <p className="text-sm text-red-600" role="alert" aria-live="polite">
+-               {requestError}
+-             </p>
+-           )}
++           {false}
+
+[NoCoverage] LogicalOperator
+src/features/technician-dispatch/components/DispatchFlow.tsx:379:10
+-           {requestError && (
+-             <p className="text-sm text-red-600" role="alert" aria-live="polite">
+-               {requestError}
+-             </p>
+-           )}
++           {requestError || <p className="text-sm text-red-600" role="alert" aria-live="polite">
++               {requestError}
++             </p>}
+
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:392:15
+-               ? 'Finding technicians…'
++               ? ""
+
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:393:15
+-               : 'Find compatible technicians'}
++               : ""}
+
+[NoCoverage] ObjectLiteral
+src/features/technician-dispatch/catalog.ts:6:11
+-     .object({
+-       _about: z.string(),
+-       faults: z.array(
+-         z
+-           .object({
+-             id: z.string().min(1),
+-             name: z.string().min(1),
+-           })
+-           .strict()
+-       ),
+-       equipment: z.array(z.string().min(1)),
+-       accessRequirements: z.array(
+-         z
+-           .object({
+-             id: z.string().min(1),
+-             name: z.string().min(1),
+-             satisfiedBy: z.array(z.array(z.string().min(1))),
+-           })
+-           .strict()
+-       ),
+-       technicians: z.array(
+-         z
+-           .object({
+-             id: z.string().min(1),
+-             name: z.string().min(1),
+-             faults: z.array(z.string().min(1)),
+-             equipment: z.array(z.string().min(1)),
+-           })
+-           .strict()
+-       ),
+-     })
++     .object({})
+
+[NoCoverage] ObjectLiteral
+src/features/technician-dispatch/catalog.ts:10:17
+-           .object({
+-             id: z.string().min(1),
+-             name: z.string().min(1),
+-           })
++           .object({})
+
+[NoCoverage] MethodExpression
+src/features/technician-dispatch/catalog.ts:11:15
+-             id: z.string().min(1),
++             id: z.string().max(1),
+
+[NoCoverage] MethodExpression
+src/features/technician-dispatch/catalog.ts:12:17
+-             name: z.string().min(1),
++             name: z.string().max(1),
+
+[NoCoverage] MethodExpression
+src/features/technician-dispatch/catalog.ts:16:24
+-       equipment: z.array(z.string().min(1)),
++       equipment: z.array(z.string().max(1)),
+
+[NoCoverage] ObjectLiteral
+src/features/technician-dispatch/catalog.ts:19:17
+-           .object({
+-             id: z.string().min(1),
+-             name: z.string().min(1),
+-             satisfiedBy: z.array(z.array(z.string().min(1))),
+-           })
++           .object({})
+
+[NoCoverage] MethodExpression
+src/features/technician-dispatch/catalog.ts:20:15
+-             id: z.string().min(1),
++             id: z.string().max(1),
+
+[NoCoverage] MethodExpression
+src/features/technician-dispatch/catalog.ts:21:17
+-             name: z.string().min(1),
++             name: z.string().max(1),
+
+[NoCoverage] MethodExpression
+src/features/technician-dispatch/catalog.ts:22:40
+-             satisfiedBy: z.array(z.array(z.string().min(1))),
++             satisfiedBy: z.array(z.array(z.string().max(1))),
+
+[NoCoverage] ObjectLiteral
+src/features/technician-dispatch/catalog.ts:28:17
+-           .object({
+-             id: z.string().min(1),
+-             name: z.string().min(1),
+-             faults: z.array(z.string().min(1)),
+-             equipment: z.array(z.string().min(1)),
+-           })
++           .object({})
+
+[NoCoverage] MethodExpression
+src/features/technician-dispatch/catalog.ts:29:15
+-             id: z.string().min(1),
++             id: z.string().max(1),
+
+[NoCoverage] MethodExpression
+src/features/technician-dispatch/catalog.ts:30:17
+-             name: z.string().min(1),
++             name: z.string().max(1),
+
+[NoCoverage] MethodExpression
+src/features/technician-dispatch/catalog.ts:31:27
+-             faults: z.array(z.string().min(1)),
++             faults: z.array(z.string().max(1)),
+
+[NoCoverage] MethodExpression
+src/features/technician-dispatch/catalog.ts:32:30
+-             equipment: z.array(z.string().min(1)),
++             equipment: z.array(z.string().max(1)),
+
+[NoCoverage] BlockStatement
+src/features/technician-dispatch/matching.ts:7:22
+-   ): TechnicianMatch[] {
+-     const accessRequirement = catalog.accessRequirements.find(
+-       (requirement) => requirement.id === accessRequirementId
+-     )
+-   
+-     if (!catalog.faults.some((fault) => fault.id === faultId) || !accessRequirement) {
+-       return []
+-     }
+-   
+-     return catalog.technicians.flatMap((technician) => {
+-       if (!technician.faults.includes(faultId)) return []
+-   
+-       const matchedEquipment = accessRequirement.satisfiedBy.find((combination) =>
+-         combination.every((equipment) => technician.equipment.includes(equipment))
+-       )
+-   
+-       return matchedEquipment ? [{ technician, matchedEquipment: [...matchedEquipment] }] : []
+-     })
+-   }
++   ): TechnicianMatch[] {}
+
+[NoCoverage] ArrowFunction
+src/features/technician-dispatch/matching.ts:9:5
+-       (requirement) => requirement.id === accessRequirementId
++       () => undefined
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/matching.ts:9:22
+-       (requirement) => requirement.id === accessRequirementId
++       (requirement) => true
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/matching.ts:9:22
+-       (requirement) => requirement.id === accessRequirementId
++       (requirement) => false
+
+[NoCoverage] EqualityOperator
+src/features/technician-dispatch/matching.ts:9:22
+-       (requirement) => requirement.id === accessRequirementId
++       (requirement) => requirement.id !== accessRequirementId
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/matching.ts:12:7
+-     if (!catalog.faults.some((fault) => fault.id === faultId) || !accessRequirement) {
++     if (true) {
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/matching.ts:12:7
+-     if (!catalog.faults.some((fault) => fault.id === faultId) || !accessRequirement) {
++     if (false) {
+
+[NoCoverage] LogicalOperator
+src/features/technician-dispatch/matching.ts:12:7
+-     if (!catalog.faults.some((fault) => fault.id === faultId) || !accessRequirement) {
++     if (!catalog.faults.some(fault => fault.id === faultId) && !accessRequirement) {
+
+[NoCoverage] BooleanLiteral
+src/features/technician-dispatch/matching.ts:12:7
+-     if (!catalog.faults.some((fault) => fault.id === faultId) || !accessRequirement) {
++     if (catalog.faults.some(fault => fault.id === faultId) || !accessRequirement) {
+
+[NoCoverage] MethodExpression
+src/features/technician-dispatch/matching.ts:12:8
+-     if (!catalog.faults.some((fault) => fault.id === faultId) || !accessRequirement) {
++     if (!catalog.faults.every(fault => fault.id === faultId) || !accessRequirement) {
+
+[NoCoverage] ArrowFunction
+src/features/technician-dispatch/matching.ts:12:28
+-     if (!catalog.faults.some((fault) => fault.id === faultId) || !accessRequirement) {
++     if (!catalog.faults.some(() => undefined) || !accessRequirement) {
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/matching.ts:12:39
+-     if (!catalog.faults.some((fault) => fault.id === faultId) || !accessRequirement) {
++     if (!catalog.faults.some((fault) => true) || !accessRequirement) {
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/matching.ts:12:39
+-     if (!catalog.faults.some((fault) => fault.id === faultId) || !accessRequirement) {
++     if (!catalog.faults.some((fault) => false) || !accessRequirement) {
+
+[NoCoverage] EqualityOperator
+src/features/technician-dispatch/matching.ts:12:39
+-     if (!catalog.faults.some((fault) => fault.id === faultId) || !accessRequirement) {
++     if (!catalog.faults.some((fault) => fault.id !== faultId) || !accessRequirement) {
+
+[NoCoverage] BooleanLiteral
+src/features/technician-dispatch/matching.ts:12:64
+-     if (!catalog.faults.some((fault) => fault.id === faultId) || !accessRequirement) {
++     if (!catalog.faults.some((fault) => fault.id === faultId) || accessRequirement) {
+
+[NoCoverage] BlockStatement
+src/features/technician-dispatch/matching.ts:12:84
+-     if (!catalog.faults.some((fault) => fault.id === faultId) || !accessRequirement) {
+-       return []
+-     }
++     if (!catalog.faults.some((fault) => fault.id === faultId) || !accessRequirement) {}
+
+[NoCoverage] ArrayDeclaration
+src/features/technician-dispatch/matching.ts:13:12
+-       return []
++       return ["Stryker was here"]
+
+[NoCoverage] BlockStatement
+src/features/technician-dispatch/matching.ts:16:54
+-     return catalog.technicians.flatMap((technician) => {
+-       if (!technician.faults.includes(faultId)) return []
+-   
+-       const matchedEquipment = accessRequirement.satisfiedBy.find((combination) =>
+-         combination.every((equipment) => technician.equipment.includes(equipment))
+-       )
+-   
+-       return matchedEquipment ? [{ technician, matchedEquipment: [...matchedEquipment] }] : []
+-     })
++     return catalog.technicians.flatMap((technician) => {})
+
+[NoCoverage] BooleanLiteral
+src/features/technician-dispatch/matching.ts:17:9
+-       if (!technician.faults.includes(faultId)) return []
++       if (technician.faults.includes(faultId)) return []
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/matching.ts:17:9
+-       if (!technician.faults.includes(faultId)) return []
++       if (true) return []
+
+[NoCoverage] ConditionalExpression
+src/features/technician-dispatch/matching.ts:17:9
+-       if (!technician.faults.includes(faultId)) return []
++       if (false) return []
+
+[NoCoverage] ArrayDeclaration
+src/features/technician-dispatch/matching.ts:17:54
+-       if (!technician.faults.includes(faultId)) return []
++       if (!technician.faults.includes(faultId)) return ["Stryker was here"]
+
+[NoCoverage] ArrowFunction
+src/features/technician-dispatch/matching.ts:19:65
+-       const matchedEquipment = accessRequirement.satisfiedBy.find((combination) =>
+-         combination.every((equipment) => technician.equipment.includes(equipment))
++       const matchedEquipment = accessRequirement.satisfiedBy.find(() => undefined
+
+[NoCoverage] MethodExpression
+src/features/technician-dispatch/matching.ts:20:7
+-         combination.every((equipment) => technician.equipment.includes(equipment))
++         combination.some(equipment => technician.equipment.includes(equipment))
+
+[NoCoverage] ArrowFunction
+src/features/technician-dispatch/matching.ts:20:25
+-         combination.every((equipment) => technician.equipment.includes(equipment))
++         combination.every(() => undefined)
+
+[NoCoverage] ArrayDeclaration
+src/features/technician-dispatch/matching.ts:23:31
+-       return matchedEquipment ? [{ technician, matchedEquipment: [...matchedEquipment] }] : []
++       return matchedEquipment ? [] : []
+
+[NoCoverage] ObjectLiteral
+src/features/technician-dispatch/matching.ts:23:32
+-       return matchedEquipment ? [{ technician, matchedEquipment: [...matchedEquipment] }] : []
++       return matchedEquipment ? [{}] : []
+
+[NoCoverage] ArrayDeclaration
+src/features/technician-dispatch/matching.ts:23:64
+-       return matchedEquipment ? [{ technician, matchedEquipment: [...matchedEquipment] }] : []
++       return matchedEquipment ? [{ technician, matchedEquipment: [] }] : []
+
+[NoCoverage] ArrayDeclaration
+src/features/technician-dispatch/matching.ts:23:91
+-       return matchedEquipment ? [{ technician, matchedEquipment: [...matchedEquipment] }] : []
++       return matchedEquipment ? [{ technician, matchedEquipment: [...matchedEquipment] }] : ["Stryker was here"]
+
+[NoCoverage] BooleanLiteral
+src/features/technician-dispatch/schemas.ts:28:24
+-       .refine((value) => !Number.isNaN(new Date(value).getTime()), 'Enter a valid scheduled visit.'),
++       .refine((value) => Number.isNaN(new Date(value).getTime()), 'Enter a valid scheduled visit.'),
+
+[Survived] MethodExpression
+src/features/technician-dispatch/schemas.ts:5:15
+-       premises: z
+-         .string()
+-         .trim()
++       premises: z.string()
+Ran all tests for this mutant.
+
+[Survived] StringLiteral
+src/features/technician-dispatch/schemas.ts:8:15
+-         .min(5, 'Customer premises is required.')
++         .min(5, "")
+Ran all tests for this mutant.
+
+[Survived] StringLiteral
+src/features/technician-dispatch/schemas.ts:9:17
+-         .max(200, 'Customer premises must be 200 characters or fewer.'),
++         .max(200, ""),
+Ran all tests for this mutant.
+
+[Survived] MethodExpression
+src/features/technician-dispatch/schemas.ts:10:14
+-       faultId: z.string().trim().min(1, 'Select a fault or problem.'),
++       faultId: z.string().min(1, 'Select a fault or problem.'),
+Ran all tests for this mutant.
+
+[Survived] StringLiteral
+src/features/technician-dispatch/schemas.ts:10:39
+-       faultId: z.string().trim().min(1, 'Select a fault or problem.'),
++       faultId: z.string().trim().min(1, ""),
+Ran all tests for this mutant.
+
+[Survived] MethodExpression
+src/features/technician-dispatch/schemas.ts:11:26
+-       accessRequirementId: z.string().trim().min(1, 'Select an access or equipment requirement.'),
++       accessRequirementId: z.string().min(1, 'Select an access or equipment requirement.'),
+Ran all tests for this mutant.
+
+[Survived] StringLiteral
+src/features/technician-dispatch/schemas.ts:11:51
+-       accessRequirementId: z.string().trim().min(1, 'Select an access or equipment requirement.'),
++       accessRequirementId: z.string().trim().min(1, ""),
+Ran all tests for this mutant.
+
+[Survived] MethodExpression
+src/features/technician-dispatch/schemas.ts:17:16
+-       requestId: z.string().trim().min(1, 'Dispatch request is required.'),
++       requestId: z.string().min(1, 'Dispatch request is required.'),
+Ran all tests for this mutant.
+
+[Survived] StringLiteral
+src/features/technician-dispatch/schemas.ts:17:41
+-       requestId: z.string().trim().min(1, 'Dispatch request is required.'),
++       requestId: z.string().trim().min(1, ""),
+Ran all tests for this mutant.
+
+[Survived] MethodExpression
+src/features/technician-dispatch/schemas.ts:18:19
+-       technicianId: z.string().trim().min(1, 'Select a technician.'),
++       technicianId: z.string().min(1, 'Select a technician.'),
+Ran all tests for this mutant.
+
+[Survived] StringLiteral
+src/features/technician-dispatch/schemas.ts:18:44
+-       technicianId: z.string().trim().min(1, 'Select a technician.'),
++       technicianId: z.string().trim().min(1, ""),
+Ran all tests for this mutant.
+
+[Survived] ObjectLiteral
+src/features/technician-dispatch/schemas.ts:19:41
+-       scheduledVisit: z.string().datetime({ message: 'Enter a valid scheduled visit.' }),
++       scheduledVisit: z.string().datetime({}),
+Ran all tests for this mutant.
+
+[Survived] StringLiteral
+src/features/technician-dispatch/schemas.ts:19:52
+-       scheduledVisit: z.string().datetime({ message: 'Enter a valid scheduled visit.' }),
++       scheduledVisit: z.string().datetime({ message: "" }),
+Ran all tests for this mutant.
+
+[Survived] ObjectLiteral
+src/features/technician-dispatch/schemas.ts:23:49
+-   export const scheduleSelectionSchema = z.object({
+-     technicianId: z.string().trim().min(1, 'Select a technician.'),
+-     scheduledVisit: z
+-       .string()
+-       .min(1, 'Enter a scheduled visit.')
+-       .refine((value) => !Number.isNaN(new Date(value).getTime()), 'Enter a valid scheduled visit.'),
+-   })
++   export const scheduleSelectionSchema = z.object({})
+Ran all tests for this mutant.
+
+[Survived] MethodExpression
+src/features/technician-dispatch/schemas.ts:24:17
+-     technicianId: z.string().trim().min(1, 'Select a technician.'),
++     technicianId: z.string().trim().max(1, 'Select a technician.'),
+Ran all tests for this mutant.
+
+[Survived] MethodExpression
+src/features/technician-dispatch/schemas.ts:24:17
+-     technicianId: z.string().trim().min(1, 'Select a technician.'),
++     technicianId: z.string().min(1, 'Select a technician.'),
+Ran all tests for this mutant.
+
+[Survived] StringLiteral
+src/features/technician-dispatch/schemas.ts:24:42
+-     technicianId: z.string().trim().min(1, 'Select a technician.'),
++     technicianId: z.string().trim().min(1, ""),
+Ran all tests for this mutant.
+
+[Survived] MethodExpression
+src/features/technician-dispatch/schemas.ts:25:19
+-     scheduledVisit: z
+-       .string()
+-       .min(1, 'Enter a scheduled visit.')
++     scheduledVisit: z.string().max(1, 'Enter a scheduled visit.')
+Ran all tests for this mutant.
+
+[Survived] StringLiteral
+src/features/technician-dispatch/schemas.ts:27:13
+-       .min(1, 'Enter a scheduled visit.')
++       .min(1, "")
+Ran all tests for this mutant.
+
+[Survived] ArrowFunction
+src/features/technician-dispatch/schemas.ts:28:13
+-       .refine((value) => !Number.isNaN(new Date(value).getTime()), 'Enter a valid scheduled visit.'),
++       .refine(() => undefined, 'Enter a valid scheduled visit.'),
+Ran all tests for this mutant.
+
+[Survived] StringLiteral
+src/features/technician-dispatch/schemas.ts:28:66
+-       .refine((value) => !Number.isNaN(new Date(value).getTime()), 'Enter a valid scheduled visit.'),
++       .refine((value) => !Number.isNaN(new Date(value).getTime()), ""),
+Ran all tests for this mutant.
+
+[NoCoverage] ObjectLiteral
+src/lib/validations/auth.ts:3:37
+-   export const loginSchema = z.object({
+-     email: z.string().email('Please enter a valid email address'),
+-     password: z.string().min(1, 'Password is required'),
+-   })
++   export const loginSchema = z.object({})
+
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:4:27
+-     email: z.string().email('Please enter a valid email address'),
++     email: z.string().email(""),
+
+[NoCoverage] MethodExpression
+src/lib/validations/auth.ts:5:13
+-     password: z.string().min(1, 'Password is required'),
++     password: z.string().max(1, 'Password is required'),
+
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:5:31
+-     password: z.string().min(1, 'Password is required'),
++     password: z.string().min(1, ""),
+
+[NoCoverage] ObjectLiteral
+src/lib/validations/auth.ts:9:11
+-     .object({
+-       displayName: z
+-         .string()
+-         .min(2, 'Name must be at least 2 characters')
+-         .max(50, 'Name must be less than 50 characters'),
+-       email: z.string().email('Please enter a valid email address'),
+-       password: z
+-         .string()
+-         .min(8, 'Password must be at least 8 characters')
+-         .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
+-         .regex(/[0-9]/, 'Password must contain at least one number'),
+-       confirmPassword: z.string(),
+-     })
++     .object({})
+
+[NoCoverage] MethodExpression
+src/lib/validations/auth.ts:10:18
+-       displayName: z
+-         .string()
+-         .min(2, 'Name must be at least 2 characters')
+-         .max(50, 'Name must be less than 50 characters'),
++       displayName: z.string().min(2, 'Name must be at least 2 characters').min(50, 'Name must be less than 50 characters'),
+
+[NoCoverage] MethodExpression
+src/lib/validations/auth.ts:10:18
+-       displayName: z
+-         .string()
+-         .min(2, 'Name must be at least 2 characters')
++       displayName: z.string().max(2, 'Name must be at least 2 characters')
+
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:12:15
+-         .min(2, 'Name must be at least 2 characters')
++         .min(2, "")
+
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:13:16
+-         .max(50, 'Name must be less than 50 characters'),
++         .max(50, ""),
+
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:14:29
+-       email: z.string().email('Please enter a valid email address'),
++       email: z.string().email(""),
+
+[NoCoverage] MethodExpression
+src/lib/validations/auth.ts:15:15
+-       password: z
+-         .string()
+-         .min(8, 'Password must be at least 8 characters')
++       password: z.string().max(8, 'Password must be at least 8 characters')
+
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:17:15
+-         .min(8, 'Password must be at least 8 characters')
++         .min(8, "")
+
+[NoCoverage] Regex
+src/lib/validations/auth.ts:18:14
+-         .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
++         .regex(/[^A-Z]/, 'Password must contain at least one uppercase letter')
+
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:18:23
+-         .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
++         .regex(/[A-Z]/, "")
+
+[NoCoverage] Regex
+src/lib/validations/auth.ts:19:14
+-         .regex(/[0-9]/, 'Password must contain at least one number'),
++         .regex(/[^0-9]/, 'Password must contain at least one number'),
+
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:19:23
+-         .regex(/[0-9]/, 'Password must contain at least one number'),
++         .regex(/[0-9]/, ""),
+
+[NoCoverage] ArrowFunction
+src/lib/validations/auth.ts:22:11
+-     .refine((data) => data.password === data.confirmPassword, {
++     .refine(() => undefined, {
+
+[NoCoverage] ConditionalExpression
+src/lib/validations/auth.ts:22:21
+-     .refine((data) => data.password === data.confirmPassword, {
++     .refine((data) => true, {
+
+[NoCoverage] ConditionalExpression
+src/lib/validations/auth.ts:22:21
+-     .refine((data) => data.password === data.confirmPassword, {
++     .refine((data) => false, {
+
+[NoCoverage] EqualityOperator
+src/lib/validations/auth.ts:22:21
+-     .refine((data) => data.password === data.confirmPassword, {
++     .refine((data) => data.password !== data.confirmPassword, {
+
+[NoCoverage] ObjectLiteral
+src/lib/validations/auth.ts:22:61
+-     .refine((data) => data.password === data.confirmPassword, {
+-       message: 'Passwords do not match',
+-       path: ['confirmPassword'],
+-     })
++     .refine((data) => data.password === data.confirmPassword, {})
+
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:23:14
+-       message: 'Passwords do not match',
++       message: "",
+
+[NoCoverage] ArrayDeclaration
+src/lib/validations/auth.ts:24:11
+-       path: ['confirmPassword'],
++       path: [],
+
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:24:12
+-       path: ['confirmPassword'],
++       path: [""],
+
+[NoCoverage] ObjectLiteral
+src/lib/validations/auth.ts:27:45
+-   export const resetPasswordSchema = z.object({
+-     email: z.string().email('Please enter a valid email address'),
+-   })
++   export const resetPasswordSchema = z.object({})
+
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:28:27
+-     email: z.string().email('Please enter a valid email address'),
++     email: z.string().email(""),
+
+[NoCoverage] ObjectLiteral
+src/lib/validations/auth.ts:32:11
+-     .object({
+-       displayName: z
+-         .string()
+-         .min(2, 'Name must be at least 2 characters')
+-         .max(50, 'Name must be less than 50 characters'),
+-       email: z.string().email('Please enter a valid email address'),
+-       password: z
+-         .string()
+-         .min(8, 'Password must be at least 8 characters')
+-         .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
+-         .regex(/[0-9]/, 'Password must contain at least one number'),
+-       confirmPassword: z.string(),
+-     })
++     .object({})
+
+[NoCoverage] MethodExpression
+src/lib/validations/auth.ts:33:18
+-       displayName: z
+-         .string()
+-         .min(2, 'Name must be at least 2 characters')
+-         .max(50, 'Name must be less than 50 characters'),
++       displayName: z.string().min(2, 'Name must be at least 2 characters').min(50, 'Name must be less than 50 characters'),
+
+[NoCoverage] MethodExpression
+src/lib/validations/auth.ts:33:18
+-       displayName: z
+-         .string()
+-         .min(2, 'Name must be at least 2 characters')
++       displayName: z.string().max(2, 'Name must be at least 2 characters')
+
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:35:15
+-         .min(2, 'Name must be at least 2 characters')
++         .min(2, "")
+
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:36:16
+-         .max(50, 'Name must be less than 50 characters'),
++         .max(50, ""),
+
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:37:29
+-       email: z.string().email('Please enter a valid email address'),
++       email: z.string().email(""),
+
+[NoCoverage] MethodExpression
+src/lib/validations/auth.ts:38:15
+-       password: z
+-         .string()
+-         .min(8, 'Password must be at least 8 characters')
++       password: z.string().max(8, 'Password must be at least 8 characters')
+
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:40:15
+-         .min(8, 'Password must be at least 8 characters')
++         .min(8, "")
+
+[NoCoverage] Regex
+src/lib/validations/auth.ts:41:14
+-         .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
++         .regex(/[^A-Z]/, 'Password must contain at least one uppercase letter')
+
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:41:23
+-         .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
++         .regex(/[A-Z]/, "")
+
+[NoCoverage] Regex
+src/lib/validations/auth.ts:42:14
+-         .regex(/[0-9]/, 'Password must contain at least one number'),
++         .regex(/[^0-9]/, 'Password must contain at least one number'),
+
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:42:23
+-         .regex(/[0-9]/, 'Password must contain at least one number'),
++         .regex(/[0-9]/, ""),
+
+[NoCoverage] ArrowFunction
+src/lib/validations/auth.ts:45:11
+-     .refine((data) => data.password === data.confirmPassword, {
++     .refine(() => undefined, {
+
+[NoCoverage] ConditionalExpression
+src/lib/validations/auth.ts:45:21
+-     .refine((data) => data.password === data.confirmPassword, {
++     .refine((data) => true, {
+
+[NoCoverage] ConditionalExpression
+src/lib/validations/auth.ts:45:21
+-     .refine((data) => data.password === data.confirmPassword, {
++     .refine((data) => false, {
+
+[NoCoverage] EqualityOperator
+src/lib/validations/auth.ts:45:21
+-     .refine((data) => data.password === data.confirmPassword, {
++     .refine((data) => data.password !== data.confirmPassword, {
+
+[NoCoverage] ObjectLiteral
+src/lib/validations/auth.ts:45:61
+-     .refine((data) => data.password === data.confirmPassword, {
+-       message: 'Passwords do not match',
+-       path: ['confirmPassword'],
+-     })
++     .refine((data) => data.password === data.confirmPassword, {})
+
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:46:14
+-       message: 'Passwords do not match',
++       message: "",
+
+[NoCoverage] ArrayDeclaration
+src/lib/validations/auth.ts:47:11
+-       path: ['confirmPassword'],
++       path: [],
+
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:47:12
+-       path: ['confirmPassword'],
++       path: [""],
+
+[NoCoverage] MethodExpression
+src/lib/validations/common.ts:3:25
+-   export const idSchema = z.string().min(1, 'ID is required')
++   export const idSchema = z.string().max(1, 'ID is required')
+
+[NoCoverage] StringLiteral
+src/lib/validations/common.ts:3:43
+-   export const idSchema = z.string().min(1, 'ID is required')
++   export const idSchema = z.string().min(1, "")
+
+[NoCoverage] ObjectLiteral
+src/lib/validations/common.ts:5:42
+-   export const paginationSchema = z.object({
+-     page: z.coerce.number().int().positive().default(1),
+-     limit: z.coerce.number().int().positive().max(100).default(20),
+-   })
++   export const paginationSchema = z.object({})
+
+[NoCoverage] MethodExpression
+src/lib/validations/common.ts:7:10
+-     limit: z.coerce.number().int().positive().max(100).default(20),
++     limit: z.coerce.number().int().positive().min(100).default(20),
+
+Ran 0.65 tests per mutant on average.
+------------------------|------------------|----------|-----------|------------|----------|----------|
+                        | % Mutation score |          |           |            |          |          |
+File                    |  total | covered | # killed | # timeout | # survived | # no cov | # errors |
+------------------------|--------|---------|----------|-----------|------------|----------|----------|
+All files               |   2.02 |   27.59 |        8 |         0 |         21 |      367 |        0 |
+ actions                |   0.00 |    0.00 |        0 |         0 |          0 |       23 |        0 |
+  auth.actions.ts       |   0.00 |    0.00 |        0 |         0 |          0 |       23 |        0 |
+ features               |   2.48 |   27.59 |        8 |         0 |         21 |      294 |        0 |
+  technician-dispatch   |   2.48 |   27.59 |        8 |         0 |         21 |      294 |        0 |
+   actions              |   0.00 |    0.00 |        0 |         0 |          0 |      110 |        0 |
+    dispatch.actions.ts |   0.00 |    0.00 |        0 |         0 |          0 |      110 |        0 |
+   components           |   0.00 |    0.00 |        0 |         0 |          0 |      140 |        0 |
+    DispatchFlow.tsx    |   0.00 |    0.00 |        0 |         0 |          0 |      140 |        0 |
+   catalog.ts           |   0.00 |    0.00 |        0 |         0 |          0 |       14 |        0 |
+   matching.ts          |   0.00 |    0.00 |        0 |         0 |          0 |       29 |        0 |
+   schemas.ts           |  26.67 |   27.59 |        8 |         0 |         21 |        1 |        0 |
+ lib                    |   0.00 |    0.00 |        0 |         0 |          0 |       50 |        0 |
+  validations           |   0.00 |    0.00 |        0 |         0 |          0 |       50 |        0 |
+   auth.ts              |   0.00 |    0.00 |        0 |         0 |          0 |       46 |        0 |
+   common.ts            |   0.00 |    0.00 |        0 |         0 |          0 |        4 |        0 |
+------------------------|--------|---------|----------|-----------|------------|----------|----------|
+23:14:28 (17232) INFO MutationTestReportHelper Final mutation score of 2.02 is greater than or equal to break threshold 0
+23:14:28 (17232) INFO JsonReporter Your report can be found at: file:///C:/Users/zac/AppData/Local/Temp/claude/C--Users-zac-Documents-projects-nbn-sdlc-demo/54b9f3d5-93b3-4ddf-bc37-7fd149d033e2/scratchpad/review/zafir/frontend/reports/mutation/frontend.json
+23:14:28 (17232) INFO HtmlReporter Your report can be found at: file:///C:/Users/zac/AppData/Local/Temp/claude/C--Users-zac-Documents-projects-nbn-sdlc-demo/54b9f3d5-93b3-4ddf-bc37-7fd149d033e2/scratchpad/review/zafir/frontend/reports/mutation/frontend.html
+23:14:28 (17232) INFO MutationTestExecutor Done in 50 seconds.
+exit 0

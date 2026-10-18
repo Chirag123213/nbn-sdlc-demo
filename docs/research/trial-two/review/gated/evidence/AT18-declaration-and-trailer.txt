@@ -1,0 +1,45 @@
+===== zafir  Peepachuu/nbn-run2-gated#2
+-- merge-base with 6af6a5b: 6af6a5b  (base commit 6af6a5b in history: yes)
+-- co-authored-by trailers:
+0d162bd OpenAI Codex GPT-5 <codex@openai.com>
+-- commits:
+40c65f5 2026-10-18T19:29:27+11:00 docs: add trial two run log
+d34b33c 2026-10-18T15:12:54+11:00 docs: add technician dispatch evidence
+bbcd169 2026-10-18T14:33:08+11:00 fix: make dispatch scheduling atomic
+89eb71e 2026-10-18T14:23:40+11:00 fix(deps): remediate audit findings
+f9c9877 2026-10-18T14:11:41+11:00 feat: add technician dispatch workflow
+0d162bd 2026-10-18T14:05:59+11:00 test: define technician dispatch behaviour
+c96e3b2 2026-10-18T13:17:10+11:00 chore: add required set-up files
+-- checks on head:
+AI Attribution	pass	4s	https://github.com/Peepachuu/nbn-run2-gated/actions/runs/39111661683/job/117628926966	
+AI Declaration	pass	2s	https://github.com/Peepachuu/nbn-run2-gated/actions/runs/39111661683/job/117628926987	
+Backend Unit Tests	pass	19s	https://github.com/Peepachuu/nbn-run2-gated/actions/runs/39111661683/job/117628926965	
+Frontend Tests	pass	17s	https://github.com/Peepachuu/nbn-run2-gated/actions/runs/39111661683/job/117628927037	
+Lint & Typecheck	pass	26s	https://github.com/Peepachuu/nbn-run2-gated/actions/runs/39111661683/job/117628926834	
+Security Scan	pass	22s	https://github.com/Peepachuu/nbn-run2-gated/actions/runs/39111661683/job/117628926968	
+Vercel	pass	0	https://vercel.com/treeko/nbn-run2-gated/DGgjTTmqVazqPQAJaprhesPtbn8P	Deployment has completed
+Vercel Preview Comments	pass	0	https://vercel.com/github	
+hook-contract	pass	11s	https://github.com/Peepachuu/nbn-run2-gated/actions/runs/39111661720/job/117628927112	
+mutation	pass	34s	https://github.com/Peepachuu/nbn-run2-gated/actions/runs/39111661720/job/117628926903	
+-- AC checklist lines in PR body:
+## Preview
+- [x] PASS — T2-AC01 Create a dispatch request — [T2-AC01.png](https://github.com/Peepachuu/nbn-run2-gated/blob/d34b33c4a656df40b894d90edc48a79a46a85153/docs/research/technician-dispatch/evidence/T2-AC01.png)
+- [x] PASS — T2-AC02 Record the fault — [T2-AC02.png](https://github.com/Peepachuu/nbn-run2-gated/blob/d34b33c4a656df40b894d90edc48a79a46a85153/docs/research/technician-dispatch/evidence/T2-AC02.png)
+- [x] PASS — T2-AC03 Record access and equipment needs — [T2-AC03.png](https://github.com/Peepachuu/nbn-run2-gated/blob/d34b33c4a656df40b894d90edc48a79a46a85153/docs/research/technician-dispatch/evidence/T2-AC03.png)
+- [x] PASS — T2-AC04 Match the technician to the fault — [T2-AC04.png](https://github.com/Peepachuu/nbn-run2-gated/blob/d34b33c4a656df40b894d90edc48a79a46a85153/docs/research/technician-dispatch/evidence/T2-AC04.png)
+- [x] PASS — T2-AC05 Match the equipment to the job — [T2-AC05.png](https://github.com/Peepachuu/nbn-run2-gated/blob/d34b33c4a656df40b894d90edc48a79a46a85153/docs/research/technician-dispatch/evidence/T2-AC05.png)
+- [x] PASS — T2-AC06 Reject an invalid second-storey match — [T2-AC06.png](https://github.com/Peepachuu/nbn-run2-gated/blob/d34b33c4a656df40b894d90edc48a79a46a85153/docs/research/technician-dispatch/evidence/T2-AC06.png)
+- [x] PASS — T2-AC07 Accept a compatible second-storey match — [T2-AC07.png](https://github.com/Peepachuu/nbn-run2-gated/blob/d34b33c4a656df40b894d90edc48a79a46a85153/docs/research/technician-dispatch/evidence/T2-AC07.png)
+- [x] PASS — T2-AC08 Reject an invalid pit-job match — [T2-AC08.png](https://github.com/Peepachuu/nbn-run2-gated/blob/d34b33c4a656df40b894d90edc48a79a46a85153/docs/research/technician-dispatch/evidence/T2-AC08.png)
+- [x] PASS — T2-AC09 Do not invent a compatible match — [T2-AC09.png](https://github.com/Peepachuu/nbn-run2-gated/blob/d34b33c4a656df40b894d90edc48a79a46a85153/docs/research/technician-dispatch/evidence/T2-AC09.png)
+- [x] PASS — T2-AC10 Schedule a valid dispatch — [T2-AC10.png](https://github.com/Peepachuu/nbn-run2-gated/blob/d34b33c4a656df40b894d90edc48a79a46a85153/docs/research/technician-dispatch/evidence/T2-AC10.png)
+- [x] PASS — T2-AC11 Record the dispatch result — [T2-AC11.png](https://github.com/Peepachuu/nbn-run2-gated/blob/d34b33c4a656df40b894d90edc48a79a46a85153/docs/research/technician-dispatch/evidence/T2-AC11.png)
+- [x] PASS — T2-AC12 Show equipment requirements accessibly — [T2-AC12.png](https://github.com/Peepachuu/nbn-run2-gated/blob/d34b33c4a656df40b894d90edc48a79a46a85153/docs/research/technician-dispatch/evidence/T2-AC12.png)
+- [x] PASS — T2-AC13 Keyboard access — [T2-AC13.png](https://github.com/Peepachuu/nbn-run2-gated/blob/d34b33c4a656df40b894d90edc48a79a46a85153/docs/research/technician-dispatch/evidence/T2-AC13.png)
+- [x] PASS — T2-AC14 No colour-only information — [T2-AC14.png](https://github.com/Peepachuu/nbn-run2-gated/blob/d34b33c4a656df40b894d90edc48a79a46a85153/docs/research/technician-dispatch/evidence/T2-AC14.png)
+- [x] Manual smoke and keyboard test against the Vercel preview
+Preview observations were captured on `bbcd169`; `d34b33c` adds only these evidence artifacts, and its matching Vercel deployment is ready.
+- [ ] No AI-assisted tools were used to create this change.
+- [x] AI-assisted tools were used to create this change.
+- Plan / approach: Gated plan, tests-first changes, implementation, human-approved review corrections, then preview acceptance verification.
+- Assumptions: The Vercel preview uses the repository's configured Firebase environment; only approved synthetic records were created.
