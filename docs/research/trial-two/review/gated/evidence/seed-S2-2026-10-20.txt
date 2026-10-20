@@ -1,0 +1,28 @@
+Seed S2, lane C, 20 Oct 2026. Fresh clone at 40c65f5. Change: in src/features/technician-dispatch/matching.ts, matchedEquipment is the first acceptable combination for every technician (access check always passes). Then: npx vitest run
+
+diff --git a/frontend/src/features/technician-dispatch/matching.ts b/frontend/src/features/technician-dispatch/matching.ts
+index 23f0394..d262dfa 100644
+--- a/frontend/src/features/technician-dispatch/matching.ts
++++ b/frontend/src/features/technician-dispatch/matching.ts
+@@ -16,9 +16,7 @@ export function findCompatibleTechnicians(
+   return catalog.technicians.flatMap((technician) => {
+     if (!technician.faults.includes(faultId)) return []
+ 
+-    const matchedEquipment = accessRequirement.satisfiedBy.find((combination) =>
+-      combination.every((equipment) => technician.equipment.includes(equipment))
+-    )
++    const matchedEquipment = accessRequirement.satisfiedBy[0] ?? [] // SEED S2: access check always passes
+ 
+     return matchedEquipment ? [{ technician, matchedEquipment: [...matchedEquipment] }] : []
+   })
+
+     × T2-AC01 to T2-AC05: authenticates, derives ownership, stores the request, and returns valid matches 15ms
+     × rejects a client-supplied technician that is incompatible with the stored request 2ms
+     × T2-AC05: returns the equipment combination that satisfies the job 6ms
+     × T2-AC06: rejects a second-storey technician without ladder or elevated-work-platform access 1ms
+     × T2-AC07: accepts a suitable second-storey technician with the required equipment 3ms
+     × T2-AC08: rejects a pit job when pit-access is unavailable 1ms
+     × T2-AC09: returns no fallback when no compatible technician and equipment combination exists 1ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 7 ⎯⎯⎯⎯⎯⎯⎯
+ Test Files  2 failed | 3 passed (5)
+      Tests  7 failed | 35 passed (42)

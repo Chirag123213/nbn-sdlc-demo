@@ -1,0 +1,1391 @@
+=== zafir start 2026-10-19T23:44:34Z at 40c65f5
+
+ RUN  v4.1.11 /tmp/claude-0/-home-claude/a5537b04-ab69-5f89-8629-d930cdf9e9d4/scratchpad/review/zafir/frontend
+
+
+ Test Files  5 passed (5)
+      Tests  42 passed (42)
+   Start at  10:44:34
+   Duration  4.95s (transform 267ms, setup 608ms, import 499ms, tests 1.09s, environment 1.99s)
+
+--- stryker
+10:44:41 (6714) INFO ProjectReader Found 9 of 70 file(s) to be mutated.
+10:44:41 (6714) INFO Instrumenter Instrumented 9 source file(s) with 396 mutant(s)
+10:44:41 (6714) INFO ConcurrencyTokenProvider Creating 2 test runner process(es).
+10:44:42 (6714) INFO Sandbox In place mode is enabled, Stryker will be overriding YOUR files. Find your backup at: .stryker-tmp/backup-qiLhXE
+10:44:43 (6714) INFO DryRunExecutor Starting initial test run (vitest test runner with "perTest" coverage analysis). This may take a while.
+10:44:51 (6714) INFO DryRunExecutor Initial test run succeeded. Ran 78 tests in 8 seconds (net 1190.6585179999963 ms, overhead 7317.341482000003 ms).
+10:52:27 (6714) WARN MutationTestReportHelper Test file "/tmp/claude-0/-home-claude/a5537b04-ab69-5f89-8629-d930cdf9e9d4/scratchpad/review/zafir/frontend/.stryker-tmp/backup-qiLhXE/tests/unit/features/technician-dispatch/actions.test.ts" not found in input files, but did receive test result for it. This shouldn't happen.
+10:52:27 (6714) WARN MutationTestReportHelper Test file "/tmp/claude-0/-home-claude/a5537b04-ab69-5f89-8629-d930cdf9e9d4/scratchpad/review/zafir/frontend/.stryker-tmp/backup-qiLhXE/tests/unit/features/technician-dispatch/matching.test.ts" not found in input files, but did receive test result for it. This shouldn't happen.
+10:52:27 (6714) WARN MutationTestReportHelper Test file "/tmp/claude-0/-home-claude/a5537b04-ab69-5f89-8629-d930cdf9e9d4/scratchpad/review/zafir/frontend/.stryker-tmp/backup-qiLhXE/tests/unit/features/technician-dispatch/validation.test.ts" not found in input files, but did receive test result for it. This shouldn't happen.
+10:52:27 (6714) WARN MutationTestReportHelper Test file "/tmp/claude-0/-home-claude/a5537b04-ab69-5f89-8629-d930cdf9e9d4/scratchpad/review/zafir/frontend/.stryker-tmp/backup-qiLhXE/tests/unit/lib/utils.test.ts" not found in input files, but did receive test result for it. This shouldn't happen.
+All tests
+  .stryker-tmp/backup-qiLhXE/tests/unit
+    features/technician-dispatch
+      actions.test.ts
+        ✓ technician dispatch server actions T2-AC01 to T2-AC05: authenticates, derives ownership, stores the request, and returns valid matches (killed 11)
+        ~ technician dispatch server actions rejects unauthenticated request creation before accessing Firestore (covered 1)
+        ~ technician dispatch server actions rejects an unknown fixture fault without writing a request (covered 14)
+        ~ technician dispatch server actions rejects an unknown fixture access requirement without writing a request (covered 21)
+        ~ technician dispatch server actions returns a safe error when request storage fails (covered 55)
+        ✓ technician dispatch server actions T2-AC10 and T2-AC11: schedules an owned request with a recomputed valid match (killed 15)
+        ~ technician dispatch server actions authenticates scheduling before loading a dispatch request (covered 1)
+        ✓ technician dispatch server actions rejects a cross-owner scheduling attempt without revealing the request (killed 4)
+        ✓ technician dispatch server actions rejects a client-supplied technician that is incompatible with the stored request (killed 3)
+        ✓ technician dispatch server actions does not allow a scheduled request to be rescheduled (killed 2)
+        ~ technician dispatch server actions rechecks the request state when Firestore retries a conflicting schedule transaction (covered 76)
+        ~ technician dispatch server actions returns a safe error when scheduling storage fails (covered 9)
+      matching.test.ts
+        ~ technician dispatch matching T2-AC04: only returns technicians who support the recorded fault (covered 26)
+        ~ technician dispatch matching T2-AC05: returns the equipment combination that satisfies the job (covered 26)
+        ~ technician dispatch matching T2-AC06: rejects a second-storey technician without ladder or elevated-work-platform access (covered 27)
+        ~ technician dispatch matching T2-AC07: accepts a suitable second-storey technician with the required equipment (covered 27)
+        ~ technician dispatch matching T2-AC08: rejects a pit job when pit-access is unavailable (covered 24)
+        ~ technician dispatch matching T2-AC08: accepts a pit job only when both fault suitability and pit-access are present (covered 26)
+        ~ technician dispatch matching T2-AC09: returns no fallback when no compatible technician and equipment combination exists (covered 24)
+      validation.test.ts
+        ✘ technician dispatch validation accepts a complete dispatch request (covered 0)
+        ✘ technician dispatch validation rejects blank premises (covered 0)
+        ✘ technician dispatch validation rejects overlong premises (covered 0)
+        ✘ technician dispatch validation rejects blank fault (covered 0)
+        ✘ technician dispatch validation rejects blank access requirement (covered 0)
+        ✘ technician dispatch validation rejects unexpected protected fields (covered 0)
+        ✘ technician dispatch validation accepts a complete scheduling request (covered 0)
+        ✘ technician dispatch validation rejects blank request identifier (covered 0)
+        ✘ technician dispatch validation rejects blank technician identifier (covered 0)
+        ✘ technician dispatch validation rejects invalid visit date (covered 0)
+        ✘ technician dispatch validation rejects unexpected ownership data (covered 0)
+    lib/utils.test.ts
+      ✘ cn merges class names (covered 0)
+      ✘ cn resolves tailwind conflicts (last wins) (covered 0)
+      ✘ cn handles conditional classes (covered 0)
+      ✘ truncate returns string unchanged when shorter than limit (covered 0)
+      ✘ truncate truncates and appends ellipsis when over limit (covered 0)
+      ✘ truncate returns full string when exactly at limit (covered 0)
+  tests/unit
+    features/technician-dispatch
+      actions.test.ts
+        ✓ technician dispatch server actions T2-AC01 to T2-AC05: authenticates, derives ownership, stores the request, and returns valid matches (killed 35)
+        ~ technician dispatch server actions rejects unauthenticated request creation before accessing Firestore (covered 1)
+        ✓ technician dispatch server actions rejects an unknown fixture fault without writing a request (killed 5)
+        ✓ technician dispatch server actions rejects an unknown fixture access requirement without writing a request (killed 4)
+        ✓ technician dispatch server actions returns a safe error when request storage fails (killed 4)
+        ✓ technician dispatch server actions T2-AC10 and T2-AC11: schedules an owned request with a recomputed valid match (killed 21)
+        ~ technician dispatch server actions authenticates scheduling before loading a dispatch request (covered 1)
+        ✓ technician dispatch server actions rejects a cross-owner scheduling attempt without revealing the request (killed 3)
+        ✓ technician dispatch server actions rejects a client-supplied technician that is incompatible with the stored request (killed 4)
+        ✓ technician dispatch server actions does not allow a scheduled request to be rescheduled (killed 4)
+        ~ technician dispatch server actions rechecks the request state when Firestore retries a conflicting schedule transaction (covered 76)
+        ✓ technician dispatch server actions returns a safe error when scheduling storage fails (killed 4)
+      DispatchFlow.test.tsx
+        ✓ DispatchFlow T2-AC01 to T2-AC03: presents labelled controls for premises, fault, and access requirements (killed 17)
+        ✓ DispatchFlow T2-AC04 to T2-AC07: shows only a valid match and pairs its equipment icon with text (killed 28)
+        ✓ DispatchFlow T2-AC08 and T2-AC09: explains that no compatible match exists instead of rendering a fallback (killed 7)
+        ✓ DispatchFlow T2-AC10 and T2-AC11: schedules the selected valid match and displays the recorded result (killed 19)
+        ✓ DispatchFlow T2-AC12 and T2-AC14: exposes required meaning through text and semantics rather than colour alone (killed 1)
+        ✓ DispatchFlow T2-AC13: keeps every dispatch control in keyboard order and supports keyboard activation (killed 17)
+      matching.test.ts
+        ✓ technician dispatch matching T2-AC04: only returns technicians who support the recorded fault (killed 1)
+        ✓ technician dispatch matching T2-AC05: returns the equipment combination that satisfies the job (killed 1)
+        ~ technician dispatch matching T2-AC06: rejects a second-storey technician without ladder or elevated-work-platform access (covered 27)
+        ~ technician dispatch matching T2-AC07: accepts a suitable second-storey technician with the required equipment (covered 27)
+        ~ technician dispatch matching T2-AC08: rejects a pit job when pit-access is unavailable (covered 24)
+        ~ technician dispatch matching T2-AC08: accepts a pit job only when both fault suitability and pit-access are present (covered 26)
+        ~ technician dispatch matching T2-AC09: returns no fallback when no compatible technician and equipment combination exists (covered 24)
+      validation.test.ts
+        ✘ technician dispatch validation accepts a complete dispatch request (covered 0)
+        ✘ technician dispatch validation rejects blank premises (covered 0)
+        ✘ technician dispatch validation rejects overlong premises (covered 0)
+        ✘ technician dispatch validation rejects blank fault (covered 0)
+        ✘ technician dispatch validation rejects blank access requirement (covered 0)
+        ✘ technician dispatch validation rejects unexpected protected fields (covered 0)
+        ✘ technician dispatch validation accepts a complete scheduling request (covered 0)
+        ✘ technician dispatch validation rejects blank request identifier (covered 0)
+        ✘ technician dispatch validation rejects blank technician identifier (covered 0)
+        ✘ technician dispatch validation rejects invalid visit date (covered 0)
+        ✘ technician dispatch validation rejects unexpected ownership data (covered 0)
+    lib/utils.test.ts
+      ✘ cn merges class names (covered 0)
+      ✘ cn resolves tailwind conflicts (last wins) (covered 0)
+      ✘ cn handles conditional classes (covered 0)
+      ✘ truncate returns string unchanged when shorter than limit (covered 0)
+      ✘ truncate truncates and appends ellipsis when over limit (covered 0)
+      ✘ truncate returns full string when exactly at limit (covered 0)
+[NoCoverage] StringLiteral
+src/actions/auth.actions.ts:8:29
+-   const SESSION_COOKIE_NAME = '__session'
++   const SESSION_COOKIE_NAME = ""
+[NoCoverage] BlockStatement
+src/actions/auth.actions.ts:14:42
+-   export async function getServerSession() {
+-     const cookieStore = await cookies()
+-     const sessionCookie = cookieStore.get(SESSION_COOKIE_NAME)?.value
+-     if (!sessionCookie) return null
+-     try {
+-       const decoded = await adminAuth.verifySessionCookie(sessionCookie, true)
+-       return decoded
+-     } catch {
+-       return null
+-     }
+-   }
++   export async function getServerSession() {}
+[NoCoverage] OptionalChaining
+src/actions/auth.actions.ts:16:25
+-     const sessionCookie = cookieStore.get(SESSION_COOKIE_NAME)?.value
++     const sessionCookie = cookieStore.get(SESSION_COOKIE_NAME).value
+[NoCoverage] BooleanLiteral
+src/actions/auth.actions.ts:18:7
+-     if (!sessionCookie) return null
++     if (sessionCookie) return null
+[NoCoverage] ConditionalExpression
+src/actions/auth.actions.ts:18:7
+-     if (!sessionCookie) return null
++     if (true) return null
+[NoCoverage] ConditionalExpression
+src/actions/auth.actions.ts:18:7
+-     if (!sessionCookie) return null
++     if (false) return null
+[NoCoverage] BlockStatement
+src/actions/auth.actions.ts:20:7
+-     try {
+-       const decoded = await adminAuth.verifySessionCookie(sessionCookie, true)
+-       return decoded
+-     } catch {
++     try {} catch {
+[NoCoverage] BooleanLiteral
+src/actions/auth.actions.ts:21:72
+-       const decoded = await adminAuth.verifySessionCookie(sessionCookie, true)
++       const decoded = await adminAuth.verifySessionCookie(sessionCookie, false)
+[NoCoverage] BlockStatement
+src/actions/auth.actions.ts:23:11
+-     } catch {
+-       return null
+-     }
++     } catch {}
+[NoCoverage] BlockStatement
+src/actions/auth.actions.ts:32:37
+-   export async function requireAuth() {
+-     const session = await getServerSession()
+-     if (!session) {
+-       redirect('/auth/signin')
+-     }
+-     return session
+-   }
++   export async function requireAuth() {}
+[NoCoverage] BooleanLiteral
+src/actions/auth.actions.ts:34:7
+-     if (!session) {
++     if (session) {
+[NoCoverage] ConditionalExpression
+src/actions/auth.actions.ts:34:7
+-     if (!session) {
++     if (true) {
+[NoCoverage] ConditionalExpression
+src/actions/auth.actions.ts:34:7
+-     if (!session) {
++     if (false) {
+[NoCoverage] BlockStatement
+src/actions/auth.actions.ts:34:17
+-     if (!session) {
+-       redirect('/auth/signin')
+-     }
++     if (!session) {}
+[NoCoverage] StringLiteral
+src/actions/auth.actions.ts:35:14
+-       redirect('/auth/signin')
++       redirect("")
+[NoCoverage] BlockStatement
+src/actions/auth.actions.ts:43:62
+-   export async function serverSignOut(): Promise<ActionResult> {
+-     try {
+-       const cookieStore = await cookies()
+-       cookieStore.delete(SESSION_COOKIE_NAME)
+-       return { success: true }
+-     } catch {
+-       return { success: false, error: 'Failed to sign out' }
+-     }
+-   }
++   export async function serverSignOut(): Promise<ActionResult> {}
+[NoCoverage] BlockStatement
+src/actions/auth.actions.ts:44:7
+-     try {
+-       const cookieStore = await cookies()
+-       cookieStore.delete(SESSION_COOKIE_NAME)
+-       return { success: true }
+-     } catch {
++     try {} catch {
+[NoCoverage] ObjectLiteral
+src/actions/auth.actions.ts:47:12
+-       return { success: true }
++       return {}
+[NoCoverage] BooleanLiteral
+src/actions/auth.actions.ts:47:23
+-       return { success: true }
++       return { success: false }
+[NoCoverage] BlockStatement
+src/actions/auth.actions.ts:48:11
+-     } catch {
+-       return { success: false, error: 'Failed to sign out' }
+-     }
++     } catch {}
+[NoCoverage] ObjectLiteral
+src/actions/auth.actions.ts:49:12
+-       return { success: false, error: 'Failed to sign out' }
++       return {}
+[NoCoverage] BooleanLiteral
+src/actions/auth.actions.ts:49:23
+-       return { success: false, error: 'Failed to sign out' }
++       return { success: true, error: 'Failed to sign out' }
+[NoCoverage] StringLiteral
+src/actions/auth.actions.ts:49:37
+-       return { success: false, error: 'Failed to sign out' }
++       return { success: false, error: "" }
+[NoCoverage] BlockStatement
+src/features/technician-dispatch/actions/dispatch.actions.ts:18:78
+-   function firstValidationError(error: { issues: Array<{ message: string }> }) {
+-     return error.issues[0]?.message ?? 'Invalid dispatch details.'
+-   }
++   function firstValidationError(error: { issues: Array<{ message: string }> }) {}
+[NoCoverage] LogicalOperator
+src/features/technician-dispatch/actions/dispatch.actions.ts:19:10
+-     return error.issues[0]?.message ?? 'Invalid dispatch details.'
++     return error.issues[0]?.message && 'Invalid dispatch details.'
+[NoCoverage] OptionalChaining
+src/features/technician-dispatch/actions/dispatch.actions.ts:19:10
+-     return error.issues[0]?.message ?? 'Invalid dispatch details.'
++     return error.issues[0].message ?? 'Invalid dispatch details.'
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:19:38
+-     return error.issues[0]?.message ?? 'Invalid dispatch details.'
++     return error.issues[0]?.message ?? ""
+[NoCoverage] BlockStatement
+src/features/technician-dispatch/actions/dispatch.actions.ts:28:24
+-     if (!parsed.success) {
+-       return { success: false, error: firstValidationError(parsed.error) }
+-     }
++     if (!parsed.success) {}
+[NoCoverage] ObjectLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:29:12
+-       return { success: false, error: firstValidationError(parsed.error) }
++       return {}
+[NoCoverage] BooleanLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:29:23
+-       return { success: false, error: firstValidationError(parsed.error) }
++       return { success: true, error: firstValidationError(parsed.error) }
+[NoCoverage] BlockStatement
+src/features/technician-dispatch/actions/dispatch.actions.ts:86:24
+-     if (!parsed.success) {
+-       return { success: false, error: firstValidationError(parsed.error) }
+-     }
++     if (!parsed.success) {}
+[NoCoverage] ObjectLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:87:12
+-       return { success: false, error: firstValidationError(parsed.error) }
++       return {}
+[NoCoverage] BooleanLiteral
+src/features/technician-dispatch/actions/dispatch.actions.ts:87:23
+-       return { success: false, error: firstValidationError(parsed.error) }
++       return { success: true, error: firstValidationError(parsed.error) }
+[Survived] ConditionalExpression
+src/features/technician-dispatch/actions/dispatch.actions.ts:28:7
+-     if (!parsed.success) {
++     if (false) {
+Tests ran:
+    technician dispatch server actions T2-AC01 to T2-AC05: authenticates, derives ownership, stores the request, and returns valid matches
+    technician dispatch server actions rejects an unknown fixture fault without writing a request
+    technician dispatch server actions rejects an unknown fixture access requirement without writing a request
+  and 5 more tests!
+[Survived] ConditionalExpression
+src/features/technician-dispatch/actions/dispatch.actions.ts:86:7
+-     if (!parsed.success) {
++     if (false) {
+Tests ran:
+    technician dispatch server actions T2-AC10 and T2-AC11: schedules an owned request with a recomputed valid match
+    technician dispatch server actions rejects a cross-owner scheduling attempt without revealing the request
+    technician dispatch server actions rejects a client-supplied technician that is incompatible with the stored request
+  and 9 more tests!
+[Survived] ConditionalExpression
+src/features/technician-dispatch/actions/dispatch.actions.ts:107:63
+-           const fault = technicianCatalog.faults.find((item) => item.id === request.fault.id)
++           const fault = technicianCatalog.faults.find((item) => true)
+Tests ran:
+    technician dispatch server actions T2-AC10 and T2-AC11: schedules an owned request with a recomputed valid match
+    technician dispatch server actions rejects a client-supplied technician that is incompatible with the stored request
+    technician dispatch server actions rechecks the request state when Firestore retries a conflicting schedule transaction
+  and 3 more tests!
+[Survived] ConditionalExpression
+src/features/technician-dispatch/actions/dispatch.actions.ts:117:13
+-           if (!fault || !accessRequirement || !match) {
++           if (false || !match) {
+Tests ran:
+    technician dispatch server actions T2-AC10 and T2-AC11: schedules an owned request with a recomputed valid match
+    technician dispatch server actions rejects a client-supplied technician that is incompatible with the stored request
+    technician dispatch server actions rechecks the request state when Firestore retries a conflicting schedule transaction
+  and 3 more tests!
+[Survived] LogicalOperator
+src/features/technician-dispatch/actions/dispatch.actions.ts:117:13
+-           if (!fault || !accessRequirement || !match) {
++           if (!fault && !accessRequirement || !match) {
+Tests ran:
+    technician dispatch server actions T2-AC10 and T2-AC11: schedules an owned request with a recomputed valid match
+    technician dispatch server actions rejects a client-supplied technician that is incompatible with the stored request
+    technician dispatch server actions rechecks the request state when Firestore retries a conflicting schedule transaction
+  and 3 more tests!
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:34:38
+-     if (equipment.length === 0) return 'No equipment required'
++     if (equipment.length === 0) return ""
+[NoCoverage] UnaryOperator
+src/features/technician-dispatch/components/DispatchFlow.tsx:42:53
+-     const direction = event.key === 'ArrowDown' ? 1 : -1
++     const direction = event.key === 'ArrowDown' ? 1 : +1
+[NoCoverage] BlockStatement
+src/features/technician-dispatch/components/DispatchFlow.tsx:140:42
+-       if (!result.success || !result.data) {
+-         const error = result.error ?? 'Unable to create the dispatch request.'
+-         setRequestError(error)
+-         toast.error(error)
+-         return
+-       }
++       if (!result.success || !result.data) {}
+[NoCoverage] LogicalOperator
+src/features/technician-dispatch/components/DispatchFlow.tsx:141:21
+-         const error = result.error ?? 'Unable to create the dispatch request.'
++         const error = result.error && 'Unable to create the dispatch request.'
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:141:37
+-         const error = result.error ?? 'Unable to create the dispatch request.'
++         const error = result.error ?? ""
+[NoCoverage] BlockStatement
+src/features/technician-dispatch/components/DispatchFlow.tsx:162:42
+-       if (!result.success || !result.data) {
+-         const error = result.error ?? 'Unable to schedule the dispatch.'
+-         setScheduleError(error)
+-         toast.error(error)
+-         return
+-       }
++       if (!result.success || !result.data) {}
+[NoCoverage] LogicalOperator
+src/features/technician-dispatch/components/DispatchFlow.tsx:163:21
+-         const error = result.error ?? 'Unable to schedule the dispatch.'
++         const error = result.error && 'Unable to schedule the dispatch.'
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:163:37
+-         const error = result.error ?? 'Unable to schedule the dispatch.'
++         const error = result.error ?? ""
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:34:7
+-     if (equipment.length === 0) return 'No equipment required'
++     if (false) return 'No equipment required'
+Tests ran:
+    DispatchFlow T2-AC04 to T2-AC07: shows only a valid match and pairs its equipment icon with text
+    DispatchFlow T2-AC10 and T2-AC11: schedules the selected valid match and displays the recorded result
+    DispatchFlow T2-AC12 and T2-AC14: exposes required meaning through text and semantics rather than colour alone
+  and 1 more test!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:35:70
+-     return equipment.map((item) => equipmentLabels[item] ?? item).join(', ')
++     return equipment.map((item) => equipmentLabels[item] ?? item).join("")
+Tests ran:
+    DispatchFlow T2-AC04 to T2-AC07: shows only a valid match and pairs its equipment icon with text
+    DispatchFlow T2-AC10 and T2-AC11: schedules the selected valid match and displays the recorded result
+    DispatchFlow T2-AC12 and T2-AC14: exposes required meaning through text and semantics rather than colour alone
+  and 1 more test!
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:39:36
+-     if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return
++     if (event.key !== 'ArrowDown' && true) return
+Tests ran:
+    DispatchFlow T2-AC13: keeps every dispatch control in keyboard order and supports keyboard activation
+[Survived] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:39:50
+-     if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return
++     if (event.key !== 'ArrowDown' && event.key !== "") return
+Tests ran:
+    DispatchFlow T2-AC13: keeps every dispatch control in keyboard order and supports keyboard activation
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:42:21
+-     const direction = event.key === 'ArrowDown' ? 1 : -1
++     const direction = true ? 1 : -1
+Tests ran:
+    DispatchFlow T2-AC13: keeps every dispatch control in keyboard order and supports keyboard activation
+[Survived] ArithmeticOperator
+src/features/technician-dispatch/components/DispatchFlow.tsx:45:5
+-       event.currentTarget.options.length - 1
++       event.currentTarget.options.length + 1
+Tests ran:
+    DispatchFlow T2-AC13: keeps every dispatch control in keyboard order and supports keyboard activation
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:48:7
+-     if (nextIndex === event.currentTarget.selectedIndex) return
++     if (false) return
+Tests ran:
+    DispatchFlow T2-AC13: keeps every dispatch control in keyboard order and supports keyboard activation
+[Survived] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:50:47
+-     event.currentTarget.dispatchEvent(new Event('change', { bubbles: true }))
++     event.currentTarget.dispatchEvent(new Event("", { bubbles: true }))
+Tests ran:
+    DispatchFlow T2-AC13: keeps every dispatch control in keyboard order and supports keyboard activation
+[Survived] ObjectLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:50:57
+-     event.currentTarget.dispatchEvent(new Event('change', { bubbles: true }))
++     event.currentTarget.dispatchEvent(new Event('change', {}))
+Tests ran:
+    DispatchFlow T2-AC13: keeps every dispatch control in keyboard order and supports keyboard activation
+[Survived] BooleanLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:50:68
+-     event.currentTarget.dispatchEvent(new Event('change', { bubbles: true }))
++     event.currentTarget.dispatchEvent(new Event('change', { bubbles: false }))
+Tests ran:
+    DispatchFlow T2-AC13: keeps every dispatch control in keyboard order and supports keyboard activation
+[Survived] ArrayDeclaration
+src/features/technician-dispatch/components/DispatchFlow.tsx:122:61
+-     const [matches, setMatches] = useState<TechnicianMatch[]>([])
++     const [matches, setMatches] = useState<TechnicianMatch[]>(["Stryker was here"])
+Tests ran:
+    DispatchFlow T2-AC01 to T2-AC03: presents labelled controls for premises, fault, and access requirements
+    DispatchFlow T2-AC04 to T2-AC07: shows only a valid match and pairs its equipment icon with text
+    DispatchFlow T2-AC08 and T2-AC09: explains that no compatible match exists instead of rendering a fallback
+  and 3 more tests!
+[Survived] ObjectLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:129:20
+-       defaultValues: { premises: '', faultId: '', accessRequirementId: '' },
++       defaultValues: {},
+Tests ran:
+    DispatchFlow T2-AC01 to T2-AC03: presents labelled controls for premises, fault, and access requirements
+    DispatchFlow T2-AC04 to T2-AC07: shows only a valid match and pairs its equipment icon with text
+    DispatchFlow T2-AC08 and T2-AC09: explains that no compatible match exists instead of rendering a fallback
+  and 3 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:129:70
+-       defaultValues: { premises: '', faultId: '', accessRequirementId: '' },
++       defaultValues: { premises: '', faultId: '', accessRequirementId: "Stryker was here!" },
+Tests ran:
+    DispatchFlow T2-AC01 to T2-AC03: presents labelled controls for premises, fault, and access requirements
+    DispatchFlow T2-AC04 to T2-AC07: shows only a valid match and pairs its equipment icon with text
+    DispatchFlow T2-AC08 and T2-AC09: explains that no compatible match exists instead of rendering a fallback
+  and 3 more tests!
+[Survived] ObjectLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:131:56
+-     const scheduleForm = useForm<ScheduleSelectionInput>({
+-       resolver: zodResolver(scheduleSelectionSchema),
+-       defaultValues: { technicianId: '', scheduledVisit: '' },
+-     })
++     const scheduleForm = useForm<ScheduleSelectionInput>({})
+Tests ran:
+    DispatchFlow T2-AC01 to T2-AC03: presents labelled controls for premises, fault, and access requirements
+    DispatchFlow T2-AC04 to T2-AC07: shows only a valid match and pairs its equipment icon with text
+    DispatchFlow T2-AC08 and T2-AC09: explains that no compatible match exists instead of rendering a fallback
+  and 3 more tests!
+[Survived] ObjectLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:133:20
+-       defaultValues: { technicianId: '', scheduledVisit: '' },
++       defaultValues: {},
+Tests ran:
+    DispatchFlow T2-AC01 to T2-AC03: presents labelled controls for premises, fault, and access requirements
+    DispatchFlow T2-AC04 to T2-AC07: shows only a valid match and pairs its equipment icon with text
+    DispatchFlow T2-AC08 and T2-AC09: explains that no compatible match exists instead of rendering a fallback
+  and 3 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:133:36
+-       defaultValues: { technicianId: '', scheduledVisit: '' },
++       defaultValues: { technicianId: "Stryker was here!", scheduledVisit: '' },
+Tests ran:
+    DispatchFlow T2-AC01 to T2-AC03: presents labelled controls for premises, fault, and access requirements
+    DispatchFlow T2-AC04 to T2-AC07: shows only a valid match and pairs its equipment icon with text
+    DispatchFlow T2-AC08 and T2-AC09: explains that no compatible match exists instead of rendering a fallback
+  and 3 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:133:56
+-       defaultValues: { technicianId: '', scheduledVisit: '' },
++       defaultValues: { technicianId: '', scheduledVisit: "Stryker was here!" },
+Tests ran:
+    DispatchFlow T2-AC01 to T2-AC03: presents labelled controls for premises, fault, and access requirements
+    DispatchFlow T2-AC04 to T2-AC07: shows only a valid match and pairs its equipment icon with text
+    DispatchFlow T2-AC08 and T2-AC09: explains that no compatible match exists instead of rendering a fallback
+  and 3 more tests!
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:140:9
+-       if (!result.success || !result.data) {
++       if (false) {
+Tests ran:
+    DispatchFlow T2-AC04 to T2-AC07: shows only a valid match and pairs its equipment icon with text
+    DispatchFlow T2-AC08 and T2-AC09: explains that no compatible match exists instead of rendering a fallback
+    DispatchFlow T2-AC10 and T2-AC11: schedules the selected valid match and displays the recorded result
+  and 2 more tests!
+[Survived] LogicalOperator
+src/features/technician-dispatch/components/DispatchFlow.tsx:140:9
+-       if (!result.success || !result.data) {
++       if (!result.success && !result.data) {
+Tests ran:
+    DispatchFlow T2-AC04 to T2-AC07: shows only a valid match and pairs its equipment icon with text
+    DispatchFlow T2-AC08 and T2-AC09: explains that no compatible match exists instead of rendering a fallback
+    DispatchFlow T2-AC10 and T2-AC11: schedules the selected valid match and displays the recorded result
+  and 2 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:149:19
+-       toast.success('Dispatch request created.')
++       toast.success("")
+Tests ran:
+    DispatchFlow T2-AC04 to T2-AC07: shows only a valid match and pairs its equipment icon with text
+    DispatchFlow T2-AC08 and T2-AC09: explains that no compatible match exists instead of rendering a fallback
+    DispatchFlow T2-AC10 and T2-AC11: schedules the selected valid match and displays the recorded result
+  and 2 more tests!
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:153:9
+-       if (!request) return
++       if (false) return
+Tests ran:
+    DispatchFlow T2-AC10 and T2-AC11: schedules the selected valid match and displays the recorded result
+    DispatchFlow T2-AC13: keeps every dispatch control in keyboard order and supports keyboard activation
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:162:9
+-       if (!result.success || !result.data) {
++       if (false) {
+Tests ran:
+    DispatchFlow T2-AC10 and T2-AC11: schedules the selected valid match and displays the recorded result
+    DispatchFlow T2-AC13: keeps every dispatch control in keyboard order and supports keyboard activation
+[Survived] LogicalOperator
+src/features/technician-dispatch/components/DispatchFlow.tsx:162:9
+-       if (!result.success || !result.data) {
++       if (!result.success && !result.data) {
+Tests ran:
+    DispatchFlow T2-AC10 and T2-AC11: schedules the selected valid match and displays the recorded result
+    DispatchFlow T2-AC13: keeps every dispatch control in keyboard order and supports keyboard activation
+[Survived] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:170:19
+-       toast.success('Dispatch scheduled.')
++       toast.success("")
+Tests ran:
+    DispatchFlow T2-AC10 and T2-AC11: schedules the selected valid match and displays the recorded result
+    DispatchFlow T2-AC13: keeps every dispatch control in keyboard order and supports keyboard activation
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:180:14
+-               {matches.length > 0 ? 'Compatible technicians' : 'No compatible technician found'}
++               {false ? 'Compatible technicians' : 'No compatible technician found'}
+Tests ran:
+    DispatchFlow T2-AC04 to T2-AC07: shows only a valid match and pairs its equipment icon with text
+    DispatchFlow T2-AC08 and T2-AC09: explains that no compatible match exists instead of rendering a fallback
+    DispatchFlow T2-AC10 and T2-AC11: schedules the selected valid match and displays the recorded result
+  and 2 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:180:35
+-               {matches.length > 0 ? 'Compatible technicians' : 'No compatible technician found'}
++               {matches.length > 0 ? "" : 'No compatible technician found'}
+Tests ran:
+    DispatchFlow T2-AC04 to T2-AC07: shows only a valid match and pairs its equipment icon with text
+    DispatchFlow T2-AC10 and T2-AC11: schedules the selected valid match and displays the recorded result
+    DispatchFlow T2-AC12 and T2-AC14: exposes required meaning through text and semantics rather than colour alone
+  and 1 more test!
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:183:14
+-               {matches.length > 0
++               {true
+Tests ran:
+    DispatchFlow T2-AC04 to T2-AC07: shows only a valid match and pairs its equipment icon with text
+    DispatchFlow T2-AC08 and T2-AC09: explains that no compatible match exists instead of rendering a fallback
+    DispatchFlow T2-AC10 and T2-AC11: schedules the selected valid match and displays the recorded result
+  and 2 more tests!
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:183:14
+-               {matches.length > 0
++               {false
+Tests ran:
+    DispatchFlow T2-AC04 to T2-AC07: shows only a valid match and pairs its equipment icon with text
+    DispatchFlow T2-AC08 and T2-AC09: explains that no compatible match exists instead of rendering a fallback
+    DispatchFlow T2-AC10 and T2-AC11: schedules the selected valid match and displays the recorded result
+  and 2 more tests!
+[Survived] EqualityOperator
+src/features/technician-dispatch/components/DispatchFlow.tsx:183:14
+-               {matches.length > 0
++               {matches.length >= 0
+Tests ran:
+    DispatchFlow T2-AC04 to T2-AC07: shows only a valid match and pairs its equipment icon with text
+    DispatchFlow T2-AC08 and T2-AC09: explains that no compatible match exists instead of rendering a fallback
+    DispatchFlow T2-AC10 and T2-AC11: schedules the selected valid match and displays the recorded result
+  and 2 more tests!
+[Survived] EqualityOperator
+src/features/technician-dispatch/components/DispatchFlow.tsx:183:14
+-               {matches.length > 0
++               {matches.length <= 0
+Tests ran:
+    DispatchFlow T2-AC04 to T2-AC07: shows only a valid match and pairs its equipment icon with text
+    DispatchFlow T2-AC08 and T2-AC09: explains that no compatible match exists instead of rendering a fallback
+    DispatchFlow T2-AC10 and T2-AC11: schedules the selected valid match and displays the recorded result
+  and 2 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:184:17
+-                 ? 'Select a technician whose fault skills and equipment satisfy this request.'
++                 ? ""
+Tests ran:
+    DispatchFlow T2-AC04 to T2-AC07: shows only a valid match and pairs its equipment icon with text
+    DispatchFlow T2-AC10 and T2-AC11: schedules the selected valid match and displays the recorded result
+    DispatchFlow T2-AC12 and T2-AC14: exposes required meaning through text and semantics rather than colour alone
+  and 1 more test!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:185:17
+-                 : 'No technician and equipment combination satisfies the recorded request.'}
++                 : ""}
+Tests ran:
+    DispatchFlow T2-AC08 and T2-AC09: explains that no compatible match exists instead of rendering a fallback
+[Survived] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:230:80
+-                               Compatible match. <span>Equipment required</span>:{' '}
++                               Compatible match. <span>Equipment required</span>:{""}
+Tests ran:
+    DispatchFlow T2-AC04 to T2-AC07: shows only a valid match and pairs its equipment icon with text
+    DispatchFlow T2-AC10 and T2-AC11: schedules the selected valid match and displays the recorded result
+    DispatchFlow T2-AC12 and T2-AC14: exposes required meaning through text and semantics rather than colour alone
+  and 1 more test!
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:239:16
+-                 {scheduleForm.formState.errors.technicianId && (
+-                   <p className="text-sm text-red-600" role="alert">
+-                     {scheduleForm.formState.errors.technicianId.message}
+-                   </p>
+-                 )}
++                 {true}
+Tests ran:
+    DispatchFlow T2-AC04 to T2-AC07: shows only a valid match and pairs its equipment icon with text
+    DispatchFlow T2-AC10 and T2-AC11: schedules the selected valid match and displays the recorded result
+    DispatchFlow T2-AC12 and T2-AC14: exposes required meaning through text and semantics rather than colour alone
+  and 1 more test!
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:239:16
+-                 {scheduleForm.formState.errors.technicianId && (
+-                   <p className="text-sm text-red-600" role="alert">
+-                     {scheduleForm.formState.errors.technicianId.message}
+-                   </p>
+-                 )}
++                 {false}
+Tests ran:
+    DispatchFlow T2-AC04 to T2-AC07: shows only a valid match and pairs its equipment icon with text
+    DispatchFlow T2-AC10 and T2-AC11: schedules the selected valid match and displays the recorded result
+    DispatchFlow T2-AC12 and T2-AC14: exposes required meaning through text and semantics rather than colour alone
+  and 1 more test!
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:258:16
+-                 {scheduleForm.formState.errors.scheduledVisit && (
+-                   <p className="text-sm text-red-600" role="alert">
+-                     {scheduleForm.formState.errors.scheduledVisit.message}
+-                   </p>
+-                 )}
++                 {true}
+Tests ran:
+    DispatchFlow T2-AC04 to T2-AC07: shows only a valid match and pairs its equipment icon with text
+    DispatchFlow T2-AC10 and T2-AC11: schedules the selected valid match and displays the recorded result
+    DispatchFlow T2-AC12 and T2-AC14: exposes required meaning through text and semantics rather than colour alone
+  and 1 more test!
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:258:16
+-                 {scheduleForm.formState.errors.scheduledVisit && (
+-                   <p className="text-sm text-red-600" role="alert">
+-                     {scheduleForm.formState.errors.scheduledVisit.message}
+-                   </p>
+-                 )}
++                 {false}
+Tests ran:
+    DispatchFlow T2-AC04 to T2-AC07: shows only a valid match and pairs its equipment icon with text
+    DispatchFlow T2-AC10 and T2-AC11: schedules the selected valid match and displays the recorded result
+    DispatchFlow T2-AC12 and T2-AC14: exposes required meaning through text and semantics rather than colour alone
+  and 1 more test!
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:265:14
+-               {scheduleError && (
+-                 <p className="text-sm text-red-600" role="alert" aria-live="polite">
+-                   {scheduleError}
+-                 </p>
+-               )}
++               {true}
+Tests ran:
+    DispatchFlow T2-AC04 to T2-AC07: shows only a valid match and pairs its equipment icon with text
+    DispatchFlow T2-AC10 and T2-AC11: schedules the selected valid match and displays the recorded result
+    DispatchFlow T2-AC12 and T2-AC14: exposes required meaning through text and semantics rather than colour alone
+  and 1 more test!
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:265:14
+-               {scheduleError && (
+-                 <p className="text-sm text-red-600" role="alert" aria-live="polite">
+-                   {scheduleError}
+-                 </p>
+-               )}
++               {false}
+Tests ran:
+    DispatchFlow T2-AC04 to T2-AC07: shows only a valid match and pairs its equipment icon with text
+    DispatchFlow T2-AC10 and T2-AC11: schedules the selected valid match and displays the recorded result
+    DispatchFlow T2-AC12 and T2-AC14: exposes required meaning through text and semantics rather than colour alone
+  and 1 more test!
+[Survived] LogicalOperator
+src/features/technician-dispatch/components/DispatchFlow.tsx:265:14
+-               {scheduleError && (
+-                 <p className="text-sm text-red-600" role="alert" aria-live="polite">
+-                   {scheduleError}
+-                 </p>
+-               )}
++               {scheduleError || <p className="text-sm text-red-600" role="alert" aria-live="polite">
++                   {scheduleError}
++                 </p>}
+Tests ran:
+    DispatchFlow T2-AC04 to T2-AC07: shows only a valid match and pairs its equipment icon with text
+    DispatchFlow T2-AC10 and T2-AC11: schedules the selected valid match and displays the recorded result
+    DispatchFlow T2-AC12 and T2-AC14: exposes required meaning through text and semantics rather than colour alone
+  and 1 more test!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:276:54
+-                 {scheduleForm.formState.isSubmitting ? 'Scheduling…' : 'Schedule dispatch'}
++                 {scheduleForm.formState.isSubmitting ? "" : 'Schedule dispatch'}
+Tests ran:
+    DispatchFlow T2-AC10 and T2-AC11: schedules the selected valid match and displays the recorded result
+    DispatchFlow T2-AC13: keeps every dispatch control in keyboard order and supports keyboard activation
+[Survived] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:316:26
+-                 className={`${fieldClassName} pl-9`}
++                 className={``}
+Tests ran:
+    DispatchFlow T2-AC01 to T2-AC03: presents labelled controls for premises, fault, and access requirements
+    DispatchFlow T2-AC04 to T2-AC07: shows only a valid match and pairs its equipment icon with text
+    DispatchFlow T2-AC08 and T2-AC09: explains that no compatible match exists instead of rendering a fallback
+  and 3 more tests!
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:346:12
+-             {requestForm.formState.errors.faultId && (
+-               <p className="text-sm text-red-600" role="alert">
+-                 {requestForm.formState.errors.faultId.message}
+-               </p>
+-             )}
++             {true}
+Tests ran:
+    DispatchFlow T2-AC01 to T2-AC03: presents labelled controls for premises, fault, and access requirements
+    DispatchFlow T2-AC04 to T2-AC07: shows only a valid match and pairs its equipment icon with text
+    DispatchFlow T2-AC08 and T2-AC09: explains that no compatible match exists instead of rendering a fallback
+  and 3 more tests!
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:346:12
+-             {requestForm.formState.errors.faultId && (
+-               <p className="text-sm text-red-600" role="alert">
+-                 {requestForm.formState.errors.faultId.message}
+-               </p>
+-             )}
++             {false}
+Tests ran:
+    DispatchFlow T2-AC01 to T2-AC03: presents labelled controls for premises, fault, and access requirements
+    DispatchFlow T2-AC04 to T2-AC07: shows only a valid match and pairs its equipment icon with text
+    DispatchFlow T2-AC08 and T2-AC09: explains that no compatible match exists instead of rendering a fallback
+  and 3 more tests!
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:372:12
+-             {requestForm.formState.errors.accessRequirementId && (
+-               <p className="text-sm text-red-600" role="alert">
+-                 {requestForm.formState.errors.accessRequirementId.message}
+-               </p>
+-             )}
++             {true}
+Tests ran:
+    DispatchFlow T2-AC01 to T2-AC03: presents labelled controls for premises, fault, and access requirements
+    DispatchFlow T2-AC04 to T2-AC07: shows only a valid match and pairs its equipment icon with text
+    DispatchFlow T2-AC08 and T2-AC09: explains that no compatible match exists instead of rendering a fallback
+  and 3 more tests!
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:372:12
+-             {requestForm.formState.errors.accessRequirementId && (
+-               <p className="text-sm text-red-600" role="alert">
+-                 {requestForm.formState.errors.accessRequirementId.message}
+-               </p>
+-             )}
++             {false}
+Tests ran:
+    DispatchFlow T2-AC01 to T2-AC03: presents labelled controls for premises, fault, and access requirements
+    DispatchFlow T2-AC04 to T2-AC07: shows only a valid match and pairs its equipment icon with text
+    DispatchFlow T2-AC08 and T2-AC09: explains that no compatible match exists instead of rendering a fallback
+  and 3 more tests!
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:379:10
+-           {requestError && (
+-             <p className="text-sm text-red-600" role="alert" aria-live="polite">
+-               {requestError}
+-             </p>
+-           )}
++           {true}
+Tests ran:
+    DispatchFlow T2-AC01 to T2-AC03: presents labelled controls for premises, fault, and access requirements
+    DispatchFlow T2-AC04 to T2-AC07: shows only a valid match and pairs its equipment icon with text
+    DispatchFlow T2-AC08 and T2-AC09: explains that no compatible match exists instead of rendering a fallback
+  and 3 more tests!
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/DispatchFlow.tsx:379:10
+-           {requestError && (
+-             <p className="text-sm text-red-600" role="alert" aria-live="polite">
+-               {requestError}
+-             </p>
+-           )}
++           {false}
+Tests ran:
+    DispatchFlow T2-AC01 to T2-AC03: presents labelled controls for premises, fault, and access requirements
+    DispatchFlow T2-AC04 to T2-AC07: shows only a valid match and pairs its equipment icon with text
+    DispatchFlow T2-AC08 and T2-AC09: explains that no compatible match exists instead of rendering a fallback
+  and 3 more tests!
+[Survived] LogicalOperator
+src/features/technician-dispatch/components/DispatchFlow.tsx:379:10
+-           {requestError && (
+-             <p className="text-sm text-red-600" role="alert" aria-live="polite">
+-               {requestError}
+-             </p>
+-           )}
++           {requestError || <p className="text-sm text-red-600" role="alert" aria-live="polite">
++               {requestError}
++             </p>}
+Tests ran:
+    DispatchFlow T2-AC01 to T2-AC03: presents labelled controls for premises, fault, and access requirements
+    DispatchFlow T2-AC04 to T2-AC07: shows only a valid match and pairs its equipment icon with text
+    DispatchFlow T2-AC08 and T2-AC09: explains that no compatible match exists instead of rendering a fallback
+  and 3 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:392:15
+-               ? 'Finding technicians…'
++               ? ""
+Tests ran:
+    DispatchFlow T2-AC01 to T2-AC03: presents labelled controls for premises, fault, and access requirements
+    DispatchFlow T2-AC04 to T2-AC07: shows only a valid match and pairs its equipment icon with text
+    DispatchFlow T2-AC08 and T2-AC09: explains that no compatible match exists instead of rendering a fallback
+  and 3 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:23:3
+-     'block w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm shadow-sm focus:border-zinc-500 focus:ring-2 focus:ring-zinc-500/20 focus:outline-none aria-invalid:border-red-500 dark:border-zinc-700 dark:bg-zinc-900'
++     ""
+Ran all tests for this mutant.
+[Survived] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:25:3
+-     'inline-flex items-center justify-center rounded-md bg-zinc-900 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-zinc-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-900 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-200'
++     ""
+Ran all tests for this mutant.
+[Survived] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:29:29
+-     'elevated-work-platform': 'Elevated work platform',
++     'elevated-work-platform': "",
+Ran all tests for this mutant.
+[Survived] StringLiteral
+src/features/technician-dispatch/components/DispatchFlow.tsx:30:17
+-     'pit-access': 'Pit access',
++     'pit-access': "",
+Ran all tests for this mutant.
+[Survived] ObjectLiteral
+src/features/technician-dispatch/catalog.ts:6:11
+-     .object({
+-       _about: z.string(),
+-       faults: z.array(
+-         z
+-           .object({
+-             id: z.string().min(1),
+-             name: z.string().min(1),
+-           })
+-           .strict()
+-       ),
+-       equipment: z.array(z.string().min(1)),
+-       accessRequirements: z.array(
+-         z
+-           .object({
+-             id: z.string().min(1),
+-             name: z.string().min(1),
+-             satisfiedBy: z.array(z.array(z.string().min(1))),
+-           })
+-           .strict()
+-       ),
+-       technicians: z.array(
+-         z
+-           .object({
+-             id: z.string().min(1),
+-             name: z.string().min(1),
+-             faults: z.array(z.string().min(1)),
+-             equipment: z.array(z.string().min(1)),
+-           })
+-           .strict()
+-       ),
+-     })
++     .object({})
+Ran all tests for this mutant.
+[Survived] ObjectLiteral
+src/features/technician-dispatch/catalog.ts:10:17
+-           .object({
+-             id: z.string().min(1),
+-             name: z.string().min(1),
+-           })
++           .object({})
+Ran all tests for this mutant.
+[Survived] MethodExpression
+src/features/technician-dispatch/catalog.ts:11:15
+-             id: z.string().min(1),
++             id: z.string().max(1),
+Ran all tests for this mutant.
+[Survived] MethodExpression
+src/features/technician-dispatch/catalog.ts:12:17
+-             name: z.string().min(1),
++             name: z.string().max(1),
+Ran all tests for this mutant.
+[Survived] MethodExpression
+src/features/technician-dispatch/catalog.ts:16:24
+-       equipment: z.array(z.string().min(1)),
++       equipment: z.array(z.string().max(1)),
+Ran all tests for this mutant.
+[Survived] ObjectLiteral
+src/features/technician-dispatch/catalog.ts:19:17
+-           .object({
+-             id: z.string().min(1),
+-             name: z.string().min(1),
+-             satisfiedBy: z.array(z.array(z.string().min(1))),
+-           })
++           .object({})
+Ran all tests for this mutant.
+[Survived] MethodExpression
+src/features/technician-dispatch/catalog.ts:20:15
+-             id: z.string().min(1),
++             id: z.string().max(1),
+Ran all tests for this mutant.
+[Survived] MethodExpression
+src/features/technician-dispatch/catalog.ts:21:17
+-             name: z.string().min(1),
++             name: z.string().max(1),
+Ran all tests for this mutant.
+[Survived] MethodExpression
+src/features/technician-dispatch/catalog.ts:22:40
+-             satisfiedBy: z.array(z.array(z.string().min(1))),
++             satisfiedBy: z.array(z.array(z.string().max(1))),
+Ran all tests for this mutant.
+[Survived] ObjectLiteral
+src/features/technician-dispatch/catalog.ts:28:17
+-           .object({
+-             id: z.string().min(1),
+-             name: z.string().min(1),
+-             faults: z.array(z.string().min(1)),
+-             equipment: z.array(z.string().min(1)),
+-           })
++           .object({})
+Ran all tests for this mutant.
+[Survived] MethodExpression
+src/features/technician-dispatch/catalog.ts:29:15
+-             id: z.string().min(1),
++             id: z.string().max(1),
+Ran all tests for this mutant.
+[Survived] MethodExpression
+src/features/technician-dispatch/catalog.ts:30:17
+-             name: z.string().min(1),
++             name: z.string().max(1),
+Ran all tests for this mutant.
+[Survived] MethodExpression
+src/features/technician-dispatch/catalog.ts:31:27
+-             faults: z.array(z.string().min(1)),
++             faults: z.array(z.string().max(1)),
+Ran all tests for this mutant.
+[Survived] MethodExpression
+src/features/technician-dispatch/catalog.ts:32:30
+-             equipment: z.array(z.string().min(1)),
++             equipment: z.array(z.string().max(1)),
+Ran all tests for this mutant.
+[NoCoverage] BlockStatement
+src/features/technician-dispatch/matching.ts:12:84
+-     if (!catalog.faults.some((fault) => fault.id === faultId) || !accessRequirement) {
+-       return []
+-     }
++     if (!catalog.faults.some((fault) => fault.id === faultId) || !accessRequirement) {}
+[NoCoverage] ArrayDeclaration
+src/features/technician-dispatch/matching.ts:13:12
+-       return []
++       return ["Stryker was here"]
+[Survived] ConditionalExpression
+src/features/technician-dispatch/matching.ts:12:7
+-     if (!catalog.faults.some((fault) => fault.id === faultId) || !accessRequirement) {
++     if (false) {
+Tests ran:
+    technician dispatch server actions T2-AC01 to T2-AC05: authenticates, derives ownership, stores the request, and returns valid matches
+    technician dispatch server actions returns a safe error when request storage fails
+    technician dispatch server actions T2-AC10 and T2-AC11: schedules an owned request with a recomputed valid match
+  and 21 more tests!
+[Survived] LogicalOperator
+src/features/technician-dispatch/matching.ts:12:7
+-     if (!catalog.faults.some((fault) => fault.id === faultId) || !accessRequirement) {
++     if (!catalog.faults.some(fault => fault.id === faultId) && !accessRequirement) {
+Tests ran:
+    technician dispatch server actions T2-AC01 to T2-AC05: authenticates, derives ownership, stores the request, and returns valid matches
+    technician dispatch server actions returns a safe error when request storage fails
+    technician dispatch server actions T2-AC10 and T2-AC11: schedules an owned request with a recomputed valid match
+  and 21 more tests!
+[Survived] ConditionalExpression
+src/features/technician-dispatch/matching.ts:12:39
+-     if (!catalog.faults.some((fault) => fault.id === faultId) || !accessRequirement) {
++     if (!catalog.faults.some((fault) => true) || !accessRequirement) {
+Tests ran:
+    technician dispatch server actions T2-AC01 to T2-AC05: authenticates, derives ownership, stores the request, and returns valid matches
+    technician dispatch server actions returns a safe error when request storage fails
+    technician dispatch server actions T2-AC10 and T2-AC11: schedules an owned request with a recomputed valid match
+  and 21 more tests!
+[Survived] EqualityOperator
+src/features/technician-dispatch/matching.ts:12:39
+-     if (!catalog.faults.some((fault) => fault.id === faultId) || !accessRequirement) {
++     if (!catalog.faults.some((fault) => fault.id !== faultId) || !accessRequirement) {
+Tests ran:
+    technician dispatch server actions T2-AC01 to T2-AC05: authenticates, derives ownership, stores the request, and returns valid matches
+    technician dispatch server actions returns a safe error when request storage fails
+    technician dispatch server actions T2-AC10 and T2-AC11: schedules an owned request with a recomputed valid match
+  and 21 more tests!
+[Survived] MethodExpression
+src/features/technician-dispatch/schemas.ts:5:15
+-       premises: z
+-         .string()
+-         .trim()
++       premises: z.string()
+Ran all tests for this mutant.
+[Survived] StringLiteral
+src/features/technician-dispatch/schemas.ts:9:17
+-         .max(200, 'Customer premises must be 200 characters or fewer.'),
++         .max(200, ""),
+Ran all tests for this mutant.
+[Survived] MethodExpression
+src/features/technician-dispatch/schemas.ts:10:14
+-       faultId: z.string().trim().min(1, 'Select a fault or problem.'),
++       faultId: z.string().min(1, 'Select a fault or problem.'),
+Ran all tests for this mutant.
+[Survived] StringLiteral
+src/features/technician-dispatch/schemas.ts:10:39
+-       faultId: z.string().trim().min(1, 'Select a fault or problem.'),
++       faultId: z.string().trim().min(1, ""),
+Ran all tests for this mutant.
+[Survived] MethodExpression
+src/features/technician-dispatch/schemas.ts:11:26
+-       accessRequirementId: z.string().trim().min(1, 'Select an access or equipment requirement.'),
++       accessRequirementId: z.string().min(1, 'Select an access or equipment requirement.'),
+Ran all tests for this mutant.
+[Survived] StringLiteral
+src/features/technician-dispatch/schemas.ts:11:51
+-       accessRequirementId: z.string().trim().min(1, 'Select an access or equipment requirement.'),
++       accessRequirementId: z.string().trim().min(1, ""),
+Ran all tests for this mutant.
+[Survived] MethodExpression
+src/features/technician-dispatch/schemas.ts:17:16
+-       requestId: z.string().trim().min(1, 'Dispatch request is required.'),
++       requestId: z.string().min(1, 'Dispatch request is required.'),
+Ran all tests for this mutant.
+[Survived] StringLiteral
+src/features/technician-dispatch/schemas.ts:17:41
+-       requestId: z.string().trim().min(1, 'Dispatch request is required.'),
++       requestId: z.string().trim().min(1, ""),
+Ran all tests for this mutant.
+[Survived] MethodExpression
+src/features/technician-dispatch/schemas.ts:18:19
+-       technicianId: z.string().trim().min(1, 'Select a technician.'),
++       technicianId: z.string().min(1, 'Select a technician.'),
+Ran all tests for this mutant.
+[Survived] StringLiteral
+src/features/technician-dispatch/schemas.ts:18:44
+-       technicianId: z.string().trim().min(1, 'Select a technician.'),
++       technicianId: z.string().trim().min(1, ""),
+Ran all tests for this mutant.
+[Survived] ObjectLiteral
+src/features/technician-dispatch/schemas.ts:19:41
+-       scheduledVisit: z.string().datetime({ message: 'Enter a valid scheduled visit.' }),
++       scheduledVisit: z.string().datetime({}),
+Ran all tests for this mutant.
+[Survived] StringLiteral
+src/features/technician-dispatch/schemas.ts:19:52
+-       scheduledVisit: z.string().datetime({ message: 'Enter a valid scheduled visit.' }),
++       scheduledVisit: z.string().datetime({ message: "" }),
+Ran all tests for this mutant.
+[Survived] MethodExpression
+src/features/technician-dispatch/schemas.ts:24:17
+-     technicianId: z.string().trim().min(1, 'Select a technician.'),
++     technicianId: z.string().min(1, 'Select a technician.'),
+Ran all tests for this mutant.
+[Survived] StringLiteral
+src/features/technician-dispatch/schemas.ts:24:42
+-     technicianId: z.string().trim().min(1, 'Select a technician.'),
++     technicianId: z.string().trim().min(1, ""),
+Ran all tests for this mutant.
+[Survived] StringLiteral
+src/features/technician-dispatch/schemas.ts:27:13
+-       .min(1, 'Enter a scheduled visit.')
++       .min(1, "")
+Ran all tests for this mutant.
+[Survived] StringLiteral
+src/features/technician-dispatch/schemas.ts:28:66
+-       .refine((value) => !Number.isNaN(new Date(value).getTime()), 'Enter a valid scheduled visit.'),
++       .refine((value) => !Number.isNaN(new Date(value).getTime()), ""),
+Ran all tests for this mutant.
+[NoCoverage] ObjectLiteral
+src/lib/validations/auth.ts:3:37
+-   export const loginSchema = z.object({
+-     email: z.string().email('Please enter a valid email address'),
+-     password: z.string().min(1, 'Password is required'),
+-   })
++   export const loginSchema = z.object({})
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:4:27
+-     email: z.string().email('Please enter a valid email address'),
++     email: z.string().email(""),
+[NoCoverage] MethodExpression
+src/lib/validations/auth.ts:5:13
+-     password: z.string().min(1, 'Password is required'),
++     password: z.string().max(1, 'Password is required'),
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:5:31
+-     password: z.string().min(1, 'Password is required'),
++     password: z.string().min(1, ""),
+[NoCoverage] ObjectLiteral
+src/lib/validations/auth.ts:9:11
+-     .object({
+-       displayName: z
+-         .string()
+-         .min(2, 'Name must be at least 2 characters')
+-         .max(50, 'Name must be less than 50 characters'),
+-       email: z.string().email('Please enter a valid email address'),
+-       password: z
+-         .string()
+-         .min(8, 'Password must be at least 8 characters')
+-         .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
+-         .regex(/[0-9]/, 'Password must contain at least one number'),
+-       confirmPassword: z.string(),
+-     })
++     .object({})
+[NoCoverage] MethodExpression
+src/lib/validations/auth.ts:10:18
+-       displayName: z
+-         .string()
+-         .min(2, 'Name must be at least 2 characters')
+-         .max(50, 'Name must be less than 50 characters'),
++       displayName: z.string().min(2, 'Name must be at least 2 characters').min(50, 'Name must be less than 50 characters'),
+[NoCoverage] MethodExpression
+src/lib/validations/auth.ts:10:18
+-       displayName: z
+-         .string()
+-         .min(2, 'Name must be at least 2 characters')
++       displayName: z.string().max(2, 'Name must be at least 2 characters')
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:12:15
+-         .min(2, 'Name must be at least 2 characters')
++         .min(2, "")
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:13:16
+-         .max(50, 'Name must be less than 50 characters'),
++         .max(50, ""),
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:14:29
+-       email: z.string().email('Please enter a valid email address'),
++       email: z.string().email(""),
+[NoCoverage] MethodExpression
+src/lib/validations/auth.ts:15:15
+-       password: z
+-         .string()
+-         .min(8, 'Password must be at least 8 characters')
++       password: z.string().max(8, 'Password must be at least 8 characters')
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:17:15
+-         .min(8, 'Password must be at least 8 characters')
++         .min(8, "")
+[NoCoverage] Regex
+src/lib/validations/auth.ts:18:14
+-         .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
++         .regex(/[^A-Z]/, 'Password must contain at least one uppercase letter')
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:18:23
+-         .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
++         .regex(/[A-Z]/, "")
+[NoCoverage] Regex
+src/lib/validations/auth.ts:19:14
+-         .regex(/[0-9]/, 'Password must contain at least one number'),
++         .regex(/[^0-9]/, 'Password must contain at least one number'),
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:19:23
+-         .regex(/[0-9]/, 'Password must contain at least one number'),
++         .regex(/[0-9]/, ""),
+[NoCoverage] ArrowFunction
+src/lib/validations/auth.ts:22:11
+-     .refine((data) => data.password === data.confirmPassword, {
++     .refine(() => undefined, {
+[NoCoverage] ConditionalExpression
+src/lib/validations/auth.ts:22:21
+-     .refine((data) => data.password === data.confirmPassword, {
++     .refine((data) => true, {
+[NoCoverage] ConditionalExpression
+src/lib/validations/auth.ts:22:21
+-     .refine((data) => data.password === data.confirmPassword, {
++     .refine((data) => false, {
+[NoCoverage] EqualityOperator
+src/lib/validations/auth.ts:22:21
+-     .refine((data) => data.password === data.confirmPassword, {
++     .refine((data) => data.password !== data.confirmPassword, {
+[NoCoverage] ObjectLiteral
+src/lib/validations/auth.ts:22:61
+-     .refine((data) => data.password === data.confirmPassword, {
+-       message: 'Passwords do not match',
+-       path: ['confirmPassword'],
+-     })
++     .refine((data) => data.password === data.confirmPassword, {})
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:23:14
+-       message: 'Passwords do not match',
++       message: "",
+[NoCoverage] ArrayDeclaration
+src/lib/validations/auth.ts:24:11
+-       path: ['confirmPassword'],
++       path: [],
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:24:12
+-       path: ['confirmPassword'],
++       path: [""],
+[NoCoverage] ObjectLiteral
+src/lib/validations/auth.ts:27:45
+-   export const resetPasswordSchema = z.object({
+-     email: z.string().email('Please enter a valid email address'),
+-   })
++   export const resetPasswordSchema = z.object({})
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:28:27
+-     email: z.string().email('Please enter a valid email address'),
++     email: z.string().email(""),
+[NoCoverage] ObjectLiteral
+src/lib/validations/auth.ts:32:11
+-     .object({
+-       displayName: z
+-         .string()
+-         .min(2, 'Name must be at least 2 characters')
+-         .max(50, 'Name must be less than 50 characters'),
+-       email: z.string().email('Please enter a valid email address'),
+-       password: z
+-         .string()
+-         .min(8, 'Password must be at least 8 characters')
+-         .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
+-         .regex(/[0-9]/, 'Password must contain at least one number'),
+-       confirmPassword: z.string(),
+-     })
++     .object({})
+[NoCoverage] MethodExpression
+src/lib/validations/auth.ts:33:18
+-       displayName: z
+-         .string()
+-         .min(2, 'Name must be at least 2 characters')
+-         .max(50, 'Name must be less than 50 characters'),
++       displayName: z.string().min(2, 'Name must be at least 2 characters').min(50, 'Name must be less than 50 characters'),
+[NoCoverage] MethodExpression
+src/lib/validations/auth.ts:33:18
+-       displayName: z
+-         .string()
+-         .min(2, 'Name must be at least 2 characters')
++       displayName: z.string().max(2, 'Name must be at least 2 characters')
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:35:15
+-         .min(2, 'Name must be at least 2 characters')
++         .min(2, "")
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:36:16
+-         .max(50, 'Name must be less than 50 characters'),
++         .max(50, ""),
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:37:29
+-       email: z.string().email('Please enter a valid email address'),
++       email: z.string().email(""),
+[NoCoverage] MethodExpression
+src/lib/validations/auth.ts:38:15
+-       password: z
+-         .string()
+-         .min(8, 'Password must be at least 8 characters')
++       password: z.string().max(8, 'Password must be at least 8 characters')
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:40:15
+-         .min(8, 'Password must be at least 8 characters')
++         .min(8, "")
+[NoCoverage] Regex
+src/lib/validations/auth.ts:41:14
+-         .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
++         .regex(/[^A-Z]/, 'Password must contain at least one uppercase letter')
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:41:23
+-         .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
++         .regex(/[A-Z]/, "")
+[NoCoverage] Regex
+src/lib/validations/auth.ts:42:14
+-         .regex(/[0-9]/, 'Password must contain at least one number'),
++         .regex(/[^0-9]/, 'Password must contain at least one number'),
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:42:23
+-         .regex(/[0-9]/, 'Password must contain at least one number'),
++         .regex(/[0-9]/, ""),
+[NoCoverage] ArrowFunction
+src/lib/validations/auth.ts:45:11
+-     .refine((data) => data.password === data.confirmPassword, {
++     .refine(() => undefined, {
+[NoCoverage] ConditionalExpression
+src/lib/validations/auth.ts:45:21
+-     .refine((data) => data.password === data.confirmPassword, {
++     .refine((data) => true, {
+[NoCoverage] ConditionalExpression
+src/lib/validations/auth.ts:45:21
+-     .refine((data) => data.password === data.confirmPassword, {
++     .refine((data) => false, {
+[NoCoverage] EqualityOperator
+src/lib/validations/auth.ts:45:21
+-     .refine((data) => data.password === data.confirmPassword, {
++     .refine((data) => data.password !== data.confirmPassword, {
+[NoCoverage] ObjectLiteral
+src/lib/validations/auth.ts:45:61
+-     .refine((data) => data.password === data.confirmPassword, {
+-       message: 'Passwords do not match',
+-       path: ['confirmPassword'],
+-     })
++     .refine((data) => data.password === data.confirmPassword, {})
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:46:14
+-       message: 'Passwords do not match',
++       message: "",
+[NoCoverage] ArrayDeclaration
+src/lib/validations/auth.ts:47:11
+-       path: ['confirmPassword'],
++       path: [],
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:47:12
+-       path: ['confirmPassword'],
++       path: [""],
+[NoCoverage] MethodExpression
+src/lib/validations/common.ts:3:25
+-   export const idSchema = z.string().min(1, 'ID is required')
++   export const idSchema = z.string().max(1, 'ID is required')
+[NoCoverage] StringLiteral
+src/lib/validations/common.ts:3:43
+-   export const idSchema = z.string().min(1, 'ID is required')
++   export const idSchema = z.string().min(1, "")
+[NoCoverage] ObjectLiteral
+src/lib/validations/common.ts:5:42
+-   export const paginationSchema = z.object({
+-     page: z.coerce.number().int().positive().default(1),
+-     limit: z.coerce.number().int().positive().max(100).default(20),
+-   })
++   export const paginationSchema = z.object({})
+[NoCoverage] MethodExpression
+src/lib/validations/common.ts:7:10
+-     limit: z.coerce.number().int().positive().max(100).default(20),
++     limit: z.coerce.number().int().positive().min(100).default(20),
+Ran 7.00 tests per mutant on average.
+------------------------|------------------|----------|-----------|------------|----------|----------|
+                        | % Mutation score |          |           |            |          |          |
+File                    |  total | covered | # killed | # timeout | # survived | # no cov | # errors |
+------------------------|--------|---------|----------|-----------|------------|----------|----------|
+All files               |  53.03 |   69.31 |      210 |         0 |         93 |       93 |        0 |
+ actions                |   0.00 |    0.00 |        0 |         0 |          0 |       23 |        0 |
+  auth.actions.ts       |   0.00 |    0.00 |        0 |         0 |          0 |       23 |        0 |
+ features               |  65.02 |   69.31 |      210 |         0 |         93 |       20 |        0 |
+  technician-dispatch   |  65.02 |   69.31 |      210 |         0 |         93 |       20 |        0 |
+   actions              |  86.36 |   95.00 |       95 |         0 |          5 |       10 |        0 |
+    dispatch.actions.ts |  86.36 |   95.00 |       95 |         0 |          5 |       10 |        0 |
+   components           |  55.71 |   59.09 |       78 |         0 |         54 |        8 |        0 |
+    DispatchFlow.tsx    |  55.71 |   59.09 |       78 |         0 |         54 |        8 |        0 |
+   catalog.ts           |   0.00 |    0.00 |        0 |         0 |         14 |        0 |        0 |
+   matching.ts          |  79.31 |   85.19 |       23 |         0 |          4 |        2 |        0 |
+   schemas.ts           |  46.67 |   46.67 |       14 |         0 |         16 |        0 |        0 |
+ lib                    |   0.00 |    0.00 |        0 |         0 |          0 |       50 |        0 |
+  validations           |   0.00 |    0.00 |        0 |         0 |          0 |       50 |        0 |
+   auth.ts              |   0.00 |    0.00 |        0 |         0 |          0 |       46 |        0 |
+   common.ts            |   0.00 |    0.00 |        0 |         0 |          0 |        4 |        0 |
+------------------------|--------|---------|----------|-----------|------------|----------|----------|
+10:52:27 (6714) INFO MutationTestReportHelper Final mutation score of 53.03 is greater than or equal to break threshold 0
+10:52:27 (6714) INFO JsonReporter Your report can be found at: file:///tmp/claude-0/-home-claude/a5537b04-ab69-5f89-8629-d930cdf9e9d4/scratchpad/review/zafir/frontend/reports/mutation/frontend.json
+10:52:27 (6714) INFO HtmlReporter Your report can be found at: file:///tmp/claude-0/-home-claude/a5537b04-ab69-5f89-8629-d930cdf9e9d4/scratchpad/review/zafir/frontend/reports/mutation/frontend.html
+10:52:27 (6714) INFO MutationTestExecutor Done in 7 minutes and 46 seconds.
+10:52:27 (6714) INFO Sandbox Resetting your original files from .stryker-tmp/backup-qiLhXE.
+=== zafir end 2026-10-19T23:52:27Z exit 0
