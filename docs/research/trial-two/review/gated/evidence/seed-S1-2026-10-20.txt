@@ -1,0 +1,20 @@
+Seed S1, lane C, 20 Oct 2026. Fresh clone at 40c65f5. Change: in src/features/technician-dispatch/actions/dispatch.actions.ts, the owner check before scheduling is removed (any signed-in user can schedule any request). Then: npx vitest run
+
+diff --git a/frontend/src/features/technician-dispatch/actions/dispatch.actions.ts b/frontend/src/features/technician-dispatch/actions/dispatch.actions.ts
+index c449cf3..daaa8b4 100644
+--- a/frontend/src/features/technician-dispatch/actions/dispatch.actions.ts
++++ b/frontend/src/features/technician-dispatch/actions/dispatch.actions.ts
+@@ -96,7 +96,7 @@ export async function scheduleDispatch(
+           ? (snapshot.data() as StoredDispatchRequest | undefined)
+           : undefined
+ 
+-        if (!request || request.ownerId !== session.uid) {
++        if (!request) { // SEED S1: ownership check removed
+           return { success: false, error: 'Dispatch request not found.' }
+         }
+ 
+
+     × rejects a cross-owner scheduling attempt without revealing the request 8ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+ Test Files  1 failed | 4 passed (5)
+      Tests  1 failed | 41 passed (42)

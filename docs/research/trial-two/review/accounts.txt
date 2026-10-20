@@ -1,0 +1,6 @@
+Reviewer test accounts, created 20 Oct 2026 10:25 to 10:28 AEDT, protocol section 3e. Synthetic names; mailbox is the reviewer's, plus-addressed. Same password on all four.
+Lane A (9ahmedfr): no accounts; the build has no sign-in.
+Lane B (Chirag123213/nbn-run2-copy-paste-1): Requester A drfleetles1+t2-b-a@gmail.com, Requester B drfleetles1+t2-b-b@gmail.com
+Lane C (Peepachuu/nbn-run2-gated): Requester A drfleetles1+t2-c-a@gmail.com, Requester B drfleetles1+t2-c-b@gmail.com
+Password: redacted for the public repo; held locally in reviewer-account-password.txt (gitignored).
+Note: a first attempt with zac-review-a@example.com on lane B created an unverifiable account (sign-up succeeded, sign-in blocked by email verification). Unused.

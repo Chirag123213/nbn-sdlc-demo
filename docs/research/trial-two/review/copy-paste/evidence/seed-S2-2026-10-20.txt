@@ -1,0 +1,32 @@
+Seed S2, lane B, 20 Oct 2026. Fresh clone at ed173dc. Change: in src/features/technician-dispatch/matching.ts, getMatchingEquipment returns the first acceptable combination for every technician (access check always passes). Then: npx vitest run
+
+diff --git a/frontend/src/features/technician-dispatch/matching.ts b/frontend/src/features/technician-dispatch/matching.ts
+index 86498dc..1a969d0 100644
+--- a/frontend/src/features/technician-dispatch/matching.ts
++++ b/frontend/src/features/technician-dispatch/matching.ts
+@@ -8,13 +8,8 @@ export function getMatchingEquipment(
+   technician: TechnicianFixture,
+   accessRequirement: AccessRequirementFixture
+ ): string[] | null {
+-  for (const acceptableCombination of accessRequirement.satisfiedBy) {
+-    if (acceptableCombination.every((item) => technician.equipment.includes(item))) {
+-      return acceptableCombination
+-    }
+-  }
+-
+-  return null
++  // SEED S2: access check always passes
++  return accessRequirement.satisfiedBy[0] ?? []
+ }
+ 
+ export function findCompatibleTechnicians(
+
+     × creates a request, presents only valid matches and records a scheduled dispatch 447ms
+     × shows a no-match message instead of an incompatible combination 372ms
+     × rejects a second-storey technician without ladder or elevated work platform access 6ms
+     × accepts a second-storey technician with compatible fault and equipment 2ms
+     × rejects pit jobs when the fault-compatible technician lacks pit access 2ms
+     × does not invent a match when no fixture combination satisfies both requirements 1ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+ Test Files  2 failed | 1 passed (3)
+      Tests  6 failed | 8 passed (14)

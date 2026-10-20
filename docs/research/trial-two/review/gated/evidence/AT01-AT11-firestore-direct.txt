@@ -1,0 +1,15 @@
+Lane C direct Firestore access, 20 Oct 2026 11:05 AEDT, from the preview page context.
+Firestore REST v1, project nbn-run2, ID tokens from identitytoolkit signInWithPassword with the bundle's public apiKey.
+A uid=g78m2HvMoQakK8qWTcLpIJlAfj93  B uid=ldGpTpudfZZZtc9LXMWZ2Pbu4tC2
+AT01 B reads A J1 -> 403 PERMISSION_DENIED: Missing or insufficient permissions.
+AT01b B lists dispatchRequests -> 403 PERMISSION_DENIED
+AT02 B creates request owned by A -> 403 PERMISSION_DENIED
+AT03 A changes owner of J1 to B -> 403 PERMISSION_DENIED
+AT04 A writes T4 onto J1 directly -> 403 PERMISSION_DENIED
+AT07 A sets invalid status -> 403 PERMISSION_DENIED
+AT09 A hard-deletes J1 -> 403 PERMISSION_DENIED
+AT11 A reads undefined collection -> 403 PERMISSION_DENIED
+AT11 A writes undefined collection -> 403 PERMISSION_DENIED
+AT12 unauthenticated read J1 -> 403 PERMISSION_DENIED
+A reads own J1 -> 403 PERMISSION_DENIED (no client read path exists; by design, PR body "default-denied browser access")
+A reads own users doc -> 403 PERMISSION_DENIED (base behaviour, not the feature; not pursued)

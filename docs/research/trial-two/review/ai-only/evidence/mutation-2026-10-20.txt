@@ -1,0 +1,1877 @@
+=== ahmed start 2026-10-19T23:28:01Z at f1611e0
+
+ RUN  v4.1.11 /tmp/claude-0/-home-claude/a5537b04-ab69-5f89-8629-d930cdf9e9d4/scratchpad/review/ahmed/frontend
+
+
+ Test Files  9 passed (9)
+      Tests  51 passed (51)
+   Start at  10:28:02
+   Duration  10.79s (transform 325ms, setup 1.14s, import 1.05s, tests 3.38s, environment 3.75s)
+
+--- stryker
+10:28:14 (5262) INFO ProjectReader Found 8 of 66 file(s) to be mutated.
+10:28:14 (5262) INFO Instrumenter Instrumented 8 source file(s) with 371 mutant(s)
+10:28:14 (5262) INFO ConcurrencyTokenProvider Creating 2 test runner process(es).
+10:28:15 (5262) INFO Sandbox In place mode is enabled, Stryker will be overriding YOUR files. Find your backup at: .stryker-tmp/backup-NfWyZl
+10:28:16 (5262) INFO DryRunExecutor Starting initial test run (vitest test runner with "perTest" coverage analysis). This may take a while.
+10:28:29 (5262) INFO DryRunExecutor Initial test run succeeded. Ran 68 tests in 13 seconds (net 4352.165136999996 ms, overhead 9059.834863000004 ms).
+10:42:05 (5262) WARN MutationTestReportHelper Test file "/tmp/claude-0/-home-claude/a5537b04-ab69-5f89-8629-d930cdf9e9d4/scratchpad/review/ahmed/frontend/.stryker-tmp/sandbox-StGOsV/tests/unit/features/technician-dispatch/TechnicianDispatchFlow.test.tsx" not found in input files, but did receive test result for it. This shouldn't happen.
+10:42:05 (5262) WARN MutationTestReportHelper Test file "/tmp/claude-0/-home-claude/a5537b04-ab69-5f89-8629-d930cdf9e9d4/scratchpad/review/ahmed/frontend/.stryker-tmp/sandbox-1FyNjz/tests/unit/features/technician-dispatch/TechnicianDispatchFlow.test.tsx" not found in input files, but did receive test result for it. This shouldn't happen.
+10:42:05 (5262) WARN MutationTestReportHelper Test file "/tmp/claude-0/-home-claude/a5537b04-ab69-5f89-8629-d930cdf9e9d4/scratchpad/review/ahmed/frontend/.stryker-tmp/backup-NfWyZl/tests/unit/features/technician-dispatch/TechnicianDispatchFlow.test.tsx" not found in input files, but did receive test result for it. This shouldn't happen.
+10:42:05 (5262) WARN MutationTestReportHelper Test file "/tmp/claude-0/-home-claude/a5537b04-ab69-5f89-8629-d930cdf9e9d4/scratchpad/review/ahmed/frontend/.stryker-tmp/backup-NfWyZl/tests/unit/features/technician-dispatch/matching.test.ts" not found in input files, but did receive test result for it. This shouldn't happen.
+10:42:05 (5262) WARN MutationTestReportHelper Test file "/tmp/claude-0/-home-claude/a5537b04-ab69-5f89-8629-d930cdf9e9d4/scratchpad/review/ahmed/frontend/.stryker-tmp/sandbox-1FyNjz/tests/unit/lib/utils.test.ts" not found in input files, but did receive test result for it. This shouldn't happen.
+10:42:05 (5262) WARN MutationTestReportHelper Test file "/tmp/claude-0/-home-claude/a5537b04-ab69-5f89-8629-d930cdf9e9d4/scratchpad/review/ahmed/frontend/.stryker-tmp/sandbox-StGOsV/tests/unit/lib/utils.test.ts" not found in input files, but did receive test result for it. This shouldn't happen.
+10:42:05 (5262) WARN MutationTestReportHelper Test file "/tmp/claude-0/-home-claude/a5537b04-ab69-5f89-8629-d930cdf9e9d4/scratchpad/review/ahmed/frontend/.stryker-tmp/sandbox-StGOsV/tests/unit/features/technician-dispatch/matching.test.ts" not found in input files, but did receive test result for it. This shouldn't happen.
+10:42:05 (5262) WARN MutationTestReportHelper Test file "/tmp/claude-0/-home-claude/a5537b04-ab69-5f89-8629-d930cdf9e9d4/scratchpad/review/ahmed/frontend/.stryker-tmp/sandbox-1FyNjz/tests/unit/features/technician-dispatch/matching.test.ts" not found in input files, but did receive test result for it. This shouldn't happen.
+10:42:05 (5262) WARN MutationTestReportHelper Test file "/tmp/claude-0/-home-claude/a5537b04-ab69-5f89-8629-d930cdf9e9d4/scratchpad/review/ahmed/frontend/.stryker-tmp/backup-NfWyZl/tests/unit/lib/utils.test.ts" not found in input files, but did receive test result for it. This shouldn't happen.
+All tests
+  .stryker-tmp
+    backup-NfWyZl/tests/unit
+      features/technician-dispatch
+        matching.test.ts
+          ~ findTechnicianMatches requires fault suitability as well as equipment compatibility (covered 22)
+          ~ findTechnicianMatches rejects a second-storey technician without a ladder or elevated work platform (covered 22)
+          ~ findTechnicianMatches accepts either supported second-storey capability (covered 22)
+          ~ findTechnicianMatches rejects a pit job without pit-access capability (covered 22)
+          ~ findTechnicianMatches does not invent a valid combination when none satisfies the whole job (covered 22)
+          ~ findTechnicianMatches allows a fault-compatible technician when no special access equipment is required (covered 21)
+        TechnicianDispatchFlow.test.tsx
+          ✓ TechnicianDispatchFlow validates all required request details (killed 5)
+          ✓ TechnicianDispatchFlow shows text and icons for match requirements and compatibility results (killed 13)
+          ~ TechnicianDispatchFlow does not offer an incompatible pit-job selection (covered 200)
+          ✓ TechnicianDispatchFlow schedules and records a compatible dispatch (killed 17)
+          ~ TechnicianDispatchFlow supports keyboard submission and technician selection (covered 240)
+      lib/utils.test.ts
+        ✘ cn merges class names (covered 0)
+        ✘ cn resolves tailwind conflicts (last wins) (covered 0)
+        ✘ cn handles conditional classes (covered 0)
+        ✘ truncate returns string unchanged when shorter than limit (covered 0)
+        ✘ truncate truncates and appends ellipsis when over limit (covered 0)
+        ✘ truncate returns full string when exactly at limit (covered 0)
+    sandbox-1FyNjz/tests/unit
+      features/technician-dispatch
+        matching.test.ts
+          ~ findTechnicianMatches requires fault suitability as well as equipment compatibility (covered 22)
+          ~ findTechnicianMatches rejects a second-storey technician without a ladder or elevated work platform (covered 22)
+          ~ findTechnicianMatches accepts either supported second-storey capability (covered 22)
+          ~ findTechnicianMatches rejects a pit job without pit-access capability (covered 22)
+          ~ findTechnicianMatches does not invent a valid combination when none satisfies the whole job (covered 22)
+          ~ findTechnicianMatches allows a fault-compatible technician when no special access equipment is required (covered 21)
+        TechnicianDispatchFlow.test.tsx
+          ✓ TechnicianDispatchFlow validates all required request details (killed 6)
+          ✓ TechnicianDispatchFlow shows text and icons for match requirements and compatibility results (killed 9)
+          ~ TechnicianDispatchFlow does not offer an incompatible pit-job selection (covered 200)
+          ✓ TechnicianDispatchFlow schedules and records a compatible dispatch (killed 8)
+          ✓ TechnicianDispatchFlow supports keyboard submission and technician selection (killed 3)
+      lib/utils.test.ts
+        ✘ cn merges class names (covered 0)
+        ✘ cn resolves tailwind conflicts (last wins) (covered 0)
+        ✘ cn handles conditional classes (covered 0)
+        ✘ truncate returns string unchanged when shorter than limit (covered 0)
+        ✘ truncate truncates and appends ellipsis when over limit (covered 0)
+        ✘ truncate returns full string when exactly at limit (covered 0)
+    sandbox-StGOsV/tests/unit
+      features/technician-dispatch
+        matching.test.ts
+          ~ findTechnicianMatches requires fault suitability as well as equipment compatibility (covered 22)
+          ~ findTechnicianMatches rejects a second-storey technician without a ladder or elevated work platform (covered 22)
+          ~ findTechnicianMatches accepts either supported second-storey capability (covered 22)
+          ~ findTechnicianMatches rejects a pit job without pit-access capability (covered 22)
+          ~ findTechnicianMatches does not invent a valid combination when none satisfies the whole job (covered 22)
+          ~ findTechnicianMatches allows a fault-compatible technician when no special access equipment is required (covered 21)
+        TechnicianDispatchFlow.test.tsx
+          ✓ TechnicianDispatchFlow validates all required request details (killed 6)
+          ✓ TechnicianDispatchFlow shows text and icons for match requirements and compatibility results (killed 20)
+          ~ TechnicianDispatchFlow does not offer an incompatible pit-job selection (covered 200)
+          ✓ TechnicianDispatchFlow schedules and records a compatible dispatch (killed 6)
+          ~ TechnicianDispatchFlow supports keyboard submission and technician selection (covered 240)
+      lib/utils.test.ts
+        ✘ cn merges class names (covered 0)
+        ✘ cn resolves tailwind conflicts (last wins) (covered 0)
+        ✘ cn handles conditional classes (covered 0)
+        ✘ truncate returns string unchanged when shorter than limit (covered 0)
+        ✘ truncate truncates and appends ellipsis when over limit (covered 0)
+        ✘ truncate returns full string when exactly at limit (covered 0)
+  tests/unit
+    features/technician-dispatch
+      matching.test.ts
+        ✓ findTechnicianMatches requires fault suitability as well as equipment compatibility (killed 1)
+        ~ findTechnicianMatches rejects a second-storey technician without a ladder or elevated work platform (covered 22)
+        ~ findTechnicianMatches accepts either supported second-storey capability (covered 22)
+        ~ findTechnicianMatches rejects a pit job without pit-access capability (covered 22)
+        ~ findTechnicianMatches does not invent a valid combination when none satisfies the whole job (covered 22)
+        ✓ findTechnicianMatches allows a fault-compatible technician when no special access equipment is required (killed 1)
+      TechnicianDispatchFlow.test.tsx
+        ✓ TechnicianDispatchFlow validates all required request details (killed 22)
+        ✓ TechnicianDispatchFlow shows text and icons for match requirements and compatibility results (killed 17)
+        ~ TechnicianDispatchFlow does not offer an incompatible pit-job selection (covered 200)
+        ✓ TechnicianDispatchFlow schedules and records a compatible dispatch (killed 20)
+        ✓ TechnicianDispatchFlow supports keyboard submission and technician selection (killed 1)
+    lib/utils.test.ts
+      ✘ cn merges class names (covered 0)
+      ✘ cn resolves tailwind conflicts (last wins) (covered 0)
+      ✘ cn handles conditional classes (covered 0)
+      ✘ truncate returns string unchanged when shorter than limit (covered 0)
+      ✘ truncate truncates and appends ellipsis when over limit (covered 0)
+      ✘ truncate returns full string when exactly at limit (covered 0)
+[NoCoverage] StringLiteral
+src/actions/auth.actions.ts:8:29
+-   const SESSION_COOKIE_NAME = '__session'
++   const SESSION_COOKIE_NAME = ""
+[NoCoverage] BlockStatement
+src/actions/auth.actions.ts:14:42
+-   export async function getServerSession() {
+-     const cookieStore = await cookies()
+-     const sessionCookie = cookieStore.get(SESSION_COOKIE_NAME)?.value
+-     if (!sessionCookie) return null
+-     try {
+-       const decoded = await adminAuth.verifySessionCookie(sessionCookie, true)
+-       return decoded
+-     } catch {
+-       return null
+-     }
+-   }
++   export async function getServerSession() {}
+[NoCoverage] OptionalChaining
+src/actions/auth.actions.ts:16:25
+-     const sessionCookie = cookieStore.get(SESSION_COOKIE_NAME)?.value
++     const sessionCookie = cookieStore.get(SESSION_COOKIE_NAME).value
+[NoCoverage] BooleanLiteral
+src/actions/auth.actions.ts:18:7
+-     if (!sessionCookie) return null
++     if (sessionCookie) return null
+[NoCoverage] ConditionalExpression
+src/actions/auth.actions.ts:18:7
+-     if (!sessionCookie) return null
++     if (true) return null
+[NoCoverage] ConditionalExpression
+src/actions/auth.actions.ts:18:7
+-     if (!sessionCookie) return null
++     if (false) return null
+[NoCoverage] BlockStatement
+src/actions/auth.actions.ts:20:7
+-     try {
+-       const decoded = await adminAuth.verifySessionCookie(sessionCookie, true)
+-       return decoded
+-     } catch {
++     try {} catch {
+[NoCoverage] BooleanLiteral
+src/actions/auth.actions.ts:21:72
+-       const decoded = await adminAuth.verifySessionCookie(sessionCookie, true)
++       const decoded = await adminAuth.verifySessionCookie(sessionCookie, false)
+[NoCoverage] BlockStatement
+src/actions/auth.actions.ts:23:11
+-     } catch {
+-       return null
+-     }
++     } catch {}
+[NoCoverage] BlockStatement
+src/actions/auth.actions.ts:32:37
+-   export async function requireAuth() {
+-     const session = await getServerSession()
+-     if (!session) {
+-       redirect('/auth/signin')
+-     }
+-     return session
+-   }
++   export async function requireAuth() {}
+[NoCoverage] BooleanLiteral
+src/actions/auth.actions.ts:34:7
+-     if (!session) {
++     if (session) {
+[NoCoverage] ConditionalExpression
+src/actions/auth.actions.ts:34:7
+-     if (!session) {
++     if (true) {
+[NoCoverage] ConditionalExpression
+src/actions/auth.actions.ts:34:7
+-     if (!session) {
++     if (false) {
+[NoCoverage] BlockStatement
+src/actions/auth.actions.ts:34:17
+-     if (!session) {
+-       redirect('/auth/signin')
+-     }
++     if (!session) {}
+[NoCoverage] StringLiteral
+src/actions/auth.actions.ts:35:14
+-       redirect('/auth/signin')
++       redirect("")
+[NoCoverage] BlockStatement
+src/actions/auth.actions.ts:43:62
+-   export async function serverSignOut(): Promise<ActionResult> {
+-     try {
+-       const cookieStore = await cookies()
+-       cookieStore.delete(SESSION_COOKIE_NAME)
+-       return { success: true }
+-     } catch {
+-       return { success: false, error: 'Failed to sign out' }
+-     }
+-   }
++   export async function serverSignOut(): Promise<ActionResult> {}
+[NoCoverage] BlockStatement
+src/actions/auth.actions.ts:44:7
+-     try {
+-       const cookieStore = await cookies()
+-       cookieStore.delete(SESSION_COOKIE_NAME)
+-       return { success: true }
+-     } catch {
++     try {} catch {
+[NoCoverage] ObjectLiteral
+src/actions/auth.actions.ts:47:12
+-       return { success: true }
++       return {}
+[NoCoverage] BooleanLiteral
+src/actions/auth.actions.ts:47:23
+-       return { success: true }
++       return { success: false }
+[NoCoverage] BlockStatement
+src/actions/auth.actions.ts:48:11
+-     } catch {
+-       return { success: false, error: 'Failed to sign out' }
+-     }
++     } catch {}
+[NoCoverage] ObjectLiteral
+src/actions/auth.actions.ts:49:12
+-       return { success: false, error: 'Failed to sign out' }
++       return {}
+[NoCoverage] BooleanLiteral
+src/actions/auth.actions.ts:49:23
+-       return { success: false, error: 'Failed to sign out' }
++       return { success: true, error: 'Failed to sign out' }
+[NoCoverage] StringLiteral
+src/actions/auth.actions.ts:49:37
+-       return { success: false, error: 'Failed to sign out' }
++       return { success: false, error: "" }
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:198:29
+-         option.length === 0 ? 'No special equipment' : option.map(formatEquipmentName).join(' + ')
++         option.length === 0 ? "" : option.map(formatEquipmentName).join(' + ')
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:390:77
+-                   {matches.filter((match) => match.valid).length === 1 ? '' : 's'} found.
++                   {matches.filter((match) => match.valid).length === 1 ? '' : ""} found.
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:444:29
+-                             : 'No special equipment needed'
++                             : ""
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:466:38
+-                 onClick={() => setStep('request')}
++                 onClick={() => setStep("")}
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:506:25
+-                         : 'No special equipment required'}
++                         : ""}
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:530:63
+-                       scheduleForm.formState.errors.visitDate ? 'visit-date-error' : undefined
++                       scheduleForm.formState.errors.visitDate ? "" : undefined
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:572:42
+-                     onClick={() => setStep('match')}
++                     onClick={() => setStep("")}
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:634:27
+-                           : 'No special equipment required'
++                           : ""
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:46:19
+-     const current = step === 'request' ? 1 : step === 'match' ? 2 : 3
++     const current = true ? 1 : step === 'match' ? 2 : 3
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+  and 17 more tests!
+[Survived] BlockStatement
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:45:48
+-   function StepTracker({ step }: { step: Step }) {
+-     const current = step === 'request' ? 1 : step === 'match' ? 2 : 3
+-     const labels = ['Request details', 'Technician match', 'Schedule visit']
+-     return (
+-       <nav aria-label="Dispatch progress" className="border-b border-slate-200 bg-white">
+-         <ol className="mx-auto grid max-w-5xl grid-cols-3 px-4 sm:px-6">
+-           {labels.map((label, index) => {
+-             const number = index + 1
+-             const completed = number < current || step === 'complete'
+-             const active = number === current && step !== 'complete'
+-             return (
+-               <li
+-                 key={label}
+-                 aria-current={active ? 'step' : undefined}
+-                 className={`flex items-center gap-2 border-b-4 px-1 py-4 text-xs font-semibold sm:text-sm ${
+-                   active
+-                     ? 'border-blue-800 text-blue-900'
+-                     : completed
+-                       ? 'border-emerald-600 text-emerald-800'
+-                       : 'border-transparent text-slate-500'
+-                 }`}
+-               >
+-                 <span
+-                   className={`flex size-6 shrink-0 items-center justify-center rounded-full border text-xs ${
+-                     completed
+-                       ? 'border-emerald-600 bg-emerald-600 text-white'
+-                       : active
+-                         ? 'border-blue-800 bg-blue-50 text-blue-900'
+-                         : 'border-slate-300 bg-white'
+-                   }`}
+-                   aria-hidden="true"
+-                 >
+-                   {completed ? <Check className="size-4" /> : number}
+-                 </span>
+-                 <span>{label}</span>
+-                 <span className="sr-only">
+-                   {completed ? 'completed' : active ? 'current' : 'upcoming'}
+-                 </span>
+-               </li>
+-             )
+-           })}
+-         </ol>
+-       </nav>
+-     )
+-   }
++   function StepTracker({ step }: { step: Step }) {}
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+  and 17 more tests!
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:46:19
+-     const current = step === 'request' ? 1 : step === 'match' ? 2 : 3
++     const current = false ? 1 : step === 'match' ? 2 : 3
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+  and 17 more tests!
+[Survived] EqualityOperator
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:46:19
+-     const current = step === 'request' ? 1 : step === 'match' ? 2 : 3
++     const current = step !== 'request' ? 1 : step === 'match' ? 2 : 3
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+  and 17 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:46:28
+-     const current = step === 'request' ? 1 : step === 'match' ? 2 : 3
++     const current = step === "" ? 1 : step === 'match' ? 2 : 3
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+  and 17 more tests!
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:46:44
+-     const current = step === 'request' ? 1 : step === 'match' ? 2 : 3
++     const current = step === 'request' ? 1 : true ? 2 : 3
+Tests ran:
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 13 more tests!
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:46:44
+-     const current = step === 'request' ? 1 : step === 'match' ? 2 : 3
++     const current = step === 'request' ? 1 : false ? 2 : 3
+Tests ran:
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 13 more tests!
+[Survived] EqualityOperator
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:46:44
+-     const current = step === 'request' ? 1 : step === 'match' ? 2 : 3
++     const current = step === 'request' ? 1 : step !== 'match' ? 2 : 3
+Tests ran:
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 13 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:46:53
+-     const current = step === 'request' ? 1 : step === 'match' ? 2 : 3
++     const current = step === 'request' ? 1 : step === "" ? 2 : 3
+Tests ran:
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 13 more tests!
+[Survived] ArrayDeclaration
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:47:18
+-     const labels = ['Request details', 'Technician match', 'Schedule visit']
++     const labels = []
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+  and 17 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:47:19
+-     const labels = ['Request details', 'Technician match', 'Schedule visit']
++     const labels = ["", 'Technician match', 'Schedule visit']
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+  and 17 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:47:38
+-     const labels = ['Request details', 'Technician match', 'Schedule visit']
++     const labels = ['Request details', "", 'Schedule visit']
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+  and 17 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:47:58
+-     const labels = ['Request details', 'Technician match', 'Schedule visit']
++     const labels = ['Request details', 'Technician match', ""]
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+  and 17 more tests!
+[Survived] BlockStatement
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:52:39
+-           {labels.map((label, index) => {
+-             const number = index + 1
+-             const completed = number < current || step === 'complete'
+-             const active = number === current && step !== 'complete'
+-             return (
+-               <li
+-                 key={label}
+-                 aria-current={active ? 'step' : undefined}
+-                 className={`flex items-center gap-2 border-b-4 px-1 py-4 text-xs font-semibold sm:text-sm ${
+-                   active
+-                     ? 'border-blue-800 text-blue-900'
+-                     : completed
+-                       ? 'border-emerald-600 text-emerald-800'
+-                       : 'border-transparent text-slate-500'
+-                 }`}
+-               >
+-                 <span
+-                   className={`flex size-6 shrink-0 items-center justify-center rounded-full border text-xs ${
+-                     completed
+-                       ? 'border-emerald-600 bg-emerald-600 text-white'
+-                       : active
+-                         ? 'border-blue-800 bg-blue-50 text-blue-900'
+-                         : 'border-slate-300 bg-white'
+-                   }`}
+-                   aria-hidden="true"
+-                 >
+-                   {completed ? <Check className="size-4" /> : number}
+-                 </span>
+-                 <span>{label}</span>
+-                 <span className="sr-only">
+-                   {completed ? 'completed' : active ? 'current' : 'upcoming'}
+-                 </span>
+-               </li>
+-             )
+-           })}
++           {labels.map((label, index) => {})}
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+  and 17 more tests!
+[Survived] ArithmeticOperator
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:53:26
+-             const number = index + 1
++             const number = index - 1
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+  and 17 more tests!
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:54:29
+-             const completed = number < current || step === 'complete'
++             const completed = true
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+  and 17 more tests!
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:54:29
+-             const completed = number < current || step === 'complete'
++             const completed = false
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+  and 17 more tests!
+[Survived] LogicalOperator
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:54:29
+-             const completed = number < current || step === 'complete'
++             const completed = number < current && step === 'complete'
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+  and 17 more tests!
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:54:29
+-             const completed = number < current || step === 'complete'
++             const completed = false || step === 'complete'
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+  and 17 more tests!
+[Survived] EqualityOperator
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:54:29
+-             const completed = number < current || step === 'complete'
++             const completed = number <= current || step === 'complete'
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+  and 17 more tests!
+[Survived] EqualityOperator
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:54:29
+-             const completed = number < current || step === 'complete'
++             const completed = number >= current || step === 'complete'
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+  and 17 more tests!
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:54:49
+-             const completed = number < current || step === 'complete'
++             const completed = number < current || false
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+  and 17 more tests!
+[Survived] EqualityOperator
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:54:49
+-             const completed = number < current || step === 'complete'
++             const completed = number < current || step !== 'complete'
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+  and 17 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:54:58
+-             const completed = number < current || step === 'complete'
++             const completed = number < current || step === ""
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+  and 17 more tests!
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:55:26
+-             const active = number === current && step !== 'complete'
++             const active = true
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+  and 17 more tests!
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:55:26
+-             const active = number === current && step !== 'complete'
++             const active = false
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+  and 17 more tests!
+[Survived] LogicalOperator
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:55:26
+-             const active = number === current && step !== 'complete'
++             const active = number === current || step !== 'complete'
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+  and 17 more tests!
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:55:26
+-             const active = number === current && step !== 'complete'
++             const active = true && step !== 'complete'
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+  and 17 more tests!
+[Survived] EqualityOperator
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:55:26
+-             const active = number === current && step !== 'complete'
++             const active = number !== current && step !== 'complete'
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+  and 17 more tests!
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:55:48
+-             const active = number === current && step !== 'complete'
++             const active = number === current && true
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+  and 17 more tests!
+[Survived] EqualityOperator
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:55:48
+-             const active = number === current && step !== 'complete'
++             const active = number === current && step === 'complete'
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+  and 17 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:55:57
+-             const active = number === current && step !== 'complete'
++             const active = number === current && step !== ""
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+  and 17 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:60:38
+-                 aria-current={active ? 'step' : undefined}
++                 aria-current={active ? "" : undefined}
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+  and 17 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:61:26
+-                 className={`flex items-center gap-2 border-b-4 px-1 py-4 text-xs font-semibold sm:text-sm ${
+-                   active
+-                     ? 'border-blue-800 text-blue-900'
+-                     : completed
+-                       ? 'border-emerald-600 text-emerald-800'
+-                       : 'border-transparent text-slate-500'
+-                 }`}
++                 className={``}
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+  and 17 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:63:21
+-                     ? 'border-blue-800 text-blue-900'
++                     ? ""
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+  and 17 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:65:23
+-                       ? 'border-emerald-600 text-emerald-800'
++                       ? ""
+Tests ran:
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 13 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:66:23
+-                       : 'border-transparent text-slate-500'
++                       : ""
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+  and 17 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:70:28
+-                   className={`flex size-6 shrink-0 items-center justify-center rounded-full border text-xs ${
+-                     completed
+-                       ? 'border-emerald-600 bg-emerald-600 text-white'
+-                       : active
+-                         ? 'border-blue-800 bg-blue-50 text-blue-900'
+-                         : 'border-slate-300 bg-white'
+-                   }`}
++                   className={``}
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+  and 17 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:72:23
+-                       ? 'border-emerald-600 bg-emerald-600 text-white'
++                       ? ""
+Tests ran:
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 13 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:74:25
+-                         ? 'border-blue-800 bg-blue-50 text-blue-900'
++                         ? ""
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+  and 17 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:75:25
+-                         : 'border-slate-300 bg-white'
++                         : ""
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+  and 17 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:83:30
+-                   {completed ? 'completed' : active ? 'current' : 'upcoming'}
++                   {completed ? "" : active ? 'current' : 'upcoming'}
+Tests ran:
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 13 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:83:53
+-                   {completed ? 'completed' : active ? 'current' : 'upcoming'}
++                   {completed ? 'completed' : active ? "" : 'upcoming'}
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+  and 17 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:83:65
+-                   {completed ? 'completed' : active ? 'current' : 'upcoming'}
++                   {completed ? 'completed' : active ? 'current' : ""}
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+  and 17 more tests!
+[Survived] BlockStatement
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:99:4
+-   }) {
+-     return (
+-       <li className="flex items-start gap-2 text-sm text-slate-700">
+-         {compatible ? (
+-           <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-emerald-700" aria-hidden="true" />
+-         ) : (
+-           <CircleX className="mt-0.5 size-4 shrink-0 text-red-700" aria-hidden="true" />
+-         )}
+-         <span>
+-           <span className="font-semibold">
+-             {compatible ? 'Meets requirement:' : 'Does not meet requirement:'}
+-           </span>{' '}
+-           {children}
+-         </span>
+-       </li>
+-     )
+-   }
++   }) {}
+Tests ran:
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 13 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:109:25
+-             {compatible ? 'Meets requirement:' : 'Does not meet requirement:'}
++             {compatible ? "" : 'Does not meet requirement:'}
+Tests ran:
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 13 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:109:48
+-             {compatible ? 'Meets requirement:' : 'Does not meet requirement:'}
++             {compatible ? 'Meets requirement:' : ""}
+Tests ran:
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 13 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:110:17
+-           </span>{' '}
++           </span>{""}
+Tests ran:
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 13 more tests!
+[Survived] ObjectLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:146:20
+-       defaultValues: { premises: '', faultId: '', accessRequirementId: '' },
++       defaultValues: {},
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+  and 17 more tests!
+[Survived] ObjectLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:148:56
+-     const scheduleForm = useForm<ScheduleDispatchValues>({
+-       resolver: zodResolver(scheduleDispatchSchema),
+-       defaultValues: { visitDate: '', visitWindow: '' },
+-     })
++     const scheduleForm = useForm<ScheduleDispatchValues>({})
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+  and 17 more tests!
+[Survived] ObjectLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:150:20
+-       defaultValues: { visitDate: '', visitWindow: '' },
++       defaultValues: {},
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+  and 17 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:150:33
+-       defaultValues: { visitDate: '', visitWindow: '' },
++       defaultValues: { visitDate: "Stryker was here!", visitWindow: '' },
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+  and 17 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:150:50
+-       defaultValues: { visitDate: '', visitWindow: '' },
++       defaultValues: { visitDate: '', visitWindow: "Stryker was here!" },
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+  and 17 more tests!
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:154:9
+-       if (step !== 'request') stageHeadingRef.current?.focus()
++       if (true) stageHeadingRef.current?.focus()
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+  and 17 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:154:18
+-       if (step !== 'request') stageHeadingRef.current?.focus()
++       if (step !== "") stageHeadingRef.current?.focus()
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+  and 17 more tests!
+[Survived] OptionalChaining
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:154:29
+-       if (step !== 'request') stageHeadingRef.current?.focus()
++       if (step !== 'request') stageHeadingRef.current.focus()
+Tests ran:
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 13 more tests!
+[Survived] ArrayDeclaration
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:158:61
+-       () => (request ? findTechnicianMatches(data, request) : []),
++       () => (request ? findTechnicianMatches(data, request) : ["Stryker was here"]),
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+  and 17 more tests!
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:161:49
+-     const fault = data.faults.find((candidate) => candidate.id === request?.faultId)
++     const fault = data.faults.find((candidate) => true)
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+  and 17 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:171:19
+-       toast.success('Dispatch request created')
++       toast.success("")
+Tests ran:
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 13 more tests!
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:175:9
+-       if (!match.valid) return
++       if (false) return
+Tests ran:
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+    TechnicianDispatchFlow supports keyboard submission and technician selection
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 5 more tests!
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:181:9
+-       if (!request || !selectedMatch || !accessRequirement) return
++       if (false) return
+Tests ran:
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 1 more test!
+[Survived] LogicalOperator
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:181:9
+-       if (!request || !selectedMatch || !accessRequirement) return
++       if ((!request || !selectedMatch) && !accessRequirement) return
+Tests ran:
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 1 more test!
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:181:9
+-       if (!request || !selectedMatch || !accessRequirement) return
++       if (false || !accessRequirement) return
+Tests ran:
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 1 more test!
+[Survived] LogicalOperator
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:181:9
+-       if (!request || !selectedMatch || !accessRequirement) return
++       if (!request && !selectedMatch || !accessRequirement) return
+Tests ran:
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 1 more test!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:184:18
+-         reference: `DSP-${selectedMatch.technician.id}-${values.visitDate.replaceAll('-', '')}`,
++         reference: ``,
+Tests ran:
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 1 more test!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:184:84
+-         reference: `DSP-${selectedMatch.technician.id}-${values.visitDate.replaceAll('-', '')}`,
++         reference: `DSP-${selectedMatch.technician.id}-${values.visitDate.replaceAll("", '')}`,
+Tests ran:
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 1 more test!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:184:89
+-         reference: `DSP-${selectedMatch.technician.id}-${values.visitDate.replaceAll('-', '')}`,
++         reference: `DSP-${selectedMatch.technician.id}-${values.visitDate.replaceAll('-', "Stryker was here!")}`,
+Tests ran:
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 1 more test!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:193:19
+-       toast.success('Technician visit scheduled')
++       toast.success("")
+Tests ran:
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 1 more test!
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:198:7
+-         option.length === 0 ? 'No special equipment' : option.map(formatEquipmentName).join(' + ')
++         false ? 'No special equipment' : option.map(formatEquipmentName).join(' + ')
+Tests ran:
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 13 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:198:91
+-         option.length === 0 ? 'No special equipment' : option.map(formatEquipmentName).join(' + ')
++         option.length === 0 ? 'No special equipment' : option.map(formatEquipmentName).join("")
+Tests ran:
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 13 more tests!
+[Survived] ArrayDeclaration
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:199:10
+-       ) ?? []
++       ) ?? ["Stryker was here"]
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+  and 17 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:248:61
+-                       requestForm.formState.errors.premises ? 'premises-error' : undefined
++                       requestForm.formState.errors.premises ? "" : undefined
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow validates all required request details
+  and 1 more test!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:251:30
+-                     className={`mt-2 ${fieldClassName}`}
++                     className={``}
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+  and 17 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:269:60
+-                       requestForm.formState.errors.faultId ? 'fault-error' : 'fault-hint'
++                       requestForm.formState.errors.faultId ? "" : 'fault-hint'
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow validates all required request details
+  and 1 more test!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:269:76
+-                       requestForm.formState.errors.faultId ? 'fault-error' : 'fault-hint'
++                       requestForm.formState.errors.faultId ? 'fault-error' : ""
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+  and 17 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:272:30
+-                     className={`mt-2 ${fieldClassName}`}
++                     className={``}
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+  and 17 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:304:25
+-                         ? 'access-error'
++                         ? ""
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow validates all required request details
+  and 1 more test!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:305:25
+-                         : 'access-hint'
++                         : ""
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+  and 17 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:308:30
+-                     className={`mt-2 ${fieldClassName}`}
++                     className={``}
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+  and 17 more tests!
+[Survived] UnaryOperator
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:345:25
+-                 tabIndex={-1}
++                 tabIndex={+1}
+Tests ran:
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 13 more tests!
+[Survived] OptionalChaining
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:365:59
+-                   <dd className="mt-1 text-sm font-medium">{fault?.name}</dd>
++                   <dd className="mt-1 text-sm font-medium">{fault.name}</dd>
+Tests ran:
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 13 more tests!
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:390:18
+-                   {matches.filter((match) => match.valid).length === 1 ? '' : 's'} found.
++                   {true ? '' : 's'} found.
+Tests ran:
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+    TechnicianDispatchFlow supports keyboard submission and technician selection
+  and 9 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:411:30
+-                     className={`rounded-xl border bg-white p-5 shadow-sm ${
+-                       match.valid ? 'border-emerald-300' : 'border-slate-200'
+-                     }`}
++                     className={``}
+Tests ran:
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 13 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:412:35
+-                       match.valid ? 'border-emerald-300' : 'border-slate-200'
++                       match.valid ? "" : 'border-slate-200'
+Tests ran:
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+    TechnicianDispatchFlow supports keyboard submission and technician selection
+  and 9 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:412:58
+-                       match.valid ? 'border-emerald-300' : 'border-slate-200'
++                       match.valid ? 'border-emerald-300' : ""
+Tests ran:
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 13 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:426:34
+-                         className={`rounded-full px-2.5 py-1 text-xs font-semibold ${
+-                           match.valid ? 'bg-emerald-100 text-emerald-800' : 'bg-red-100 text-red-800'
+-                         }`}
++                         className={``}
+Tests ran:
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 13 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:427:39
+-                           match.valid ? 'bg-emerald-100 text-emerald-800' : 'bg-red-100 text-red-800'
++                           match.valid ? "" : 'bg-red-100 text-red-800'
+Tests ran:
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+    TechnicianDispatchFlow supports keyboard submission and technician selection
+  and 9 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:427:75
+-                           match.valid ? 'bg-emerald-100 text-emerald-800' : 'bg-red-100 text-red-800'
++                           match.valid ? 'bg-emerald-100 text-emerald-800' : ""
+Tests ran:
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 13 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:437:27
+-                           ? `Qualified for ${fault?.name}`
++                           ? ``
+Tests ran:
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 13 more tests!
+[Survived] OptionalChaining
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:437:44
+-                           ? `Qualified for ${fault?.name}`
++                           ? `Qualified for ${fault.name}`
+Tests ran:
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 13 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:438:27
+-                           : `Not qualified for ${fault?.name}`}
++                           : ``}
+Tests ran:
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 13 more tests!
+[Survived] OptionalChaining
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:438:48
+-                           : `Not qualified for ${fault?.name}`}
++                           : `Not qualified for ${fault.name}`}
+Tests ran:
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 13 more tests!
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:442:27
+-                           ? match.matchedEquipment.length > 0
++                           ? true
+Tests ran:
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 13 more tests!
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:442:27
+-                           ? match.matchedEquipment.length > 0
++                           ? false
+Tests ran:
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 13 more tests!
+[Survived] EqualityOperator
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:442:27
+-                           ? match.matchedEquipment.length > 0
++                           ? match.matchedEquipment.length >= 0
+Tests ran:
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 13 more tests!
+[Survived] EqualityOperator
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:442:27
+-                           ? match.matchedEquipment.length > 0
++                           ? match.matchedEquipment.length <= 0
+Tests ran:
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 13 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:443:82
+-                             ? match.matchedEquipment.map(formatEquipmentName).join(' + ')
++                             ? match.matchedEquipment.map(formatEquipmentName).join("")
+Tests ran:
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 13 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:445:27
+-                           : `${accessRequirement.name} access`}
++                           : ``}
+Tests ran:
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 13 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:453:34
+-                         className={`mt-5 w-full ${primaryButtonClassName}`}
++                         className={``}
+Tests ran:
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+    TechnicianDispatchFlow supports keyboard submission and technician selection
+  and 9 more tests!
+[Survived] ArrowFunction
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:466:24
+-                 onClick={() => setStep('request')}
++                 onClick={() => undefined}
+Tests ran:
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 13 more tests!
+[Survived] UnaryOperator
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:480:25
+-                 tabIndex={-1}
++                 tabIndex={+1}
+Tests ran:
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+    TechnicianDispatchFlow supports keyboard submission and technician selection
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 5 more tests!
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:504:22
+-                       {selectedMatch.matchedEquipment.length > 0
++                       {true
+Tests ran:
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+    TechnicianDispatchFlow supports keyboard submission and technician selection
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 5 more tests!
+[Survived] EqualityOperator
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:504:22
+-                       {selectedMatch.matchedEquipment.length > 0
++                       {selectedMatch.matchedEquipment.length >= 0
+Tests ran:
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+    TechnicianDispatchFlow supports keyboard submission and technician selection
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 5 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:505:86
+-                         ? selectedMatch.matchedEquipment.map(formatEquipmentName).join(' + ')
++                         ? selectedMatch.matchedEquipment.map(formatEquipmentName).join("")
+Tests ran:
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+    TechnicianDispatchFlow supports keyboard submission and technician selection
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 5 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:532:30
+-                     className={`mt-2 ${fieldClassName}`}
++                     className={``}
+Tests ran:
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+    TechnicianDispatchFlow supports keyboard submission and technician selection
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 5 more tests!
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:535:18
+-                   {scheduleForm.formState.errors.visitDate && (
+-                     <p id="visit-date-error" role="alert" className="mt-1.5 text-sm text-red-700">
+-                       {scheduleForm.formState.errors.visitDate.message}
+-                     </p>
+-                   )}
++                   {true}
+Tests ran:
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+    TechnicianDispatchFlow supports keyboard submission and technician selection
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 5 more tests!
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:535:18
+-                   {scheduleForm.formState.errors.visitDate && (
+-                     <p id="visit-date-error" role="alert" className="mt-1.5 text-sm text-red-700">
+-                       {scheduleForm.formState.errors.visitDate.message}
+-                     </p>
+-                   )}
++                   {false}
+Tests ran:
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+    TechnicianDispatchFlow supports keyboard submission and technician selection
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 5 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:545:43
+-                     {['8:00 am – 12:00 pm', '12:00 pm – 4:00 pm', '4:00 pm – 8:00 pm'].map(
++                     {['8:00 am – 12:00 pm', "", '4:00 pm – 8:00 pm'].map(
+Tests ran:
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+    TechnicianDispatchFlow supports keyboard submission and technician selection
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 5 more tests!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:545:65
+-                     {['8:00 am – 12:00 pm', '12:00 pm – 4:00 pm', '4:00 pm – 8:00 pm'].map(
++                     {['8:00 am – 12:00 pm', '12:00 pm – 4:00 pm', ""].map(
+Tests ran:
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+    TechnicianDispatchFlow supports keyboard submission and technician selection
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 5 more tests!
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:562:18
+-                   {scheduleForm.formState.errors.visitWindow && (
+-                     <p role="alert" className="mt-1.5 text-sm text-red-700">
+-                       {scheduleForm.formState.errors.visitWindow.message}
+-                     </p>
+-                   )}
++                   {true}
+Tests ran:
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+    TechnicianDispatchFlow supports keyboard submission and technician selection
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 5 more tests!
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:562:18
+-                   {scheduleForm.formState.errors.visitWindow && (
+-                     <p role="alert" className="mt-1.5 text-sm text-red-700">
+-                       {scheduleForm.formState.errors.visitWindow.message}
+-                     </p>
+-                   )}
++                   {false}
+Tests ran:
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+    TechnicianDispatchFlow supports keyboard submission and technician selection
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 5 more tests!
+[Survived] ArrowFunction
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:572:28
+-                     onClick={() => setStep('match')}
++                     onClick={() => undefined}
+Tests ran:
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+    TechnicianDispatchFlow supports keyboard submission and technician selection
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 5 more tests!
+[Survived] LogicalOperator
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:586:10
+-           {step === 'complete' && scheduledDispatch && fault && (
++           {step === 'complete' || scheduledDispatch && fault && (
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+  and 17 more tests!
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:586:10
+-           {step === 'complete' && scheduledDispatch && fault && (
++           {true && scheduledDispatch && fault && (
+Tests ran:
+    TechnicianDispatchFlow validates all required request details
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+  and 17 more tests!
+[Survived] UnaryOperator
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:594:29
+-                     tabIndex={-1}
++                     tabIndex={+1}
+Tests ran:
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 1 more test!
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:632:23
+-                         scheduledDispatch.matchedEquipment.length > 0
++                         true
+Tests ran:
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 1 more test!
+[Survived] EqualityOperator
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:632:23
+-                         scheduledDispatch.matchedEquipment.length > 0
++                         scheduledDispatch.matchedEquipment.length >= 0
+Tests ran:
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 1 more test!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:633:92
+-                           ? scheduledDispatch.matchedEquipment.map(formatEquipmentName).join(' + ')
++                           ? scheduledDispatch.matchedEquipment.map(formatEquipmentName).join("")
+Tests ran:
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 1 more test!
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:40:3
+-     'block w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-950 shadow-sm outline-none transition focus:border-blue-700 focus:ring-2 focus:ring-blue-700/20'
++     ""
+Ran all tests for this mutant.
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:43:3
+-     'inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-blue-800 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800 disabled:cursor-not-allowed disabled:opacity-50'
++     ""
+Ran all tests for this mutant.
+[Survived] ObjectLiteral
+src/features/technician-dispatch/data.ts:7:30
+-       faults: z.array(z.object({ id: z.string(), name: z.string() }).strict()),
++       faults: z.array(z.object({}).strict()),
+Ran all tests for this mutant.
+[Survived] ObjectLiteral
+src/features/technician-dispatch/data.ts:6:11
+-     .object({
+-       faults: z.array(z.object({ id: z.string(), name: z.string() }).strict()),
+-       equipment: z.array(z.string()),
+-       accessRequirements: z.array(
+-         z
+-           .object({
+-             id: z.string(),
+-             name: z.string(),
+-             satisfiedBy: z.array(z.array(z.string())),
+-           })
+-           .strict()
+-       ),
+-       technicians: z.array(
+-         z
+-           .object({
+-             id: z.string(),
+-             name: z.string(),
+-             faults: z.array(z.string()),
+-             equipment: z.array(z.string()),
+-           })
+-           .strict()
+-       ),
+-     })
++     .object({})
+Ran all tests for this mutant.
+[Survived] ObjectLiteral
+src/features/technician-dispatch/data.ts:11:17
+-           .object({
+-             id: z.string(),
+-             name: z.string(),
+-             satisfiedBy: z.array(z.array(z.string())),
+-           })
++           .object({})
+Ran all tests for this mutant.
+[Survived] ObjectLiteral
+src/features/technician-dispatch/data.ts:20:17
+-           .object({
+-             id: z.string(),
+-             name: z.string(),
+-             faults: z.array(z.string()),
+-             equipment: z.array(z.string()),
+-           })
++           .object({})
+Ran all tests for this mutant.
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/matching.ts:14:52
+-     return labels[equipment] ?? equipment.replaceAll('-', ' ')
++     return labels[equipment] ?? equipment.replaceAll("", ' ')
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/matching.ts:14:57
+-     return labels[equipment] ?? equipment.replaceAll('-', ' ')
++     return labels[equipment] ?? equipment.replaceAll('-', "")
+[NoCoverage] ArrayDeclaration
+src/features/technician-dispatch/matching.ts:25:28
+-     if (!requirement) return []
++     if (!requirement) return ["Stryker was here"]
+[Survived] StringLiteral
+src/features/technician-dispatch/matching.ts:11:19
+-       'pit-access': 'Pit-access capability',
++       'pit-access': "",
+Tests ran:
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 13 more tests!
+[Survived] ConditionalExpression
+src/features/technician-dispatch/matching.ts:25:7
+-     if (!requirement) return []
++     if (false) return []
+Tests ran:
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 37 more tests!
+[Survived] MethodExpression
+src/features/technician-dispatch/matching.ts:31:9
+-           option.every((equipment) => technician.equipment.includes(equipment))
++           option.some(equipment => technician.equipment.includes(equipment))
+Tests ran:
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 37 more tests!
+[Survived] ArrayDeclaration
+src/features/technician-dispatch/matching.ts:32:12
+-         ) ?? []
++         ) ?? ["Stryker was here"]
+Tests ran:
+    TechnicianDispatchFlow shows text and icons for match requirements and compatibility results
+    TechnicianDispatchFlow does not offer an incompatible pit-job selection
+    TechnicianDispatchFlow schedules and records a compatible dispatch
+  and 33 more tests!
+[Survived] MethodExpression
+src/features/technician-dispatch/validation.ts:4:13
+-     premises: z
+-       .string()
+-       .trim()
++     premises: z.string()
+Ran all tests for this mutant.
+[Survived] StringLiteral
+src/features/technician-dispatch/validation.ts:8:15
+-       .max(200, 'Address must be 200 characters or fewer'),
++       .max(200, ""),
+Ran all tests for this mutant.
+[Survived] StringLiteral
+src/features/technician-dispatch/validation.ts:14:32
+-     visitDate: z.string().min(1, 'Select a visit date'),
++     visitDate: z.string().min(1, ""),
+Ran all tests for this mutant.
+[Survived] StringLiteral
+src/features/technician-dispatch/validation.ts:15:34
+-     visitWindow: z.string().min(1, 'Select a visit window'),
++     visitWindow: z.string().min(1, ""),
+Ran all tests for this mutant.
+[NoCoverage] ObjectLiteral
+src/lib/validations/auth.ts:3:37
+-   export const loginSchema = z.object({
+-     email: z.string().email('Please enter a valid email address'),
+-     password: z.string().min(1, 'Password is required'),
+-   })
++   export const loginSchema = z.object({})
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:4:27
+-     email: z.string().email('Please enter a valid email address'),
++     email: z.string().email(""),
+[NoCoverage] MethodExpression
+src/lib/validations/auth.ts:5:13
+-     password: z.string().min(1, 'Password is required'),
++     password: z.string().max(1, 'Password is required'),
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:5:31
+-     password: z.string().min(1, 'Password is required'),
++     password: z.string().min(1, ""),
+[NoCoverage] ObjectLiteral
+src/lib/validations/auth.ts:9:11
+-     .object({
+-       displayName: z
+-         .string()
+-         .min(2, 'Name must be at least 2 characters')
+-         .max(50, 'Name must be less than 50 characters'),
+-       email: z.string().email('Please enter a valid email address'),
+-       password: z
+-         .string()
+-         .min(8, 'Password must be at least 8 characters')
+-         .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
+-         .regex(/[0-9]/, 'Password must contain at least one number'),
+-       confirmPassword: z.string(),
+-     })
++     .object({})
+[NoCoverage] MethodExpression
+src/lib/validations/auth.ts:10:18
+-       displayName: z
+-         .string()
+-         .min(2, 'Name must be at least 2 characters')
+-         .max(50, 'Name must be less than 50 characters'),
++       displayName: z.string().min(2, 'Name must be at least 2 characters').min(50, 'Name must be less than 50 characters'),
+[NoCoverage] MethodExpression
+src/lib/validations/auth.ts:10:18
+-       displayName: z
+-         .string()
+-         .min(2, 'Name must be at least 2 characters')
++       displayName: z.string().max(2, 'Name must be at least 2 characters')
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:12:15
+-         .min(2, 'Name must be at least 2 characters')
++         .min(2, "")
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:13:16
+-         .max(50, 'Name must be less than 50 characters'),
++         .max(50, ""),
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:14:29
+-       email: z.string().email('Please enter a valid email address'),
++       email: z.string().email(""),
+[NoCoverage] MethodExpression
+src/lib/validations/auth.ts:15:15
+-       password: z
+-         .string()
+-         .min(8, 'Password must be at least 8 characters')
++       password: z.string().max(8, 'Password must be at least 8 characters')
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:17:15
+-         .min(8, 'Password must be at least 8 characters')
++         .min(8, "")
+[NoCoverage] Regex
+src/lib/validations/auth.ts:18:14
+-         .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
++         .regex(/[^A-Z]/, 'Password must contain at least one uppercase letter')
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:18:23
+-         .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
++         .regex(/[A-Z]/, "")
+[NoCoverage] Regex
+src/lib/validations/auth.ts:19:14
+-         .regex(/[0-9]/, 'Password must contain at least one number'),
++         .regex(/[^0-9]/, 'Password must contain at least one number'),
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:19:23
+-         .regex(/[0-9]/, 'Password must contain at least one number'),
++         .regex(/[0-9]/, ""),
+[NoCoverage] ArrowFunction
+src/lib/validations/auth.ts:22:11
+-     .refine((data) => data.password === data.confirmPassword, {
++     .refine(() => undefined, {
+[NoCoverage] ConditionalExpression
+src/lib/validations/auth.ts:22:21
+-     .refine((data) => data.password === data.confirmPassword, {
++     .refine((data) => true, {
+[NoCoverage] ConditionalExpression
+src/lib/validations/auth.ts:22:21
+-     .refine((data) => data.password === data.confirmPassword, {
++     .refine((data) => false, {
+[NoCoverage] EqualityOperator
+src/lib/validations/auth.ts:22:21
+-     .refine((data) => data.password === data.confirmPassword, {
++     .refine((data) => data.password !== data.confirmPassword, {
+[NoCoverage] ObjectLiteral
+src/lib/validations/auth.ts:22:61
+-     .refine((data) => data.password === data.confirmPassword, {
+-       message: 'Passwords do not match',
+-       path: ['confirmPassword'],
+-     })
++     .refine((data) => data.password === data.confirmPassword, {})
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:23:14
+-       message: 'Passwords do not match',
++       message: "",
+[NoCoverage] ArrayDeclaration
+src/lib/validations/auth.ts:24:11
+-       path: ['confirmPassword'],
++       path: [],
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:24:12
+-       path: ['confirmPassword'],
++       path: [""],
+[NoCoverage] ObjectLiteral
+src/lib/validations/auth.ts:27:45
+-   export const resetPasswordSchema = z.object({
+-     email: z.string().email('Please enter a valid email address'),
+-   })
++   export const resetPasswordSchema = z.object({})
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:28:27
+-     email: z.string().email('Please enter a valid email address'),
++     email: z.string().email(""),
+[NoCoverage] ObjectLiteral
+src/lib/validations/auth.ts:32:11
+-     .object({
+-       displayName: z
+-         .string()
+-         .min(2, 'Name must be at least 2 characters')
+-         .max(50, 'Name must be less than 50 characters'),
+-       email: z.string().email('Please enter a valid email address'),
+-       password: z
+-         .string()
+-         .min(8, 'Password must be at least 8 characters')
+-         .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
+-         .regex(/[0-9]/, 'Password must contain at least one number'),
+-       confirmPassword: z.string(),
+-     })
++     .object({})
+[NoCoverage] MethodExpression
+src/lib/validations/auth.ts:33:18
+-       displayName: z
+-         .string()
+-         .min(2, 'Name must be at least 2 characters')
+-         .max(50, 'Name must be less than 50 characters'),
++       displayName: z.string().min(2, 'Name must be at least 2 characters').min(50, 'Name must be less than 50 characters'),
+[NoCoverage] MethodExpression
+src/lib/validations/auth.ts:33:18
+-       displayName: z
+-         .string()
+-         .min(2, 'Name must be at least 2 characters')
++       displayName: z.string().max(2, 'Name must be at least 2 characters')
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:35:15
+-         .min(2, 'Name must be at least 2 characters')
++         .min(2, "")
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:36:16
+-         .max(50, 'Name must be less than 50 characters'),
++         .max(50, ""),
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:37:29
+-       email: z.string().email('Please enter a valid email address'),
++       email: z.string().email(""),
+[NoCoverage] MethodExpression
+src/lib/validations/auth.ts:38:15
+-       password: z
+-         .string()
+-         .min(8, 'Password must be at least 8 characters')
++       password: z.string().max(8, 'Password must be at least 8 characters')
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:40:15
+-         .min(8, 'Password must be at least 8 characters')
++         .min(8, "")
+[NoCoverage] Regex
+src/lib/validations/auth.ts:41:14
+-         .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
++         .regex(/[^A-Z]/, 'Password must contain at least one uppercase letter')
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:41:23
+-         .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
++         .regex(/[A-Z]/, "")
+[NoCoverage] Regex
+src/lib/validations/auth.ts:42:14
+-         .regex(/[0-9]/, 'Password must contain at least one number'),
++         .regex(/[^0-9]/, 'Password must contain at least one number'),
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:42:23
+-         .regex(/[0-9]/, 'Password must contain at least one number'),
++         .regex(/[0-9]/, ""),
+[NoCoverage] ArrowFunction
+src/lib/validations/auth.ts:45:11
+-     .refine((data) => data.password === data.confirmPassword, {
++     .refine(() => undefined, {
+[NoCoverage] ConditionalExpression
+src/lib/validations/auth.ts:45:21
+-     .refine((data) => data.password === data.confirmPassword, {
++     .refine((data) => true, {
+[NoCoverage] ConditionalExpression
+src/lib/validations/auth.ts:45:21
+-     .refine((data) => data.password === data.confirmPassword, {
++     .refine((data) => false, {
+[NoCoverage] EqualityOperator
+src/lib/validations/auth.ts:45:21
+-     .refine((data) => data.password === data.confirmPassword, {
++     .refine((data) => data.password !== data.confirmPassword, {
+[NoCoverage] ObjectLiteral
+src/lib/validations/auth.ts:45:61
+-     .refine((data) => data.password === data.confirmPassword, {
+-       message: 'Passwords do not match',
+-       path: ['confirmPassword'],
+-     })
++     .refine((data) => data.password === data.confirmPassword, {})
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:46:14
+-       message: 'Passwords do not match',
++       message: "",
+[NoCoverage] ArrayDeclaration
+src/lib/validations/auth.ts:47:11
+-       path: ['confirmPassword'],
++       path: [],
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:47:12
+-       path: ['confirmPassword'],
++       path: [""],
+[NoCoverage] MethodExpression
+src/lib/validations/common.ts:3:25
+-   export const idSchema = z.string().min(1, 'ID is required')
++   export const idSchema = z.string().max(1, 'ID is required')
+[NoCoverage] StringLiteral
+src/lib/validations/common.ts:3:43
+-   export const idSchema = z.string().min(1, 'ID is required')
++   export const idSchema = z.string().min(1, "")
+[NoCoverage] ObjectLiteral
+src/lib/validations/common.ts:5:42
+-   export const paginationSchema = z.object({
+-     page: z.coerce.number().int().positive().default(1),
+-     limit: z.coerce.number().int().positive().max(100).default(20),
+-   })
++   export const paginationSchema = z.object({})
+[NoCoverage] MethodExpression
+src/lib/validations/common.ts:7:10
+-     limit: z.coerce.number().int().positive().max(100).default(20),
++     limit: z.coerce.number().int().positive().min(100).default(20),
+Ran 7.47 tests per mutant on average.
+-------------------------------|------------------|----------|-----------|------------|----------|----------|
+                               | % Mutation score |          |           |            |          |          |
+File                           |  total | covered | # killed | # timeout | # survived | # no cov | # errors |
+-------------------------------|--------|---------|----------|-----------|------------|----------|----------|
+All files                      |  41.78 |   54.01 |      155 |         0 |        132 |       84 |        0 |
+ actions                       |   0.00 |    0.00 |        0 |         0 |          0 |       23 |        0 |
+  auth.actions.ts              |   0.00 |    0.00 |        0 |         0 |          0 |       23 |        0 |
+ features                      |  52.01 |   54.01 |      155 |         0 |        132 |       11 |        0 |
+  technician-dispatch          |  52.01 |   54.01 |      155 |         0 |        132 |       11 |        0 |
+   components                  |  48.39 |   50.00 |      120 |         0 |        120 |        8 |        0 |
+    TechnicianDispatchFlow.tsx |  48.39 |   50.00 |      120 |         0 |        120 |        8 |        0 |
+   data.ts                     |   0.00 |    0.00 |        0 |         0 |          4 |        0 |        0 |
+   matching.ts                 |  77.42 |   85.71 |       24 |         0 |          4 |        3 |        0 |
+   validation.ts               |  73.33 |   73.33 |       11 |         0 |          4 |        0 |        0 |
+ lib                           |   0.00 |    0.00 |        0 |         0 |          0 |       50 |        0 |
+  validations                  |   0.00 |    0.00 |        0 |         0 |          0 |       50 |        0 |
+   auth.ts                     |   0.00 |    0.00 |        0 |         0 |          0 |       46 |        0 |
+   common.ts                   |   0.00 |    0.00 |        0 |         0 |          0 |        4 |        0 |
+-------------------------------|--------|---------|----------|-----------|------------|----------|----------|
+10:42:05 (5262) INFO MutationTestReportHelper Final mutation score of 41.78 is greater than or equal to break threshold 0
+10:42:05 (5262) INFO JsonReporter Your report can be found at: file:///tmp/claude-0/-home-claude/a5537b04-ab69-5f89-8629-d930cdf9e9d4/scratchpad/review/ahmed/frontend/reports/mutation/frontend.json
+10:42:05 (5262) INFO HtmlReporter Your report can be found at: file:///tmp/claude-0/-home-claude/a5537b04-ab69-5f89-8629-d930cdf9e9d4/scratchpad/review/ahmed/frontend/reports/mutation/frontend.html
+10:42:05 (5262) INFO MutationTestExecutor Done in 13 minutes and 51 seconds.
+10:42:05 (5262) INFO Sandbox Resetting your original files from .stryker-tmp/backup-NfWyZl.
+=== ahmed end 2026-10-19T23:42:05Z exit 0
