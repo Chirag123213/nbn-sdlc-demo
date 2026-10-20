@@ -6,14 +6,14 @@ Signed out, /technician-dispatch redirects to /auth/signin (AT12 holds). Sign-up
 
 The feature is one page with three sections. Submitting section 1 renders section 2 in place; nothing leaves the browser (network log: static assets and the auth session POST only). Only compatible technicians are listed; incompatible ones are not shown at all, so a refusal is shown by absence plus the "No compatible technician and equipment match" panel when the list is empty.
 
-| Job | Entered | Build showed | Criteria |
-| --- | --- | --- | --- |
-| J1 | F1, R0 | T1 and T4 listed with "No additional equipment"; T2, T3 absent. Selected T1, scheduled 2026-10-22 09:00. Record shows premises, technician, visit, access requirement and equipment chip. Double-click on Schedule gave one record (AT08) | AC01 (UI), AC02, AC04, AC10, AC11 (UI) |
-| J2 | F1, R1 | T1 only, equipment "Ladder"; T4 absent. Radio selected, Schedule button enabled | AC03, AC05, AC06 (by absence), AC07 |
-| J3 | F2, R1 | "No compatible technician and equipment match ... An incompatible combination will not be offered for scheduling." | AC06 (T3), AC09 |
-| J4 | F1, R2 | No match panel | AC08, AC09 |
-| J5 | F2, R2 | No match panel | AC08, AC09 |
-| J6 | F3, R2 | T2 only, "Pit Access". Scheduled 2026-10-23 13:00 | AC08, AC10, AC11 (UI) |
+| Job | Entered | Build showed                                                                                                                                                                                                                              | Criteria                               |
+| --- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| J1  | F1, R0  | T1 and T4 listed with "No additional equipment"; T2, T3 absent. Selected T1, scheduled 2026-10-22 09:00. Record shows premises, technician, visit, access requirement and equipment chip. Double-click on Schedule gave one record (AT08) | AC01 (UI), AC02, AC04, AC10, AC11 (UI) |
+| J2  | F1, R1  | T1 only, equipment "Ladder"; T4 absent. Radio selected, Schedule button enabled                                                                                                                                                           | AC03, AC05, AC06 (by absence), AC07    |
+| J3  | F2, R1  | "No compatible technician and equipment match ... An incompatible combination will not be offered for scheduling."                                                                                                                        | AC06 (T3), AC09                        |
+| J4  | F1, R2  | No match panel                                                                                                                                                                                                                            | AC08, AC09                             |
+| J5  | F2, R2  | No match panel                                                                                                                                                                                                                            | AC08, AC09                             |
+| J6  | F3, R2  | T2 only, "Pit Access". Scheduled 2026-10-23 13:00                                                                                                                                                                                         | AC08, AC10, AC11 (UI)                  |
 
 Persistence: reload of /technician-dispatch after J1 returns an empty form. No list of requests anywhere. The request and the dispatch are gone. No write to Firestore at any step. AC01 "visible afterwards" and AC11 "stored record" fail.
 

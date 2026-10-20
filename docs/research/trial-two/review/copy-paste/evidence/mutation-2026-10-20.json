@@ -1,4220 +1,3635 @@
 {
- "schemaVersion": "1.0",
- "thresholds": {
-  "break": 0,
-  "high": 80,
-  "low": 60
- },
- "files": {
-  "src/actions/auth.actions.ts": {
-   "language": "typescript",
-   "mutants": [
-    {
-     "id": "0",
-     "mutatorName": "StringLiteral",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 40,
-       "line": 8
-      },
-      "start": {
-       "column": 29,
-       "line": 8
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "1",
-     "mutatorName": "BlockStatement",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 2,
-       "line": 26
-      },
-      "start": {
-       "column": 42,
-       "line": 14
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "2",
-     "mutatorName": "OptionalChaining",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 68,
-       "line": 16
-      },
-      "start": {
-       "column": 25,
-       "line": 16
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "3",
-     "mutatorName": "BooleanLiteral",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 21,
-       "line": 18
-      },
-      "start": {
-       "column": 7,
-       "line": 18
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "4",
-     "mutatorName": "ConditionalExpression",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 21,
-       "line": 18
-      },
-      "start": {
-       "column": 7,
-       "line": 18
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "5",
-     "mutatorName": "ConditionalExpression",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 21,
-       "line": 18
-      },
-      "start": {
-       "column": 7,
-       "line": 18
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "6",
-     "mutatorName": "BlockStatement",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 4,
-       "line": 23
-      },
-      "start": {
-       "column": 7,
-       "line": 20
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "7",
-     "mutatorName": "BooleanLiteral",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 76,
-       "line": 21
-      },
-      "start": {
-       "column": 72,
-       "line": 21
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "8",
-     "mutatorName": "BlockStatement",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 4,
-       "line": 25
-      },
-      "start": {
-       "column": 11,
-       "line": 23
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "9",
-     "mutatorName": "BlockStatement",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 2,
-       "line": 38
-      },
-      "start": {
-       "column": 37,
-       "line": 32
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "10",
-     "mutatorName": "BooleanLiteral",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 15,
-       "line": 34
-      },
-      "start": {
-       "column": 7,
-       "line": 34
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "11",
-     "mutatorName": "ConditionalExpression",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 15,
-       "line": 34
-      },
-      "start": {
-       "column": 7,
-       "line": 34
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "12",
-     "mutatorName": "ConditionalExpression",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 15,
-       "line": 34
-      },
-      "start": {
-       "column": 7,
-       "line": 34
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "13",
-     "mutatorName": "BlockStatement",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 4,
-       "line": 36
-      },
-      "start": {
-       "column": 17,
-       "line": 34
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "14",
-     "mutatorName": "StringLiteral",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 28,
-       "line": 35
-      },
-      "start": {
-       "column": 14,
-       "line": 35
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "15",
-     "mutatorName": "BlockStatement",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 2,
-       "line": 51
-      },
-      "start": {
-       "column": 62,
-       "line": 43
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "16",
-     "mutatorName": "BlockStatement",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 4,
-       "line": 48
-      },
-      "start": {
-       "column": 7,
-       "line": 44
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "17",
-     "mutatorName": "ObjectLiteral",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 29,
-       "line": 47
-      },
-      "start": {
-       "column": 12,
-       "line": 47
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "18",
-     "mutatorName": "BooleanLiteral",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 27,
-       "line": 47
-      },
-      "start": {
-       "column": 23,
-       "line": 47
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "19",
-     "mutatorName": "BlockStatement",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 4,
-       "line": 50
-      },
-      "start": {
-       "column": 11,
-       "line": 48
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "20",
-     "mutatorName": "ObjectLiteral",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 59,
-       "line": 49
-      },
-      "start": {
-       "column": 12,
-       "line": 49
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "21",
-     "mutatorName": "BooleanLiteral",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 28,
-       "line": 49
-      },
-      "start": {
-       "column": 23,
-       "line": 49
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "22",
-     "mutatorName": "StringLiteral",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 57,
-       "line": 49
-      },
-      "start": {
-       "column": 37,
-       "line": 49
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    }
-   ]
+  "schemaVersion": "1.0",
+  "thresholds": {
+    "break": 0,
+    "high": 80,
+    "low": 60
   },
-  "src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx": {
-   "language": "typescript",
-   "mutants": [
-    {
-     "id": "42",
-     "mutatorName": "StringLiteral",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 34,
-       "line": 44
-      },
-      "start": {
-       "column": 9,
-       "line": 44
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "92",
-     "mutatorName": "BlockStatement",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 6,
-       "line": 132
-      },
-      "start": {
-       "column": 7,
-       "line": 130
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "104",
-     "mutatorName": "StringLiteral",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 42,
-       "line": 281
-      },
-      "start": {
-       "column": 35,
-       "line": 281
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "119",
-     "mutatorName": "OptionalChaining",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 56,
-       "line": 378
-      },
-      "start": {
-       "column": 31,
-       "line": 378
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "28",
-     "mutatorName": "BlockStatement",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 2,
-       "line": 38
-      },
-      "start": {
-       "column": 42,
-       "line": 33
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "29",
-     "mutatorName": "StringLiteral",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 15,
-       "line": 35
-      },
-      "start": {
-       "column": 12,
-       "line": 35
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "30",
-     "mutatorName": "ArrowFunction",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 64,
-       "line": 36
-      },
-      "start": {
-       "column": 10,
-       "line": 36
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "31",
-     "mutatorName": "ArithmeticOperator",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 64,
-       "line": 36
-      },
-      "start": {
-       "column": 20,
-       "line": 36
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "32",
-     "mutatorName": "MethodExpression",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 48,
-       "line": 36
-      },
-      "start": {
-       "column": 20,
-       "line": 36
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "33",
-     "mutatorName": "MethodExpression",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 34,
-       "line": 36
-      },
-      "start": {
-       "column": 20,
-       "line": 36
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "34",
-     "mutatorName": "MethodExpression",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 64,
-       "line": 36
-      },
-      "start": {
-       "column": 51,
-       "line": 36
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "35",
-     "mutatorName": "StringLiteral",
-     "status": "Survived",
-     "location": {
-      "end": {
-       "column": 14,
-       "line": 37
-      },
-      "start": {
-       "column": 11,
-       "line": 37
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [
-      "0"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "36",
-     "mutatorName": "BlockStatement",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 2,
-       "line": 52
-      },
-      "start": {
-       "column": 63,
-       "line": 40
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "38",
-     "mutatorName": "ConditionalExpression",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 21,
-       "line": 42
-      },
-      "start": {
-       "column": 5,
-       "line": 42
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "37",
-     "mutatorName": "ConditionalExpression",
-     "status": "Survived",
-     "location": {
-      "end": {
-       "column": 21,
-       "line": 42
-      },
-      "start": {
-       "column": 5,
-       "line": 42
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [
-      "0"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "39",
-     "mutatorName": "EqualityOperator",
-     "status": "Survived",
-     "location": {
-      "end": {
-       "column": 21,
-       "line": 42
-      },
-      "start": {
-       "column": 5,
-       "line": 42
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [
-      "0"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "40",
-     "mutatorName": "EqualityOperator",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 21,
-       "line": 42
-      },
-      "start": {
-       "column": 5,
-       "line": 42
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "43",
-     "mutatorName": "BlockStatement",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 2,
-       "line": 574
-      },
-      "start": {
-       "column": 33,
-       "line": 56
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "41",
-     "mutatorName": "StringLiteral",
-     "status": "Survived",
-     "location": {
-      "end": {
-       "column": 48,
-       "line": 43
-      },
-      "start": {
-       "column": 43,
-       "line": 43
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [
-      "0"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "44",
-     "mutatorName": "StringLiteral",
-     "status": "Survived",
-     "location": {
-      "end": {
-       "column": 70,
-       "line": 61
-      },
-      "start": {
-       "column": 68,
-       "line": 61
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 2
-    },
-    {
-     "id": "45",
-     "mutatorName": "StringLiteral",
-     "status": "Survived",
-     "location": {
-      "end": {
-       "column": 48,
-       "line": 62
-      },
-      "start": {
-       "column": 46,
-       "line": 62
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 2
-    },
-    {
-     "id": "46",
-     "mutatorName": "StringLiteral",
-     "status": "Survived",
-     "location": {
-      "end": {
-       "column": 48,
-       "line": 63
-      },
-      "start": {
-       "column": 46,
-       "line": 63
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 2
-    },
-    {
-     "id": "47",
-     "mutatorName": "ArrowFunction",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 8,
-       "line": 71
-      },
-      "start": {
-       "column": 5,
-       "line": 68
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "49",
-     "mutatorName": "ConditionalExpression",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 58,
-       "line": 70
-      },
-      "start": {
-       "column": 19,
-       "line": 70
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "48",
-     "mutatorName": "ArrowFunction",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 58,
-       "line": 70
-      },
-      "start": {
-       "column": 9,
-       "line": 70
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "50",
-     "mutatorName": "ConditionalExpression",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 58,
-       "line": 70
-      },
-      "start": {
-       "column": 19,
-       "line": 70
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "51",
-     "mutatorName": "EqualityOperator",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 58,
-       "line": 70
-      },
-      "start": {
-       "column": 19,
-       "line": 70
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "52",
-     "mutatorName": "ArrayDeclaration",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 62,
-       "line": 72
-      },
-      "start": {
-       "column": 5,
-       "line": 72
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "53",
-     "mutatorName": "ArrowFunction",
-     "status": "Survived",
-     "location": {
-      "end": {
-       "column": 75,
-       "line": 76
-      },
-      "start": {
-       "column": 27,
-       "line": 76
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 2
-    },
-    {
-     "id": "54",
-     "mutatorName": "ConditionalExpression",
-     "status": "Survived",
-     "location": {
-      "end": {
-       "column": 75,
-       "line": 76
-      },
-      "start": {
-       "column": 38,
-       "line": 76
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 2
-    },
-    {
-     "id": "55",
-     "mutatorName": "ConditionalExpression",
-     "status": "Survived",
-     "location": {
-      "end": {
-       "column": 75,
-       "line": 76
-      },
-      "start": {
-       "column": 38,
-       "line": 76
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 2
-    },
-    {
-     "id": "56",
-     "mutatorName": "EqualityOperator",
-     "status": "Survived",
-     "location": {
-      "end": {
-       "column": 75,
-       "line": 76
-      },
-      "start": {
-       "column": 38,
-       "line": 76
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 2
-    },
-    {
-     "id": "57",
-     "mutatorName": "ArrowFunction",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 67,
-       "line": 81
-      },
-      "start": {
-       "column": 9,
-       "line": 81
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "58",
-     "mutatorName": "ConditionalExpression",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 67,
-       "line": 81
-      },
-      "start": {
-       "column": 19,
-       "line": 81
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "59",
-     "mutatorName": "ConditionalExpression",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 67,
-       "line": 81
-      },
-      "start": {
-       "column": 19,
-       "line": 81
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "61",
-     "mutatorName": "OptionalChaining",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 38,
-       "line": 85
-      },
-      "start": {
-       "column": 25,
-       "line": 85
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "60",
-     "mutatorName": "EqualityOperator",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 67,
-       "line": 81
-      },
-      "start": {
-       "column": 19,
-       "line": 81
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "62",
-     "mutatorName": "ArrowFunction",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 60,
-       "line": 86
-      },
-      "start": {
-       "column": 5,
-       "line": 86
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "63",
-     "mutatorName": "ConditionalExpression",
-     "status": "Survived",
-     "location": {
-      "end": {
-       "column": 60,
-       "line": 86
-      },
-      "start": {
-       "column": 16,
-       "line": 86
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [
-      "0"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "64",
-     "mutatorName": "ConditionalExpression",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 60,
-       "line": 86
-      },
-      "start": {
-       "column": 16,
-       "line": 86
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "66",
-     "mutatorName": "BlockStatement",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 4,
-       "line": 99
-      },
-      "start": {
-       "column": 5,
-       "line": 92
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "65",
-     "mutatorName": "EqualityOperator",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 60,
-       "line": 86
-      },
-      "start": {
-       "column": 16,
-       "line": 86
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "67",
-     "mutatorName": "ArrowFunction",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 59,
-       "line": 93
-      },
-      "start": {
-       "column": 16,
-       "line": 93
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "68",
-     "mutatorName": "ObjectLiteral",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 58,
-       "line": 93
-      },
-      "start": {
-       "column": 30,
-       "line": 93
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "69",
-     "mutatorName": "StringLiteral",
-     "status": "Survived",
-     "location": {
-      "end": {
-       "column": 31,
-       "line": 95
-      },
-      "start": {
-       "column": 29,
-       "line": 95
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 2
-    },
-    {
-     "id": "70",
-     "mutatorName": "StringLiteral",
-     "status": "Survived",
-     "location": {
-      "end": {
-       "column": 20,
-       "line": 96
-      },
-      "start": {
-       "column": 18,
-       "line": 96
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 2
-    },
-    {
-     "id": "72",
-     "mutatorName": "BlockStatement",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 4,
-       "line": 120
-      },
-      "start": {
-       "column": 65,
-       "line": 101
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "71",
-     "mutatorName": "StringLiteral",
-     "status": "Survived",
-     "location": {
-      "end": {
-       "column": 20,
-       "line": 97
-      },
-      "start": {
-       "column": 18,
-       "line": 97
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 2
-    },
-    {
-     "id": "73",
-     "mutatorName": "BooleanLiteral",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 35,
-       "line": 104
-      },
-      "start": {
-       "column": 9,
-       "line": 104
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "74",
-     "mutatorName": "ConditionalExpression",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 35,
-       "line": 104
-      },
-      "start": {
-       "column": 9,
-       "line": 104
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "76",
-     "mutatorName": "ObjectLiteral",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 39,
-       "line": 106
-      },
-      "start": {
-       "column": 25,
-       "line": 106
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "75",
-     "mutatorName": "ConditionalExpression",
-     "status": "Survived",
-     "location": {
-      "end": {
-       "column": 35,
-       "line": 104
-      },
-      "start": {
-       "column": 9,
-       "line": 104
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 2
-    },
-    {
-     "id": "77",
-     "mutatorName": "StringLiteral",
-     "status": "Survived",
-     "location": {
-      "end": {
-       "column": 31,
-       "line": 116
-      },
-      "start": {
-       "column": 29,
-       "line": 116
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 2
-    },
-    {
-     "id": "78",
-     "mutatorName": "StringLiteral",
-     "status": "Survived",
-     "location": {
-      "end": {
-       "column": 20,
-       "line": 117
-      },
-      "start": {
-       "column": 18,
-       "line": 117
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 2
-    },
-    {
-     "id": "80",
-     "mutatorName": "BlockStatement",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 4,
-       "line": 141
-      },
-      "start": {
-       "column": 62,
-       "line": 122
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "79",
-     "mutatorName": "StringLiteral",
-     "status": "Survived",
-     "location": {
-      "end": {
-       "column": 20,
-       "line": 118
-      },
-      "start": {
-       "column": 18,
-       "line": 118
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 2
-    },
-    {
-     "id": "81",
-     "mutatorName": "ConditionalExpression",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 17,
-       "line": 129
-      },
-      "start": {
-       "column": 7,
-       "line": 126
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "82",
-     "mutatorName": "ConditionalExpression",
-     "status": "Survived",
-     "location": {
-      "end": {
-       "column": 17,
-       "line": 129
-      },
-      "start": {
-       "column": 7,
-       "line": 126
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [
-      "0"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "83",
-     "mutatorName": "LogicalOperator",
-     "status": "Survived",
-     "location": {
-      "end": {
-       "column": 17,
-       "line": 129
-      },
-      "start": {
-       "column": 7,
-       "line": 126
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [
-      "0"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "84",
-     "mutatorName": "ConditionalExpression",
-     "status": "Survived",
-     "location": {
-      "end": {
-       "column": 17,
-       "line": 128
-      },
-      "start": {
-       "column": 7,
-       "line": 126
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [
-      "0"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "85",
-     "mutatorName": "LogicalOperator",
-     "status": "Survived",
-     "location": {
-      "end": {
-       "column": 17,
-       "line": 128
-      },
-      "start": {
-       "column": 7,
-       "line": 126
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [
-      "0"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "86",
-     "mutatorName": "ConditionalExpression",
-     "status": "Survived",
-     "location": {
-      "end": {
-       "column": 21,
-       "line": 127
-      },
-      "start": {
-       "column": 7,
-       "line": 126
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [
-      "0"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "87",
-     "mutatorName": "LogicalOperator",
-     "status": "Survived",
-     "location": {
-      "end": {
-       "column": 21,
-       "line": 127
-      },
-      "start": {
-       "column": 7,
-       "line": 126
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [
-      "0"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "88",
-     "mutatorName": "BooleanLiteral",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 24,
-       "line": 126
-      },
-      "start": {
-       "column": 7,
-       "line": 126
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "89",
-     "mutatorName": "BooleanLiteral",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 21,
-       "line": 127
-      },
-      "start": {
-       "column": 7,
-       "line": 127
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "90",
-     "mutatorName": "BooleanLiteral",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 17,
-       "line": 128
-      },
-      "start": {
-       "column": 7,
-       "line": 128
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "91",
-     "mutatorName": "BooleanLiteral",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 17,
-       "line": 129
-      },
-      "start": {
-       "column": 7,
-       "line": 129
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "93",
-     "mutatorName": "ObjectLiteral",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 6,
-       "line": 140
-      },
-      "start": {
-       "column": 26,
-       "line": 134
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "94",
-     "mutatorName": "ArrowFunction",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 66,
-       "line": 195
-      },
-      "start": {
-       "column": 29,
-       "line": 194
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "95",
-     "mutatorName": "StringLiteral",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 45,
-       "line": 195
-      },
-      "start": {
-       "column": 35,
-       "line": 195
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "96",
-     "mutatorName": "ArrowFunction",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 65,
-       "line": 216
-      },
-      "start": {
-       "column": 29,
-       "line": 215
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "97",
-     "mutatorName": "StringLiteral",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 44,
-       "line": 216
-      },
-      "start": {
-       "column": 35,
-       "line": 216
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "98",
-     "mutatorName": "ArrowFunction",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 20,
-       "line": 226
-      },
-      "start": {
-       "column": 39,
-       "line": 222
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "99",
-     "mutatorName": "ArrowFunction",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 22,
-       "line": 247
-      },
-      "start": {
-       "column": 29,
-       "line": 243
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "100",
-     "mutatorName": "StringLiteral",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 44,
-       "line": 245
-      },
-      "start": {
-       "column": 23,
-       "line": 245
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "101",
-     "mutatorName": "ArrowFunction",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 20,
-       "line": 260
-      },
-      "start": {
-       "column": 51,
-       "line": 253
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "102",
-     "mutatorName": "StringLiteral",
-     "status": "Survived",
-     "location": {
-      "end": {
-       "column": 36,
-       "line": 269
-      },
-      "start": {
-       "column": 33,
-       "line": 269
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 2
-    },
-    {
-     "id": "103",
-     "mutatorName": "ArrowFunction",
-     "status": "Survived",
-     "location": {
-      "end": {
-       "column": 63,
-       "line": 281
-      },
-      "start": {
-       "column": 29,
-       "line": 280
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 2
-    },
-    {
-     "id": "105",
-     "mutatorName": "ConditionalExpression",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 32,
-       "line": 320
-      },
-      "start": {
-       "column": 16,
-       "line": 320
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "106",
-     "mutatorName": "ConditionalExpression",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 32,
-       "line": 320
-      },
-      "start": {
-       "column": 16,
-       "line": 320
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "107",
-     "mutatorName": "EqualityOperator",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 32,
-       "line": 320
-      },
-      "start": {
-       "column": 16,
-       "line": 320
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "108",
-     "mutatorName": "ConditionalExpression",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 39,
-       "line": 325
-      },
-      "start": {
-       "column": 19,
-       "line": 325
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "109",
-     "mutatorName": "ConditionalExpression",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 39,
-       "line": 325
-      },
-      "start": {
-       "column": 19,
-       "line": 325
-      }
-     },
-     "killedBy": [
-      "1"
-     ],
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 2
-    },
-    {
-     "id": "110",
-     "mutatorName": "EqualityOperator",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 39,
-       "line": 325
-      },
-      "start": {
-       "column": 19,
-       "line": 325
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "111",
-     "mutatorName": "BlockStatement",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 20,
-       "line": 393
-      },
-      "start": {
-       "column": 43,
-       "line": 346
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "112",
-     "mutatorName": "ConditionalExpression",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 67,
-       "line": 348
-      },
-      "start": {
-       "column": 23,
-       "line": 348
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "114",
-     "mutatorName": "EqualityOperator",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 67,
-       "line": 348
-      },
-      "start": {
-       "column": 23,
-       "line": 348
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "113",
-     "mutatorName": "ConditionalExpression",
-     "status": "Survived",
-     "location": {
-      "end": {
-       "column": 67,
-       "line": 348
-      },
-      "start": {
-       "column": 23,
-       "line": 348
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [
-      "0"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "115",
-     "mutatorName": "ArrowFunction",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 30,
-       "line": 365
-      },
-      "start": {
-       "column": 37,
-       "line": 360
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "116",
-     "mutatorName": "StringLiteral",
-     "status": "Survived",
-     "location": {
-      "end": {
-       "column": 45,
-       "line": 376
-      },
-      "start": {
-       "column": 42,
-       "line": 376
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [
-      "0"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "117",
-     "mutatorName": "LogicalOperator",
-     "status": "Survived",
-     "location": {
-      "end": {
-       "column": 56,
-       "line": 378
-      },
-      "start": {
-       "column": 30,
-       "line": 377
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [
-      "0"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "118",
-     "mutatorName": "OptionalChaining",
-     "status": "Survived",
-     "location": {
-      "end": {
-       "column": 50,
-       "line": 377
-      },
-      "start": {
-       "column": 30,
-       "line": 377
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [
-      "0"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "120",
-     "mutatorName": "BooleanLiteral",
-     "status": "Survived",
-     "location": {
-      "end": {
-       "column": 45,
-       "line": 435
-      },
-      "start": {
-       "column": 31,
-       "line": 435
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 2
-    },
-    {
-     "id": "121",
-     "mutatorName": "ArrowFunction",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 58,
-       "line": 439
-      },
-      "start": {
-       "column": 31,
-       "line": 437
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "122",
-     "mutatorName": "BooleanLiteral",
-     "status": "Survived",
-     "location": {
-      "end": {
-       "column": 45,
-       "line": 456
-      },
-      "start": {
-       "column": 31,
-       "line": 456
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 2
-    },
-    {
-     "id": "123",
-     "mutatorName": "ArrowFunction",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 58,
-       "line": 460
-      },
-      "start": {
-       "column": 31,
-       "line": 458
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "125",
-     "mutatorName": "ConditionalExpression",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 10,
-       "line": 570
-      },
-      "start": {
-       "column": 10,
-       "line": 481
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "124",
-     "mutatorName": "BooleanLiteral",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 43,
-       "line": 467
-      },
-      "start": {
-       "column": 29,
-       "line": 467
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "127",
-     "mutatorName": "LogicalOperator",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 10,
-       "line": 570
-      },
-      "start": {
-       "column": 10,
-       "line": 481
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "126",
-     "mutatorName": "ConditionalExpression",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 10,
-       "line": 570
-      },
-      "start": {
-       "column": 10,
-       "line": 481
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0",
-      "1"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "129",
-     "mutatorName": "LogicalOperator",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 70,
-       "line": 557
-      },
-      "start": {
-       "column": 24,
-       "line": 556
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "128",
-     "mutatorName": "StringLiteral",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 59,
-       "line": 541
-      },
-      "start": {
-       "column": 56,
-       "line": 541
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "130",
-     "mutatorName": "OptionalChaining",
-     "status": "Survived",
-     "location": {
-      "end": {
-       "column": 56,
-       "line": 556
-      },
-      "start": {
-       "column": 24,
-       "line": 556
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [
-      "0"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "24",
-     "mutatorName": "StringLiteral",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 15,
-       "line": 27
-      },
-      "start": {
-       "column": 13,
-       "line": 27
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [],
-     "testsCompleted": 1
-    },
-    {
-     "id": "23",
-     "mutatorName": "ObjectLiteral",
-     "status": "Survived",
-     "location": {
-      "end": {
-       "column": 2,
-       "line": 31
-      },
-      "start": {
-       "column": 40,
-       "line": 26
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": 20
-    },
-    {
-     "id": "25",
-     "mutatorName": "StringLiteral",
-     "status": "Survived",
-     "location": {
-      "end": {
-       "column": 14,
-       "line": 28
-      },
-      "start": {
-       "column": 12,
-       "line": 28
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": 20
-    },
-    {
-     "id": "26",
-     "mutatorName": "StringLiteral",
-     "status": "Survived",
-     "location": {
-      "end": {
-       "column": 26,
-       "line": 29
-      },
-      "start": {
-       "column": 24,
-       "line": 29
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": 20
-    },
-    {
-     "id": "27",
-     "mutatorName": "StringLiteral",
-     "status": "Survived",
-     "location": {
-      "end": {
-       "column": 12,
-       "line": 30
-      },
-      "start": {
-       "column": 10,
-       "line": 30
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": 20
+  "files": {
+    "src/actions/auth.actions.ts": {
+      "language": "typescript",
+      "mutants": [
+        {
+          "id": "0",
+          "mutatorName": "StringLiteral",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 40,
+              "line": 8
+            },
+            "start": {
+              "column": 29,
+              "line": 8
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "1",
+          "mutatorName": "BlockStatement",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 2,
+              "line": 26
+            },
+            "start": {
+              "column": 42,
+              "line": 14
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "2",
+          "mutatorName": "OptionalChaining",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 68,
+              "line": 16
+            },
+            "start": {
+              "column": 25,
+              "line": 16
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "3",
+          "mutatorName": "BooleanLiteral",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 21,
+              "line": 18
+            },
+            "start": {
+              "column": 7,
+              "line": 18
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "4",
+          "mutatorName": "ConditionalExpression",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 21,
+              "line": 18
+            },
+            "start": {
+              "column": 7,
+              "line": 18
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "5",
+          "mutatorName": "ConditionalExpression",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 21,
+              "line": 18
+            },
+            "start": {
+              "column": 7,
+              "line": 18
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "6",
+          "mutatorName": "BlockStatement",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 4,
+              "line": 23
+            },
+            "start": {
+              "column": 7,
+              "line": 20
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "7",
+          "mutatorName": "BooleanLiteral",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 76,
+              "line": 21
+            },
+            "start": {
+              "column": 72,
+              "line": 21
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "8",
+          "mutatorName": "BlockStatement",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 4,
+              "line": 25
+            },
+            "start": {
+              "column": 11,
+              "line": 23
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "9",
+          "mutatorName": "BlockStatement",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 2,
+              "line": 38
+            },
+            "start": {
+              "column": 37,
+              "line": 32
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "10",
+          "mutatorName": "BooleanLiteral",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 15,
+              "line": 34
+            },
+            "start": {
+              "column": 7,
+              "line": 34
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "11",
+          "mutatorName": "ConditionalExpression",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 15,
+              "line": 34
+            },
+            "start": {
+              "column": 7,
+              "line": 34
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "12",
+          "mutatorName": "ConditionalExpression",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 15,
+              "line": 34
+            },
+            "start": {
+              "column": 7,
+              "line": 34
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "13",
+          "mutatorName": "BlockStatement",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 4,
+              "line": 36
+            },
+            "start": {
+              "column": 17,
+              "line": 34
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "14",
+          "mutatorName": "StringLiteral",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 28,
+              "line": 35
+            },
+            "start": {
+              "column": 14,
+              "line": 35
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "15",
+          "mutatorName": "BlockStatement",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 2,
+              "line": 51
+            },
+            "start": {
+              "column": 62,
+              "line": 43
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "16",
+          "mutatorName": "BlockStatement",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 4,
+              "line": 48
+            },
+            "start": {
+              "column": 7,
+              "line": 44
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "17",
+          "mutatorName": "ObjectLiteral",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 29,
+              "line": 47
+            },
+            "start": {
+              "column": 12,
+              "line": 47
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "18",
+          "mutatorName": "BooleanLiteral",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 27,
+              "line": 47
+            },
+            "start": {
+              "column": 23,
+              "line": 47
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "19",
+          "mutatorName": "BlockStatement",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 4,
+              "line": 50
+            },
+            "start": {
+              "column": 11,
+              "line": 48
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "20",
+          "mutatorName": "ObjectLiteral",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 59,
+              "line": 49
+            },
+            "start": {
+              "column": 12,
+              "line": 49
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "21",
+          "mutatorName": "BooleanLiteral",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 28,
+              "line": 49
+            },
+            "start": {
+              "column": 23,
+              "line": 49
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "22",
+          "mutatorName": "StringLiteral",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 57,
+              "line": 49
+            },
+            "start": {
+              "column": 37,
+              "line": 49
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        }
+      ]
+    },
+    "src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx": {
+      "language": "typescript",
+      "mutants": [
+        {
+          "id": "42",
+          "mutatorName": "StringLiteral",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 34,
+              "line": 44
+            },
+            "start": {
+              "column": 9,
+              "line": 44
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "92",
+          "mutatorName": "BlockStatement",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 6,
+              "line": 132
+            },
+            "start": {
+              "column": 7,
+              "line": 130
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "104",
+          "mutatorName": "StringLiteral",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 42,
+              "line": 281
+            },
+            "start": {
+              "column": 35,
+              "line": 281
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "119",
+          "mutatorName": "OptionalChaining",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 56,
+              "line": 378
+            },
+            "start": {
+              "column": 31,
+              "line": 378
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "28",
+          "mutatorName": "BlockStatement",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 2,
+              "line": 38
+            },
+            "start": {
+              "column": 42,
+              "line": 33
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "29",
+          "mutatorName": "StringLiteral",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 15,
+              "line": 35
+            },
+            "start": {
+              "column": 12,
+              "line": 35
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "30",
+          "mutatorName": "ArrowFunction",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 64,
+              "line": 36
+            },
+            "start": {
+              "column": 10,
+              "line": 36
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "31",
+          "mutatorName": "ArithmeticOperator",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 64,
+              "line": 36
+            },
+            "start": {
+              "column": 20,
+              "line": 36
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "32",
+          "mutatorName": "MethodExpression",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 48,
+              "line": 36
+            },
+            "start": {
+              "column": 20,
+              "line": 36
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "33",
+          "mutatorName": "MethodExpression",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 34,
+              "line": 36
+            },
+            "start": {
+              "column": 20,
+              "line": 36
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "34",
+          "mutatorName": "MethodExpression",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 64,
+              "line": 36
+            },
+            "start": {
+              "column": 51,
+              "line": 36
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "35",
+          "mutatorName": "StringLiteral",
+          "status": "Survived",
+          "location": {
+            "end": {
+              "column": 14,
+              "line": 37
+            },
+            "start": {
+              "column": 11,
+              "line": 37
+            }
+          },
+          "killedBy": null,
+          "coveredBy": ["0"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "36",
+          "mutatorName": "BlockStatement",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 2,
+              "line": 52
+            },
+            "start": {
+              "column": 63,
+              "line": 40
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "38",
+          "mutatorName": "ConditionalExpression",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 21,
+              "line": 42
+            },
+            "start": {
+              "column": 5,
+              "line": 42
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "37",
+          "mutatorName": "ConditionalExpression",
+          "status": "Survived",
+          "location": {
+            "end": {
+              "column": 21,
+              "line": 42
+            },
+            "start": {
+              "column": 5,
+              "line": 42
+            }
+          },
+          "killedBy": null,
+          "coveredBy": ["0"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "39",
+          "mutatorName": "EqualityOperator",
+          "status": "Survived",
+          "location": {
+            "end": {
+              "column": 21,
+              "line": 42
+            },
+            "start": {
+              "column": 5,
+              "line": 42
+            }
+          },
+          "killedBy": null,
+          "coveredBy": ["0"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "40",
+          "mutatorName": "EqualityOperator",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 21,
+              "line": 42
+            },
+            "start": {
+              "column": 5,
+              "line": 42
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "43",
+          "mutatorName": "BlockStatement",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 2,
+              "line": 574
+            },
+            "start": {
+              "column": 33,
+              "line": 56
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "41",
+          "mutatorName": "StringLiteral",
+          "status": "Survived",
+          "location": {
+            "end": {
+              "column": 48,
+              "line": 43
+            },
+            "start": {
+              "column": 43,
+              "line": 43
+            }
+          },
+          "killedBy": null,
+          "coveredBy": ["0"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "44",
+          "mutatorName": "StringLiteral",
+          "status": "Survived",
+          "location": {
+            "end": {
+              "column": 70,
+              "line": 61
+            },
+            "start": {
+              "column": 68,
+              "line": 61
+            }
+          },
+          "killedBy": null,
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 2
+        },
+        {
+          "id": "45",
+          "mutatorName": "StringLiteral",
+          "status": "Survived",
+          "location": {
+            "end": {
+              "column": 48,
+              "line": 62
+            },
+            "start": {
+              "column": 46,
+              "line": 62
+            }
+          },
+          "killedBy": null,
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 2
+        },
+        {
+          "id": "46",
+          "mutatorName": "StringLiteral",
+          "status": "Survived",
+          "location": {
+            "end": {
+              "column": 48,
+              "line": 63
+            },
+            "start": {
+              "column": 46,
+              "line": 63
+            }
+          },
+          "killedBy": null,
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 2
+        },
+        {
+          "id": "47",
+          "mutatorName": "ArrowFunction",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 8,
+              "line": 71
+            },
+            "start": {
+              "column": 5,
+              "line": 68
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "49",
+          "mutatorName": "ConditionalExpression",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 58,
+              "line": 70
+            },
+            "start": {
+              "column": 19,
+              "line": 70
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "48",
+          "mutatorName": "ArrowFunction",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 58,
+              "line": 70
+            },
+            "start": {
+              "column": 9,
+              "line": 70
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "50",
+          "mutatorName": "ConditionalExpression",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 58,
+              "line": 70
+            },
+            "start": {
+              "column": 19,
+              "line": 70
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "51",
+          "mutatorName": "EqualityOperator",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 58,
+              "line": 70
+            },
+            "start": {
+              "column": 19,
+              "line": 70
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "52",
+          "mutatorName": "ArrayDeclaration",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 62,
+              "line": 72
+            },
+            "start": {
+              "column": 5,
+              "line": 72
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "53",
+          "mutatorName": "ArrowFunction",
+          "status": "Survived",
+          "location": {
+            "end": {
+              "column": 75,
+              "line": 76
+            },
+            "start": {
+              "column": 27,
+              "line": 76
+            }
+          },
+          "killedBy": null,
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 2
+        },
+        {
+          "id": "54",
+          "mutatorName": "ConditionalExpression",
+          "status": "Survived",
+          "location": {
+            "end": {
+              "column": 75,
+              "line": 76
+            },
+            "start": {
+              "column": 38,
+              "line": 76
+            }
+          },
+          "killedBy": null,
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 2
+        },
+        {
+          "id": "55",
+          "mutatorName": "ConditionalExpression",
+          "status": "Survived",
+          "location": {
+            "end": {
+              "column": 75,
+              "line": 76
+            },
+            "start": {
+              "column": 38,
+              "line": 76
+            }
+          },
+          "killedBy": null,
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 2
+        },
+        {
+          "id": "56",
+          "mutatorName": "EqualityOperator",
+          "status": "Survived",
+          "location": {
+            "end": {
+              "column": 75,
+              "line": 76
+            },
+            "start": {
+              "column": 38,
+              "line": 76
+            }
+          },
+          "killedBy": null,
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 2
+        },
+        {
+          "id": "57",
+          "mutatorName": "ArrowFunction",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 67,
+              "line": 81
+            },
+            "start": {
+              "column": 9,
+              "line": 81
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "58",
+          "mutatorName": "ConditionalExpression",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 67,
+              "line": 81
+            },
+            "start": {
+              "column": 19,
+              "line": 81
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "59",
+          "mutatorName": "ConditionalExpression",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 67,
+              "line": 81
+            },
+            "start": {
+              "column": 19,
+              "line": 81
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "61",
+          "mutatorName": "OptionalChaining",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 38,
+              "line": 85
+            },
+            "start": {
+              "column": 25,
+              "line": 85
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "60",
+          "mutatorName": "EqualityOperator",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 67,
+              "line": 81
+            },
+            "start": {
+              "column": 19,
+              "line": 81
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "62",
+          "mutatorName": "ArrowFunction",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 60,
+              "line": 86
+            },
+            "start": {
+              "column": 5,
+              "line": 86
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "63",
+          "mutatorName": "ConditionalExpression",
+          "status": "Survived",
+          "location": {
+            "end": {
+              "column": 60,
+              "line": 86
+            },
+            "start": {
+              "column": 16,
+              "line": 86
+            }
+          },
+          "killedBy": null,
+          "coveredBy": ["0"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "64",
+          "mutatorName": "ConditionalExpression",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 60,
+              "line": 86
+            },
+            "start": {
+              "column": 16,
+              "line": 86
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "66",
+          "mutatorName": "BlockStatement",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 4,
+              "line": 99
+            },
+            "start": {
+              "column": 5,
+              "line": 92
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "65",
+          "mutatorName": "EqualityOperator",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 60,
+              "line": 86
+            },
+            "start": {
+              "column": 16,
+              "line": 86
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "67",
+          "mutatorName": "ArrowFunction",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 59,
+              "line": 93
+            },
+            "start": {
+              "column": 16,
+              "line": 93
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "68",
+          "mutatorName": "ObjectLiteral",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 58,
+              "line": 93
+            },
+            "start": {
+              "column": 30,
+              "line": 93
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "69",
+          "mutatorName": "StringLiteral",
+          "status": "Survived",
+          "location": {
+            "end": {
+              "column": 31,
+              "line": 95
+            },
+            "start": {
+              "column": 29,
+              "line": 95
+            }
+          },
+          "killedBy": null,
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 2
+        },
+        {
+          "id": "70",
+          "mutatorName": "StringLiteral",
+          "status": "Survived",
+          "location": {
+            "end": {
+              "column": 20,
+              "line": 96
+            },
+            "start": {
+              "column": 18,
+              "line": 96
+            }
+          },
+          "killedBy": null,
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 2
+        },
+        {
+          "id": "72",
+          "mutatorName": "BlockStatement",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 4,
+              "line": 120
+            },
+            "start": {
+              "column": 65,
+              "line": 101
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "71",
+          "mutatorName": "StringLiteral",
+          "status": "Survived",
+          "location": {
+            "end": {
+              "column": 20,
+              "line": 97
+            },
+            "start": {
+              "column": 18,
+              "line": 97
+            }
+          },
+          "killedBy": null,
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 2
+        },
+        {
+          "id": "73",
+          "mutatorName": "BooleanLiteral",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 35,
+              "line": 104
+            },
+            "start": {
+              "column": 9,
+              "line": 104
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "74",
+          "mutatorName": "ConditionalExpression",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 35,
+              "line": 104
+            },
+            "start": {
+              "column": 9,
+              "line": 104
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "76",
+          "mutatorName": "ObjectLiteral",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 39,
+              "line": 106
+            },
+            "start": {
+              "column": 25,
+              "line": 106
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "75",
+          "mutatorName": "ConditionalExpression",
+          "status": "Survived",
+          "location": {
+            "end": {
+              "column": 35,
+              "line": 104
+            },
+            "start": {
+              "column": 9,
+              "line": 104
+            }
+          },
+          "killedBy": null,
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 2
+        },
+        {
+          "id": "77",
+          "mutatorName": "StringLiteral",
+          "status": "Survived",
+          "location": {
+            "end": {
+              "column": 31,
+              "line": 116
+            },
+            "start": {
+              "column": 29,
+              "line": 116
+            }
+          },
+          "killedBy": null,
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 2
+        },
+        {
+          "id": "78",
+          "mutatorName": "StringLiteral",
+          "status": "Survived",
+          "location": {
+            "end": {
+              "column": 20,
+              "line": 117
+            },
+            "start": {
+              "column": 18,
+              "line": 117
+            }
+          },
+          "killedBy": null,
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 2
+        },
+        {
+          "id": "80",
+          "mutatorName": "BlockStatement",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 4,
+              "line": 141
+            },
+            "start": {
+              "column": 62,
+              "line": 122
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "79",
+          "mutatorName": "StringLiteral",
+          "status": "Survived",
+          "location": {
+            "end": {
+              "column": 20,
+              "line": 118
+            },
+            "start": {
+              "column": 18,
+              "line": 118
+            }
+          },
+          "killedBy": null,
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 2
+        },
+        {
+          "id": "81",
+          "mutatorName": "ConditionalExpression",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 17,
+              "line": 129
+            },
+            "start": {
+              "column": 7,
+              "line": 126
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "82",
+          "mutatorName": "ConditionalExpression",
+          "status": "Survived",
+          "location": {
+            "end": {
+              "column": 17,
+              "line": 129
+            },
+            "start": {
+              "column": 7,
+              "line": 126
+            }
+          },
+          "killedBy": null,
+          "coveredBy": ["0"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "83",
+          "mutatorName": "LogicalOperator",
+          "status": "Survived",
+          "location": {
+            "end": {
+              "column": 17,
+              "line": 129
+            },
+            "start": {
+              "column": 7,
+              "line": 126
+            }
+          },
+          "killedBy": null,
+          "coveredBy": ["0"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "84",
+          "mutatorName": "ConditionalExpression",
+          "status": "Survived",
+          "location": {
+            "end": {
+              "column": 17,
+              "line": 128
+            },
+            "start": {
+              "column": 7,
+              "line": 126
+            }
+          },
+          "killedBy": null,
+          "coveredBy": ["0"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "85",
+          "mutatorName": "LogicalOperator",
+          "status": "Survived",
+          "location": {
+            "end": {
+              "column": 17,
+              "line": 128
+            },
+            "start": {
+              "column": 7,
+              "line": 126
+            }
+          },
+          "killedBy": null,
+          "coveredBy": ["0"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "86",
+          "mutatorName": "ConditionalExpression",
+          "status": "Survived",
+          "location": {
+            "end": {
+              "column": 21,
+              "line": 127
+            },
+            "start": {
+              "column": 7,
+              "line": 126
+            }
+          },
+          "killedBy": null,
+          "coveredBy": ["0"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "87",
+          "mutatorName": "LogicalOperator",
+          "status": "Survived",
+          "location": {
+            "end": {
+              "column": 21,
+              "line": 127
+            },
+            "start": {
+              "column": 7,
+              "line": 126
+            }
+          },
+          "killedBy": null,
+          "coveredBy": ["0"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "88",
+          "mutatorName": "BooleanLiteral",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 24,
+              "line": 126
+            },
+            "start": {
+              "column": 7,
+              "line": 126
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "89",
+          "mutatorName": "BooleanLiteral",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 21,
+              "line": 127
+            },
+            "start": {
+              "column": 7,
+              "line": 127
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "90",
+          "mutatorName": "BooleanLiteral",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 17,
+              "line": 128
+            },
+            "start": {
+              "column": 7,
+              "line": 128
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "91",
+          "mutatorName": "BooleanLiteral",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 17,
+              "line": 129
+            },
+            "start": {
+              "column": 7,
+              "line": 129
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "93",
+          "mutatorName": "ObjectLiteral",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 6,
+              "line": 140
+            },
+            "start": {
+              "column": 26,
+              "line": 134
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "94",
+          "mutatorName": "ArrowFunction",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 66,
+              "line": 195
+            },
+            "start": {
+              "column": 29,
+              "line": 194
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "95",
+          "mutatorName": "StringLiteral",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 45,
+              "line": 195
+            },
+            "start": {
+              "column": 35,
+              "line": 195
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "96",
+          "mutatorName": "ArrowFunction",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 65,
+              "line": 216
+            },
+            "start": {
+              "column": 29,
+              "line": 215
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "97",
+          "mutatorName": "StringLiteral",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 44,
+              "line": 216
+            },
+            "start": {
+              "column": 35,
+              "line": 216
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "98",
+          "mutatorName": "ArrowFunction",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 20,
+              "line": 226
+            },
+            "start": {
+              "column": 39,
+              "line": 222
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "99",
+          "mutatorName": "ArrowFunction",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 22,
+              "line": 247
+            },
+            "start": {
+              "column": 29,
+              "line": 243
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "100",
+          "mutatorName": "StringLiteral",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 44,
+              "line": 245
+            },
+            "start": {
+              "column": 23,
+              "line": 245
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "101",
+          "mutatorName": "ArrowFunction",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 20,
+              "line": 260
+            },
+            "start": {
+              "column": 51,
+              "line": 253
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "102",
+          "mutatorName": "StringLiteral",
+          "status": "Survived",
+          "location": {
+            "end": {
+              "column": 36,
+              "line": 269
+            },
+            "start": {
+              "column": 33,
+              "line": 269
+            }
+          },
+          "killedBy": null,
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 2
+        },
+        {
+          "id": "103",
+          "mutatorName": "ArrowFunction",
+          "status": "Survived",
+          "location": {
+            "end": {
+              "column": 63,
+              "line": 281
+            },
+            "start": {
+              "column": 29,
+              "line": 280
+            }
+          },
+          "killedBy": null,
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 2
+        },
+        {
+          "id": "105",
+          "mutatorName": "ConditionalExpression",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 32,
+              "line": 320
+            },
+            "start": {
+              "column": 16,
+              "line": 320
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "106",
+          "mutatorName": "ConditionalExpression",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 32,
+              "line": 320
+            },
+            "start": {
+              "column": 16,
+              "line": 320
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "107",
+          "mutatorName": "EqualityOperator",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 32,
+              "line": 320
+            },
+            "start": {
+              "column": 16,
+              "line": 320
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "108",
+          "mutatorName": "ConditionalExpression",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 39,
+              "line": 325
+            },
+            "start": {
+              "column": 19,
+              "line": 325
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "109",
+          "mutatorName": "ConditionalExpression",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 39,
+              "line": 325
+            },
+            "start": {
+              "column": 19,
+              "line": 325
+            }
+          },
+          "killedBy": ["1"],
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 2
+        },
+        {
+          "id": "110",
+          "mutatorName": "EqualityOperator",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 39,
+              "line": 325
+            },
+            "start": {
+              "column": 19,
+              "line": 325
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "111",
+          "mutatorName": "BlockStatement",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 20,
+              "line": 393
+            },
+            "start": {
+              "column": 43,
+              "line": 346
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "112",
+          "mutatorName": "ConditionalExpression",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 67,
+              "line": 348
+            },
+            "start": {
+              "column": 23,
+              "line": 348
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "114",
+          "mutatorName": "EqualityOperator",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 67,
+              "line": 348
+            },
+            "start": {
+              "column": 23,
+              "line": 348
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "113",
+          "mutatorName": "ConditionalExpression",
+          "status": "Survived",
+          "location": {
+            "end": {
+              "column": 67,
+              "line": 348
+            },
+            "start": {
+              "column": 23,
+              "line": 348
+            }
+          },
+          "killedBy": null,
+          "coveredBy": ["0"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "115",
+          "mutatorName": "ArrowFunction",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 30,
+              "line": 365
+            },
+            "start": {
+              "column": 37,
+              "line": 360
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "116",
+          "mutatorName": "StringLiteral",
+          "status": "Survived",
+          "location": {
+            "end": {
+              "column": 45,
+              "line": 376
+            },
+            "start": {
+              "column": 42,
+              "line": 376
+            }
+          },
+          "killedBy": null,
+          "coveredBy": ["0"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "117",
+          "mutatorName": "LogicalOperator",
+          "status": "Survived",
+          "location": {
+            "end": {
+              "column": 56,
+              "line": 378
+            },
+            "start": {
+              "column": 30,
+              "line": 377
+            }
+          },
+          "killedBy": null,
+          "coveredBy": ["0"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "118",
+          "mutatorName": "OptionalChaining",
+          "status": "Survived",
+          "location": {
+            "end": {
+              "column": 50,
+              "line": 377
+            },
+            "start": {
+              "column": 30,
+              "line": 377
+            }
+          },
+          "killedBy": null,
+          "coveredBy": ["0"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "120",
+          "mutatorName": "BooleanLiteral",
+          "status": "Survived",
+          "location": {
+            "end": {
+              "column": 45,
+              "line": 435
+            },
+            "start": {
+              "column": 31,
+              "line": 435
+            }
+          },
+          "killedBy": null,
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 2
+        },
+        {
+          "id": "121",
+          "mutatorName": "ArrowFunction",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 58,
+              "line": 439
+            },
+            "start": {
+              "column": 31,
+              "line": 437
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "122",
+          "mutatorName": "BooleanLiteral",
+          "status": "Survived",
+          "location": {
+            "end": {
+              "column": 45,
+              "line": 456
+            },
+            "start": {
+              "column": 31,
+              "line": 456
+            }
+          },
+          "killedBy": null,
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 2
+        },
+        {
+          "id": "123",
+          "mutatorName": "ArrowFunction",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 58,
+              "line": 460
+            },
+            "start": {
+              "column": 31,
+              "line": 458
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "125",
+          "mutatorName": "ConditionalExpression",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 10,
+              "line": 570
+            },
+            "start": {
+              "column": 10,
+              "line": 481
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "124",
+          "mutatorName": "BooleanLiteral",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 43,
+              "line": 467
+            },
+            "start": {
+              "column": 29,
+              "line": 467
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "127",
+          "mutatorName": "LogicalOperator",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 10,
+              "line": 570
+            },
+            "start": {
+              "column": 10,
+              "line": 481
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "126",
+          "mutatorName": "ConditionalExpression",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 10,
+              "line": 570
+            },
+            "start": {
+              "column": 10,
+              "line": 481
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0", "1"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "129",
+          "mutatorName": "LogicalOperator",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 70,
+              "line": 557
+            },
+            "start": {
+              "column": 24,
+              "line": 556
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "128",
+          "mutatorName": "StringLiteral",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 59,
+              "line": 541
+            },
+            "start": {
+              "column": 56,
+              "line": 541
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "130",
+          "mutatorName": "OptionalChaining",
+          "status": "Survived",
+          "location": {
+            "end": {
+              "column": 56,
+              "line": 556
+            },
+            "start": {
+              "column": 24,
+              "line": 556
+            }
+          },
+          "killedBy": null,
+          "coveredBy": ["0"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "24",
+          "mutatorName": "StringLiteral",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 15,
+              "line": 27
+            },
+            "start": {
+              "column": 13,
+              "line": 27
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": [],
+          "testsCompleted": 1
+        },
+        {
+          "id": "23",
+          "mutatorName": "ObjectLiteral",
+          "status": "Survived",
+          "location": {
+            "end": {
+              "column": 2,
+              "line": 31
+            },
+            "start": {
+              "column": 40,
+              "line": 26
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": 20
+        },
+        {
+          "id": "25",
+          "mutatorName": "StringLiteral",
+          "status": "Survived",
+          "location": {
+            "end": {
+              "column": 14,
+              "line": 28
+            },
+            "start": {
+              "column": 12,
+              "line": 28
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": 20
+        },
+        {
+          "id": "26",
+          "mutatorName": "StringLiteral",
+          "status": "Survived",
+          "location": {
+            "end": {
+              "column": 26,
+              "line": 29
+            },
+            "start": {
+              "column": 24,
+              "line": 29
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": 20
+        },
+        {
+          "id": "27",
+          "mutatorName": "StringLiteral",
+          "status": "Survived",
+          "location": {
+            "end": {
+              "column": 12,
+              "line": 30
+            },
+            "start": {
+              "column": 10,
+              "line": 30
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": 20
+        }
+      ]
+    },
+    "src/lib/validations/auth.ts": {
+      "language": "typescript",
+      "mutants": [
+        {
+          "id": "150",
+          "mutatorName": "ObjectLiteral",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 2,
+              "line": 6
+            },
+            "start": {
+              "column": 37,
+              "line": 3
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "151",
+          "mutatorName": "StringLiteral",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 63,
+              "line": 4
+            },
+            "start": {
+              "column": 27,
+              "line": 4
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "152",
+          "mutatorName": "MethodExpression",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 54,
+              "line": 5
+            },
+            "start": {
+              "column": 13,
+              "line": 5
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "153",
+          "mutatorName": "StringLiteral",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 53,
+              "line": 5
+            },
+            "start": {
+              "column": 31,
+              "line": 5
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "154",
+          "mutatorName": "ObjectLiteral",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 4,
+              "line": 21
+            },
+            "start": {
+              "column": 11,
+              "line": 9
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "155",
+          "mutatorName": "MethodExpression",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 55,
+              "line": 13
+            },
+            "start": {
+              "column": 18,
+              "line": 10
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "156",
+          "mutatorName": "MethodExpression",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 52,
+              "line": 12
+            },
+            "start": {
+              "column": 18,
+              "line": 10
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "157",
+          "mutatorName": "StringLiteral",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 51,
+              "line": 12
+            },
+            "start": {
+              "column": 15,
+              "line": 12
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "158",
+          "mutatorName": "StringLiteral",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 54,
+              "line": 13
+            },
+            "start": {
+              "column": 16,
+              "line": 13
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "159",
+          "mutatorName": "StringLiteral",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 65,
+              "line": 14
+            },
+            "start": {
+              "column": 29,
+              "line": 14
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "160",
+          "mutatorName": "MethodExpression",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 56,
+              "line": 17
+            },
+            "start": {
+              "column": 15,
+              "line": 15
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "161",
+          "mutatorName": "StringLiteral",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 55,
+              "line": 17
+            },
+            "start": {
+              "column": 15,
+              "line": 17
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "162",
+          "mutatorName": "Regex",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 21,
+              "line": 18
+            },
+            "start": {
+              "column": 14,
+              "line": 18
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "163",
+          "mutatorName": "StringLiteral",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 76,
+              "line": 18
+            },
+            "start": {
+              "column": 23,
+              "line": 18
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "164",
+          "mutatorName": "Regex",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 21,
+              "line": 19
+            },
+            "start": {
+              "column": 14,
+              "line": 19
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "165",
+          "mutatorName": "StringLiteral",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 66,
+              "line": 19
+            },
+            "start": {
+              "column": 23,
+              "line": 19
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "166",
+          "mutatorName": "ArrowFunction",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 59,
+              "line": 22
+            },
+            "start": {
+              "column": 11,
+              "line": 22
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "167",
+          "mutatorName": "ConditionalExpression",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 59,
+              "line": 22
+            },
+            "start": {
+              "column": 21,
+              "line": 22
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "168",
+          "mutatorName": "ConditionalExpression",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 59,
+              "line": 22
+            },
+            "start": {
+              "column": 21,
+              "line": 22
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "169",
+          "mutatorName": "EqualityOperator",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 59,
+              "line": 22
+            },
+            "start": {
+              "column": 21,
+              "line": 22
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "170",
+          "mutatorName": "ObjectLiteral",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 4,
+              "line": 25
+            },
+            "start": {
+              "column": 61,
+              "line": 22
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "171",
+          "mutatorName": "StringLiteral",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 38,
+              "line": 23
+            },
+            "start": {
+              "column": 14,
+              "line": 23
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "172",
+          "mutatorName": "ArrayDeclaration",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 30,
+              "line": 24
+            },
+            "start": {
+              "column": 11,
+              "line": 24
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "173",
+          "mutatorName": "StringLiteral",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 29,
+              "line": 24
+            },
+            "start": {
+              "column": 12,
+              "line": 24
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "174",
+          "mutatorName": "ObjectLiteral",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 2,
+              "line": 29
+            },
+            "start": {
+              "column": 45,
+              "line": 27
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "175",
+          "mutatorName": "StringLiteral",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 63,
+              "line": 28
+            },
+            "start": {
+              "column": 27,
+              "line": 28
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "176",
+          "mutatorName": "ObjectLiteral",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 4,
+              "line": 44
+            },
+            "start": {
+              "column": 11,
+              "line": 32
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "177",
+          "mutatorName": "MethodExpression",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 55,
+              "line": 36
+            },
+            "start": {
+              "column": 18,
+              "line": 33
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "178",
+          "mutatorName": "MethodExpression",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 52,
+              "line": 35
+            },
+            "start": {
+              "column": 18,
+              "line": 33
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "179",
+          "mutatorName": "StringLiteral",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 51,
+              "line": 35
+            },
+            "start": {
+              "column": 15,
+              "line": 35
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "180",
+          "mutatorName": "StringLiteral",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 54,
+              "line": 36
+            },
+            "start": {
+              "column": 16,
+              "line": 36
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "181",
+          "mutatorName": "StringLiteral",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 65,
+              "line": 37
+            },
+            "start": {
+              "column": 29,
+              "line": 37
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "182",
+          "mutatorName": "MethodExpression",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 56,
+              "line": 40
+            },
+            "start": {
+              "column": 15,
+              "line": 38
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "183",
+          "mutatorName": "StringLiteral",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 55,
+              "line": 40
+            },
+            "start": {
+              "column": 15,
+              "line": 40
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "184",
+          "mutatorName": "Regex",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 21,
+              "line": 41
+            },
+            "start": {
+              "column": 14,
+              "line": 41
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "185",
+          "mutatorName": "StringLiteral",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 76,
+              "line": 41
+            },
+            "start": {
+              "column": 23,
+              "line": 41
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "186",
+          "mutatorName": "Regex",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 21,
+              "line": 42
+            },
+            "start": {
+              "column": 14,
+              "line": 42
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "187",
+          "mutatorName": "StringLiteral",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 66,
+              "line": 42
+            },
+            "start": {
+              "column": 23,
+              "line": 42
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "188",
+          "mutatorName": "ArrowFunction",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 59,
+              "line": 45
+            },
+            "start": {
+              "column": 11,
+              "line": 45
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "189",
+          "mutatorName": "ConditionalExpression",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 59,
+              "line": 45
+            },
+            "start": {
+              "column": 21,
+              "line": 45
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "190",
+          "mutatorName": "ConditionalExpression",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 59,
+              "line": 45
+            },
+            "start": {
+              "column": 21,
+              "line": 45
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "191",
+          "mutatorName": "EqualityOperator",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 59,
+              "line": 45
+            },
+            "start": {
+              "column": 21,
+              "line": 45
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "192",
+          "mutatorName": "ObjectLiteral",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 4,
+              "line": 48
+            },
+            "start": {
+              "column": 61,
+              "line": 45
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "193",
+          "mutatorName": "StringLiteral",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 38,
+              "line": 46
+            },
+            "start": {
+              "column": 14,
+              "line": 46
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "194",
+          "mutatorName": "ArrayDeclaration",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 30,
+              "line": 47
+            },
+            "start": {
+              "column": 11,
+              "line": 47
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "195",
+          "mutatorName": "StringLiteral",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 29,
+              "line": 47
+            },
+            "start": {
+              "column": 12,
+              "line": 47
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        }
+      ]
+    },
+    "src/lib/validations/common.ts": {
+      "language": "typescript",
+      "mutants": [
+        {
+          "id": "196",
+          "mutatorName": "MethodExpression",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 60,
+              "line": 3
+            },
+            "start": {
+              "column": 25,
+              "line": 3
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "197",
+          "mutatorName": "StringLiteral",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 59,
+              "line": 3
+            },
+            "start": {
+              "column": 43,
+              "line": 3
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "198",
+          "mutatorName": "ObjectLiteral",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 2,
+              "line": 8
+            },
+            "start": {
+              "column": 42,
+              "line": 5
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        },
+        {
+          "id": "199",
+          "mutatorName": "MethodExpression",
+          "status": "NoCoverage",
+          "location": {
+            "end": {
+              "column": 53,
+              "line": 7
+            },
+            "start": {
+              "column": 10,
+              "line": 7
+            }
+          },
+          "killedBy": null,
+          "coveredBy": [],
+          "testsCompleted": null
+        }
+      ]
+    },
+    "src/features/technician-dispatch/matching.ts": {
+      "language": "typescript",
+      "mutants": [
+        {
+          "id": "131",
+          "mutatorName": "BlockStatement",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 2,
+              "line": 18
+            },
+            "start": {
+              "column": 20,
+              "line": 10
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0", "1", "8", "9", "10", "11", "12", "13"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "132",
+          "mutatorName": "BlockStatement",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 4,
+              "line": 15
+            },
+            "start": {
+              "column": 70,
+              "line": 11
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0", "1", "8", "9", "10", "11", "12", "13"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "134",
+          "mutatorName": "ConditionalExpression",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 83,
+              "line": 12
+            },
+            "start": {
+              "column": 9,
+              "line": 12
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0", "1", "8", "9", "10", "11", "12", "13"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "133",
+          "mutatorName": "ConditionalExpression",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 83,
+              "line": 12
+            },
+            "start": {
+              "column": 9,
+              "line": 12
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0", "1", "8", "9", "10", "11", "12", "13"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "136",
+          "mutatorName": "ArrowFunction",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 82,
+              "line": 12
+            },
+            "start": {
+              "column": 37,
+              "line": 12
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0", "1", "8", "9", "10", "11", "12", "13"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "137",
+          "mutatorName": "BlockStatement",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 6,
+              "line": 14
+            },
+            "start": {
+              "column": 85,
+              "line": 12
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0", "8", "9", "10", "12"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "135",
+          "mutatorName": "MethodExpression",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 83,
+              "line": 12
+            },
+            "start": {
+              "column": 9,
+              "line": 12
+            }
+          },
+          "killedBy": ["8"],
+          "coveredBy": ["0", "1", "8", "9", "10", "11", "12", "13"],
+          "testsCompleted": 3
+        },
+        {
+          "id": "138",
+          "mutatorName": "BlockStatement",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 2,
+              "line": 33
+            },
+            "start": {
+              "column": 22,
+              "line": 24
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0", "1", "8", "9", "10", "11", "12", "13"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "139",
+          "mutatorName": "BlockStatement",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 4,
+              "line": 32
+            },
+            "start": {
+              "column": 46,
+              "line": 25
+            }
+          },
+          "killedBy": ["8"],
+          "coveredBy": ["0", "1", "8", "9", "10", "11", "12", "13"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "140",
+          "mutatorName": "BooleanLiteral",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 45,
+              "line": 26
+            },
+            "start": {
+              "column": 9,
+              "line": 26
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0", "1", "8", "9", "10", "11", "12", "13"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "141",
+          "mutatorName": "ConditionalExpression",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 45,
+              "line": 26
+            },
+            "start": {
+              "column": 9,
+              "line": 26
+            }
+          },
+          "killedBy": ["8"],
+          "coveredBy": ["0", "1", "8", "9", "10", "11", "12", "13"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "143",
+          "mutatorName": "ArrayDeclaration",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 56,
+              "line": 26
+            },
+            "start": {
+              "column": 54,
+              "line": 26
+            }
+          },
+          "killedBy": ["8"],
+          "coveredBy": ["0", "1", "8", "9", "10", "11", "12", "13"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "144",
+          "mutatorName": "ConditionalExpression",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 34,
+              "line": 29
+            },
+            "start": {
+              "column": 9,
+              "line": 29
+            }
+          },
+          "killedBy": ["8"],
+          "coveredBy": ["0", "1", "8", "9", "10", "11", "12", "13"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "142",
+          "mutatorName": "ConditionalExpression",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 45,
+              "line": 26
+            },
+            "start": {
+              "column": 9,
+              "line": 26
+            }
+          },
+          "killedBy": ["1"],
+          "coveredBy": ["0", "1", "8", "9", "10", "11", "12", "13"],
+          "testsCompleted": 2
+        },
+        {
+          "id": "145",
+          "mutatorName": "ConditionalExpression",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 34,
+              "line": 29
+            },
+            "start": {
+              "column": 9,
+              "line": 29
+            }
+          },
+          "killedBy": ["9"],
+          "coveredBy": ["0", "1", "8", "9", "10", "11", "12", "13"],
+          "testsCompleted": 2
+        },
+        {
+          "id": "146",
+          "mutatorName": "EqualityOperator",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 34,
+              "line": 29
+            },
+            "start": {
+              "column": 9,
+              "line": 29
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0", "1", "8", "9", "10", "11", "12", "13"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "147",
+          "mutatorName": "ArrayDeclaration",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 45,
+              "line": 29
+            },
+            "start": {
+              "column": 43,
+              "line": 29
+            }
+          },
+          "killedBy": ["9"],
+          "coveredBy": ["0", "1", "9", "11", "13"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "149",
+          "mutatorName": "ObjectLiteral",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 45,
+              "line": 31
+            },
+            "start": {
+              "column": 13,
+              "line": 31
+            }
+          },
+          "killedBy": ["8"],
+          "coveredBy": ["0", "8", "9", "10", "12"],
+          "testsCompleted": 1
+        },
+        {
+          "id": "148",
+          "mutatorName": "ArrayDeclaration",
+          "status": "Killed",
+          "location": {
+            "end": {
+              "column": 46,
+              "line": 31
+            },
+            "start": {
+              "column": 12,
+              "line": 31
+            }
+          },
+          "killedBy": ["0"],
+          "coveredBy": ["0", "8", "9", "10", "12"],
+          "testsCompleted": 1
+        }
+      ]
     }
-   ]
-  },
-  "src/lib/validations/auth.ts": {
-   "language": "typescript",
-   "mutants": [
-    {
-     "id": "150",
-     "mutatorName": "ObjectLiteral",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 2,
-       "line": 6
-      },
-      "start": {
-       "column": 37,
-       "line": 3
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "151",
-     "mutatorName": "StringLiteral",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 63,
-       "line": 4
-      },
-      "start": {
-       "column": 27,
-       "line": 4
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "152",
-     "mutatorName": "MethodExpression",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 54,
-       "line": 5
-      },
-      "start": {
-       "column": 13,
-       "line": 5
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "153",
-     "mutatorName": "StringLiteral",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 53,
-       "line": 5
-      },
-      "start": {
-       "column": 31,
-       "line": 5
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "154",
-     "mutatorName": "ObjectLiteral",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 4,
-       "line": 21
-      },
-      "start": {
-       "column": 11,
-       "line": 9
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "155",
-     "mutatorName": "MethodExpression",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 55,
-       "line": 13
-      },
-      "start": {
-       "column": 18,
-       "line": 10
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "156",
-     "mutatorName": "MethodExpression",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 52,
-       "line": 12
-      },
-      "start": {
-       "column": 18,
-       "line": 10
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "157",
-     "mutatorName": "StringLiteral",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 51,
-       "line": 12
-      },
-      "start": {
-       "column": 15,
-       "line": 12
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "158",
-     "mutatorName": "StringLiteral",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 54,
-       "line": 13
-      },
-      "start": {
-       "column": 16,
-       "line": 13
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "159",
-     "mutatorName": "StringLiteral",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 65,
-       "line": 14
-      },
-      "start": {
-       "column": 29,
-       "line": 14
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "160",
-     "mutatorName": "MethodExpression",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 56,
-       "line": 17
-      },
-      "start": {
-       "column": 15,
-       "line": 15
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "161",
-     "mutatorName": "StringLiteral",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 55,
-       "line": 17
-      },
-      "start": {
-       "column": 15,
-       "line": 17
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "162",
-     "mutatorName": "Regex",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 21,
-       "line": 18
-      },
-      "start": {
-       "column": 14,
-       "line": 18
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "163",
-     "mutatorName": "StringLiteral",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 76,
-       "line": 18
-      },
-      "start": {
-       "column": 23,
-       "line": 18
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "164",
-     "mutatorName": "Regex",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 21,
-       "line": 19
-      },
-      "start": {
-       "column": 14,
-       "line": 19
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "165",
-     "mutatorName": "StringLiteral",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 66,
-       "line": 19
-      },
-      "start": {
-       "column": 23,
-       "line": 19
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "166",
-     "mutatorName": "ArrowFunction",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 59,
-       "line": 22
-      },
-      "start": {
-       "column": 11,
-       "line": 22
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "167",
-     "mutatorName": "ConditionalExpression",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 59,
-       "line": 22
-      },
-      "start": {
-       "column": 21,
-       "line": 22
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "168",
-     "mutatorName": "ConditionalExpression",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 59,
-       "line": 22
-      },
-      "start": {
-       "column": 21,
-       "line": 22
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "169",
-     "mutatorName": "EqualityOperator",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 59,
-       "line": 22
-      },
-      "start": {
-       "column": 21,
-       "line": 22
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "170",
-     "mutatorName": "ObjectLiteral",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 4,
-       "line": 25
-      },
-      "start": {
-       "column": 61,
-       "line": 22
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "171",
-     "mutatorName": "StringLiteral",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 38,
-       "line": 23
-      },
-      "start": {
-       "column": 14,
-       "line": 23
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "172",
-     "mutatorName": "ArrayDeclaration",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 30,
-       "line": 24
-      },
-      "start": {
-       "column": 11,
-       "line": 24
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "173",
-     "mutatorName": "StringLiteral",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 29,
-       "line": 24
-      },
-      "start": {
-       "column": 12,
-       "line": 24
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "174",
-     "mutatorName": "ObjectLiteral",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 2,
-       "line": 29
-      },
-      "start": {
-       "column": 45,
-       "line": 27
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "175",
-     "mutatorName": "StringLiteral",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 63,
-       "line": 28
-      },
-      "start": {
-       "column": 27,
-       "line": 28
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "176",
-     "mutatorName": "ObjectLiteral",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 4,
-       "line": 44
-      },
-      "start": {
-       "column": 11,
-       "line": 32
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "177",
-     "mutatorName": "MethodExpression",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 55,
-       "line": 36
-      },
-      "start": {
-       "column": 18,
-       "line": 33
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "178",
-     "mutatorName": "MethodExpression",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 52,
-       "line": 35
-      },
-      "start": {
-       "column": 18,
-       "line": 33
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "179",
-     "mutatorName": "StringLiteral",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 51,
-       "line": 35
-      },
-      "start": {
-       "column": 15,
-       "line": 35
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "180",
-     "mutatorName": "StringLiteral",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 54,
-       "line": 36
-      },
-      "start": {
-       "column": 16,
-       "line": 36
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "181",
-     "mutatorName": "StringLiteral",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 65,
-       "line": 37
-      },
-      "start": {
-       "column": 29,
-       "line": 37
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "182",
-     "mutatorName": "MethodExpression",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 56,
-       "line": 40
-      },
-      "start": {
-       "column": 15,
-       "line": 38
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "183",
-     "mutatorName": "StringLiteral",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 55,
-       "line": 40
-      },
-      "start": {
-       "column": 15,
-       "line": 40
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "184",
-     "mutatorName": "Regex",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 21,
-       "line": 41
-      },
-      "start": {
-       "column": 14,
-       "line": 41
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "185",
-     "mutatorName": "StringLiteral",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 76,
-       "line": 41
-      },
-      "start": {
-       "column": 23,
-       "line": 41
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "186",
-     "mutatorName": "Regex",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 21,
-       "line": 42
-      },
-      "start": {
-       "column": 14,
-       "line": 42
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "187",
-     "mutatorName": "StringLiteral",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 66,
-       "line": 42
-      },
-      "start": {
-       "column": 23,
-       "line": 42
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "188",
-     "mutatorName": "ArrowFunction",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 59,
-       "line": 45
-      },
-      "start": {
-       "column": 11,
-       "line": 45
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "189",
-     "mutatorName": "ConditionalExpression",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 59,
-       "line": 45
-      },
-      "start": {
-       "column": 21,
-       "line": 45
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "190",
-     "mutatorName": "ConditionalExpression",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 59,
-       "line": 45
-      },
-      "start": {
-       "column": 21,
-       "line": 45
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "191",
-     "mutatorName": "EqualityOperator",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 59,
-       "line": 45
-      },
-      "start": {
-       "column": 21,
-       "line": 45
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "192",
-     "mutatorName": "ObjectLiteral",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 4,
-       "line": 48
-      },
-      "start": {
-       "column": 61,
-       "line": 45
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "193",
-     "mutatorName": "StringLiteral",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 38,
-       "line": 46
-      },
-      "start": {
-       "column": 14,
-       "line": 46
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "194",
-     "mutatorName": "ArrayDeclaration",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 30,
-       "line": 47
-      },
-      "start": {
-       "column": 11,
-       "line": 47
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "195",
-     "mutatorName": "StringLiteral",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 29,
-       "line": 47
-      },
-      "start": {
-       "column": 12,
-       "line": 47
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    }
-   ]
-  },
-  "src/lib/validations/common.ts": {
-   "language": "typescript",
-   "mutants": [
-    {
-     "id": "196",
-     "mutatorName": "MethodExpression",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 60,
-       "line": 3
-      },
-      "start": {
-       "column": 25,
-       "line": 3
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "197",
-     "mutatorName": "StringLiteral",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 59,
-       "line": 3
-      },
-      "start": {
-       "column": 43,
-       "line": 3
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "198",
-     "mutatorName": "ObjectLiteral",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 2,
-       "line": 8
-      },
-      "start": {
-       "column": 42,
-       "line": 5
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    },
-    {
-     "id": "199",
-     "mutatorName": "MethodExpression",
-     "status": "NoCoverage",
-     "location": {
-      "end": {
-       "column": 53,
-       "line": 7
-      },
-      "start": {
-       "column": 10,
-       "line": 7
-      }
-     },
-     "killedBy": null,
-     "coveredBy": [],
-     "testsCompleted": null
-    }
-   ]
-  },
-  "src/features/technician-dispatch/matching.ts": {
-   "language": "typescript",
-   "mutants": [
-    {
-     "id": "131",
-     "mutatorName": "BlockStatement",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 2,
-       "line": 18
-      },
-      "start": {
-       "column": 20,
-       "line": 10
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0",
-      "1",
-      "8",
-      "9",
-      "10",
-      "11",
-      "12",
-      "13"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "132",
-     "mutatorName": "BlockStatement",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 4,
-       "line": 15
-      },
-      "start": {
-       "column": 70,
-       "line": 11
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0",
-      "1",
-      "8",
-      "9",
-      "10",
-      "11",
-      "12",
-      "13"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "134",
-     "mutatorName": "ConditionalExpression",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 83,
-       "line": 12
-      },
-      "start": {
-       "column": 9,
-       "line": 12
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0",
-      "1",
-      "8",
-      "9",
-      "10",
-      "11",
-      "12",
-      "13"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "133",
-     "mutatorName": "ConditionalExpression",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 83,
-       "line": 12
-      },
-      "start": {
-       "column": 9,
-       "line": 12
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0",
-      "1",
-      "8",
-      "9",
-      "10",
-      "11",
-      "12",
-      "13"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "136",
-     "mutatorName": "ArrowFunction",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 82,
-       "line": 12
-      },
-      "start": {
-       "column": 37,
-       "line": 12
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0",
-      "1",
-      "8",
-      "9",
-      "10",
-      "11",
-      "12",
-      "13"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "137",
-     "mutatorName": "BlockStatement",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 6,
-       "line": 14
-      },
-      "start": {
-       "column": 85,
-       "line": 12
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0",
-      "8",
-      "9",
-      "10",
-      "12"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "135",
-     "mutatorName": "MethodExpression",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 83,
-       "line": 12
-      },
-      "start": {
-       "column": 9,
-       "line": 12
-      }
-     },
-     "killedBy": [
-      "8"
-     ],
-     "coveredBy": [
-      "0",
-      "1",
-      "8",
-      "9",
-      "10",
-      "11",
-      "12",
-      "13"
-     ],
-     "testsCompleted": 3
-    },
-    {
-     "id": "138",
-     "mutatorName": "BlockStatement",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 2,
-       "line": 33
-      },
-      "start": {
-       "column": 22,
-       "line": 24
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0",
-      "1",
-      "8",
-      "9",
-      "10",
-      "11",
-      "12",
-      "13"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "139",
-     "mutatorName": "BlockStatement",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 4,
-       "line": 32
-      },
-      "start": {
-       "column": 46,
-       "line": 25
-      }
-     },
-     "killedBy": [
-      "8"
-     ],
-     "coveredBy": [
-      "0",
-      "1",
-      "8",
-      "9",
-      "10",
-      "11",
-      "12",
-      "13"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "140",
-     "mutatorName": "BooleanLiteral",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 45,
-       "line": 26
-      },
-      "start": {
-       "column": 9,
-       "line": 26
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0",
-      "1",
-      "8",
-      "9",
-      "10",
-      "11",
-      "12",
-      "13"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "141",
-     "mutatorName": "ConditionalExpression",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 45,
-       "line": 26
-      },
-      "start": {
-       "column": 9,
-       "line": 26
-      }
-     },
-     "killedBy": [
-      "8"
-     ],
-     "coveredBy": [
-      "0",
-      "1",
-      "8",
-      "9",
-      "10",
-      "11",
-      "12",
-      "13"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "143",
-     "mutatorName": "ArrayDeclaration",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 56,
-       "line": 26
-      },
-      "start": {
-       "column": 54,
-       "line": 26
-      }
-     },
-     "killedBy": [
-      "8"
-     ],
-     "coveredBy": [
-      "0",
-      "1",
-      "8",
-      "9",
-      "10",
-      "11",
-      "12",
-      "13"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "144",
-     "mutatorName": "ConditionalExpression",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 34,
-       "line": 29
-      },
-      "start": {
-       "column": 9,
-       "line": 29
-      }
-     },
-     "killedBy": [
-      "8"
-     ],
-     "coveredBy": [
-      "0",
-      "1",
-      "8",
-      "9",
-      "10",
-      "11",
-      "12",
-      "13"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "142",
-     "mutatorName": "ConditionalExpression",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 45,
-       "line": 26
-      },
-      "start": {
-       "column": 9,
-       "line": 26
-      }
-     },
-     "killedBy": [
-      "1"
-     ],
-     "coveredBy": [
-      "0",
-      "1",
-      "8",
-      "9",
-      "10",
-      "11",
-      "12",
-      "13"
-     ],
-     "testsCompleted": 2
-    },
-    {
-     "id": "145",
-     "mutatorName": "ConditionalExpression",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 34,
-       "line": 29
-      },
-      "start": {
-       "column": 9,
-       "line": 29
-      }
-     },
-     "killedBy": [
-      "9"
-     ],
-     "coveredBy": [
-      "0",
-      "1",
-      "8",
-      "9",
-      "10",
-      "11",
-      "12",
-      "13"
-     ],
-     "testsCompleted": 2
-    },
-    {
-     "id": "146",
-     "mutatorName": "EqualityOperator",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 34,
-       "line": 29
-      },
-      "start": {
-       "column": 9,
-       "line": 29
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0",
-      "1",
-      "8",
-      "9",
-      "10",
-      "11",
-      "12",
-      "13"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "147",
-     "mutatorName": "ArrayDeclaration",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 45,
-       "line": 29
-      },
-      "start": {
-       "column": 43,
-       "line": 29
-      }
-     },
-     "killedBy": [
-      "9"
-     ],
-     "coveredBy": [
-      "0",
-      "1",
-      "9",
-      "11",
-      "13"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "149",
-     "mutatorName": "ObjectLiteral",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 45,
-       "line": 31
-      },
-      "start": {
-       "column": 13,
-       "line": 31
-      }
-     },
-     "killedBy": [
-      "8"
-     ],
-     "coveredBy": [
-      "0",
-      "8",
-      "9",
-      "10",
-      "12"
-     ],
-     "testsCompleted": 1
-    },
-    {
-     "id": "148",
-     "mutatorName": "ArrayDeclaration",
-     "status": "Killed",
-     "location": {
-      "end": {
-       "column": 46,
-       "line": 31
-      },
-      "start": {
-       "column": 12,
-       "line": 31
-      }
-     },
-     "killedBy": [
-      "0"
-     ],
-     "coveredBy": [
-      "0",
-      "8",
-      "9",
-      "10",
-      "12"
-     ],
-     "testsCompleted": 1
-    }
-   ]
   }
- }
 }
