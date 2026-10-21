@@ -82,12 +82,21 @@ The handoff should identify:
 
 The agent should not be expected to infer missing requirements. If important information is not written in the issue or referenced repository context, the task is not ready to be delegated.
 
+## Copilot environment used in the proof of concept
+
+GitHub Copilot can be used through different development environments, including Copilot CLI, Copilot agent mode in VS Code, and Copilot cloud agent. These are separate workflows and should not be treated as interchangeable.
+
+For the FR-01 fault-reporting proof of concept, `docs/research/fault-reporting/credit-log.md` records the client as **Copilot CLI**, with the version pending confirmation. The repository also contains a commit with the trailer `Co-authored-by: Copilot App` (`9593f1e`, PR #63). However, the trailer alone does not establish the precise client or version used.
+
+Therefore, the recorded experiment is described as a **Copilot CLI run, pending Zafir's confirmation**. The cloud-agent and VS Code examples below describe possible workflows; they should not be presented as evidence that those specific environments were used in FR-01.
 
 ## Copilot workflow examples
 
 The same development task can be handed to Copilot in different ways. The following examples use the fault-reporting feature to show the difference between Copilot cloud agent and Copilot Agent mode in VS Code.
 
-### Example 1: Copilot cloud agent
+### Example 1: Copilot cloud agent (documented, not run)
+
+This example documents the expected GitHub Copilot cloud-agent workflow. It was not executed as part of the recorded FR-01 proof of concept. The repository's `docs/ai-attribution-verification.md` also records that a live cloud-agent pull request could not be created during the earlier attribution test because cloud-agent access was unavailable.
 
 A complete GitHub issue exists for the fault-reporting feature. The issue contains the task description and acceptance criteria and references:
 
@@ -121,6 +130,8 @@ The developer can then ask:
 
 The developer reviews the proposed plan and redirects it if necessary.
 
+**Gate and holder: Human.** In an interactive Copilot session, the developer reviews and explicitly approves the implementation plan before allowing code changes. The FR-01 decision record (`docs/research/fault-reporting/decisions.md`) provides an example of this approval process: requirements and the proposed architecture were approved on 27 September 2026, and feature implementation was authorised on 30 September 2026. This demonstrates human approval in the recorded experiment, without establishing that the experiment used VS Code agent mode specifically.
+
 After the plan is accepted, the developer asks Copilot to implement it. Agent mode can inspect repository files, edit the implementation and run relevant commands and tests.
 
 The resulting changes remain reviewable through the VS Code diff and Source Control views. The developer inspects the changed files using the same human review gate defined in this module.
@@ -132,7 +143,7 @@ The flow is therefore:
 `Complete issue → Add issue as Agent context → Review plan → Agent changes workspace → Human reviews diff → Commit and PR`
 
 
-## The output recieved from Copilot
+## The output received from Copilot
 
 The result of handing a development task to Copilot should be an inspectable code change rather than only a conversational answer. The exact form of the result depends on whether the Copilot cloud agent or Copilot Agent mode in VS Code is used.
 
@@ -247,13 +258,23 @@ A passing CI result is supporting evidence, not approval of the change.
 
 ## Gate mechanisms
 
-Each gate in this workflow is labelled by the mechanism that actually holds it.
+A gate is a point where work cannot proceed until a required condition is satisfied. The holder identifies the mechanism or person responsible for enforcing that condition.
 
-| Gate | Mechanism | What holds the gate |
-|---|---|---|
-| Task is ready to be delegated to Copilot | **Human** | A person confirms that the issue, acceptance criteria, context and scope are complete before the task is handed to the agent. |
-| Repository rules checked during development | **Hook** | Deterministic repository hooks can block known violations when the relevant action occurs. |
-| Automated verification before merge | **CI check** | GitHub Actions runs the repository's linting, type checking, tests and security checks and reports whether they pass. |
-| Agent-authored change accepted | **Human** | A human reviewer inspects the diff and decides whether the implementation is correct, appropriately scoped and suitable to merge. |
+The following classifications reflect the repository's configured mechanisms.
 
-Repository instructions, prompt files, skills, custom agents and Copilot's own summaries can guide how work is performed, but they do not themselves hold a gate. A gate is only treated as enforced when it is held by a hook, a CI check or a human decision.
+| Gate or checkpoint | Holder | What holds it |
+| --- | --- | --- |
+| Issue is ready for implementation | **Human** | A developer confirms that the issue contains sufficient requirements, acceptance criteria, scope and context. |
+| Copilot receives repository instructions, prompts and skills | **No gate** | These mechanisms guide agent behaviour but do not independently prevent unauthorised actions. |
+| Implementation plan approved in an interactive session | **Human** | The developer must review the plan and authorise implementation. |
+| Plan approval before cloud-agent implementation | **No gate** | Assigning the GitHub issue starts the cloud-agent task; no separate enforced pre-implementation approval gate is demonstrated. |
+| Repository checks during Git operations | **Hook (git)** | Lefthook executes the configured pre-commit and commit-message checks when installed. |
+| Tool-specific restrictions during agent execution | **Hook (agent)** | Configured Copilot or Claude Code hooks check particular agent actions. Their coverage depends on the environment and command patterns; Copilot hooks may fail open on timeout. |
+| AI-use declaration | **CI check (required)** | The `AI Declaration` GitHub Actions job is required by the active `main` ruleset. |
+| Lint, type checking, frontend/backend tests and security scanning | **CI check (advisory)** | GitHub Actions runs the checks and reports their results, but the checked ruleset does not require them for merging. |
+| Pull-request approvals and permitted merge method | **Platform rule** | The active `main` ruleset requires two approving reviews and permits squash merging. |
+| Agent-authored implementation accepted | **Human** | Reviewers inspect the actual changes, test evidence, security implications and acceptance criteria before approving. |
+
+These mechanisms provide different levels of protection. Instructions and agent summaries are guidance, hooks check configured actions, CI checks provide automated results, and GitHub enforces its active platform rules.
+
+A failed advisory check should still be investigated before approval, even if GitHub technically permits the merge. Human reviewers remain accountable for determining whether the implementation is correct and suitable for the intended requirements.
