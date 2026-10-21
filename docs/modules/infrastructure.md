@@ -38,7 +38,7 @@ The repository's Copilot instructions require an implementation plan, human appr
 
 Reusable prompts and skills can help developers perform these activities consistently. However, instructions, prompts, skills and agent configurations do not independently enforce compliance.
 
-**Checkpoint and holder: Human.** A developer must approve the implementation plan and confirm that the task is ready.
+**Checkpoint and holder: Human (plan approval); No gate (AI instructions, prompts, skills and custom agents).** A developer must approve the implementation plan. Repository instructions can request this approval, but they do not independently enforce it.
 
 **Failure mode:** If an AI agent begins implementation without sufficiently defined requirements or human approval, it may introduce unnecessary changes or implement incorrect functionality. Written instructions alone cannot guarantee that the agent will stop.
 
@@ -197,7 +197,7 @@ The optional Express backend has a manual Cloud Functions deployment job and is 
 
 Detailed setup and commands are documented in `docs/CI-CD.md` and `docs/DEPLOY-TO-VERCEL.md`.
 
-**Checkpoint and holder: Human for release approval; no separate enforced gate for Vercel's automatic production promotion.**
+**Checkpoint and holder: Human (release decision); No gate (separate Vercel production approval).** The decision to merge acts as the practical release approval because Vercel automatically deploys changes to the production branch.
 
 The practical release decision occurs when the approved pull request is merged. A successful merge initiates deployment but does not guarantee that production deployment or verification succeeds.
 
