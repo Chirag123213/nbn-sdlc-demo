@@ -6,18 +6,22 @@ How a change gets from a feature branch to `main` in this repository when GitHub
 **Source modules:** D3 6.2 (how a commit is done), 6.3 (how branches become merges), 6.10 (provenance). Requirements US-11, US-12, US-05.
 **Checked against:** `main` at `b62e009` and the live `main` ruleset, read from the GitHub API on 28 Sep 2026.
 
-Every gate below carries one of the D1 section 3 labels:
+The gate and holder terminology follows `docs/reports/module-reconciliation.md` section 4:
 
-- **Hook**: runs every time at a fixed trigger and blocks. It pattern-matches and understands nothing. There are two layers: git hooks (lefthook, run by git for everyone) and agent hooks (run by Copilot or Claude Code before a tool call).
-- **CI check**: runs in GitHub Actions on the pull request. Only blocks the merge if the ruleset lists it as required.
-- **Human**: a person makes a judgement.
-- **No gate**: the rule is written down but nothing holds it. If the model ignores it, nothing happens.
-
+- **Hook (git):** A repository Git hook installed through Lefthook. Runs at the configured Git trigger, independently of the AI tool.
+- **Hook (agent):** A tool-specific safeguard configured for Copilot or Claude Code. Its coverage depends on the agent environment.
+- **CI check (required):** A GitHub Actions check explicitly required by the repository ruleset.
+- **CI check (advisory):** A GitHub Actions check that reports results without independently blocking a merge.
+- **Platform rule:** A restriction enforced by GitHub, such as required approvals or squash-only merging.
+- **Human:** A person evaluates evidence and makes a decision.
+- **No gate:** Guidance or an action without a mechanism enforcing the stated condition.
 ---
 
 ## Worked example
 
-Zafir is building the fault report (`docs/research/fault-reporting/feature-brief.md`) with GitHub Copilot in agent mode in VS Code.
+The following is an illustrative walkthrough of the Git workflow using Copilot agent mode in VS Code, rather than a claim about the specific environment used in FR-01.
+
+Suppose Zafir is building the fault-reporting feature (`docs/research/fault-reporting/feature-brief.md`) using Copilot agent mode in VS Code. The example shows how the repository's Git hooks, agent safeguards, CI checks and review rules would apply.
 
 1. He branches from `main`: `git checkout -b feature/fault-report`.
 2. Copilot writes the lodge form and its Firestore rule. Zafir reads the diff and decides this is one change: "users can lodge a fault". The dashboard list is a second change and waits for its own commit.
@@ -47,7 +51,7 @@ Copilot in VS Code (agent mode) is the main path. Claude Code is listed where it
 | 8. Open the pull request | `gh pr create --base main` or the GitHub web page; fill in the template                                                       | Template sections are prompts, not checks, except the AI declaration                                                                                                                       | Human                                     |
 | 9. CI                    | Runs on the pull request: AI Declaration, Lint & Typecheck, Frontend Tests, Backend Unit Tests, Security Scan                 | Only **AI Declaration** is required by the ruleset. The others can fail and the merge button still works once approvals are in.                                                            | CI check (one required, four advisory)    |
 | 10. Review               | Two approvals from people with write access                                                                                   | Ruleset: `required_approving_review_count: 2`. The author's own approval is never possible.                                                                                                | Human                                     |
-| 11. Merge                | **Squash and merge**, with a Conventional Commits title for the squash commit                                                 | Ruleset allows squash only; force pushes and deleting `main` are blocked                                                                                                                   | CI check (ruleset) plus Human (the title) |
+| 11. Merge                | **Squash and merge**, with a Conventional Commits title for the squash commit                                                 | Ruleset allows squash only; force pushes and deleting `main` are blocked                                                                                                                   | Platform rule (squash-only merge) and Human (squash title review) |
 
 Two things in this table are not what `docs/GIT-WORKFLOW.md` says. It says CI must pass before merge; the ruleset requires only the AI Declaration job. It does not mention the two-approval rule. Both are recorded under "Gaps" below.
 
@@ -98,8 +102,11 @@ What each tool puts on a commit today:
 | Tool                                              | Author on the commit                                                                                                                                                            | Agent trailer                                                                                                                                          | Where it is set                                                         |
 | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------- |
 | Copilot agent mode in VS Code (local)             | The developer                                                                                                                                                                   | None by default. VS Code can add `Co-authored-by: Copilot <copilot@github.com>`; the setting `git.addAICoAuthor` defaults to `off` since VS Code 1.119 | `.vscode/settings.json` (this repository has none)                      |
+| Copilot CLI (FR-01 proof of concept; pending client confirmation) | Zafir Hasan (`9593f1e`) | `Co-authored-by: Copilot App <223556219+Copilot@users.noreply.github.com>` | Recorded in the commit; the exact client version and attribution configuration are not confirmed |
 | Copilot cloud agent (assigned an issue on GitHub) | Copilot, with the person who started the task as co-author (GitHub docs, per `docs/ai-attribution-verification.md`; not live-tested, nobody on the team has cloud-agent access) | Recorded by GitHub                                                                                                                                     | GitHub                                                                  |
 | Claude Code                                       | The developer                                                                                                                                                                   | `Co-Authored-By: Claude <model> <noreply@anthropic.com>` by default (verified, commit `20755e0`)                                                       | `attribution.commit` in `.claude/settings.json` (not set; default used) |
+
+The FR-01 proof-of-concept evidence in `docs/research/fault-reporting/credit-log.md` identifies the client as Copilot CLI, with the version pending confirmation from Zafir. Commit `9593f1e` on PR #63 records a `Co-authored-by: Copilot App` trailer. This demonstrates that agent co-author attribution was captured for the recorded change, although the trailer alone does not establish the exact Copilot environment or version. There is still no enforced requirement for every AI-assisted commit to include such a trailer.
 
 A squash merge keeps the trailers (PR #47). So the provenance on `main` is only as good as the provenance on the branch. With Copilot in VS Code at its default setting there is none, and nothing checks. Proposals P3 and P4 close that.
 
@@ -138,7 +145,7 @@ Claude Code has no server-side equivalent of rules 1 and 2. The same separation 
 ## Gaps found while writing this (28 Sep 2026)
 
 1. **Only one CI job is required.** The ruleset's required status checks list `AI Declaration` only. Lint & Typecheck, both test jobs and the Security Scan run but do not block. `docs/GIT-WORKFLOW.md` says they must pass. Fix: add them to the ruleset (a settings change for Chirag as repository owner).
-2. **Squash titles are unchecked.** The commit-msg hook runs locally; the squash commit is written on GitHub. Recent `main` commits have non-conventional titles. Fix: a CI check on the pull request title (P4 includes one), or reviewers edit the title before merging.
+2. **Squash titles are unchecked.** The commit-msg hook runs locally, but squash commits are created on GitHub, where the local hook does not execute. Several merges have therefore used non-conventional titles, including PRs #52, #53 and #54, and commit `58e1a35` (`Feature/copilot issue workflow (#61)`). The repository's squash-only ruleset does not enforce Conventional Commit formatting for the squash title. Proposed fixes include validating the pull-request title in CI or requiring reviewers to correct the title before merging.
 3. **The commit-msg pattern has four holes** (length, `!`, revert, merge). Fix: P1.
 4. **Copilot's agent hook does not stop hook bypass.** Fix: P2.
 5. **No trailer on Copilot agent-mode commits.** Fix: P3 plus P4.
