@@ -232,9 +232,11 @@ The review should be performed in the following order:
 
 7. **Check the validation evidence**
 
-   Review the results of the repository's automated checks, such as linting, type checking, unit tests, security scanning and other CI checks.
+   Review the results of the repository's five required CI checks: `AI Declaration`, `Lint & Typecheck`, `Frontend Tests`, `Backend Unit Tests` and `Security Scan`.
 
-   Copilot stating that a check passed is not enough. The reviewer should use the actual tool or CI result as the evidence.
+   Confirm that all five checks have passed. GitHub enforces these checks through the active `main` ruleset, so a pull request cannot be merged through the normal workflow while a required check is failing or incomplete.
+
+   Copilot stating that a check passed is not sufficient evidence. The reviewer should inspect the actual GitHub Actions results and assess whether the automated verification meaningfully covers the requested behaviour.
 
 After these checks are complete, only then the reviewer should approve the change.
 
@@ -271,10 +273,12 @@ The following classifications reflect the repository's configured mechanisms.
 | Repository checks during Git operations | **Hook (git)** | Lefthook executes the configured pre-commit and commit-message checks when installed. |
 | Tool-specific restrictions during agent execution | **Hook (agent)** | Configured Copilot or Claude Code hooks check particular agent actions. Their coverage depends on the environment and command patterns; Copilot hooks may fail open on timeout. |
 | AI-use declaration | **CI check (required)** | The `AI Declaration` GitHub Actions job is required by the active `main` ruleset. |
-| Lint, type checking, frontend/backend tests and security scanning | **CI check (advisory)** | GitHub Actions runs the checks and reports their results, but the checked ruleset does not require them for merging. |
+| Lint, type checking, frontend/backend tests and security scanning | **CI check (required)** | The active `main` ruleset requires the `Lint & Typecheck`, `Frontend Tests`, `Backend Unit Tests` and `Security Scan` GitHub Actions jobs to pass before merging. These complement the separately required `AI Declaration` job. |
 | Pull-request approvals and permitted merge method | **Platform rule** | The active `main` ruleset requires two approving reviews and permits squash merging. |
 | Agent-authored implementation accepted | **Human** | Reviewers inspect the actual changes, test evidence, security implications and acceptance criteria before approving. |
 
 These mechanisms provide different levels of protection. Instructions and agent summaries are guidance, hooks check configured actions, CI checks provide automated results, and GitHub enforces its active platform rules.
 
-A failed advisory check should still be investigated before approval, even if GitHub technically permits the merge. Human reviewers remain accountable for determining whether the implementation is correct and suitable for the intended requirements.
+All five required CI checks must pass before a pull request can be merged into `main`. A failed or incomplete required check blocks merging through the normal GitHub workflow until the issue is resolved.
+
+However, passing CI does not establish that the implementation satisfies the requirements. Human reviewers remain responsible for examining the changes, assessing test adequacy and verifying that the implementation is correct and appropriately scoped.
