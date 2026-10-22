@@ -30,7 +30,7 @@ If a prompt is useful beyond a one-off conversation, it should be stored as a fi
 
 ### Versioned
 
-Once stored in the repository, the prompt is versioned through Git like an other project files, where the changes to the prompt can be reviewed, compared, reverted, and traced through commits and pull requests.
+Once stored in the repository, the prompt is versioned through Git like other project files, where the changes to the prompt can be reviewed, compared, reverted, and traced through commits and pull requests.
 
 ### Shared
 
@@ -55,7 +55,9 @@ A prompt should remain a reusable prompt when it mainly saves a request when try
 
 However, a prompt should become a skill when the team repeatedly uses the same multi-step procedure and wants Copilot to follow that process consistently.
 
-A reusable prompt should be considered for a skill when it meets all of the following conditions:
+The following five criteria are **proposed by our team** to help determine when a reusable prompt is mature enough to become a skill. They are not official GitHub Copilot requirements or automatically enforced repository rules.
+
+A reusable prompt should be considered for promotion to a skill when it meets all of the following proposed conditions:
 1. **Repeated use:** The prompt has been used successfully for at least three separate tasks.
 2. **Team reuse:** At least two different team members could reasonably use the same procedure.
 3. **Multi-step process:** the procedure contains at least three repeatable steps that should normally be performed in the same order.
@@ -103,7 +105,9 @@ Depending on its purpose, it is stored as:
 
 The file then goes through Git and pull-request review so the team can inspect and version the change.
 
-### 3. Shared Copilot Space
+### 3. Shared Copilot Space (documented, not run)
+
+This is a proposed sharing approach rather than a workflow verified in our proof of concept. The repository does not currently contain evidence that the team created or used a shared GitHub Copilot Space. The following description explains how such a Space could support knowledge sharing if the team adopts it.
 
 If the guidance is useful beyond a single repository or needs to be shared with a wider group, it can be added to a shared GitHub Copilot Space.
 
@@ -117,7 +121,7 @@ Only reviewed and stable material should be promoted from the repository into a 
 Before a new or changed prompt, instruction or a skill is accepted as shared team guidance, it must be reviewed by another team member.
 
 The reviewer checks that:
-1. **Purpose is clear:** the file clearly states copilot is expected to do.
+1. **Purpose is clear:** the file clearly states what Copilot is expected to do
 2. **Scope is bounded:** the instructions state relevant limits and do not encourage unrelated changes.
 3. **Expected outcome is defined:** the result produced by copilot is understandable and testable where possible.
 4. **No sensitive information is included:** the prompts contain no credentials, secrets or inappropriate project data.
@@ -127,4 +131,26 @@ The reviewer checks that:
 
 If any of these checks fail, the reviewer requests changes before the prompt is accepted into the shared set.
 
-**Gate: Human**
+**Gate and holder: Human.**
+
+
+## Failure mode
+
+A major risk in prompt reuse is **prompt duplication and divergence**.
+
+If different developers store copies of the same prompt in separate files or personal conversations, those copies may gradually become inconsistent. As a result, AI agents performing the same task could receive different requirements or instructions.
+
+The FR-01 proof of concept demonstrates this risk. The planning prompt appears in two locations:
+
+- `docs/research/fault-reporting/runbook.md`
+- `docs/research/fault-reporting/evidence/run-2026-09-27/planning-prompt.txt`
+
+These files contain different versions of the planning instructions. Although both are preserved as evidence, there is no single reviewed reusable prompt representing the agreed procedure.
+
+The planning prompt has only one recorded use, so it remains a candidate for promotion rather than an established team prompt or skill.
+
+**Mitigation:** When a prompt proves useful across multiple tasks, the team should review it, establish an agreed version and store it in `.github/prompts/`. Subsequent improvements should be made through normal Git review rather than maintaining competing copies. The original experiment evidence should remain unchanged.
+
+**Gate and holder: Human.** A reviewer decides whether a prompt is sufficiently tested and appropriate for team reuse. Storing a prompt in the repository does not automatically ensure its quality or prevent conflicting copies.
+
+**Successful outcome:** Developers can identify the reviewed reusable prompt, understand its purpose and use the same version consistently across future development tasks.
