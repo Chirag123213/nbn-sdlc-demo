@@ -5,6 +5,7 @@ How a change gets from a feature branch to `main` in this repository when GitHub
 **Planner card:** [UX] - Module specification: git commits : 240
 **Source modules:** D3 6.2 (how a commit is done), 6.3 (how branches become merges), 6.10 (provenance). Requirements US-11, US-12, US-05.
 **Checked against:** `main` at `b62e009` and the live `main` ruleset, read from the GitHub API on 28 Sep 2026.
+**Current enforcement verified:** The active `main` ruleset was rechecked on 22 October 2026. It requires five GitHub Actions checks (`AI Declaration`, `Lint & Typecheck`, `Frontend Tests`, `Backend Unit Tests` and `Security Scan`), two approving reviews and squash-only merging. The findings dated 28 September below are retained as historical evidence.
 
 The gate and holder terminology follows `docs/reports/module-reconciliation.md` section 4:
 
@@ -27,12 +28,11 @@ Suppose Zafir is building the fault-reporting feature (`docs/research/fault-repo
 2. Copilot writes the lodge form and its Firestore rule. Zafir reads the diff and decides this is one change: "users can lodge a fault". The dashboard list is a second change and waits for its own commit.
 3. Copilot proposes the message `add fault form`. Git refuses it: the commit-msg hook finds no type prefix and prints the format. Copilot tries again with `feat(fault-report): add lodge form and Firestore rule`. Accepted.
 4. Copilot offers to push. The Copilot agent hook denies it: pushes stay with a person during the experiment. Zafir pushes himself and opens the pull request. The template asks him to tick the AI use declaration and fill in the confidence section.
-5. CI runs. The `AI Declaration` job passes because he ticked one box, and the ruleset lists that job as required. Lint, typecheck, tests and the security scan also run.
+5. CI runs. The `AI Declaration` job passes because Zafir selected exactly one AI-use declaration option. The `Lint & Typecheck`, `Frontend Tests`, `Backend Unit Tests` and `Security Scan` jobs also pass. All five are required by the active `main` ruleset, so any failed or incomplete check blocks merging.
 6. Two teammates who did not write the change review it and approve. Zafir cannot approve his own pull request.
 7. The only merge button the ruleset allows is **Squash and merge**. The branch's commits land on `main` as one commit, and any `Co-authored-by` trailers on those commits are carried into it (verified on PR #47, `docs/governance-verification-results.md` test 5).
 
-Four gates held along the way: one git hook, one agent hook, one required CI check and two human approvals. The next sections show each one and what happens without it.
-
+The workflow includes a Git hook, an agent hook, five required CI jobs, two human approvals and GitHub's squash-only merge restriction. The next sections explain these safeguards and what happens when they are missing.
 ---
 
 ## The commands, branch to merge
@@ -49,12 +49,11 @@ Copilot in VS Code (agent mode) is the main path. Claude Code is listed where it
 | 6. Agent attribution     | See "Provenance" below                                                                                                        | Nothing checks for a trailer                                                                                                                                                               | No gate                                   |
 | 7. Push                  | `git push -u origin feature/fault-report` (a person runs this)                                                                | Copilot: `.github/hooks/fault-reporting.json` denies any `git ... push` by the agent. Claude Code: `.claude/settings.json` blocks `git push ... origin main`, `--force` and `--no-verify`. | Hook (agent)                              |
 | 8. Open the pull request | `gh pr create --base main` or the GitHub web page; fill in the template                                                       | Template sections are prompts, not checks, except the AI declaration                                                                                                                       | Human                                     |
-| 9. CI                    | Runs on the pull request: AI Declaration, Lint & Typecheck, Frontend Tests, Backend Unit Tests, Security Scan                 | Only **AI Declaration** is required by the ruleset. The others can fail and the merge button still works once approvals are in.                                                            | CI check (one required, four advisory)    |
+| 9. CI | Runs on the pull request: AI Declaration, Lint & Typecheck, Frontend Tests, Backend Unit Tests, Security Scan | All five jobs are required by the active `main` ruleset. A failed or incomplete required check blocks merging. | CI check (required) |
 | 10. Review               | Two approvals from people with write access                                                                                   | Ruleset: `required_approving_review_count: 2`. The author's own approval is never possible.                                                                                                | Human                                     |
 | 11. Merge                | **Squash and merge**, with a Conventional Commits title for the squash commit                                                 | Ruleset allows squash only; force pushes and deleting `main` are blocked                                                                                                                   | Platform rule (squash-only merge) and Human (squash title review) |
 
-Two things in this table are not what `docs/GIT-WORKFLOW.md` says. It says CI must pass before merge; the ruleset requires only the AI Declaration job. It does not mention the two-approval rule. Both are recorded under "Gaps" below.
-
+The active `main` ruleset enforces all five CI checks, two approving reviews and squash-only merging. These are GitHub-enforced requirements rather than advisory guidance. The historical discrepancy between the workflow documentation and the ruleset, identified on 28 September 2026, is recorded in the "Gaps" section below.
 ---
 
 ## The commit-msg hook, exactly
@@ -117,7 +116,7 @@ A squash merge keeps the trailers (PR #47). So the provenance on `main` is only 
 These apply when **Copilot cloud agent** opens the pull request itself (source: GitHub Docs, "Reviewing a pull request created by Copilot", fetched 28 Sep 2026):
 
 1. **The requester's approval does not count.** "If your repository requires pull request approvals, your approval of a Copilot pull request won't count toward the required number. Another reviewer must approve the pull request before it can be merged." With our ruleset, that means two people other than the one who asked Copilot. Holder: Human, enforced by GitHub.
-2. **Workflows wait for a person.** "By default, GitHub Actions workflows will not run automatically when Copilot pushes changes to a pull request." Someone with write access clicks **Approve and run workflows** in the merge box, after checking whether Copilot changed anything under `.github/workflows/`. Until then the AI Declaration check has not run, so the merge stays blocked. Holder: Human.
+2. **Workflows wait for a person.** By default, GitHub Actions workflows do not run automatically when Copilot pushes changes to a pull request. Someone with write access must approve running the workflows after inspecting the proposed changes, particularly any changes under `.github/workflows/`. Until the required workflows execute and all five required CI checks pass, merging remains blocked. Holder: Human, followed by CI check (required).
 3. **Changes go back through Copilot on the same branch.** Mention `@copilot` in a review comment, or push commits to the branch yourself. Each Copilot push waits for workflow approval again. Holder: Human.
 4. **Rulesets can lock Copilot out.** GitHub states that a rule Copilot cannot comply with blocks the cloud agent, and that Copilot can be added as a ruleset bypass actor. Do not add it as a bypass actor on `main`: that would let the agent skip the approvals this module depends on.
 
@@ -135,7 +134,8 @@ Claude Code has no server-side equivalent of rules 1 and 2. The same separation 
 | Human decides the boundary | One commit holds a feature, a refactor and a dependency bump. Agent pull requests bundle several purposes at over three times the human rate (40.0% against 12.2%, Watanabe et al., arXiv 2509.14745). | The squash merge hides it on `main`: one clean-looking commit, three changes inside. Reviewers are the only check.                                 |
 | Agent trailer              | `main` shows a human author on agent-written code. The accountability chain in `docs/modules/testing.md` loses its second link.                                                                        | Every Copilot agent-mode commit made at VS Code's default setting.                                                                                 |
 | Agent push hook            | The agent pushes unreviewed work, or pushes to a branch someone else is on.                                                                                                                            | Copilot: covered by `fault-reporting.json` for the experiment only. Claude Code: only pushes to `main` are blocked.                                |
-| Required CI checks         | Failing lint, types or tests reach `main` once two people approve.                                                                                                                                     | Today: only AI Declaration is required.                                                                                                            |
+| Required CI checks | Without enforced CI status checks, failing lint, types, tests or security scans could reach `main` after human approval. | The active `main` ruleset now requires all five CI jobs, preventing normal merging when any required check fails or remains incomplete. |
+
 | Two human approvals        | The person who asked the agent merges their own agent's work.                                                                                                                                          | Ruleset holds this today (2 approvals).                                                                                                            |
 | Squash-only merge          | Branch history with `wip` commits lands on `main`, and the "one merge, one change" promise in GIT-WORKFLOW.md breaks. This happened before the ruleset: ten merge commits on `main` as of 2 Sep.       | Ruleset holds this today.                                                                                                                          |
 | Squash commit title        | GitHub offers the pull request title as the squash message. The commit-msg hook does not run on GitHub, so a title like `Feature/claude copilot mechanism map (#53)` lands on `main` unchecked.        | Three of the last three merges on `main` (#52, #53, #54).                                                                                          |
@@ -144,13 +144,12 @@ Claude Code has no server-side equivalent of rules 1 and 2. The same separation 
 
 ## Gaps found while writing this (28 Sep 2026)
 
-1. **Only one CI job is required.** The ruleset's required status checks list `AI Declaration` only. Lint & Typecheck, both test jobs and the Security Scan run but do not block. `docs/GIT-WORKFLOW.md` says they must pass. Fix: add them to the ruleset (a settings change for Chirag as repository owner).
+1. **Required CI enforcement gap (identified 28 September 2026; resolved 22 October 2026).** At the time of the original investigation, only `AI Declaration` was required by the `main` ruleset. The other four GitHub Actions jobs ran as advisory checks. On 22 October 2026, the ruleset was updated and independently verified to require all five checks: `AI Declaration`, `Lint & Typecheck`, `Frontend Tests`, `Backend Unit Tests` and `Security Scan`. This enforcement gap is now resolved.
 2. **Squash titles are unchecked.** The commit-msg hook runs locally, but squash commits are created on GitHub, where the local hook does not execute. Several merges have therefore used non-conventional titles, including PRs #52, #53 and #54, and commit `58e1a35` (`Feature/copilot issue workflow (#61)`). The repository's squash-only ruleset does not enforce Conventional Commit formatting for the squash title. Proposed fixes include validating the pull-request title in CI or requiring reviewers to correct the title before merging.
 3. **The commit-msg pattern has four holes** (length, `!`, revert, merge). Fix: P1.
 4. **Copilot's agent hook does not stop hook bypass.** Fix: P2.
 5. **No trailer on Copilot agent-mode commits.** Fix: P3 plus P4.
-6. **GIT-WORKFLOW.md is out of date** on required checks and approvals. Fix: a docs pull request after P1 to P4 are decided.
-
+6. **Git workflow documentation discrepancy (identified 28 September 2026).** The original investigation found that `docs/GIT-WORKFLOW.md` did not accurately describe the repository's enforced checks and approval requirements. The active ruleset now requires all five CI checks, two approving reviews and squash-only merging. The workflow documentation must reflect these confirmed requirements; this documentation correction does not depend on implementing proposals P1–P4.
 ---
 
 ## Proposals (copy and paste)
