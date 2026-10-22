@@ -59,12 +59,35 @@ change.
 
 ## Protected Branch
 
-`main` is protected — no direct pushes. All changes go through a pull request.
+The `main` branch is protected by an active GitHub ruleset. Direct pushes, force pushes and deletion of `main` are restricted. All changes must go through a pull request.
 
-CI must pass before merge:
-- Lint + typecheck
-- Unit tests
-- Dependency vulnerability audit (`pnpm audit`)
+### Required CI checks
+
+The ruleset requires all five GitHub Actions checks defined in `.github/workflows/ci.yml` to pass before a pull request can be merged:
+
+| Required check | Purpose |
+| --- | --- |
+| AI Declaration | Confirms that exactly one AI-use declaration option was selected in the pull request. |
+| Lint & Typecheck | Runs placeholder validation, linting and TypeScript checks. |
+| Frontend Tests | Runs frontend unit/component tests. |
+| Backend Unit Tests | Runs backend unit tests. |
+| Security Scan | Runs Gitleaks secret scanning and dependency vulnerability auditing. |
+
+**Gate and holder: CI check (required).** A failed or incomplete required check blocks merging into `main`. These checks are enforced through the GitHub ruleset, independently of whether the changes were written by a human or an AI assistant.
+
+### Pull request approval and merging
+
+The active `main` ruleset also requires:
+
+- **Two approving reviews** before merging.
+- **Squash merging only**, keeping the history of `main` linear.
+- **Protection against force pushes and branch deletion**.
+
+**Gate and holder: Platform rule and Human.** GitHub enforces the approval count and permitted merge method. Human reviewers remain responsible for assessing whether the changes satisfy the requirements, have adequate tests and are appropriate to release.
+
+Passing CI checks does not replace human review. A pull request is eligible for merging only when its required checks have passed and the necessary approvals have been recorded.
+
+Merging into `main` triggers the normal production deployment process, so reviewers should treat approval and merging as a release decision.
 
 ## Tagging a milestone (optional)
 
