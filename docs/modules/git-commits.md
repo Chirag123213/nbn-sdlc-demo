@@ -149,7 +149,7 @@ Claude Code has no server-side equivalent of rules 1 and 2. The same separation 
 3. **The commit-msg pattern has four holes** (length, `!`, revert, merge). Fix: P1.
 4. **Copilot's agent hook does not stop hook bypass.** Fix: P2.
 5. **No trailer on Copilot agent-mode commits.** Fix: P3 plus P4.
-6. **Git workflow documentation discrepancy (identified 28 September 2026).** The original investigation found that `docs/GIT-WORKFLOW.md` did not accurately describe the repository's enforced checks and approval requirements. The active ruleset now requires all five CI checks, two approving reviews and squash-only merging. The workflow documentation must reflect these confirmed requirements; this documentation correction does not depend on implementing proposals P1–P4.
+6. **Git workflow documentation discrepancy (identified 28 September 2026; resolved 22 October 2026).** The original investigation found that `docs/GIT-WORKFLOW.md` did not accurately describe the repository's enforced checks and approval requirements. Following the ruleset update on 22 October 2026, the workflow guide was updated to document all five required CI checks, two approving reviews and squash-only merging. The historical discrepancy is now resolved. This documentation correction did not require implementing proposals P1–P4.
 ---
 
 ## Proposals (copy and paste)
