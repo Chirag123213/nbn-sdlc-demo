@@ -27,20 +27,26 @@ The repository uses Git hooks, AI-agent-specific safeguards, GitHub Actions chec
 | Block Firebase deployment without approval | Hook (agent) | Claude Code only | Rejects recognised Firebase deployment commands from the agent. |
 | Block force push / `--no-verify` | Hook (agent) | Claude Code only | Rejects recognised dangerous Git command patterns. |
 | Copilot push safeguard | Hook (agent) | Copilot only, when configured | `.github/hooks/fault-reporting.json` invokes `scripts/copilot/pre-tool-use.cjs` to reject recognised remote `git push` commands during the experiment. |
-| AI Declaration | CI check (required) | GitHub pull requests | Checks that exactly one AI-use declaration option is selected. |
-| CI placeholder validation | CI check (advisory) | GitHub Actions | Runs `pnpm run validate` within the Lint & Typecheck job. |
-| CI lint | CI check (advisory) | GitHub Actions | Runs repository linting within the Lint & Typecheck job. |
-| CI typecheck | CI check (advisory) | GitHub Actions | Runs TypeScript checks within the Lint & Typecheck job. |
-| Frontend tests | CI check (advisory) | GitHub Actions | Executes frontend unit/component tests. |
-| Backend tests | CI check (advisory) | GitHub Actions | Executes backend unit tests. |
-| Gitleaks secret scan | CI check (advisory) | GitHub Actions | Scans for likely committed credentials within the Security Scan job. |
-| Dependency vulnerability audit | CI check (advisory) | GitHub Actions | Runs the configured dependency audit within the Security Scan job. |
+| AI Declaration | CI check (required) | GitHub pull requests targeting `main` | Checks that exactly one AI-use declaration option is selected. |
+| CI placeholder validation | CI check (required) | GitHub Actions — Lint & Typecheck | Runs `pnpm run validate` as part of the required Lint & Typecheck job. |
+| CI lint | CI check (required) | GitHub Actions — Lint & Typecheck | Runs repository linting as part of the required Lint & Typecheck job. |
+| CI typecheck | CI check (required) | GitHub Actions — Lint & Typecheck | Runs TypeScript checks as part of the required Lint & Typecheck job. |
+| Frontend tests | CI check (required) | GitHub Actions — Frontend Tests | Executes frontend unit/component tests through the required Frontend Tests job. |
+| Backend tests | CI check (required) | GitHub Actions — Backend Unit Tests | Executes backend unit tests through the required Backend Unit Tests job. |
+| Gitleaks secret scan | CI check (required) | GitHub Actions — Security Scan | Scans for committed credentials as part of the required Security Scan job. |
+| Dependency vulnerability audit | CI check (required) | GitHub Actions — Security Scan | Runs the configured dependency audit as part of the required Security Scan job. |
 | Manual smoke test | Human | Developer or reviewer | Confirms that the feature behaves correctly against an appropriate Firebase environment. |
 | Test adequacy / reviewer judgement | Human | Developer or reviewer | Determines whether the tests meaningfully verify the intended behaviour and acceptance criteria. |
 
 Git hooks operate through Lefthook and apply independently of the AI tool once installed. Agent hooks and permission rules are tool-specific: Claude Code mechanisms do not automatically apply to GitHub Copilot, and vice versa. Agent hooks must not be treated as comprehensive security boundaries. Copilot hooks may fail open on timeout, meaning a timed-out hook may not prevent the intended action.
 
-The CI checks are defined in `.github/workflows/ci.yml`. At the checked repository configuration, only **AI Declaration** is listed as a required status check in the `main` ruleset. The remaining checks run and report results but do not independently prevent merging.
+The CI checks are defined in `.github/workflows/ci.yml`. The active GitHub `main` ruleset requires all five jobs to pass: **AI Declaration**, **Lint & Typecheck**, **Frontend Tests**, **Backend Unit Tests**, and **Security Scan**.
+
+These are enforced CI checks rather than advisory results. GitHub blocks normal merging into `main` if any required check fails or remains incomplete.
+
+Individual commands, such as placeholder validation, linting and type checking, are enforced through their parent required CI job. Similarly, Gitleaks and dependency vulnerability auditing are enforced through the required Security Scan job.
+
+The ruleset also requires two approving reviews and permits squash merging only. These platform restrictions complement the automated verification checks but do not replace the need for human judgement.
 
 Automated checks can detect predefined violations, but they cannot determine whether an implementation or its tests correctly satisfy the requirements. Human review remains necessary.
 
@@ -95,7 +101,7 @@ This confirms that the configured Gitleaks action resolves correctly and that th
 
 ## Gitleaks Failure Verification
 
-A synthetic AWS-style credential was committed to the temporary `feature/gitleaks-verification` branch and submitted through PR #38 to verify that the secret-scanning gate rejects committed credentials.
+A synthetic AWS-style credential was committed to the temporary `feature/gitleaks-verification` branch and submitted through PR #38 to verify that Gitleaks detects committed credentials and fails the Security Scan job. This historical test verified the scanning mechanism; the Security Scan job is now also enforced as a required status check by the active `main` ruleset.
 
 The Gitleaks Security Scan detected the credential in `gitleaks-test.txt` on line 2 and classified it under the `aws-access-token` rule. The scan reported one leak and the Security Scan job failed as expected.
 
