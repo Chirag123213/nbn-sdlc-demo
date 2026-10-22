@@ -2,30 +2,75 @@
 
 ## Pipeline Overview
 
-The frontend and the Firebase-owned pieces deploy through two independent paths:
+The repository uses GitHub Actions to verify pull requests before merging, Vercel to deploy the Next.js frontend and Firebase deployment workflows to manage Firestore security rules and the optional backend.
 
-```
-PR opened/updated
-    │
-    ▼
-CI (ci.yml)
-├── Lint + Typecheck
-├── Frontend unit tests
-├── Backend unit tests
-└── Security scan (pnpm audit --audit-level=high)
-    │
-    ▼ (all green)
-Merge to main
-    │
-    ├──▶ Vercel (its own GitHub integration, not this repo's Actions)
-    │    └── Builds + deploys the frontend automatically — no Blaze plan needed
-    │
-    └──▶ Deploy (deploy.yml)
-         └── Firestore rules — always deploys on push, free (no Blaze needed)
+The active `main` ruleset requires all five CI checks to pass, together with two approving reviews, before a pull request can be squash-merged.
 
-         Backend (Cloud Function) — manual only, via "Run workflow" in the
-         Actions tab. Requires the Firebase project to be on the Blaze plan.
+```text
+Pull request opened/updated (target: main)
+    |
+    v
+GitHub Actions — ci.yml
+├── AI Declaration
+├── Lint & Typecheck
+│   ├── Placeholder validation
+│   ├── Lint
+│   └── TypeScript typecheck
+├── Frontend Tests
+├── Backend Unit Tests
+└── Security Scan
+    ├── Gitleaks secret scanning
+    └── Dependency vulnerability audit
+    |
+    v
+Five required CI checks pass
++ Two approving human reviews
+    |
+    v
+Squash merge into main
+    |
+    ├──▶ Vercel GitHub integration
+    │    └── Builds and deploys the frontend
+    │        automatically on changes to main
+    │
+    └──▶ GitHub Actions — deploy.yml
+         └── On a push to main that changes
+             firebase/firestore.rules:
+             deploy Firestore security rules
+
+Manual deployment — workflow_dispatch
+    ├── Deploy Firestore Rules
+    └── Deploy Backend (optional)
+         └── Cloud Functions require Firebase Blaze
 ```
+
+### CI enforcement
+
+The required checks are defined in `.github/workflows/ci.yml` and enforced by the active GitHub `main` ruleset.
+
+| Required check | What it verifies |
+| --- | --- |
+| AI Declaration | Exactly one AI-use declaration option is selected in the pull request. |
+| Lint & Typecheck | Placeholder validation, repository linting and TypeScript checks pass. |
+| Frontend Tests | Frontend unit/component tests pass. |
+| Backend Unit Tests | Backend unit tests pass. |
+| Security Scan | Gitleaks secret scanning and the configured dependency vulnerability audit pass. |
+
+**Gate and holder: CI check (required).** A failing or incomplete required check blocks normal merging into `main`.
+
+The Security Scan includes a documented temporary exception for advisory `GHSA-vfj7-8cjw-p6xm` in the dependency audit. The check remains required, but its configured exception should not be mistaken for unrestricted vulnerability coverage.
+
+GitHub also enforces two approving reviews and squash-only merging. Human reviewers must still assess the actual changes, test evidence and acceptance criteria before approving.
+
+### Deployment behaviour
+
+Vercel uses its own GitHub integration to build and deploy the frontend. Pull requests can also receive preview deployments for human verification.
+
+The Firebase deployment workflow in `.github/workflows/deploy.yml` automatically deploys Firestore security rules only when a push to `main` changes `firebase/firestore.rules`. It does not automatically deploy Firestore indexes or the optional backend.
+
+The workflow can also be started manually through GitHub Actions using `workflow_dispatch`. A manual run executes the Firestore rules deployment job and the optional backend deployment job. Deploying the backend requires the Firebase Blaze plan.
+
+Merging a pull request starts the applicable deployment processes, but successful CI checks and a successful merge do not by themselves establish that the production application works correctly. Deployment results and affected functionality still require verification.
 
 **Why the frontend isn't in `deploy.yml`:** this app is server-rendered (Server Actions, `/api/auth/session`, `proxy.ts`), so it needs a server host, not static Firebase Hosting. Vercel's free Hobby tier runs Next.js SSR natively with no billing account required — see **Vercel Setup** below. Firebase Hosting could also do this via its `frameworksBackend` integration, but that runs on Cloud Functions/Cloud Run under the hood, which requires the paid Blaze plan even at zero traffic — Vercel avoids that entirely for the frontend.
 
@@ -100,7 +145,7 @@ The frontend has no manual `firebase deploy` equivalent — it deploys via Verce
 | Environment | Branch | Auto-deploy |
 |-------------|--------|-------------|
 | Production frontend | `main` | Yes, via Vercel's GitHub integration |
-| Production Firestore rules | `main` | Yes, via `deploy.yml` |
+| Production Firestore rules | `main` | Yes, via `deploy.yml`, only when `firebase/firestore.rules` changes |
 | Production backend (optional) | `main` | No — manual `workflow_dispatch` only |
 | Staging | _set up per project_ | Optional |
 | Local | your own free Firebase project | `pnpm run dev` |
