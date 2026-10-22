@@ -64,7 +64,7 @@ The system diagrams are in [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 ### 1. Bootstrap
 
 ```bash
-git clone https://github.com/Peepachuu/nbn-sdlc-demo
+git clone https://github.com/Chirag123213/nbn-sdlc-demo
 cd nbn-sdlc-demo
 pnpm run bootstrap
 ```
@@ -115,8 +115,7 @@ Restart the dev server after changing `.env` — `NEXT_PUBLIC_*` variables are b
 | Ignored build scripts warning from pnpm | Build approvals live in `pnpm-workspace.yaml` (`allowBuilds`) — re-run `pnpm install`. |
 | "Missing or insufficient permissions" | Firestore security rules don't allow that access — add rules in `firebase/firestore.rules`, then deploy them (`npx firebase-tools deploy --only firestore:rules`). |
 | Commit rejected | Message must be Conventional Commits (`feat: …`, `fix: …`). |
-| Your PR shows a red **Security Scan** check | `pnpm audit --audit-level=high` failed. Two known high-severity findings have a documented fix: see [Known `pnpm audit` findings](#known-pnpm-audit-findings-manual-fix). |
-
+| Your PR shows a red **Security Scan** check | The required Security Scan job has failed. Open the GitHub Actions job logs to determine whether Gitleaks detected a possible secret or the dependency vulnerability audit failed. Resolve the finding and rerun the checks before merging. See [Security](docs/SECURITY.md). |
 More beginner-oriented pitfalls: [docs/GUIDE.md § Common pitfalls](docs/GUIDE.md#6-common-pitfalls).
 
 ## Project Structure
@@ -166,25 +165,36 @@ pnpm run validate         # Check for unreplaced template placeholders
 
 ## Security
 
-Security is enforced in independent layers — Claude Code guard hooks, HTTP hardening (helmet/CORS/rate limits), token + session-cookie auth, Zod input validation, default-deny Firestore rules, and CI scanning (`pnpm audit`). See [docs/SECURITY.md](docs/SECURITY.md).
+Security is enforced through multiple layers, including Claude Code security hooks, HTTP hardening, Firebase authentication, Zod input validation, Firestore security rules and GitHub Actions security scanning.
 
-### Known `pnpm audit` findings (manual fix)
+The active `main` ruleset requires the `Security Scan` job to pass before merging. This job runs Gitleaks secret scanning and dependency vulnerability auditing. It forms one of the five required CI checks, alongside AI Declaration, Lint & Typecheck, Frontend Tests and Backend Unit Tests.
 
-CI runs `pnpm audit --audit-level=high` as the **Security Scan** job, so an outstanding high-severity finding turns that check red on every pull request. Two are currently flagged, both transitive and dev/build-time only, neither runtime-reachable:
+These automated safeguards complement, rather than replace, human security review. See [Security](docs/SECURITY.md) and [CI/CD](docs/CI-CD.md) for details.
 
-| Package | Issue | Pulled in by |
-|---------|-------|--------------|
-| `js-yaml` | CVE-2026-59870 — quadratic CPU DoS on `!!omap` resolution | eslint's dependency chain (lint-time only) |
-| `nanoid` | Infinite loop when a custom generator's `size` is 0 | postcss, used by Tailwind/Next/Vitest builds (build-time only) |
+### Dependency vulnerability management
 
-To patch: add these two lines under `overrides:` in `pnpm-workspace.yaml`, then run `pnpm install`:
+The repository runs dependency vulnerability auditing as part of its required `Security Scan` GitHub Actions job.
+
+Earlier security reviews identified high-severity findings involving `js-yaml` (CVE-2026-59870) and `nanoid`. Dependency overrides for these packages have since been added to `pnpm-workspace.yaml`, so they should not be presented as outstanding manual fixes.
+
+The configured overrides include:
 
 ```yaml
-  js-yaml: '^4.3.1'
-  nanoid: '^3.3.18'
+js-yaml: 4.3.2
+nanoid: '^3.3.18'
 ```
 
-Confirm with `pnpm audit` — should show 0 high/critical findings.
+The CI dependency audit uses:
+
+```bash
+pnpm audit --audit-level=high --ignore=GHSA-vfj7-8cjw-p6xm
+```
+
+The ignored advisory is a documented temporary exception associated with development tooling. Other findings that cause the configured audit to fail will also fail the required `Security Scan` job.
+
+The current vulnerability status should be determined from the latest GitHub Actions audit results rather than the historical findings recorded in this README.
+
+For dependency changes, developers should review the reported vulnerabilities, evaluate safe fixes, update dependency configuration where appropriate and rerun the required checks before merging.
 
 ## Git Workflow
 
@@ -197,7 +207,21 @@ Confirm with `pnpm audit` — should show 0 high/critical findings.
 
 Use the Claude Code skills `/git-feature`, `/git-hotfix`, `/git-release`. Details: [docs/GIT-WORKFLOW.md](docs/GIT-WORKFLOW.md).
 
-> **Enforcement gap, checked 3 September 2026.** The table above is the agreed process, not a rule the server applies. The repository has one ruleset, named "main", and it is active, but its branch target list is empty and it carries no required status checks, so nothing currently stops a direct push to `main` or a merge on a failing CI run. The live gates are the lefthook commit-msg check and the four CI jobs as advisory status. Fixing the ruleset needs repository admin. Full finding and evidence: [research slice 2, "Gaps recorded", item 3](docs/research/slice2-build-modules.md#gaps-recorded).
+**Branch protection and CI enforcement — verified 22 October 2026.** The repository's active GitHub `main` ruleset protects the default branch and requires changes to enter through pull requests.
+
+All five GitHub Actions checks are required before merging:
+
+- `AI Declaration`
+- `Lint & Typecheck`
+- `Frontend Tests`
+- `Backend Unit Tests`
+- `Security Scan`
+
+The ruleset also requires **two approving reviews**, permits **squash merging only**, and prevents force pushes and deletion of `main`.
+
+**Gate and holder: CI check (required), Platform rule and Human.** GitHub enforces the configured CI and merge restrictions, while human reviewers remain accountable for evaluating the implementation and its verification evidence.
+
+**Historical note:** Research conducted on 3 September 2026 identified an enforcement gap when the ruleset lacked the necessary branch targets and required CI checks. That historical finding is preserved in [research slice 2, "Gaps recorded", item 3](docs/research/slice2-build-modules.md#gaps-recorded). The active ruleset has since been corrected, so the original finding no longer describes the current enforcement state.
 
 ## Claude Code Harness
 
