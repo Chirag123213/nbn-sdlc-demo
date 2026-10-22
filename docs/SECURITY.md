@@ -11,11 +11,12 @@ Security is enforced in layers — each layer is independent so a failure in one
 | Auth | Firebase token verification, session cookies |
 | API | Zod input validation, per-user access control |
 | Data | Firestore security rules (default deny, field allowlists) |
-| CI | `pnpm audit --audit-level=high` on every PR |
+| CI | Required `Security Scan` job runs Gitleaks secret scanning and dependency vulnerability auditing on pull requests targeting `main`. |
 | Dependencies | Dependabot weekly PRs for backend, frontend, and Actions |
 
-There's no automated secret scanner in this boilerplate. Never commit `.env`, service account JSON, or any real API key — `.env` is gitignored and `.env.example` ships with empty values for exactly this reason.
+The repository includes automated secret scanning through `gitleaks/gitleaks-action@v3` in the GitHub Actions `Security Scan` job. This job is required by the active `main` ruleset, so detected secrets that cause the scan to fail prevent normal merging.
 
+Secret scanning is an additional safeguard, not a guarantee that every exposed credential will be detected. Never commit `.env` files, service account JSON or real API keys. The repository gitignores environment files, while `.env.example` contains empty example values.
 ---
 
 ## HTTP Security (Backend)
@@ -235,7 +236,13 @@ Document this as a per-client hardening step in the forking guide.
 
 ## Dependency Scanning
 
-`pnpm audit --audit-level=high` runs on every PR in CI (`security` job in `ci.yml`). The job fails on any high or critical CVE, blocking the merge.
+The GitHub Actions workflow `.github/workflows/ci.yml` defines a required job named `Security Scan`. It runs Gitleaks secret scanning and the configured dependency vulnerability audit for pull requests targeting `main`.
+
+The dependency audit uses `pnpm audit --audit-level=high --ignore=GHSA-vfj7-8cjw-p6xm`. This includes a documented temporary exception for advisory `GHSA-vfj7-8cjw-p6xm`, associated with development tooling.
+
+**Gate and holder: CI check (required).** The active `main` ruleset requires `Security Scan` to pass before merging. A detected secret or a non-exempt vulnerability that causes the job to fail blocks normal merging.
+
+A passing scan does not guarantee that the application is free of security vulnerabilities. Developers and reviewers must still examine authentication, authorization, secrets handling and other security-sensitive behaviour.
 
 ```bash
 # Run locally
