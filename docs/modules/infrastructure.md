@@ -10,13 +10,13 @@ Development begins with an approved feature request containing clear requirement
 
 The repository provides several mechanisms for supporting AI-assisted development:
 
-| Infrastructure | Purpose | Repository location |
-| --- | --- | --- |
+| Infrastructure       | Purpose                                                        | Repository location               |
+| -------------------- | -------------------------------------------------------------- | --------------------------------- |
 | Copilot instructions | Provides repository-wide development guidance and expectations | `.github/copilot-instructions.md` |
-| Reusable prompts | Stores repeatable instructions for specific development tasks | `.github/prompts/` |
-| Copilot skills | Defines reusable multi-step procedures | `.github/skills/` |
-| Custom agents | Provides specialised agent configurations | `.github/agents/` |
-| Copilot hooks | Adds tool-specific safeguards around agent actions | `.github/hooks/` |
+| Reusable prompts     | Stores repeatable instructions for specific development tasks  | `.github/prompts/`                |
+| Copilot skills       | Defines reusable multi-step procedures                         | `.github/skills/`                 |
+| Custom agents        | Provides specialised agent configurations                      | `.github/agents/`                 |
+| Copilot hooks        | Adds tool-specific safeguards around agent actions             | `.github/hooks/`                  |
 
 ### Development process
 
@@ -56,12 +56,12 @@ The repository provides automated mechanisms to identify common problems before 
 
 Git hooks are configured through `lefthook.yml` and installed as part of the repository's dependency setup.
 
-| Hook | Purpose |
-| --- | --- |
-| Placeholder validation | Detects unreplaced placeholders |
-| Prettier formatting | Formats supported staged files |
-| Frontend ESLint | Checks staged frontend source files |
-| Backend ESLint | Checks staged backend source files |
+| Hook                           | Purpose                                                        |
+| ------------------------------ | -------------------------------------------------------------- |
+| Placeholder validation         | Detects unreplaced placeholders                                |
+| Prettier formatting            | Formats supported staged files                                 |
+| Frontend ESLint                | Checks staged frontend source files                            |
+| Backend ESLint                 | Checks staged backend source files                             |
 | Conventional Commit validation | Rejects commit messages that do not follow the expected format |
 
 **Checkpoint and holder: Hook (git).** Git hooks run at their configured triggers when installed, independently of which AI tool generated the changes. Their enforcement is limited to the commands and exit behaviour defined in `lefthook.yml`.
@@ -119,23 +119,23 @@ This provides reviewers with a consistent record of the implementation and AI in
 
 Pull requests trigger the GitHub Actions workflow defined in `.github/workflows/ci.yml`.
 
-| Check | Purpose | Current enforcement |
+The repository's active `main` ruleset requires all five CI checks to pass before a pull request can be merged.
+
+| Check | Purpose | Enforcement |
 | --- | --- | --- |
 | AI Declaration | Verifies that exactly one AI-use declaration option was selected | Required |
-| Lint & Typecheck | Runs placeholder validation, linting and type checking | Advisory |
-| Frontend Tests | Runs frontend unit/component tests | Advisory |
-| Backend Unit Tests | Runs backend tests | Advisory |
-| Security Scan | Runs Gitleaks secret scanning and dependency vulnerability auditing | Advisory |
+| Lint & Typecheck | Runs placeholder validation, linting and TypeScript checks | Required |
+| Frontend Tests | Runs frontend unit/component tests | Required |
+| Backend Unit Tests | Runs backend unit tests | Required |
+| Security Scan | Runs Gitleaks secret scanning and dependency vulnerability auditing | Required |
 
-At the verified configuration, only `AI Declaration` is a required status check in the GitHub `main` ruleset. The remaining jobs execute and report results but are not required for merging.
+**Checkpoint and holder: CI check (required).** GitHub Actions executes the five checks, and the `main` ruleset blocks merging if any required check fails or has not completed successfully.
 
-**Checkpoint and holder: CI check (required) for AI Declaration; CI check (advisory) for the other jobs.**
+The ruleset also requires two approving reviews and permits squash merging, providing an additional **Platform rule** that controls how changes enter `main`.
 
-Developers should investigate failed checks before requesting approval, even when those checks are not technically enforced by GitHub.
+**Failure mode:** If a pull request fails linting, testing or security scanning, it cannot be merged until the failing check is resolved and passes. However, passing automated checks does not guarantee that the implementation is correct or satisfies the original requirements. Human reviewers must still examine the code and verification evidence.
 
-**Failure mode:** If important CI checks remain advisory, GitHub may permit a merge despite failing tests or security scans, provided the required ruleset conditions are satisfied.
-
-**Successful outcome:** The pull request records the AI declaration, verification results and any unresolved findings for human review.
+**Successful outcome:** All five required CI checks pass, the pull request receives the necessary human approvals, and the change is eligible for squash merging into `main`.
 
 ## 4. Preview deployment and human review (Task 8.1)
 
