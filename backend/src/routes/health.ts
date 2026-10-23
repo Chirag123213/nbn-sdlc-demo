@@ -5,6 +5,7 @@ const router: ExpressRouter = Router()
 /**
  * GET /api/health
  * Returns service health status. No auth required.
+ * Safe to call from uptime monitors.
  */
 router.get('/', (_req, res) => {
   res.json({
