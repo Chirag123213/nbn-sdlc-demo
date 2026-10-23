@@ -1,22 +1,23 @@
 # The gated lifecycle: the manual
 
 <!-- toc -->
+
 ## Contents
 
 - The gated lifecycle: the manual
-    - 1. What this is
-    - 2. Before stage 5
-    - 3. Install once
+  - 1. What this is
+  - 2. Before stage 5
+  - 3. Install once
 - Goes under the existing `jobs:` key in ci.yml
-    - 4. How to read a task
-    - 5. Stage 5: Development planning
-    - 6. Stage 6: Development and build
-    - 7. Stage 7: Testing and QA
-    - 8. Stage 8: Deployment and iteration
-    - 9. The four names
-    - 10. Words
-<!-- /toc -->
+  - 4. How to read a task
+  - 5. Stage 5: Development planning
+  - 6. Stage 6: Development and build
+  - 7. Stage 7: Testing and QA
+  - 8. Stage 8: Deployment and iteration
+  - 9. The four names
+  - 10. Words
 
+<!-- /toc -->
 
 ## 1. What this is
 
@@ -28,13 +29,12 @@ The gated lifecycle is a map and the gates that hold it. The map is NBN's eight 
 
 Work that arrives without all four goes back. This manual does not give steps for producing them (ADR-002, "Stages assumed"); 2.2 gives each task in stages 1 to 4 its colour, gate and holder from the map.
 
-| Stage | Handled well means |
-|---|---|
-| 1. Ideation and business case | A business case a named person approved: the problem, who it is for, and the expected value. An AI first draft is acceptable; the approval is human. |
-| 2. Requirements and discovery | User stories with acceptance criteria that someone other than the author can check, and open questions recorded rather than guessed. |
-| 3. Solution design and architecture | Architecture and technology decisions recorded with a human approver, including the constraints the build must respect. |
-| 4. UX design and prototyping | Journey maps agreed, and brand and design decisions made by a person. Where the feature has an interface, an approved design to build against. |
-
+| Stage                               | Handled well means                                                                                                                                   |
+| ----------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1. Ideation and business case       | A business case a named person approved: the problem, who it is for, and the expected value. An AI first draft is acceptable; the approval is human. |
+| 2. Requirements and discovery       | User stories with acceptance criteria that someone other than the author can check, and open questions recorded rather than guessed.                 |
+| 3. Solution design and architecture | Architecture and technology decisions recorded with a human approver, including the constraints the build must respect.                              |
+| 4. UX design and prototyping        | Journey maps agreed, and brand and design decisions made by a person. Where the feature has an interface, an approved design to build against.       |
 
 ### 2.2 Stages 1 to 4, task by task: mapped, not operated
 
@@ -44,46 +44,46 @@ Three rows are green in the map with no deterministic holder (1.3, 2.2, 4.3). Th
 
 **Stage 1: Ideation and business case.** Profile: human decides at both ends, AI widens the middle. Rests on Google's Design Sprint (understand, map, sketch) and Microsoft's envisioning and problem-formulation pages.
 
-| Task | Colour | Gate | Holder |
-|---|---|---|---|
-| 1.1 Frame the brief: business context, goals, what is troubling, what is on the horizon | Red | A written brief exists and the sponsor agrees it describes the problem | Human |
-| 1.2 Contextual inquiry: narrow from the organisation to the team and the specific process | Amber | The human has struck out anything the AI asserted without a source | Human |
-| 1.3 Generate divergent business-case options with industry examples | Green | Three to five options exist, none shipped anywhere | Human monitors (no deterministic holder) |
-| 1.4 Back the preferred option with evidence: interviews, industry statistics, where the pain is | Amber | Every figure in the case has a verified source | Human; a citation check is specified, not built |
-| 1.5 Refine, align stakeholders, sign off | Red | Sponsor sign-off recorded | Human |
+| Task                                                                                            | Colour | Gate                                                                   | Holder                                          |
+| ----------------------------------------------------------------------------------------------- | ------ | ---------------------------------------------------------------------- | ----------------------------------------------- |
+| 1.1 Frame the brief: business context, goals, what is troubling, what is on the horizon         | Red    | A written brief exists and the sponsor agrees it describes the problem | Human                                           |
+| 1.2 Contextual inquiry: narrow from the organisation to the team and the specific process       | Amber  | The human has struck out anything the AI asserted without a source     | Human                                           |
+| 1.3 Generate divergent business-case options with industry examples                             | Green  | Three to five options exist, none shipped anywhere                     | Human monitors (no deterministic holder)        |
+| 1.4 Back the preferred option with evidence: interviews, industry statistics, where the pain is | Amber  | Every figure in the case has a verified source                         | Human; a citation check is specified, not built |
+| 1.5 Refine, align stakeholders, sign off                                                        | Red    | Sponsor sign-off recorded                                              | Human                                           |
 
 **Stage 2: Requirements and discovery.** Profile: red anchors, AI drafting between them, one mechanical commit. Rests on Microsoft's Definition of Ready and Work Items pages and the requirements-engineering evidence (generated stories less diverse and meeting criteria less often than human ones).
 
-| Task | Colour | Gate | Holder |
-|---|---|---|---|
-| 2.1 Fix the anchor set: known users, known tasks, known pain points, existing evidence | Red | The anchor set is written down and marked as fact | Human |
-| 2.2 Draft user stories from the anchor set | Green | Every story traces to an anchor or to a gap deliberately left open | Human monitors (no deterministic holder) |
-| 2.3 Draft acceptance criteria and the out-of-scope list for each story | Amber | Accessibility and security criteria present on every story | Human |
-| 2.4 Verify against the Definition of Ready, prioritise, accept into the backlog | Red | Story passes the DoR checklist; product owner accepts | Human |
-| 2.5 Commit accepted stories and criteria to the repository as Markdown | Green | File is on the branch and referenced by name in later prompts | CI check that the file exists and parses: specified, not built |
+| Task                                                                                   | Colour | Gate                                                               | Holder                                                         |
+| -------------------------------------------------------------------------------------- | ------ | ------------------------------------------------------------------ | -------------------------------------------------------------- |
+| 2.1 Fix the anchor set: known users, known tasks, known pain points, existing evidence | Red    | The anchor set is written down and marked as fact                  | Human                                                          |
+| 2.2 Draft user stories from the anchor set                                             | Green  | Every story traces to an anchor or to a gap deliberately left open | Human monitors (no deterministic holder)                       |
+| 2.3 Draft acceptance criteria and the out-of-scope list for each story                 | Amber  | Accessibility and security criteria present on every story         | Human                                                          |
+| 2.4 Verify against the Definition of Ready, prioritise, accept into the backlog        | Red    | Story passes the DoR checklist; product owner accepts              | Human                                                          |
+| 2.5 Commit accepted stories and criteria to the repository as Markdown                 | Green  | File is on the branch and referenced by name in later prompts      | CI check that the file exists and parses: specified, not built |
 
 **Stage 3: Solution design and architecture.** Profile: AI drafts options, people decide and own the threat model. Rests on Microsoft's design reviews, ADR and trade-study templates and the SDL requirement that security requirements are set by the team and reviewed by someone other than the author.
 
-| Task | Colour | Gate | Holder |
-|---|---|---|---|
-| 3.1 Document the existing system: infrastructure map, APIs, existing patterns | Amber | A context document exists in the repository that a new engineer could onboard from | Human |
-| 3.2 Generate candidate architectures against the approved tool list | Amber | Every option uses only approved tools and names its trade-offs | Human |
-| 3.3 Trade study and architecture decision record | Red | ADR merged; decision log updated | Human; the merge is under the `main` ruleset |
-| 3.4 Threat model, security and privacy requirements | Red | Threat model reviewed by someone other than the author | Human |
-| 3.5 Technical spike on the riskiest unknown | Amber | Spike log answers the question it was scoped for; time-box respected | Human |
+| Task                                                                          | Colour | Gate                                                                               | Holder                                       |
+| ----------------------------------------------------------------------------- | ------ | ---------------------------------------------------------------------------------- | -------------------------------------------- |
+| 3.1 Document the existing system: infrastructure map, APIs, existing patterns | Amber  | A context document exists in the repository that a new engineer could onboard from | Human                                        |
+| 3.2 Generate candidate architectures against the approved tool list           | Amber  | Every option uses only approved tools and names its trade-offs                     | Human                                        |
+| 3.3 Trade study and architecture decision record                              | Red    | ADR merged; decision log updated                                                   | Human; the merge is under the `main` ruleset |
+| 3.4 Threat model, security and privacy requirements                           | Red    | Threat model reviewed by someone other than the author                             | Human                                        |
+| 3.5 Technical spike on the riskiest unknown                                   | Amber  | Spike log answers the question it was scoped for; time-box respected               | Human                                        |
 
 **Stage 4: UX design and prototyping.** Profile: the most red of the eight. Rests on the Design Sprint's prototype and test days, the persona and journey-map evidence (synthetic personas "susceptible to caricature"; AI journey maps are hypothesis maps), the accessibility-critique evidence (69 to 71 percent recall) and NBN's inclusive-design obligations.
 
-| Task | Colour | Gate | Holder |
-|---|---|---|---|
-| 4.1 Fix the anchor set: known users, historical evidence, known tasks and pains | Red | Anchors written down as fact | Human |
-| 4.2 Hypothesis journey map and proto-personas in the gaps left open | Amber | Every generated hypothesis has a research task attached | Human researcher |
-| 4.3 Skeleton screens straight from the acceptance criteria | Green | Rough screens exist for every story in the sprint, none polished | Human monitors (no deterministic holder) |
-| 4.4 Brand and design-system decisions | Red | Design tokens loaded into context before any generation | Human; the design system is the rule set |
-| 4.5 Brand compliance check by overlay diff | Green | No visible shift, or every shift is explained | Hook (design-system CSS over generated CSS): specified, not built |
-| 4.6 Usability and accessibility critique | Amber | Human has dispositioned every AI finding; WCAG target met | Human |
-| 4.7 Inclusion decisions, including First Nations inclusive-design policy | Red | Policy codified in the system prompt and tool chain before design starts | Human |
-| 4.8 Test with real users | Red | Findings from real users recorded; synthetic users not used as a substitute | Human |
+| Task                                                                            | Colour | Gate                                                                        | Holder                                                            |
+| ------------------------------------------------------------------------------- | ------ | --------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| 4.1 Fix the anchor set: known users, historical evidence, known tasks and pains | Red    | Anchors written down as fact                                                | Human                                                             |
+| 4.2 Hypothesis journey map and proto-personas in the gaps left open             | Amber  | Every generated hypothesis has a research task attached                     | Human researcher                                                  |
+| 4.3 Skeleton screens straight from the acceptance criteria                      | Green  | Rough screens exist for every story in the sprint, none polished            | Human monitors (no deterministic holder)                          |
+| 4.4 Brand and design-system decisions                                           | Red    | Design tokens loaded into context before any generation                     | Human; the design system is the rule set                          |
+| 4.5 Brand compliance check by overlay diff                                      | Green  | No visible shift, or every shift is explained                               | Hook (design-system CSS over generated CSS): specified, not built |
+| 4.6 Usability and accessibility critique                                        | Amber  | Human has dispositioned every AI finding; WCAG target met                   | Human                                                             |
+| 4.7 Inclusion decisions, including First Nations inclusive-design policy        | Red    | Policy codified in the system prompt and tool chain before design starts    | Human                                                             |
+| 4.8 Test with real users                                                        | Red    | Findings from real users recorded; synthetic users not used as a substitute | Human                                                             |
 
 What a team takes from these four stages is the hand-over: the four artefacts in 2.1, each with a named person's approval on it. A team that already runs a design sprint or a discovery process keeps it and adds the colours. The gates here are all human approvals, which is what Google and Microsoft document for the same work.
 
@@ -133,15 +133,15 @@ Claude Code equivalent: `hooks.PreToolUse` in `.claude/settings.json` (blocks pu
 
 All in `.github/workflows/ci.yml`, run on the pull request.
 
-| Job | What it does | Required by the ruleset |
-|---|---|---|
-| AI Declaration (job `ai-declaration`) | Reads the two AI use checkboxes in the pull request body and fails if neither is ticked | Yes, on `main` and in the trial two base |
-| AI Attribution (job `ai-attribution`) | If AI use is declared, fails unless a commit on the branch carries an agent `Co-authored-by` trailer; also checks the pull request title is Conventional Commits | Trial two base and PR #72. Not on `main` at `44557a3` |
-| Lint & Typecheck | Lint and TypeScript checks | Trial two base only. Advisory on `main` |
-| Frontend Tests | Frontend component and unit tests | Trial two base only. Advisory on `main` |
-| Backend Unit Tests | Backend unit tests | Trial two base only. Advisory on `main` |
-| Security Scan (job `security`) | `gitleaks/gitleaks-action@v3` and `pnpm audit --audit-level=high` | Trial two base only. Advisory on `main` |
-| Mutation evidence (`.github/workflows/mutation.yml`, jobs `hook-contract` and `mutation`) | `hook-contract` runs the agent hook's test cases. `mutation` runs Stryker on the backend (`pnpm --filter backend exec stryker run`) and uploads the report. Runs on pull requests that touch backend code, the hooks or the Copilot scripts. `backend/stryker.config.json` sets `"break": 0`, so it never fails a run | No |
+| Job                                                                                       | What it does                                                                                                                                                                                                                                                                                                          | Required by the ruleset                               |
+| ----------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
+| AI Declaration (job `ai-declaration`)                                                     | Reads the two AI use checkboxes in the pull request body and fails if neither is ticked                                                                                                                                                                                                                               | Yes, on `main` and in the trial two base              |
+| AI Attribution (job `ai-attribution`)                                                     | If AI use is declared, fails unless a commit on the branch carries an agent `Co-authored-by` trailer; also checks the pull request title is Conventional Commits                                                                                                                                                      | Trial two base and PR #72. Not on `main` at `44557a3` |
+| Lint & Typecheck                                                                          | Lint and TypeScript checks                                                                                                                                                                                                                                                                                            | Trial two base only. Advisory on `main`               |
+| Frontend Tests                                                                            | Frontend component and unit tests                                                                                                                                                                                                                                                                                     | Trial two base only. Advisory on `main`               |
+| Backend Unit Tests                                                                        | Backend unit tests                                                                                                                                                                                                                                                                                                    | Trial two base only. Advisory on `main`               |
+| Security Scan (job `security`)                                                            | `gitleaks/gitleaks-action@v3` and `pnpm audit --audit-level=high`                                                                                                                                                                                                                                                     | Trial two base only. Advisory on `main`               |
+| Mutation evidence (`.github/workflows/mutation.yml`, jobs `hook-contract` and `mutation`) | `hook-contract` runs the agent hook's test cases. `mutation` runs Stryker on the backend (`pnpm --filter backend exec stryker run`) and uploads the report. Runs on pull requests that touch backend code, the hooks or the Copilot scripts. `backend/stryker.config.json` sets `"break": 0`, so it never fails a run | No                                                    |
 
 The AI Attribution job in the trial two base's `ci.yml` (proposal P4 in `docs/modules/git-commits.md`):
 
@@ -226,15 +226,15 @@ gh api repos/Peepachuu/nbn-sdlc-demo/rulesets --jq '.[] | {name, enforcement, ta
 
 Every gate has one holder. Six holders, and one label for the absence of one.
 
-| Holder | Meaning | Example in the repository |
-|---|---|---|
-| Hook (git) | A git hook installed by lefthook. Runs for every tool and every person who ran `pnpm install` | `scripts/check-commit-msg.js` rejects `add notes` and accepts `feat: add notes` |
-| Hook (agent) | A hook inside one tool. `.github/hooks/*.json` for Copilot, `.claude/settings.json` for Claude Code. Fails open on timeout in Copilot | `scripts/copilot/pre-tool-use.cjs` denies `git push` by the agent |
-| CI check (required) | A GitHub Actions job the ruleset lists | AI Declaration: on PR #43 an unanswered declaration failed the check and an answered one passed |
-| CI check (advisory) | A job that runs and reports and does not block the merge | Security Scan on `main`: on PR #38 Gitleaks found a seeded credential and the job failed; a merge with two approvals would still have been allowed |
-| Platform rule | The `main` ruleset: two approvals, squash only, no force push, no delete | PR #47 squash merged with two approvals; the trailer on `20755e0` survived onto `main` as `2c9a958` |
-| Human | A person makes a judgement | Task 6.4: the reviewer reads the diff against the acceptance criteria |
-| No gate | The rule is written down and nothing holds it. Instructions files, prompt files, skills, custom agents and the agent's own summary are all No gate | `.github/copilot-instructions.md` says "Wait for the human to approve that plan before changing feature code". On the cloud agent, assigning the issue starts the work |
+| Holder              | Meaning                                                                                                                                            | Example in the repository                                                                                                                                              |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Hook (git)          | A git hook installed by lefthook. Runs for every tool and every person who ran `pnpm install`                                                      | `scripts/check-commit-msg.js` rejects `add notes` and accepts `feat: add notes`                                                                                        |
+| Hook (agent)        | A hook inside one tool. `.github/hooks/*.json` for Copilot, `.claude/settings.json` for Claude Code. Fails open on timeout in Copilot              | `scripts/copilot/pre-tool-use.cjs` denies `git push` by the agent                                                                                                      |
+| CI check (required) | A GitHub Actions job the ruleset lists                                                                                                             | AI Declaration: on PR #43 an unanswered declaration failed the check and an answered one passed                                                                        |
+| CI check (advisory) | A job that runs and reports and does not block the merge                                                                                           | Security Scan on `main`: on PR #38 Gitleaks found a seeded credential and the job failed; a merge with two approvals would still have been allowed                     |
+| Platform rule       | The `main` ruleset: two approvals, squash only, no force push, no delete                                                                           | PR #47 squash merged with two approvals; the trailer on `20755e0` survived onto `main` as `2c9a958`                                                                    |
+| Human               | A person makes a judgement                                                                                                                         | Task 6.4: the reviewer reads the diff against the acceptance criteria                                                                                                  |
+| No gate             | The rule is written down and nothing holds it. Instructions files, prompt files, skills, custom agents and the agent's own summary are all No gate | `.github/copilot-instructions.md` says "Wait for the human to approve that plan before changing feature code". On the cloud agent, assigning the issue starts the work |
 
 ## 5. Stage 5: Development planning
 
@@ -250,9 +250,9 @@ Profile: mixed. Two amber drafting tasks, one red instruction task, one red comm
 
 #### Gate and holder
 
-| Gate | Holder | Where it lives |
-|---|---|---|
-| No issue bundles more than one purpose | Human | The issue body; checked after the run with the S9.2 command below |
+| Gate                                   | Holder | Where it lives                                                    |
+| -------------------------------------- | ------ | ----------------------------------------------------------------- |
+| No issue bundles more than one purpose | Human  | The issue body; checked after the run with the S9.2 command below |
 
 #### Failure mode
 
@@ -280,9 +280,9 @@ gh pr view <pr> --json files --jq '.files[].path'
 
 #### Gate and holder
 
-| Gate | Holder | Where it lives |
-|---|---|---|
-| Every issue has a priority, an owner role and its dependencies listed | Human | Issue labels and linked issues |
+| Gate                                                                  | Holder | Where it lives                 |
+| --------------------------------------------------------------------- | ------ | ------------------------------ |
+| Every issue has a priority, an owner role and its dependencies listed | Human  | Issue labels and linked issues |
 
 #### Failure mode
 
@@ -322,9 +322,9 @@ If any required information is missing or still awaiting a decision, the issue s
 
 #### Gate and holder
 
-| Gate | Holder | Where it lives |
-|---|---|---|
-| The issue is complete enough to delegate: out-of-scope list present, criteria testable | Human | The issue body and the files it names by path |
+| Gate                                                                                   | Holder | Where it lives                                |
+| -------------------------------------------------------------------------------------- | ------ | --------------------------------------------- |
+| The issue is complete enough to delegate: out-of-scope list present, criteria testable | Human  | The issue body and the files it names by path |
 
 #### Failure mode
 
@@ -353,9 +353,9 @@ gh pr view <pr> --json files --jq '.files[].path'
 
 #### Gate and holder
 
-| Gate | Holder | Where it lives |
-|---|---|---|
-| Team and product owner agree the plan; capacity checked | Human | Not yet |
+| Gate                                                    | Holder | Where it lives |
+| ------------------------------------------------------- | ------ | -------------- |
+| Team and product owner agree the plan; capacity checked | Human  | Not yet        |
 
 #### Failure mode
 
@@ -381,9 +381,9 @@ gh issue view <issue> --json createdAt,timelineItems
 
 #### Gate and holder
 
-| Gate | Holder | Where it lives |
-|---|---|---|
-| Issues exist, templated, linked to the stories file | Hook (issue template validation), as the task map labels it | Not yet |
+| Gate                                                | Holder                                                      | Where it lives |
+| --------------------------------------------------- | ----------------------------------------------------------- | -------------- |
+| Issues exist, templated, linked to the stories file | Hook (issue template validation), as the task map labels it | Not yet        |
 
 #### Failure mode
 
@@ -424,8 +424,8 @@ Copilot cloud agent: assigning the issue starts the work. There is no approval s
 
 #### Gate and holder
 
-| Gate | Holder | Where it lives |
-|---|---|---|
+| Gate                                     | Holder                                                                                     | Where it lives                                                                   |
+| ---------------------------------------- | ------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------- |
 | Plan accepted before any code is written | Human, in Copilot agent mode (VS Code) and Copilot CLI. No gate on the Copilot cloud agent | The session. The run recorded it in `docs/research/fault-reporting/decisions.md` |
 
 #### Failure mode
@@ -458,14 +458,14 @@ gh pr view <pr> --json number,title,body,author,createdAt,mergedAt,additions,del
 
 #### Gate and holder
 
-| Gate | Holder | Where it lives |
-|---|---|---|
-| One logical change per commit | Human | The developer's staging, `git add -p` |
-| Commit blocked if placeholders remain or ESLint fails | Hook (git) | `lefthook.yml`, pre-commit |
-| A secret is refused before it is committed | Hook (git), trial two base only | `lefthook.yml` and `scripts/check-secrets.js` at `6af6a5b` |
-| Message is Conventional Commits | Hook (git) | `lefthook.yml`, commit-msg; `scripts/check-commit-msg.js` |
-| The agent cannot push | Hook (agent) | Copilot: `.github/hooks/copilot-guard.json` running `scripts/copilot/pre-tool-use.cjs`. Claude Code: `.claude/settings.json` blocks `git push ... origin main`, `--force` and `--no-verify` |
-| The agent cannot skip the git hooks | Hook (agent) in the trial two base and in Claude Code. No gate on `main`'s Copilot hook | `scripts/copilot/pre-tool-use.cjs` at `6af6a5b` |
+| Gate                                                  | Holder                                                                                  | Where it lives                                                                                                                                                                              |
+| ----------------------------------------------------- | --------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| One logical change per commit                         | Human                                                                                   | The developer's staging, `git add -p`                                                                                                                                                       |
+| Commit blocked if placeholders remain or ESLint fails | Hook (git)                                                                              | `lefthook.yml`, pre-commit                                                                                                                                                                  |
+| A secret is refused before it is committed            | Hook (git), trial two base only                                                         | `lefthook.yml` and `scripts/check-secrets.js` at `6af6a5b`                                                                                                                                  |
+| Message is Conventional Commits                       | Hook (git)                                                                              | `lefthook.yml`, commit-msg; `scripts/check-commit-msg.js`                                                                                                                                   |
+| The agent cannot push                                 | Hook (agent)                                                                            | Copilot: `.github/hooks/copilot-guard.json` running `scripts/copilot/pre-tool-use.cjs`. Claude Code: `.claude/settings.json` blocks `git push ... origin main`, `--force` and `--no-verify` |
+| The agent cannot skip the git hooks                   | Hook (agent) in the trial two base and in Claude Code. No gate on `main`'s Copilot hook | `scripts/copilot/pre-tool-use.cjs` at `6af6a5b`                                                                                                                                             |
 
 #### Failure mode
 
@@ -477,14 +477,14 @@ Zafir builds the fault report with Copilot agent mode (VS Code). He branches fro
 
 The commit-msg script, run on 28 Sep 2026 (`node scripts/check-commit-msg.js <file>`):
 
-| Message | Result |
-|---|---|
-| `add notes` | rejected |
-| `feat: add notes` | accepted |
-| `feat(fault-report): add lodge form and Firestore rules` | accepted |
-| `Feat: add notes` | rejected |
-| `feat:add notes` | rejected |
-| `feat!: drop v1 fault schema` | rejected by `main`'s script; accepted by the trial two base's |
+| Message                                                  | Result                                                        |
+| -------------------------------------------------------- | ------------------------------------------------------------- |
+| `add notes`                                              | rejected                                                      |
+| `feat: add notes`                                        | accepted                                                      |
+| `feat(fault-report): add lodge form and Firestore rules` | accepted                                                      |
+| `Feat: add notes`                                        | rejected                                                      |
+| `feat:add notes`                                         | rejected                                                      |
+| `feat!: drop v1 fault schema`                            | rejected by `main`'s script; accepted by the trial two base's |
 
 #### How you know it worked
 
@@ -514,12 +514,12 @@ Copilot cloud agent: the agent opens the pull request itself, and GitHub Actions
 
 #### Gate and holder
 
-| Gate | Holder | Where it lives |
-|---|---|---|
-| The AI declaration is answered | CI check (required) | `.github/workflows/ci.yml`, job `ai-declaration` |
-| An AI-declared pull request carries an agent trailer | No gate on `main` at `44557a3`. CI check (AI Attribution) in the trial two base and PR #72; required only once the ruleset lists it | `.github/workflows/ci.yml` at `6af6a5b`, job `ai-attribution` |
-| The confidence card is filled in | No gate | `.github/pull_request_template.md` |
-| The prompt is recorded | No gate | Nowhere in the repository. The run kept it in `docs/research/fault-reporting/evidence/run-2026-09-27/` |
+| Gate                                                 | Holder                                                                                                                              | Where it lives                                                                                         |
+| ---------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| The AI declaration is answered                       | CI check (required)                                                                                                                 | `.github/workflows/ci.yml`, job `ai-declaration`                                                       |
+| An AI-declared pull request carries an agent trailer | No gate on `main` at `44557a3`. CI check (AI Attribution) in the trial two base and PR #72; required only once the ruleset lists it | `.github/workflows/ci.yml` at `6af6a5b`, job `ai-attribution`                                          |
+| The confidence card is filled in                     | No gate                                                                                                                             | `.github/pull_request_template.md`                                                                     |
+| The prompt is recorded                               | No gate                                                                                                                             | Nowhere in the repository. The run kept it in `docs/research/fault-reporting/evidence/run-2026-09-27/` |
 
 #### Failure mode
 
@@ -558,14 +558,14 @@ Then:
 
 #### Gate and holder
 
-| Gate | Holder | Where it lives |
-|---|---|---|
-| Two approving reviews from people with write access | Platform rule | `main` ruleset, `required_approving_review_count: 2` |
-| Squash merge only; no force push; no deleting `main` | Platform rule | The same ruleset |
-| The required check has passed | CI check (required) | AI Declaration on `main`; six jobs under the trial two ruleset |
-| The change is correct, in scope and fits the repository | Human | The reviewer's reading of the diff |
-| The squash title is Conventional Commits | CI check (required) in the trial two base: the AI Attribution job fails a non-Conventional title. No gate on `main` | `.github/workflows/ci.yml` at `6af6a5b`, job `ai-attribution` |
-| The requester's approval does not count | Platform rule on the Copilot cloud agent (GitHub). In agent mode and the CLI the requester is the author, so GitHub's normal rule holds | GitHub |
+| Gate                                                    | Holder                                                                                                                                  | Where it lives                                                 |
+| ------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| Two approving reviews from people with write access     | Platform rule                                                                                                                           | `main` ruleset, `required_approving_review_count: 2`           |
+| Squash merge only; no force push; no deleting `main`    | Platform rule                                                                                                                           | The same ruleset                                               |
+| The required check has passed                           | CI check (required)                                                                                                                     | AI Declaration on `main`; six jobs under the trial two ruleset |
+| The change is correct, in scope and fits the repository | Human                                                                                                                                   | The reviewer's reading of the diff                             |
+| The squash title is Conventional Commits                | CI check (required) in the trial two base: the AI Attribution job fails a non-Conventional title. No gate on `main`                     | `.github/workflows/ci.yml` at `6af6a5b`, job `ai-attribution`  |
+| The requester's approval does not count                 | Platform rule on the Copilot cloud agent (GitHub). In agent mode and the CLI the requester is the author, so GitHub's normal rule holds | GitHub                                                         |
 
 #### Failure mode
 
@@ -594,8 +594,8 @@ gh api repos/Peepachuu/nbn-sdlc-demo/rulesets --jq '.[] | {name, enforcement, ta
 
 #### Gate and holder
 
-| Gate | Holder | Where it lives |
-|---|---|---|
+| Gate                         | Holder                         | Where it lives                    |
+| ---------------------------- | ------------------------------ | --------------------------------- |
 | Reviewer's comments resolved | Human, the reviewer re-reviews | The pull request's review threads |
 
 #### Failure mode
@@ -628,9 +628,9 @@ Profile: mixed, with a hard ceiling. Two green execution tasks behind CI, two am
 
 #### Gate and holder
 
-| Gate | Holder | Where it lives |
-|---|---|---|
-| Tests exist for every acceptance criterion | Human | The pull request diff, mapped to the criteria by hand |
+| Gate                                       | Holder | Where it lives                                        |
+| ------------------------------------------ | ------ | ----------------------------------------------------- |
+| Tests exist for every acceptance criterion | Human  | The pull request diff, mapped to the criteria by hand |
 
 #### Failure mode
 
@@ -665,8 +665,8 @@ pnpm run typecheck && pnpm run lint && pnpm run test:all
 
 #### Gate and holder
 
-| Gate | Holder | Where it lives |
-|---|---|---|
+| Gate            | Holder                                                                                                                                                                                                              | Where it lives                          |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- |
 | All checks pass | CI check (required) for AI Declaration on `main`. CI check (advisory) for Lint & Typecheck, Frontend Tests, Backend Unit Tests and Security Scan on `main`. All six CI check (required) under the trial two ruleset | `.github/workflows/ci.yml`; the ruleset |
 
 #### Failure mode
@@ -697,10 +697,10 @@ gh run list --branch <branch> --limit 50 --json databaseId,name,conclusion,headS
 
 #### Gate and holder
 
-| Gate | Holder | Where it lives |
-|---|---|---|
-| Findings surfaced to a human, none auto-resolved | Human | The pull request's review comments; the run's `docs/research/fault-reporting/evidence/run-2026-09-27/adversarial-review.md` |
-| An agent's review approval does not satisfy the merge | Platform rule, GitHub's default | Repository settings (`docs/governance-verification-results.md`, test 4) |
+| Gate                                                  | Holder                          | Where it lives                                                                                                              |
+| ----------------------------------------------------- | ------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| Findings surfaced to a human, none auto-resolved      | Human                           | The pull request's review comments; the run's `docs/research/fault-reporting/evidence/run-2026-09-27/adversarial-review.md` |
+| An agent's review approval does not satisfy the merge | Platform rule, GitHub's default | Repository settings (`docs/governance-verification-results.md`, test 4)                                                     |
 
 #### Failure mode
 
@@ -743,8 +743,8 @@ The score is `mutationScore` in `reports/mutation/mutation.json`. Killed divided
 
 #### Gate and holder
 
-| Gate | Holder | Where it lives |
-|---|---|---|
+| Gate                                              | Holder                                                          | Where it lives                                                                                                                                 |
+| ------------------------------------------------- | --------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
 | Human confirms the tests would catch a real fault | Human, with the mutation score and the seed results as evidence | The review record. `backend/stryker.config.json` has `"thresholds": { "high": 80, "low": 60, "break": 0 }`, so Stryker itself enforces nothing |
 
 #### Failure mode
@@ -775,11 +775,11 @@ gh api repos/Peepachuu/nbn-sdlc-demo/dependabot/alerts --jq '.[] | {number, stat
 
 #### Gate and holder
 
-| Gate | Holder | Where it lives |
-|---|---|---|
-| No high-severity finding, or each one dispositioned | CI check (advisory) on `main`; CI check (required) under the trial two ruleset | `.github/workflows/ci.yml`, job `security` |
-| A secret is refused before commit | Hook (git), trial two base only | `lefthook.yml` and `scripts/check-secrets.js` at `6af6a5b` |
-| Each high finding has a named disposition | Human | Dependabot alerts, `dismissed_by` and `dismissed_reason` |
+| Gate                                                | Holder                                                                         | Where it lives                                             |
+| --------------------------------------------------- | ------------------------------------------------------------------------------ | ---------------------------------------------------------- |
+| No high-severity finding, or each one dispositioned | CI check (advisory) on `main`; CI check (required) under the trial two ruleset | `.github/workflows/ci.yml`, job `security`                 |
+| A secret is refused before commit                   | Hook (git), trial two base only                                                | `lefthook.yml` and `scripts/check-secrets.js` at `6af6a5b` |
+| Each high finding has a named disposition           | Human                                                                          | Dependabot alerts, `dismissed_by` and `dismissed_reason`   |
 
 #### Failure mode
 
@@ -828,8 +828,8 @@ gh api repos/Peepachuu/nbn-sdlc-demo/deployments --jq '.[] | {id, environment, r
 
 #### Gate and holder
 
-| Gate | Holder | Where it lives |
-|---|---|---|
+| Gate                                   | Holder                                                              | Where it lives                                    |
+| -------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------- |
 | Preview URL posted on the pull request | Platform rule, held by the hosting platform rather than the ruleset | The pull request's deployment status and comments |
 
 #### Failure mode
@@ -852,9 +852,9 @@ Not built in the repository. The task map: feature flags decouple deploy from re
 
 #### Gate and holder
 
-| Gate | Holder | Where it lives |
-|---|---|---|
-| Success-rate and latency thresholds hold at each ring | Hook (rollout controller), as the task map labels it. None exists here | Not yet |
+| Gate                                                  | Holder                                                                 | Where it lives |
+| ----------------------------------------------------- | ---------------------------------------------------------------------- | -------------- |
+| Success-rate and latency thresholds hold at each ring | Hook (rollout controller), as the task map labels it. None exists here | Not yet        |
 
 #### Failure mode
 
@@ -876,9 +876,9 @@ Not built in the repository. The task map: a named release owner records approva
 
 #### Gate and holder
 
-| Gate | Holder | Where it lives |
-|---|---|---|
-| Approval recorded against the release | Human, the release owner | Not yet |
+| Gate                                  | Holder                   | Where it lives |
+| ------------------------------------- | ------------------------ | -------------- |
+| Approval recorded against the release | Human, the release owner | Not yet        |
 
 #### Failure mode
 
@@ -904,9 +904,9 @@ Not built in the repository. The task map: AI summarises signals and correlates 
 
 #### Gate and holder
 
-| Gate | Holder | Where it lives |
-|---|---|---|
-| Every alert has a human disposition | Human | Not yet |
+| Gate                                | Holder | Where it lives |
+| ----------------------------------- | ------ | -------------- |
+| Every alert has a human disposition | Human  | Not yet        |
 
 #### Failure mode
 
@@ -928,9 +928,9 @@ Not built in the repository. The task map: incidents are human in every source; 
 
 #### Gate and holder
 
-| Gate | Holder | Where it lives |
-|---|---|---|
-| Blameless post-incident record written | Human | Not yet |
+| Gate                                   | Holder | Where it lives |
+| -------------------------------------- | ------ | -------------- |
+| Blameless post-incident record written | Human  | Not yet        |
 
 #### Failure mode
 
@@ -961,8 +961,8 @@ For rules the tool chain can hold, the change goes into a hook, a CI job or an A
 
 #### Gate and holder
 
-| Gate | Holder | Where it lives |
-|---|---|---|
+| Gate                                                     | Holder                                  | Where it lives                                                                                        |
+| -------------------------------------------------------- | --------------------------------------- | ----------------------------------------------------------------------------------------------------- |
 | The change is in the repo, not in someone's chat history | Human, the reviewer of the pull request | `.github/prompts/`, `.github/copilot-instructions.md`, `.github/skills/`, `lefthook.yml`, `docs/adr/` |
 
 A prompt file, a skill or an instructions file is itself No gate. It holds the knowledge; it does not hold a gate.
@@ -987,12 +987,12 @@ gh pr list --state merged --limit 100 --json number,title,mergedAt,files --jq '.
 
 Every change carries four names (governance and token model, section 2).
 
-| Name | Filled by | Source of the record |
-|---|---|---|
-| Human author of record | The committer | Git author on the commit |
-| Agent co-author | The agent that contributed | `Co-Authored-By` trailer on the commit |
-| Human approver | A person who is not the requester | Pull request review, enforced by the `main` ruleset |
-| Accountable owner | Named in the AI register | `docs/AI-register.md` |
+| Name                   | Filled by                         | Source of the record                                |
+| ---------------------- | --------------------------------- | --------------------------------------------------- |
+| Human author of record | The committer                     | Git author on the commit                            |
+| Agent co-author        | The agent that contributed        | `Co-Authored-By` trailer on the commit              |
+| Human approver         | A person who is not the requester | Pull request review, enforced by the `main` ruleset |
+| Accountable owner      | Named in the AI register          | `docs/AI-register.md`                               |
 
 The accountable owner's obligation runs until the next release.
 
@@ -1000,27 +1000,27 @@ The accountable owner's obligation runs until the next release.
 
 Terms used in this manual, and the terms they replace (module reconciliation, section 4).
 
-| Use | Meaning | Instead of |
-|---|---|---|
-| Copilot agent mode (VS Code) | Copilot editing the developer's workspace from the VS Code chat panel | "agent mode", "Copilot in VS Code" used loosely |
-| Copilot cloud agent | Copilot assigned a GitHub issue, working on its own branch and opening the pull request | "Copilot coding agent", "the agent" |
-| Copilot CLI | The lane the fault report run used | "Copilot App", "Copilot session" |
-| Lane | One of the three above. A statement about Copilot names its lane | "Copilot does X" with no lane |
-| Gate | A point where work stops until something lets it through | "control", "check", "checkpoint" as synonyms |
-| Holder | What holds a gate | "Classification", "Gate mechanism", "Control type" |
-| Hook (git) | A git hook installed by lefthook | "Hook" alone |
-| Hook (agent) | A hook inside one tool. Fails open on timeout in Copilot | "Hook" alone |
-| CI check (required) | A GitHub Actions job the ruleset lists | "CI must pass" |
-| CI check (advisory) | A job that runs and reports and does not block the merge | "CI gate" |
-| Platform rule | The `main` ruleset: two approvals, squash only, no force push, no delete | "CI check (ruleset)", "Control type: Human" |
-| Human | A person makes a judgement | |
-| No gate | The rule is written down and nothing holds it | "Advisory" |
-| Instructions file | `.github/copilot-instructions.md` (Claude Code: `CLAUDE.md`) | "repository guidance", "rules file" |
-| Prompt file | `.github/prompts/<name>.prompt.md` | "saved prompt", "slash command" |
-| Skill | `.github/skills/<name>/SKILL.md` | "procedure" |
-| Trailer | The `Co-authored-by:` line on a commit. Git matches the key in any case | "attribution", "co-author tag" |
-| AI declaration | The two checkboxes in the pull request template that the AI Declaration job reads | "AI disclosure" |
-| The four names | Human author of record, Agent co-author, Human approver, Accountable owner | "accountability chain" roles under other names |
-| AI Credits | The unit Copilot bills on the Student plan | "premium requests", "tokens" for Copilot |
-| Task 6.3 | Task ids from the map, always with the number | "the PR step" |
-| Section | A part of this manual | "module", kept for the four source files only |
+| Use                          | Meaning                                                                                 | Instead of                                         |
+| ---------------------------- | --------------------------------------------------------------------------------------- | -------------------------------------------------- |
+| Copilot agent mode (VS Code) | Copilot editing the developer's workspace from the VS Code chat panel                   | "agent mode", "Copilot in VS Code" used loosely    |
+| Copilot cloud agent          | Copilot assigned a GitHub issue, working on its own branch and opening the pull request | "Copilot coding agent", "the agent"                |
+| Copilot CLI                  | The lane the fault report run used                                                      | "Copilot App", "Copilot session"                   |
+| Lane                         | One of the three above. A statement about Copilot names its lane                        | "Copilot does X" with no lane                      |
+| Gate                         | A point where work stops until something lets it through                                | "control", "check", "checkpoint" as synonyms       |
+| Holder                       | What holds a gate                                                                       | "Classification", "Gate mechanism", "Control type" |
+| Hook (git)                   | A git hook installed by lefthook                                                        | "Hook" alone                                       |
+| Hook (agent)                 | A hook inside one tool. Fails open on timeout in Copilot                                | "Hook" alone                                       |
+| CI check (required)          | A GitHub Actions job the ruleset lists                                                  | "CI must pass"                                     |
+| CI check (advisory)          | A job that runs and reports and does not block the merge                                | "CI gate"                                          |
+| Platform rule                | The `main` ruleset: two approvals, squash only, no force push, no delete                | "CI check (ruleset)", "Control type: Human"        |
+| Human                        | A person makes a judgement                                                              |                                                    |
+| No gate                      | The rule is written down and nothing holds it                                           | "Advisory"                                         |
+| Instructions file            | `.github/copilot-instructions.md` (Claude Code: `CLAUDE.md`)                            | "repository guidance", "rules file"                |
+| Prompt file                  | `.github/prompts/<name>.prompt.md`                                                      | "saved prompt", "slash command"                    |
+| Skill                        | `.github/skills/<name>/SKILL.md`                                                        | "procedure"                                        |
+| Trailer                      | The `Co-authored-by:` line on a commit. Git matches the key in any case                 | "attribution", "co-author tag"                     |
+| AI declaration               | The two checkboxes in the pull request template that the AI Declaration job reads       | "AI disclosure"                                    |
+| The four names               | Human author of record, Agent co-author, Human approver, Accountable owner              | "accountability chain" roles under other names     |
+| AI Credits                   | The unit Copilot bills on the Student plan                                              | "premium requests", "tokens" for Copilot           |
+| Task 6.3                     | Task ids from the map, always with the number                                           | "the PR step"                                      |
+| Section                      | A part of this manual                                                                   | "module", kept for the four source files only      |

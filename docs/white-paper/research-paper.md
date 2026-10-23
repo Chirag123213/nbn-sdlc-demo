@@ -6,44 +6,45 @@ date: "Draft 1, 20 October 2026. Supervisor: Ben Philip. Client representative: 
 ---
 
 <!-- toc -->
+
 ## Contents
 
 - Abstract
 - 1. Introduction
-    - 1.1 Context
-    - 1.2 Problem
-    - 1.3 Research questions and hypothesis
-    - 1.4 Contributions
+  - 1.1 Context
+  - 1.2 Problem
+  - 1.3 Research questions and hypothesis
+  - 1.4 Contributions
 - 2. Background
-    - 2.1 The client baseline
-    - 2.2 Industry engineering practice
-    - 2.3 Empirical evidence on AI-assisted development
-    - 2.4 Regulation that applies to NBN Co
+  - 2.1 The client baseline
+  - 2.2 Industry engineering practice
+  - 2.3 Empirical evidence on AI-assisted development
+  - 2.4 Regulation that applies to NBN Co
 - 3. Method
-    - 3.1 Overview
-    - 3.2 Desk research and citation audit
-    - 3.3 Workshop analysis and interviews
-    - 3.4 Constructing the map
-    - 3.5 The instrumented repository
-    - 3.6 Proof of concept
-    - 3.7 Trial one
-    - 3.8 Trial two
-    - 3.9 Measures and provenance labels
+  - 3.1 Overview
+  - 3.2 Desk research and citation audit
+  - 3.3 Workshop analysis and interviews
+  - 3.4 Constructing the map
+  - 3.5 The instrumented repository
+  - 3.6 Proof of concept
+  - 3.7 Trial one
+  - 3.8 Trial two
+  - 3.9 Measures and provenance labels
 - 4. Results
-    - 4.1 The map (RQ1)
-    - 4.2 Holders, and the state of the repository (RQ2)
-    - 4.3 Interviews, traced to gates
-    - 4.4 Proof of concept
-    - 4.5 Trial one
-    - 4.6 Trial two (RQ3)
-    - 4.7 The hypothesis
+  - 4.1 The map (RQ1)
+  - 4.2 Holders, and the state of the repository (RQ2)
+  - 4.3 Interviews, traced to gates
+  - 4.4 Proof of concept
+  - 4.5 Trial one
+  - 4.6 Trial two (RQ3)
+  - 4.7 The hypothesis
 - 5. Discussion
-    - 5.1 What the count missed
-    - 5.2 Which holders did the work
-    - 5.3 Instruction files are not gates
-    - 5.4 Against the literature
-    - 5.5 What the gates buy
-    - 5.6 Threats to validity
+  - 5.1 What the count missed
+  - 5.2 Which holders did the work
+  - 5.3 Instruction files are not gates
+  - 5.4 Against the literature
+  - 5.5 What the gates buy
+  - 5.6 Threats to validity
 - 6. Limitations
 - 7. Conclusion
 - Appendix A. Terms
@@ -51,8 +52,8 @@ date: "Draft 1, 20 October 2026. Supervisor: Ben Philip. Client representative: 
 - Appendix C. The eighteen attacks
 - Appendix D. Evidence index
 - Appendix E. The registered prediction, as committed
-<!-- /toc -->
 
+<!-- /toc -->
 
 # Abstract
 
@@ -196,12 +197,12 @@ FR-01 met its six criteria, with automated evidence for each, and 5 backend and 
 
 ## 4.5 Trial one
 
-| Measure | A, AI only | B, copy and paste | C, gated | Label |
-| --- | --- | --- | --- | --- |
-| Feature criteria met, of 10 | 9 | 10 | 10 | Run once |
-| Issues that escaped review | 3 | 1 | 0 | Run once, under reconciliation against the run sheet, which reads 4, 1, 1 |
-| Active human minutes | 11 | 94 | 43 | Estimate, written from memory two days later |
-| Total cost at A$100 an hour plus list-price tokens | A$30.11 | A$163.72 | A$76.94 | Run once; B's token figure an estimate |
+| Measure                                            | A, AI only | B, copy and paste | C, gated | Label                                                                     |
+| -------------------------------------------------- | ---------- | ----------------- | -------- | ------------------------------------------------------------------------- |
+| Feature criteria met, of 10                        | 9          | 10                | 10       | Run once                                                                  |
+| Issues that escaped review                         | 3          | 1                 | 0        | Run once, under reconciliation against the run sheet, which reads 4, 1, 1 |
+| Active human minutes                               | 11         | 94                | 43       | Estimate, written from memory two days later                              |
+| Total cost at A$100 an hour plus list-price tokens | A$30.11    | A$163.72          | A$76.94  | Run once; B's token figure an estimate                                    |
 
 ![Figure 2. Trial one by lane, with each measure's provenance label.](fig/fig2-trial-one.png)
 
@@ -227,11 +228,11 @@ Time. Builders' own clocks, elapsed from first prompt to pull request: 9 minutes
 
 ## 4.7 The hypothesis
 
-| Measure | Trial one (10 criteria) | Trial two (14 criteria) | Spread grew faster than size |
-| --- | --- | --- | --- |
-| Issues that escaped, counted on checks both trials ran | 3, 1, 0: spread 0.30 per criterion (4, 1, 1 if reconciled: 0.30) | 4, 4, 4: 0.00 | No |
-| Feature criteria not met | 1, 0, 0: 0.10 | 2, 2, 0: 0.14 | Yes |
-| Active human minutes | 11, 94, 43: 8.3 | elapsed 9, 62, 57: 3.8 (5.7 with lane C's setup); active 0, 51, 36: 3.6 | No |
+| Measure                                                | Trial one (10 criteria)                                          | Trial two (14 criteria)                                                 | Spread grew faster than size |
+| ------------------------------------------------------ | ---------------------------------------------------------------- | ----------------------------------------------------------------------- | ---------------------------- |
+| Issues that escaped, counted on checks both trials ran | 3, 1, 0: spread 0.30 per criterion (4, 1, 1 if reconciled: 0.30) | 4, 4, 4: 0.00                                                           | No                           |
+| Feature criteria not met                               | 1, 0, 0: 0.10                                                    | 2, 2, 0: 0.14                                                           | Yes                          |
+| Active human minutes                                   | 11, 94, 43: 8.3                                                  | elapsed 9, 62, 57: 3.8 (5.7 with lane C's setup); active 0, 51, 36: 3.6 | No                           |
 
 ![Figure 5. Spread per criterion on the three registered measures, trial one against trial two.](fig/fig4-h1.png)
 
@@ -287,29 +288,29 @@ The gated lifecycle: a map and the gates that hold it. The map: NBN's eight stag
 
 # Appendix B. Stages 5 to 8, task by task
 
-| Task | Name | Colour | Holder |
-| --- | --- | --- | --- |
-| 5.1 | Slice the work into single-purpose issues | Amber | Human approves |
-| 5.2 | Prioritise, assign, flag dependencies | Amber | Human approves |
-| 5.3 | Acceptance criteria and the out-of-scope list | Red | Human |
-| 5.4 | Commit the sprint plan | Red | Human |
-| 5.5 | Push the issues into the repository host | Green | Hook (issue template) |
-| 6.1 | Agent reads the issue, confirms each criterion, plans | Amber | Human |
-| 6.2 | Branch, implement, commit | Green | Hook (git) |
-| 6.3 | Open the pull request with provenance | Green | Hook (agent); CI check (required) |
-| 6.4 | Review and merge approval | Red | Platform rule; human |
-| 6.5 | Iterate on review comments | Amber | Human |
-| 7.1 | Generate unit tests alongside the change | Amber | Human reads |
-| 7.2 | Run CI: lint, typecheck, unit tests | Green | CI check (required) |
-| 7.3 | Adversarial review by a separate agent | Amber | Human |
-| 7.4 | Judge whether the tests are correct | Red | Human; CI check (advisory) |
-| 7.5 | Security scan and dependency audit | Green | CI check (required) |
-| 8.1 | Preview deployment on every pull request | Green | CI check (hosting) |
-| 8.2 | Progressive rollout with automatic rollback | Green | Rollout controller (not built) |
-| 8.3 | Production promotion | Red | Human |
-| 8.4 | Monitoring and alert triage | Amber | Human |
-| 8.5 | Incident response and review | Red | Human |
-| 8.6 | Fold the learning back into context | Amber | Human approves |
+| Task | Name                                                  | Colour | Holder                            |
+| ---- | ----------------------------------------------------- | ------ | --------------------------------- |
+| 5.1  | Slice the work into single-purpose issues             | Amber  | Human approves                    |
+| 5.2  | Prioritise, assign, flag dependencies                 | Amber  | Human approves                    |
+| 5.3  | Acceptance criteria and the out-of-scope list         | Red    | Human                             |
+| 5.4  | Commit the sprint plan                                | Red    | Human                             |
+| 5.5  | Push the issues into the repository host              | Green  | Hook (issue template)             |
+| 6.1  | Agent reads the issue, confirms each criterion, plans | Amber  | Human                             |
+| 6.2  | Branch, implement, commit                             | Green  | Hook (git)                        |
+| 6.3  | Open the pull request with provenance                 | Green  | Hook (agent); CI check (required) |
+| 6.4  | Review and merge approval                             | Red    | Platform rule; human              |
+| 6.5  | Iterate on review comments                            | Amber  | Human                             |
+| 7.1  | Generate unit tests alongside the change              | Amber  | Human reads                       |
+| 7.2  | Run CI: lint, typecheck, unit tests                   | Green  | CI check (required)               |
+| 7.3  | Adversarial review by a separate agent                | Amber  | Human                             |
+| 7.4  | Judge whether the tests are correct                   | Red    | Human; CI check (advisory)        |
+| 7.5  | Security scan and dependency audit                    | Green  | CI check (required)               |
+| 8.1  | Preview deployment on every pull request              | Green  | CI check (hosting)                |
+| 8.2  | Progressive rollout with automatic rollback           | Green  | Rollout controller (not built)    |
+| 8.3  | Production promotion                                  | Red    | Human                             |
+| 8.4  | Monitoring and alert triage                           | Amber  | Human                             |
+| 8.5  | Incident response and review                          | Red    | Human                             |
+| 8.6  | Fold the learning back into context                   | Amber  | Human approves                    |
 
 # Appendix C. The eighteen attacks
 
@@ -317,19 +318,19 @@ AT01 read another requester's request by id; AT02 create a request with a forged
 
 # Appendix D. Evidence index
 
-| Claim | Where |
-| --- | --- |
-| 44 tasks, colours, holders | `docs/research/lifecycle-task-map.md`; `docs/reports/module-reconciliation.md` section 4 |
-| Published practice per stage; 63 citations audited | `docs/research/slice1-spine.md`; `docs/research/citation-audit.md` |
-| Workshop review | `docs/reports/D2-NBN-workshop-review-report.pdf` |
-| Interviews | `docs/research/interviews/developer-interview-findings.md` |
-| Scope decision and entry gate | `docs/adr/002-scope.md` |
-| The gates in the base | `lefthook.yml`, `.github/hooks/copilot-guard.json`, `scripts/copilot/pre-tool-use.cjs`, `.github/workflows/ci.yml` at `6af6a5b` |
-| Proof of concept | `docs/research/fault-reporting/`; `docs/research/success-metrics-poc-results.md` |
-| Trial one | `showcase-run-sheet.xlsx` (Teams library); white paper chapter 7 |
-| Criteria, prediction, protocol | `docs/research/trial-two/acceptance-criteria.md` (`f43ca98`); `predictions.md` (`48fff18`); `attacks-and-test-jobs.md` |
-| Frozen commits, results, reviewer time | `docs/research/trial-two/review/README.md` |
-| Per-lane criteria, attacks, mutation, seeds | `docs/research/trial-two/review/{ai-only,copy-paste,gated}/review.md` and `evidence/` |
+| Claim                                              | Where                                                                                                                           |
+| -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| 44 tasks, colours, holders                         | `docs/research/lifecycle-task-map.md`; `docs/reports/module-reconciliation.md` section 4                                        |
+| Published practice per stage; 63 citations audited | `docs/research/slice1-spine.md`; `docs/research/citation-audit.md`                                                              |
+| Workshop review                                    | `docs/reports/D2-NBN-workshop-review-report.pdf`                                                                                |
+| Interviews                                         | `docs/research/interviews/developer-interview-findings.md`                                                                      |
+| Scope decision and entry gate                      | `docs/adr/002-scope.md`                                                                                                         |
+| The gates in the base                              | `lefthook.yml`, `.github/hooks/copilot-guard.json`, `scripts/copilot/pre-tool-use.cjs`, `.github/workflows/ci.yml` at `6af6a5b` |
+| Proof of concept                                   | `docs/research/fault-reporting/`; `docs/research/success-metrics-poc-results.md`                                                |
+| Trial one                                          | `showcase-run-sheet.xlsx` (Teams library); white paper chapter 7                                                                |
+| Criteria, prediction, protocol                     | `docs/research/trial-two/acceptance-criteria.md` (`f43ca98`); `predictions.md` (`48fff18`); `attacks-and-test-jobs.md`          |
+| Frozen commits, results, reviewer time             | `docs/research/trial-two/review/README.md`                                                                                      |
+| Per-lane criteria, attacks, mutation, seeds        | `docs/research/trial-two/review/{ai-only,copy-paste,gated}/review.md` and `evidence/`                                           |
 
 # Appendix E. The registered prediction, as committed
 
@@ -341,39 +342,39 @@ Team artefacts are cited by repository path in `Peepachuu/nbn-sdlc-demo` with th
 
 [1] Team 2, "D2: NBN workshop review report," RMIT University, 13 Aug 2026, `docs/reports/D2-NBN-workshop-review-report.pdf`.
 
-[2] Veracode, *2025 GenAI Code Security Report*, 30 Jul 2025.
+[2] Veracode, _2025 GenAI Code Security Report_, 30 Jul 2025.
 
-[3] H. Pearce, B. Ahmad, B. Tan, B. Dolan-Gavitt, and R. Karri, "Asleep at the keyboard? Assessing the security of GitHub Copilot's code contributions," *Communications of the ACM*, vol. 68, no. 2, Feb 2025.
+[3] H. Pearce, B. Ahmad, B. Tan, B. Dolan-Gavitt, and R. Karri, "Asleep at the keyboard? Assessing the security of GitHub Copilot's code contributions," _Communications of the ACM_, vol. 68, no. 2, Feb 2025.
 
 [4] Y. Liu, R. Widyasari, Y. Zhao, I. C. Irsan, J. Chen, and D. Lo, "Debt behind the AI boom: a large-scale empirical study of AI-generated code in the wild," arXiv:2603.28592, Mar 2026. https://arxiv.org/abs/2603.28592
 
-[5] Zhang, Sun, et al., "Exploring automated assertion generation via large language models," *ACM Transactions on Software Engineering and Methodology*, 2025, doi:10.1145/3699598.
+[5] Zhang, Sun, et al., "Exploring automated assertion generation via large language models," _ACM Transactions on Software Engineering and Methodology_, 2025, doi:10.1145/3699598.
 
 [6] S. Zeng, "Trial two: registered prediction," `docs/research/trial-two/predictions.md`, commit `48fff18`, 12 Oct 2026.
 
 [7] Team 2, "Slice 1: the research spine," `docs/research/slice1-spine.md`, Sep 2026.
 
-[8] T. Winters, T. Manshreck, and H. Wright, Eds., *Software Engineering at Google*, O'Reilly, 2020, ch. 9, "Code review." https://abseil.io/resources/swe-book/html/ch09.html
+[8] T. Winters, T. Manshreck, and H. Wright, Eds., _Software Engineering at Google_, O'Reilly, 2020, ch. 9, "Code review." https://abseil.io/resources/swe-book/html/ch09.html
 
-[9] Google, *Google Engineering Practices Documentation*: "The standard of code review," "What to look for in a code review," "Small CLs." https://google.github.io/eng-practices
+[9] Google, _Google Engineering Practices Documentation_: "The standard of code review," "What to look for in a code review," "Small CLs." https://google.github.io/eng-practices
 
 [10] GV, "The Design Sprint." https://www.gv.com/sprint/ Accessed 4 Sep 2026.
 
 [11] Microsoft, "Microsoft Security Development Lifecycle (SDL)," Microsoft Learn, https://learn.microsoft.com/en-us/compliance/assurance/assurance-microsoft-security-development-lifecycle, and "Microsoft SDL practices," https://microsoft.com/securityengineering/sdl/practices. Accessed 22 Aug 2026.
 
-[12] Microsoft ISE, *Code With Engineering Playbook*: "Definition of Ready," "Minimal Slices," "Work Items," "Design Reviews," "DevSecOps," "Observability." https://microsoft.github.io/code-with-engineering-playbook/
+[12] Microsoft ISE, _Code With Engineering Playbook_: "Definition of Ready," "Minimal Slices," "Work Items," "Design Reviews," "DevSecOps," "Observability." https://microsoft.github.io/code-with-engineering-playbook/
 
 [13] GitHub Docs, "About GitHub Copilot coding agent," docs.github.com. Accessed Sep 2026.
 
-[14] DORA, *Accelerate State of DevOps Report 2024*, Google Cloud, 2024. https://dora.dev/research/2024/dora-report
+[14] DORA, _Accelerate State of DevOps Report 2024_, Google Cloud, 2024. https://dora.dev/research/2024/dora-report
 
-[15] DORA, "Announcing the 2025 DORA Report" and *State of AI-assisted Software Development 2025*, Google Cloud, 24 Sep 2025.
+[15] DORA, "Announcing the 2025 DORA Report" and _State of AI-assisted Software Development 2025_, Google Cloud, 24 Sep 2025.
 
-[16] DORA, *DORA capabilities*: "Trunk-based development," "Continuous integration," "Continuous delivery." https://dora.dev/capabilities/
+[16] DORA, _DORA capabilities_: "Trunk-based development," "Continuous integration," "Continuous delivery." https://dora.dev/capabilities/
 
 [17] S. Peng, E. Kalliamvakou, P. Cihon, and M. Demirer, "The impact of AI on developer productivity: evidence from GitHub Copilot," arXiv:2302.06590, Feb 2023.
 
-[18] Z. Cui, M. Demirer, S. Jaffe, L. Musolff, S. Peng, and T. Salz, "The effects of generative AI on high-skilled work: evidence from three field experiments with software developers," *Management Science*, 2025.
+[18] Z. Cui, M. Demirer, S. Jaffe, L. Musolff, S. Peng, and T. Salz, "The effects of generative AI on high-skilled work: evidence from three field experiments with software developers," _Management Science_, 2025.
 
 [19] J. Becker, N. Rush, E. Barnes, and D. Rein, "Measuring the impact of early-2025 AI on experienced open-source developer productivity," METR, arXiv:2507.09089, Jul 2025.
 
@@ -383,13 +384,13 @@ Team artefacts are cited by repository path in `Peepachuu/nbn-sdlc-demo` with th
 
 [22] A. Amro and M. H. Alalfi, "GitHub's Copilot code review: can AI spot security flaws before you commit?," arXiv:2509.13650, Sep 2025. Preprint.
 
-[23] M. Schäfer, S. Nadi, A. Eghbali, and F. Tip, "An empirical evaluation of using large language models for automated unit test generation," *IEEE Transactions on Software Engineering*, vol. 50, no. 1, 2024. arXiv:2302.06527
+[23] M. Schäfer, S. Nadi, A. Eghbali, and F. Tip, "An empirical evaluation of using large language models for automated unit test generation," _IEEE Transactions on Software Engineering_, vol. 50, no. 1, 2024. arXiv:2302.06527
 
 [24] Quattrocchi, Pasquale, Spoletini, and Baresi, "Can LLMs generate user stories and assess their quality?," arXiv:2507.15157, 2025.
 
-[25] M. Cheng, T. Piccardi, and D. Yang, "CoMPosT: characterizing and evaluating caricature in LLM simulations," in *Proc. EMNLP 2023*. https://aclanthology.org/2023.emnlp-main.669
+[25] M. Cheng, T. Piccardi, and D. Yang, "CoMPosT: characterizing and evaluating caricature in LLM simulations," in _Proc. EMNLP 2023_. https://aclanthology.org/2023.emnlp-main.669
 
-[26] Zhong et al., "ScreenAudit: detecting screen reader accessibility errors in mobile apps using large language models," in *Proc. CHI 2025*. arXiv:2504.02110
+[26] Zhong et al., "ScreenAudit: detecting screen reader accessibility errors in mobile apps using large language models," in _Proc. CHI 2025_. arXiv:2504.02110
 
 [27] M. Rosala and K. Moran, "Synthetic users: if, when, and how to use AI-generated 'research'," Nielsen Norman Group, 21 Jun 2024.
 
@@ -418,4 +419,3 @@ Team artefacts are cited by repository path in `Peepachuu/nbn-sdlc-demo` with th
 [39] Team 2, "Lifecycle task map," `docs/research/lifecycle-task-map.md`, Sep 2026.
 
 [40] Team 2, "AI workflow gates: dry-run results," `docs/research/ai-workflow-gates/dry-run-results.md`, Sep 2026.
-
