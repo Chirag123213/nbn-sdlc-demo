@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The gated lifecycle</title>
+<meta name="description" content="Team 2's walkthrough for the supervisor: the problem, the sources, the gated lifecycle, one developer's Monday through nine gates, stages 5 to 8, three builds compared, limits.">
+<style>
+  :root {
+    --bg: #FAFAFA; --surface: #FFFFFF; --surface-2: #F5F5F5; --stroke: #E0E0E0; --stroke-2: #D1D1D1;
+    --text: #242424; --text-2: #424242; --text-3: #707070;
+    --brand: #0F6CBD; --brand-2: #115EA3; --brand-bg: #EBF3FC; --brand-stroke: #B4D6FA;
+    --red: #BC2F32; --red-bg: #FDF3F4; --red-stroke: #EEACB2; --amber: #BC4B09; --amber-bg: #FDF6F3; --amber-stroke: #F4BFAB; --green: #0E700E; --green-bg: #F1FAF1; --green-stroke: #9FD89F;
+    --shadow-4: 0 2px 4px rgba(0,0,0,.14), 0 0 2px rgba(0,0,0,.12);
+    --shadow-8: 0 4px 8px rgba(0,0,0,.14), 0 0 2px rgba(0,0,0,.12);
+    --shadow-16: 0 8px 16px rgba(0,0,0,.14), 0 0 2px rgba(0,0,0,.12);
+    --font: "Segoe UI", "Segoe UI Web (West European)", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    --mono: "Cascadia Code", "Cascadia Mono", Consolas, ui-monospace, Menlo, monospace;
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font); font-size: 16px; line-height: 1.4; overflow: hidden; -webkit-font-smoothing: antialiased; }
+
+  #progress { position: fixed; top: 0; left: 0; height: 4px; background: var(--brand); width: 0; transition: width .25s ease; z-index: 50; }
+  #stage { position: fixed; inset: 0; display: grid; place-items: center; }
+  #frame { width: 1280px; height: 720px; position: relative; transform-origin: center center; }
+  .slide { position: absolute; inset: 0; padding: 64px 88px 72px; display: none; background: var(--bg); }
+  .slide.active { display: block; animation: enter .3s ease both; }
+  @keyframes enter { from { opacity: 0; transform: translateX(16px); } to { opacity: 1; transform: none; } }
+  .slide.back.active { animation-name: enterBack; }
+  @keyframes enterBack { from { opacity: 0; transform: translateX(-16px); } to { opacity: 1; transform: none; } }
+
+  .frag { opacity: 0; transform: translateY(8px); transition: opacity .25s ease, transform .25s ease; }
+  .frag.on { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .slide.active { animation: none; } .frag { transition: none; } #progress { transition: none; } }
+
+  /* chrome */
+  #chrome { position: fixed; left: 0; right: 0; bottom: 0; height: 40px; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; font-size: 12px; color: var(--text-3); z-index: 40; pointer-events: none; }
+  #chrome .l { display: flex; gap: 14px; align-items: center; }
+  #chrome .wm { font-weight: 600; color: var(--text-2); }
+  #chrome button { pointer-events: auto; font: 600 12px var(--font); color: var(--text-2); background: var(--surface); border: 1px solid var(--stroke); border-radius: 4px; padding: 5px 10px; cursor: pointer; }
+  #chrome button:hover { background: var(--surface-2); }
+  #chrome button:focus-visible { outline: 2px solid var(--brand); outline-offset: 1px; }
+  #hint { position: fixed; right: 20px; bottom: 52px; font-size: 12px; color: var(--text-3); z-index: 40; }
+
+  /* notes */
+  #notes { position: fixed; left: 0; right: 0; bottom: 0; max-height: 34vh; overflow: auto; background: var(--surface); border-top: 1px solid var(--stroke); box-shadow: var(--shadow-16); padding: 16px 24px 48px; font-size: 15px; line-height: 1.5; color: var(--text); display: none; z-index: 45; }
+  #notes.open { display: block; }
+  #notes .k { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--brand); font-weight: 600; margin-bottom: 6px; }
+  #notes p { margin: 0 0 8px; max-width: 90ch; }
+
+  /* overview */
+  #overview { position: fixed; inset: 0; background: rgba(250,250,250,.98); z-index: 60; display: none; overflow: auto; padding: 48px; }
+  #overview.open { display: block; }
+  #overview h2 { margin: 0 0 18px; font-size: 20px; font-weight: 600; }
+  #overview ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px; }
+  #overview li button { width: 100%; text-align: left; font: 14px var(--font); color: var(--text); background: var(--surface); border: 1px solid var(--stroke); border-radius: 8px; padding: 12px 14px; cursor: pointer; box-shadow: var(--shadow-4); }
+  #overview li button:hover { border-color: var(--brand); }
+  #overview li button.cur { border-color: var(--brand); background: var(--brand-bg); }
+  #overview li button small { display: block; color: var(--text-3); font-size: 11px; margin-bottom: 3px; }
+
+  /* type */
+  h1 { font-size: 68px; line-height: 1.08; font-weight: 600; letter-spacing: -0.01em; margin: 0 0 20px; }
+  h2 { font-size: 40px; line-height: 1.12; font-weight: 600; letter-spacing: -0.01em; margin: 0 0 22px; }
+  h3 { font-size: 20px; font-weight: 600; margin: 0 0 8px; }
+  p { margin: 0 0 12px; }
+  .sub { font-size: 20px; color: var(--text-2); max-width: 60ch; }
+  .lead { font-size: 22px; max-width: 58ch; line-height: 1.4; }
+  .eyebrow { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--brand); font-weight: 600; margin-bottom: 14px; }
+  .small { font-size: 13px; color: var(--text-2); }
+  .mono { font-family: var(--mono); font-size: .92em; background: var(--surface-2); border: 1px solid var(--stroke); border-radius: 4px; padding: 1px 6px; }
+  .foot { position: absolute; left: 88px; right: 88px; bottom: 28px; font-size: 12px; color: var(--text-3); }
+
+  /* layout helpers */
+  .cols { display: grid; gap: 24px; }
+  .c2 { grid-template-columns: 1fr 1fr; } .c3 { grid-template-columns: repeat(3, 1fr); } .c4 { grid-template-columns: repeat(4, 1fr); }
+  .card { background: var(--surface); border: 1px solid var(--stroke); border-radius: 8px; padding: 18px 20px; box-shadow: var(--shadow-4); }
+  .card.brand { background: var(--brand); color: #fff; border-color: var(--brand); }
+  .card.brand .small, .card.brand h3 { color: #fff; }
+  .card.brand .mono { background: rgba(255,255,255,.14); border-color: rgba(255,255,255,.3); color: #fff; }
+  .big { font-size: 56px; font-weight: 600; line-height: 1; letter-spacing: -0.02em; }
+  .big small { font-size: 16px; font-weight: 400; color: var(--text-2); margin-left: 6px; letter-spacing: 0; }
+  .card.brand .big small { color: rgba(255,255,255,.8); }
+  .num { font-weight: 600; font-variant-numeric: tabular-nums; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  th { text-align: left; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--text-2); font-weight: 600; padding: 8px 12px; border-bottom: 1px solid var(--stroke-2); }
+  td { padding: 9px 12px; border-bottom: 1px solid var(--stroke); vertical-align: top; }
+  tr:last-child td { border-bottom: 0; }
+  table.tight td, table.tight th { padding: 7px 10px; font-size: 14px; }
+
+  .tag { display: inline-block; font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 4px; border: 1px solid transparent; vertical-align: middle; }
+  .tag.Red { color: var(--red); background: var(--red-bg); border-color: var(--red-stroke); }
+  .tag.Amber { color: var(--amber); background: var(--amber-bg); border-color: var(--amber-stroke); }
+  .tag.Green { color: var(--green); background: var(--green-bg); border-color: var(--green-stroke); }
+  .tag.brand { color: var(--brand); background: var(--brand-bg); border-color: var(--brand-stroke); }
+
+  /* section slide */
+  .section { background: var(--brand); color: #fff; }
+  .section .eyebrow { color: rgba(255,255,255,.75); }
+  .section h2 { font-size: 56px; color: #fff; margin-top: 150px; }
+  .section .sub { color: rgba(255,255,255,.85); }
+  .section .n { position: absolute; right: 88px; top: 56px; font-size: 220px; font-weight: 600; line-height: 1; color: rgba(255,255,255,.14); letter-spacing: -0.04em; }
+
+  /* title slide */
+  .title .mark { width: 44px; height: 44px; border-radius: 8px; background: var(--brand); margin-bottom: 40px; position: relative; }
+  .title .mark::after { content: ""; position: absolute; left: 12px; top: 12px; width: 20px; height: 20px; border-radius: 4px; background: #fff; }
+  .title h1 { max-width: 760px; }
+  .title .by { position: absolute; left: 88px; bottom: 72px; font-size: 15px; color: var(--text-2); line-height: 1.6; }
+
+  /* timeline */
+  .tl { position: relative; margin-top: 30px; }
+  .tl::before { content: ""; position: absolute; left: 0; right: 0; top: 14px; height: 2px; background: var(--stroke-2); }
+  .tl .row { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; }
+  .tl .ev { position: relative; padding-top: 34px; font-size: 13.5px; }
+  .tl .ev::before { content: ""; position: absolute; left: 0; top: 8px; width: 14px; height: 14px; border-radius: 50%; background: var(--surface); border: 3px solid var(--brand); }
+  .tl .ev b { display: block; font-size: 13px; color: var(--brand); margin-bottom: 4px; }
+
+  /* monday */
+  .mtrack { display: flex; gap: 8px; margin: 0 0 26px; }
+  .mtrack span { flex: 1; height: 6px; border-radius: 3px; background: var(--stroke); }
+  .mtrack span.done { background: var(--brand-stroke); }
+  .mtrack span.cur { background: var(--brand); }
+  .mon { display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: start; }
+  .mon .step { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--text-2); font-weight: 600; }
+  .mon h2 { margin: 6px 0 6px; font-size: 44px; }
+  .mon h2 .id { color: var(--brand); font-weight: 600; margin-right: 12px; }
+  .mon .who { font-size: 17px; color: var(--text-2); margin-bottom: 18px; }
+  .mon .what { font-size: 19px; line-height: 1.45; max-width: 50ch; }
+  .gcard { background: var(--surface); border: 1px solid var(--stroke); border-left: 4px solid var(--brand); border-radius: 8px; padding: 14px 18px; box-shadow: var(--shadow-4); margin-bottom: 12px; }
+  .gcard .k { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--text-2); font-weight: 600; margin-bottom: 3px; }
+  .gcard .v { font-size: 16px; }
+  .gcard .v .mono { font-size: 13px; }
+
+  /* stage slides */
+  .task { display: grid; grid-template-columns: 56px 1fr 92px 200px; gap: 12px; align-items: center; padding: 8px 12px; border-bottom: 1px solid var(--stroke); font-size: 15px; }
+  .task:last-child { border-bottom: 0; }
+  .task .id { font-weight: 600; color: var(--brand); }
+  .task .h { font-size: 13px; color: var(--text-2); }
+  .rests { font-size: 14.5px; color: var(--text-2); border-left: 3px solid var(--brand); padding: 4px 14px; margin: 16px 0 0; max-width: 100ch; }
+
+  /* bars */
+  .bar { display: grid; grid-template-columns: 170px 1fr 70px; gap: 12px; align-items: center; font-size: 15px; margin: 10px 0; }
+  .bar i { display: block; height: 14px; border-radius: 3px; background: var(--surface-2); border: 1px solid var(--stroke); overflow: hidden; }
+  .bar i b { display: block; height: 100%; background: var(--brand); transition: width .6s ease; }
+  .bar.c i b { background: var(--green); }
+  .bar strong { text-align: right; font-variant-numeric: tabular-nums; }
+
+  ul.pl { margin: 0; padding-left: 20px; font-size: 18px; line-height: 1.5; }
+  ul.pl li { margin-bottom: 10px; }
+  ul.pl li::marker { color: var(--brand); }
+  .quote { font-size: 24px; line-height: 1.4; max-width: 46ch; border-left: 4px solid var(--brand); padding-left: 20px; margin: 10px 0 18px; }
+  .quote + .small { margin-left: 24px; }
+  .kv { display: grid; grid-template-columns: 180px 1fr; gap: 6px 18px; font-size: 15px; }
+  .kv dt { color: var(--text-2); } .kv dd { margin: 0; }
+  .holders .h { display: grid; grid-template-columns: 170px 1fr 1fr; gap: 14px; padding: 10px 12px; border-bottom: 1px solid var(--stroke); font-size: 14.5px; }
+  .holders .h:last-child { border-bottom: 0; }
+  .holders .h b { color: var(--brand); }
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<div id="stage"><div id="frame">
+
+<!-- 1 title -->
+<section class="slide title" data-notes="Thirty minutes. Problem, sources, the thing, Monday, the three builds, limits. Questions as we go.">
+  <div class="mark"></div>
+  <div class="eyebrow">RMIT Capstone 2026 · 20-NBN · SDLC using AI</div>
+  <h1>The gated lifecycle</h1>
+  <p class="sub">An AI-assisted development lifecycle for NBN Co, with a named gate on every task, run three ways and reviewed.</p>
+  <div class="by">Team 2: Sidney Zeng, Ahmed Falulur Rahuman, Zac Clarkson, Zafir Hasan, Chirag Wadehra<br>Supervisor Ben Philip · Client representative Alessio Bonti · Repository <span class="mono">nbn-sdlc-demo</span></div>
+</section>
+
+<!-- 2 abstract -->
+<section class="slide" data-notes="This is the whole talk. If Ben hears nothing else: three builds, same brief, one method held, the others passed every automated check and stored nothing.">
+  <div class="eyebrow">In one slide</div>
+  <h2>What we did, what we found</h2>
+  <p class="lead">We opened NBN's eight-stage lifecycle into 44 tasks, gave each a colour, a gate and the thing that holds the gate, and grounded every stage in Google, Microsoft and DORA practice.</p>
+  <p class="lead frag">We then built the same feature three ways from one frozen brief and one base commit: AI only, copy and paste, and the gated lifecycle. An independent reviewer ran the same 17 criteria, 18 attacks, a mutation run and two seeded faults on each.</p>
+  <p class="lead frag">Two builds ticked all fourteen feature criteria, passed CI, and stored nothing. The gated build met 14 of 14, held all 18 attacks and caught both seeds. No automated gate caught the missing store in either of the others; a reviewer reloading the page did.</p>
+</section>
+
+<!-- 3 section -->
+<section class="slide section" data-notes=""><div class="n">1</div><div class="eyebrow">Part one</div><h2>Why it matters</h2><p class="sub">AI writes code that passes its own tests.</p></section>
+
+<!-- 4 problem -->
+<section class="slide" data-notes="These are in slice 1 with sources ranked. The Liu paper is the one to lean on: peer-reviewed, 304,362 commits. Veracode is a vendor report; we say so.">
+  <div class="eyebrow">The problem</div>
+  <h2>Green CI means the tests ran</h2>
+  <div class="cols c3">
+    <div class="card frag"><div class="big">24.2<small>%</small></div><p>of AI-introduced issues still present at repository HEAD; security issues the most likely to survive (41.1%). Liu et al., 304,362 AI-authored commits, arXiv 2603.28592.</p></div>
+    <div class="card frag"><div class="big">39–59<small>%</small></div><p>accuracy of LLM-generated test assertions across two datasets. ACM TOSEM 2025.</p></div>
+    <div class="card frag"><div class="big">45<small>%</small></div><p>of the time models chose the insecure option across 80 tasks. Veracode 2025, vendor report, triangulated with Pearce et al. (about 40% of Copilot programs vulnerable).</p></div>
+  </div>
+  <p class="lead frag" style="margin-top:28px">An agent that writes the code and the tests passes its own tests. The question the lifecycle has to answer is who notices, and what makes them.</p>
+</section>
+
+<!-- 5 the brief -->
+<section class="slide" data-notes="The client's eight stages with the colour scheme came from the August workshop, D2. We kept the stages and changed what a colour means: from 'how much AI' to 'who decides'.">
+  <div class="eyebrow">The brief</div>
+  <h2>Eight stages, and a colour on each</h2>
+  <div class="cols c2">
+    <div>
+      <p class="lead">NBN asked for a software development lifecycle that uses AI, across their eight stages, with a traffic-light view of where AI can act.</p>
+      <p class="lead frag">The workshop record (D2: June 2026, four days, two cohorts of about 32 to 35 NBN staff) gave a colour per stage. A colour per stage cannot be acted on: stage 6 is amber, so what does a developer do at 9 am?</p>
+    </div>
+    <div class="card frag">
+      <h3>What we changed</h3>
+      <ul class="pl" style="font-size:16px">
+        <li>Colour moved from the stage to the task. 44 tasks.</li>
+        <li>Colour means who decides, not how much AI.</li>
+        <li>Every task names a gate and what holds it.</li>
+        <li>Stages 5 to 8 operated in full; 1 to 4 mapped and cited.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 6 section -->
+<section class="slide section"><div class="n">2</div><div class="eyebrow">Part two</div><h2>How we worked</h2><p class="sub">Nine weeks, three sprints, one repository.</p></section>
+
+<!-- 7 timeline -->
+<section class="slide" data-notes="Everything is in git with dates. The pre-registration order matters for part five: criteria, then prediction, then protocol, then builds, then review.">
+  <div class="eyebrow">Nine weeks</div>
+  <h2>What happened when</h2>
+  <div class="tl"><div class="row">
+    <div class="ev"><b>June, report 13 Aug</b>NBN workshop, four days, two cohorts of about 32 to 35. D2 report.</div>
+    <div class="ev"><b>Aug–Sep</b>Research slices 1 to 3: 63 citations fetched and checked. D4 map, 44 tasks.</div>
+    <div class="ev"><b>12, 17 Sep</b>Two practitioner interviews. Supervisor reviews 31 Aug, 4 Sep.</div>
+    <div class="ev"><b>25 Sep–2 Oct</b>Trial one (showcase, three lanes). Proof of concept FR-01, Stryker 63.6 to 73.9%.</div>
+    <div class="ev"><b>10–18 Oct</b>Criteria frozen 10 Oct. Prediction 12 Oct. Protocol 17 Oct. Builds 17–18 Oct.</div>
+    <div class="ev"><b>18–20 Oct</b>Builds frozen. Independent review. 50 evidence files.</div>
+  </div></div>
+  <div class="cols c3" style="margin-top:44px">
+    <div class="card frag"><h3>Sources, ranked</h3><p class="small">1 Official engineering documentation (Google eng-practices, Microsoft SDL and playbook, GitHub docs, DORA). 2 Peer-reviewed research. 3 Industry reports. 4 Blogs, flagged.</p></div>
+    <div class="card frag"><h3>Tool</h3><p class="small">GitHub Copilot is the example tool (NBN's commitment, 17 Sep). Claude Code and Codex appear as equivalents. Student plans throughout.</p></div>
+    <div class="card frag"><h3>Record</h3><p class="small">Every claim in the paper carries a label: Run, Run once, Estimate, Documented. Numbers written from memory are labelled as such.</p></div>
+  </div>
+</section>
+
+<!-- 8 section -->
+<section class="slide section"><div class="n">3</div><div class="eyebrow">Part three</div><h2>The gated lifecycle</h2><p class="sub">A map and the gates that hold it.</p></section>
+
+<!-- 9 definition -->
+<section class="slide" data-notes="One name from here on. The retired words are in terms.md: model, manual, cycle, workflow, framework.">
+  <div class="eyebrow">Definition</div>
+  <h2>A map and the gates that hold it</h2>
+  <div class="cols c3">
+    <div class="card frag"><h3>Colour</h3><p>Who decides.</p><p><span class="tag Red">Red</span> a human decides</p><p><span class="tag Amber">Amber</span> AI drafts, a human approves</p><p><span class="tag Green">Green</span> AI runs, a deterministic check holds</p></div>
+    <div class="card frag"><h3>Gate</h3><p>What must be true before the next task starts. Written as a countable condition.</p><p class="small">"Every commit passes pre-commit and commit-msg." Not "commits should be clean."</p></div>
+    <div class="card frag"><h3>Holder</h3><p>What makes the gate hold. One of six. Every task names one.</p><p class="small">An instruction file is no gate.</p></div>
+  </div>
+  <p class="lead frag" style="margin-top:30px">The map is NBN's eight stages opened into 44 tasks. Stages 5 to 8 are operated and were tested; stages 1 to 4 are mapped on Google's Design Sprint and cited.</p>
+</section>
+
+<!-- 10 holders -->
+<section class="slide" data-notes="This table is the answer to 'is it a checklist or rules on GitHub?'. Four of the six are machines. The last row is where most AI rules in most repos live.">
+  <div class="eyebrow">Holder</div>
+  <h2>Six things can hold a gate</h2>
+  <div class="card holders" style="padding:4px 8px">
+    <div class="h frag"><b>Hook (git)</b><span>lefthook pre-commit: secret scan, placeholders, prettier, eslint. commit-msg: Conventional Commits</span><span class="small">Binds every tool and person who ran <span class="mono">pnpm install</span></span></div>
+    <div class="h frag"><b>Hook (agent)</b><span><span class="mono">copilot-guard.json</span> denies <span class="mono">git push</span>, <span class="mono">--no-verify</span>, hook changes</span><span class="small">Binds one tool. Fails open after 10 s. Nothing binds ChatGPT in a browser</span></div>
+    <div class="h frag"><b>CI check (required)</b><span>AI Declaration, AI Attribution, Lint &amp; Typecheck, Frontend Tests, Backend Unit Tests, Security Scan</span><span class="small">Blocks the merge while the ruleset lists it</span></div>
+    <div class="h frag"><b>CI check (advisory)</b><span>Mutation run on every pull request</span><span class="small">Reports. Blocks nothing</span></div>
+    <div class="h frag"><b>Platform rule</b><span>The <span class="mono">main</span> ruleset: two approving reviews, squash only, no force push, no delete</span><span class="small">Everyone. Changed only by an admin</span></div>
+    <div class="h frag"><b>Human</b><span>Approve the plan (6.1). Approve the merge (6.4). Judge whether the tests would notice (7.4)</span><span class="small">What no script can decide</span></div>
+    <div class="h frag"><b>No gate</b><span><span class="mono">CLAUDE.md</span>, <span class="mono">copilot-instructions.md</span>, <span class="mono">AGENTS.md</span>, prompts, skills, the agent's own summary</span><span class="small">Read and maybe complied with. In our dry run the agent "stopped and waited" by choice</span></div>
+  </div>
+</section>
+
+<!-- 11 map -->
+<section class="slide" data-notes="Counts from lifecycle-task-map.md. The mix shifts green as stages go on because the deterministic checks live in the repo. Stage 8 red is release and incidents.">
+  <div class="eyebrow">The map</div>
+  <h2>Eight stages, 44 tasks</h2>
+  <div class="cols c4" id="mapgrid"></div>
+  <p class="small frag" style="margin-top:22px">Stages 1 to 4 scaffolded on Google's Design Sprint; not operated in this paper. Work enters stage 5 through the entry gate: an approved business case, stories with checkable criteria, recorded architecture decisions, agreed journeys and design.</p>
+</section>
+
+<!-- 12 section -->
+<section class="slide section"><div class="n">4</div><div class="eyebrow">Part four</div><h2>What practitioners said</h2><p class="sub">Two interviews, each finding traced to a gate.</p></section>
+
+<!-- 13 Ben -->
+<section class="slide" data-notes="Ben's own interview, 12 Sep. Each row maps to a task. The third column is what trial two showed on that row.">
+  <div class="eyebrow">Interview 1 · 12 Sep</div>
+  <h2>Ben Philip</h2>
+  <table class="tight">
+    <thead><tr><th style="width:44%">Said</th><th style="width:12%">Gate</th><th>In trial two</th></tr></thead>
+    <tbody>
+      <tr class="frag"><td>Passing AI-generated tests does not prove the requirement; the tests may reflect the implementation</td><td class="num">7.4</td><td>Two lanes: 14 criteria ticked, CI green, nothing stored. Seed S2 caught in all three; mutation 52, 67, 65% on feature files</td></tr>
+      <tr class="frag"><td>The team does not identify AI-generated code; git attributes it to the committer</td><td class="num">6.3</td><td>Co-authored-by trailer naming the agent on every lane; AI Declaration and AI Attribution checks passed</td></tr>
+      <tr class="frag"><td>Small, well-scoped tasks; unrestricted agent access is avoided</td><td class="num">5.3, 6.3</td><td>Out-of-scope list in the frozen brief; the agent hook denies push and hook changes</td></tr>
+      <tr class="frag"><td>Final pull-request approval remains human</td><td class="num">6.4</td><td>Ruleset: two approving reviews, author excluded, squash only</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 14 Thien -->
+<section class="slide" data-notes="Thien Pham, 17 Sep, from industry. The model-record finding is the one the gate caught: two records said GPT-5 against the lane rule.">
+  <div class="eyebrow">Interview 2 · 17 Sep</div>
+  <h2>Huynh Thanh Thien Pham</h2>
+  <table class="tight">
+    <thead><tr><th style="width:44%">Said</th><th style="width:12%">Gate</th><th>In trial two</th></tr></thead>
+    <tbody>
+      <tr class="frag"><td>Large features start with business requirements and a detailed plan</td><td class="num">5.3, 6.1</td><td>Lane C: plan approved before code. Lane A had no plan step and rebuilt the app around the feature</td></tr>
+      <tr class="frag"><td>The organisation records which model implemented each story</td><td class="num">6.3</td><td>Trailer and run log name the model. Two records say GPT-5 against the GPT-5.6 Sol lane rule: the gate surfaced the disagreement</td></tr>
+      <tr class="frag"><td>Business logic, code logic and especially data design are checked before accepting</td><td class="num">7.4</td><td>Lanes A and B designed no data store. No automated check noticed. A reviewer reloading the page did</td></tr>
+      <tr class="frag"><td>Scoped to a feature, not one prompt across the repository</td><td class="num">5.3, hook</td><td>Lane C changed 43 files inside the feature; lane A replaced the home page and layout</td></tr>
+    </tbody>
+  </table>
+  <p class="small frag" style="margin-top:14px">Also qualitative: the NBN workshop record and the supervisor's two reviews. No NBN developer was interviewed.</p>
+</section>
+
+<!-- 15 section -->
+<section class="slide section"><div class="n">5</div><div class="eyebrow">Part five</div><h2>Monday</h2><p class="sub">One developer with Copilot, one issue, nine gates.</p></section>
+
+<!-- 16-24 monday steps, generated -->
+
+<!-- 25 section -->
+<section class="slide section"><div class="n">6</div><div class="eyebrow">Part six</div><h2>Stages 5 to 8</h2><p class="sub">Every task, its colour, its holder, and what the stage rests on.</p></section>
+
+<!-- 26-29 stages, generated -->
+
+<!-- 30 section -->
+<section class="slide section"><div class="n">7</div><div class="eyebrow">Part seven</div><h2>Three builds</h2><p class="sub">Same feature, same brief, same base, three methods.</p></section>
+
+<!-- 31 design -->
+<section class="slide" data-notes="The order of commits is the method. Nothing in the protocol was written after a build was seen. Decision 5 marking was done the morning after the builds and before the review opened them.">
+  <div class="eyebrow">Trial two · design</div>
+  <h2>Pre-registered, frozen, reviewed blind</h2>
+  <div class="cols c2">
+    <div>
+      <dl class="kv">
+        <dt>Feature</dt><dd>Technician dispatch. 14 feature criteria, 3 record criteria, an out-of-scope list</dd>
+        <dt>Base</dt><dd>One commit, <span class="mono">6af6a5b</span>, three repositories, trial one's feature removed</dd>
+        <dt>Lanes</dt><dd>A AI only (Codex, one shot) · B copy and paste (ChatGPT) · C the gated lifecycle (Codex)</dd>
+        <dt>Model line</dt><dd>GPT-5.6 Sol, high, all lanes</dd>
+        <dt>Time</dt><dd>Four hours estimate, six cap; setup logged apart</dd>
+        <dt>Reviewer</dt><dd>Built none of the three. Read nothing of one build into the next</dd>
+      </dl>
+    </div>
+    <div class="card frag">
+      <h3>In git, in order</h3>
+      <table class="tight">
+        <tr><td>10 Oct</td><td>Criteria frozen</td><td class="mono">f43ca98</td></tr>
+        <tr><td>12 Oct</td><td>Prediction registered</td><td class="mono">48fff18</td></tr>
+        <tr><td>17 Oct</td><td>Attack protocol, fixtures</td><td class="mono">ba9b489</td></tr>
+        <tr><td>17–18 Oct</td><td>Builds; frozen 22:27 on the 18th</td><td class="mono">f1611e0 · ed173dc · 40c65f5</td></tr>
+        <tr><td>18–20 Oct</td><td>Review</td><td class="mono">docs/research/trial-two/review/</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 32 result -->
+<section class="slide" data-notes="Say the A and B result plainly: the feature works on screen and forgets everything on reload. Their PRs ticked AC01 and AC11 as pass.">
+  <div class="eyebrow">Trial two · result</div>
+  <h2>What each build did</h2>
+  <div class="cols c3">
+    <div class="card frag"><div class="eyebrow" style="margin-bottom:6px">A · AI only</div><div class="big">12<small>of 14</small></div><p>Nothing stored. Page public, no sign-in. AC01, AC11 fail; attack AT12 lands.</p><p class="small">11 tests · 9 min 13 s</p></div>
+    <div class="card frag"><div class="eyebrow" style="margin-bottom:6px">B · copy and paste</div><div class="big">12<small>of 14</small></div><p>Nothing stored. Behind sign-in. AC01, AC11 fail; a cited screenshot missing from the record.</p><p class="small">8 tests · 62 min</p></div>
+    <div class="card brand frag"><div class="eyebrow" style="margin-bottom:6px;color:rgba(255,255,255,.8)">C · the gated lifecycle</div><div class="big">14<small>of 14</small></div><p>Firestore through Server Actions with owner, status and match checks. All 18 attacks held: at the rules, at the action, signed out.</p><p class="small">36 tests · 57 min + 32 setup</p></div>
+  </div>
+  <p class="lead frag" style="margin-top:26px">Caught before merge by any gate, in any lane: <strong>none</strong>. The gates that catch "nothing is stored" are human ones, 6.1 and 7.4, which methods A and B do not have.</p>
+</section>
+
+<!-- 33 tests -->
+<section class="slide" data-notes="Mutation on fresh clones of the frozen commits, in-place mode, formula stated, invalid attempts kept. Feature files only; the configured scope includes 73 base mutants no lane touched.">
+  <div class="eyebrow">Trial two · would the tests notice?</div>
+  <h2>Mutation score and seeded faults</h2>
+  <div class="cols c2">
+    <div>
+      <h3>Mutants killed, feature files</h3>
+      <div class="bar frag"><span>A · AI only</span><i><b style="width:52%"></b></i><strong>52.0%</strong></div>
+      <div class="bar frag"><span>B · copy and paste</span><i><b style="width:67%"></b></i><strong>66.9%</strong></div>
+      <div class="bar c frag"><span>C · gated</span><i><b style="width:65%"></b></i><strong>65.0%</strong></div>
+      <p class="small frag" style="margin-top:14px">Matching function alone: 77, 100, 79%. Lane C's Server Actions: 86%. Nobody set a threshold; the base's mutation job is advisory.</p>
+    </div>
+    <div class="card frag">
+      <h3>Two faults seeded by hand</h3>
+      <table class="tight">
+        <tr><th></th><th>A</th><th>B</th><th>C</th></tr>
+        <tr><td>S1 owner check removed</td><td>no owner</td><td>no owner</td><td><span class="tag Green">caught</span> 1 test</td></tr>
+        <tr><td>S2 access check always true</td><td><span class="tag Green">caught</span> 5 tests</td><td><span class="tag Green">caught</span> 6 tests</td><td><span class="tag Green">caught</span> 7 tests</td></tr>
+      </table>
+      <p class="small" style="margin-top:10px">One test, "rejects a cross-owner scheduling attempt without revealing the request", is the whole reason S1 was caught. Tests-first wrote it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 34 prediction -->
+<section class="slide" data-notes="Lead with 'not supported on count'. Then what differed. If Sidney's reconciliation moves trial one's baseline to 4/1/1 the conclusion stands.">
+  <div class="eyebrow">Trial two · the prediction</div>
+  <h2>Not supported on count. Different in kind.</h2>
+  <div class="cols c2">
+    <div class="card">
+      <h3>Registered 12 Oct</h3>
+      <p>The spread between lanes grows with feature size: supported if the per-criterion spread is higher in trial two on two of three measures.</p>
+      <table class="tight frag">
+        <tr><th>Measure</th><th>Trial one</th><th>Trial two</th><th>Grew</th></tr>
+        <tr><td>Escaped issues</td><td>3, 1, 0 · 0.30</td><td>4, 4, 4 · 0.00</td><td>No</td></tr>
+        <tr><td>Criteria not met</td><td>1, 0, 0 · 0.10</td><td>2, 2, 0 · 0.14</td><td>Yes</td></tr>
+        <tr><td>Active minutes</td><td>11, 94, 43 · 8.3</td><td>9, 62, 57 · 3.8</td><td>No</td></tr>
+      </table>
+      <p class="small frag">Trial one's baseline is being reconciled to its run sheet (4, 1, 1). The result does not change.</p>
+    </div>
+    <div class="frag">
+      <p class="lead">The count did not spread. The kind did.</p>
+      <ul class="pl">
+        <li>Two lanes shipped a feature that forgets everything on reload and passed every automated check.</li>
+        <li>One lane persisted, refused every forged request, and had the test that caught the ownership seed.</li>
+        <li>A per-criterion count treats "no store" and "missing screenshot" as one issue each.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 35 trial one vs two -->
+<section class="slide" data-notes="Why trial two is the one to cite. Trial one is context and the baseline for the prediction, with its numbers labelled Estimate.">
+  <div class="eyebrow">Method</div>
+  <h2>Why trial two and not trial one</h2>
+  <table>
+    <thead><tr><th></th><th>Trial one · showcase, 25–26 Sep</th><th>Trial two · 17–20 Oct</th></tr></thead>
+    <tbody>
+      <tr class="frag"><td>Brief</td><td>Cut-down fault report, 10 criteria</td><td>Technician dispatch, 14 + 3 criteria, frozen in git before any build</td></tr>
+      <tr class="frag"><td>Base</td><td>The shared repository, known gaps open</td><td>One tagged commit, three repositories, hooks and CI gaps closed</td></tr>
+      <tr class="frag"><td>Prediction</td><td>None</td><td>Registered 12 Oct, before the protocol and the builds</td></tr>
+      <tr class="frag"><td>Logging</td><td>Written from memory two days later</td><td>Run log per builder as they went; clock-on and clock-off</td></tr>
+      <tr class="frag"><td>Review</td><td>Teammate; no fixed attack list</td><td>Reviewer who built none; 18 attacks in the same order; frozen commits named</td></tr>
+      <tr class="frag"><td>Tests</td><td>Stryker installed after the freeze</td><td>Stryker in the base; fresh clones; two seeded faults; invalid runs kept</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 36 section -->
+<section class="slide section"><div class="n">8</div><div class="eyebrow">Part eight</div><h2>Limits, and what a team takes away</h2><p class="sub"></p></section>
+
+<!-- 37 limits -->
+<section class="slide" data-notes="Say these before he does. The builder-method confound is the big one.">
+  <div class="eyebrow">Limits</div>
+  <h2>What this does not show</h2>
+  <ul class="pl">
+    <li class="frag">Three builders, one per lane, one feature each. A method effect and a builder effect cannot be separated. Lane C's builder also wrote the gated lifecycle he built with.</li>
+    <li class="frag">Four-hour builds on student plans. Stages 1 to 4 and 8.2 to 8.6 are on the map and were never run.</li>
+    <li class="frag">No NBN developer was interviewed. Two practitioners, one workshop record, one supervisor's reviews.</li>
+    <li class="frag">The keyboard check on all three previews is partial; the review tooling cannot drive native date pickers.</li>
+    <li class="frag">On the main repository itself only one CI check is required; the six-check gate was proved on the trial two repositories.</li>
+    <li class="frag">The prediction was not supported on count. The paper says so.</li>
+  </ul>
+</section>
+
+<!-- 38 takeaway -->
+<section class="slide" data-notes="What the repository gives a team on day one. All of it is files; none of it is a slide.">
+  <div class="eyebrow">For a team</div>
+  <h2>What you install, what you decide</h2>
+  <div class="cols c2">
+    <div class="card frag">
+      <h3>Install, once</h3>
+      <ul class="pl" style="font-size:16px">
+        <li>lefthook: secret scan, lint, format, Conventional Commits</li>
+        <li>The agent hook for the tool you use: no push, no hook bypass</li>
+        <li>Six CI checks and the pull request template with the AI declaration</li>
+        <li>The <span class="mono">main</span> ruleset: two approvals, squash only, checks required</li>
+      </ul>
+    </div>
+    <div class="card frag">
+      <h3>Decide, every time</h3>
+      <ul class="pl" style="font-size:16px">
+        <li>5.3 The issue has testable criteria and an out-of-scope list, or it goes back</li>
+        <li>6.1 No code before a person approves the plan</li>
+        <li>6.4 Two people who did not write it</li>
+        <li>7.4 Would the tests fail if the code were wrong? Reload the page</li>
+      </ul>
+    </div>
+  </div>
+  <p class="small frag" style="margin-top:24px">Everything on the left is in <span class="mono">nbn-sdlc-demo</span> at <span class="mono">6af6a5b</span>. Everything on the right is in chapter 3 of the white paper with a worked example.</p>
+</section>
+
+<!-- 39 evidence -->
+<section class="slide" data-notes="If he wants to open anything, these are the paths.">
+  <div class="eyebrow">Evidence</div>
+  <h2>Where every number comes from</h2>
+  <table class="tight">
+    <tr><td>44 tasks, colours, holders</td><td class="mono">docs/research/lifecycle-task-map.md · docs/reports/module-reconciliation.md §4</td></tr>
+    <tr><td>Published practice per stage</td><td class="mono">docs/research/slice1-spine.md · docs/research/citation-audit.md</td></tr>
+    <tr><td>The gates in the base</td><td class="mono">lefthook.yml · .github/hooks/copilot-guard.json · .github/workflows/ci.yml at 6af6a5b</td></tr>
+    <tr><td>Criteria, prediction, protocol</td><td class="mono">docs/research/trial-two/{acceptance-criteria, predictions, attacks-and-test-jobs}.md</td></tr>
+    <tr><td>Frozen commits, results, time log</td><td class="mono">docs/research/trial-two/review/README.md</td></tr>
+    <tr><td>Per-lane criteria, attacks, mutation, seeds</td><td class="mono">docs/research/trial-two/review/{ai-only, copy-paste, gated}/review.md + evidence/</td></tr>
+    <tr><td>Interviews</td><td class="mono">docs/research/interviews/developer-interview-findings.md</td></tr>
+    <tr><td>Terms</td><td class="mono">docs/white-paper/terms.md</td></tr>
+  </table>
+</section>
+
+<!-- 40 end -->
+<section class="slide title" data-notes="">
+  <div class="mark"></div>
+  <h1 style="font-size:56px">Questions</h1>
+  <p class="sub">The gated lifecycle. A map and the gates that hold it.</p>
+  <div class="by">Team 2 · RMIT Capstone 2026 · <span class="mono">github.com/Peepachuu/nbn-sdlc-demo</span></div>
+</section>
+
+</div></div>
+
+<div id="chrome">
+  <div class="l"><span class="wm">Team 2 · The gated lifecycle</span><span id="counter"></span></div>
+  <div class="l"><button id="bPrev" aria-label="Previous">‹</button><button id="bNext" aria-label="Next">›</button><button id="bNotes">Notes</button><button id="bOverview">Overview</button><button id="bFull">Full screen</button></div>
+</div>
+<div id="hint">→ next · ← back · N notes · Esc overview · F full screen</div>
+<aside id="notes" aria-live="polite"><div class="k">Notes</div><div id="notesBody"></div></aside>
+<div id="overview" role="dialog" aria-label="Slide overview"><h2>Slides</h2><ol id="ovList"></ol></div>
+
+<script>
+(function () {
+  // ---- data: Monday steps ----
+  var monday = [
+    { id: "5.3", c: "Red", name: "The issue", who: "A person writes it", what: "Acceptance criteria that can be tested and an out-of-scope list. In trial two this was done once, frozen in git on 10 Oct, and given to all three lanes word for word.", gate: "Out-of-scope list present; criteria testable", holder: "Human", where: "docs/research/trial-two/acceptance-criteria.md at f43ca98" },
+    { id: "6.1", c: "Amber", name: "The plan", who: "The agent drafts, a person approves", what: "The agent reads the issue, restates each criterion and proposes a plan. No code until a person approves it. The instruction file says to stop here; the person is what makes it stop.", gate: "Plan accepted before any code is written", holder: "Human. The instruction text in CLAUDE.md is no gate", where: "Lane C pull request #2; dry-run-results.md: held by agent behaviour, not enforcement" },
+    { id: "6.2", c: "Green", name: "Branch, tests, code, commit", who: "The agent runs", what: "Every commit passes through lefthook. A commit with a secret, a leftover placeholder, a lint error or a message that is not Conventional does not land.", gate: "Every commit passes pre-commit and commit-msg", holder: "Hook (git)", where: "lefthook.yml · scripts/check-commit-msg.js · scripts/check-secrets.js" },
+    { id: "6.3", c: "Green", name: "Push", who: "The agent asks, a person pushes", what: "The agent cannot push. The Copilot hook denies git push, --no-verify and any change to the hooks, and returns the reason. The developer pushes.", gate: "Pushes stay with a person; hooks cannot be skipped by the agent", holder: "Hook (agent)", where: ".github/hooks/copilot-guard.json → scripts/copilot/pre-tool-use.cjs" },
+    { id: "6.3", c: "Green", name: "Open the pull request", who: "A person opens it", what: "Conventional title, the AI declaration ticked, a Co-authored-by trailer naming the agent on at least one commit. Two CI jobs read the declaration and the trailer and fail the pull request if they disagree.", gate: "Declaration and trailer agree", holder: "CI check (required): AI Declaration, AI Attribution", where: ".github/workflows/ci.yml · .github/pull_request_template.md" },
+    { id: "7.2 · 7.5", c: "Green", name: "CI", who: "Machines run", what: "Lint and typecheck, frontend tests, backend tests, security scan. The mutation job runs too and reports without blocking.", gate: "All required checks green", holder: "CI check (required) ×4 · CI check (advisory) ×1", where: ".github/workflows/ci.yml · .github/workflows/mutation.yml" },
+    { id: "7.4", c: "Red", name: "Would the tests notice?", who: "A person judges", what: "Green CI means the tests ran. Someone asks whether they would fail if the code were wrong, with the mutation report and a seeded fault as evidence. This is where two of three trial builds met a page reload.", gate: "A person confirms the tests would catch a real fault", holder: "Human, with the mutation report as evidence", where: "docs/research/trial-two/review/*/evidence/mutation-2026-10-20.txt · seed-S1 · seed-S2" },
+    { id: "6.4", c: "Red", name: "Review and merge", who: "Two people who did not write it", what: "Two approvals; the author's does not count. Squash only, no force push, no direct push to main.", gate: "Two approving reviews; six checks green; squash", holder: "Platform rule (the main ruleset), human", where: "Ruleset on the trial two repositories, read 17 Oct 2026" },
+    { id: "8.1", c: "Green", name: "Preview", who: "The platform runs", what: "Every pull request deploys a preview. It is what the reviewer tested and what the builder's screenshots came from.", gate: "Preview URL on the pull request", holder: "CI check (hosting platform)", where: "Vercel check on each pull request · TJ15 in each review.md" }
+  ];
+  var stages = [
+    { n: 5, name: "Development planning", rests: "DORA's working in small batches (a 2025 AI-amplifier capability); Microsoft's playbook pages on Minimal Slices and Work Items; Google's small-CL discipline. In the trials: the frozen brief is task 5.3 done once for all three lanes.", tasks: [
+      ["5.1","Slice the work into single-purpose issues","Amber","Human approves"],["5.2","Prioritise, assign, flag dependencies","Amber","Human approves"],["5.3","Acceptance criteria and the out-of-scope list","Red","Human"],["5.4","Commit the sprint plan","Red","Human"],["5.5","Push the issues into the repo host","Green","Hook (issue template)"]] },
+    { n: 6, name: "Development and build", rests: "Google: every change needs a human review approval from someone other than the author (Software Engineering at Google, OWNERS files); Microsoft SDL's same rule; GitHub's description of the Copilot coding agent flow. In the trials: the hooks, the agent hook and the ruleset are this stage's gates.", tasks: [
+      ["6.1","Agent reads the issue, confirms each criterion, plans","Amber","Human"],["6.2","Branch, implement, commit","Green","Hook (git)"],["6.3","Open the pull request with provenance","Green","Hook (agent) · CI check (required)"],["6.4","Review and merge approval","Red","Platform rule · human"],["6.5","Iterate on review comments","Amber","Human"]] },
+    { n: 7, name: "Testing and QA", rests: "Google's review checklist (\"tests are well-designed\" is a human judgement); DORA's continuous integration capability with branch protection; Microsoft's dev-sec-ops scanning; Liu et al. as the reason 7.4 stays red. In the trials: 7.4 is where mutation and the seeded faults sit.", tasks: [
+      ["7.1","Generate unit tests alongside the change","Amber","Human reads"],["7.2","Run CI: lint, typecheck, unit tests","Green","CI check (required)"],["7.3","Adversarial review by a separate agent","Amber","Human"],["7.4","Judge whether the tests are correct","Red","Human · CI check (advisory)"],["7.5","Security scan and dependency audit","Green","CI check (required)"]] },
+    { n: 8, name: "Deployment and iteration", rests: "DORA's deployment automation and continuous delivery; progressive delivery (flags, rings, metric-gated rollback); Google's role-based release approvals; Microsoft's safe deployment process and observability pillars; for NBN the SOCI Act on 8.3. In the trials: 8.1 only.", tasks: [
+      ["8.1","Preview deployment on every pull request","Green","CI check (hosting)"],["8.2","Progressive rollout with automatic rollback","Green","Rollout controller (not built)"],["8.3","Production promotion","Red","Human"],["8.4","Monitoring and alert triage","Amber","Human"],["8.5","Incident response and review","Red","Human"],["8.6","Fold the learning back into context","Amber","Human approves"]] }
+  ];
+  var mapCounts = [["Ideation and business case",2,2,1],["Requirements and discovery",2,1,2],["Solution design and architecture",2,3,0],["UX design and prototyping",4,2,2],["Development planning",2,2,1],["Development and build",1,2,2],["Testing and QA",1,2,2],["Deployment and iteration",2,2,2]];
+
+  // ---- build generated slides ----
+  var frame = document.getElementById("frame");
+  function el(html) { var t = document.createElement("template"); t.innerHTML = html.trim(); return t.content.firstChild; }
+  function insertAfterComment(marker, nodes) {
+    var it = document.createNodeIterator(frame, NodeFilter.SHOW_COMMENT), c, target = null;
+    while ((c = it.nextNode())) { if (c.nodeValue.indexOf(marker) >= 0) { target = c; break; } }
+    nodes.forEach(function (n) { target.parentNode.insertBefore(n, target.nextSibling); target = n; });
+  }
+  insertAfterComment("monday steps", monday.map(function (s, i) {
+    var track = monday.map(function (_, k) { return '<span class="' + (k < i ? "done" : k === i ? "cur" : "") + '"></span>'; }).join("");
+    return el('<section class="slide" data-notes="Step ' + (i + 1) + ' of 9. ' + s.what.replace(/"/g, "&quot;") + '">' +
+      '<div class="mtrack">' + track + '</div>' +
+      '<div class="mon"><div><div class="step">Monday · gate ' + (i + 1) + ' of 9</div>' +
+      '<h2><span class="id">' + s.id + '</span>' + s.name + ' <span class="tag ' + s.c + '">' + s.c + '</span></h2>' +
+      '<div class="who">' + s.who + '</div><p class="what">' + s.what + '</p></div>' +
+      '<div><div class="gcard frag"><div class="k">Gate</div><div class="v">' + s.gate + '</div></div>' +
+      '<div class="gcard frag"><div class="k">Holder</div><div class="v">' + s.holder + '</div></div>' +
+      '<div class="gcard frag"><div class="k">Where it lives</div><div class="v"><span class="mono">' + s.where + '</span></div></div></div></div></section>');
+  }));
+  insertAfterComment("stages, generated", stages.map(function (st) {
+    var rows = st.tasks.map(function (t) { return '<div class="task frag"><span class="id">' + t[0] + '</span><span>' + t[1] + '</span><span class="tag ' + t[2] + '">' + t[2] + '</span><span class="h">' + t[3] + '</span></div>'; }).join("");
+    return el('<section class="slide" data-notes="Stage ' + st.n + '. Read the holder column aloud for the green rows; that is the claim."><div class="eyebrow">Stage ' + st.n + '</div><h2>' + st.name + '</h2><div class="card" style="padding:4px 8px">' + rows + '</div><p class="rests frag"><strong>Rests on</strong> ' + st.rests + '</p></section>');
+  }));
+  var mg = document.getElementById("mapgrid");
+  mapCounts.forEach(function (m, i) {
+    var t = m[1] + m[2] + m[3];
+    mg.appendChild(el('<div class="card frag" style="padding:14px 16px"><div class="small" style="margin-bottom:2px">Stage ' + (i + 1) + '</div><h3 style="font-size:16px;min-height:44px">' + m[0] + '</h3>' +
+      '<div style="display:flex;height:10px;border-radius:3px;overflow:hidden;margin:6px 0 8px"><span style="flex:' + m[1] + ';background:var(--red)"></span><span style="flex:' + m[2] + ';background:#DA3B01"></span><span style="flex:' + m[3] + ';background:var(--green)"></span></div>' +
+      '<div class="small">' + t + ' tasks · ' + m[1] + ' red · ' + m[2] + ' amber · ' + m[3] + ' green</div></div>'));
+  });
+
+  // ---- engine ----
+  var slides = Array.prototype.slice.call(document.querySelectorAll(".slide"));
+  var i = 0, notesOpen = false, ovOpen = false;
+  var progress = document.getElementById("progress"), counter = document.getElementById("counter"), notes = document.getElementById("notes"), notesBody = document.getElementById("notesBody"), overview = document.getElementById("overview"), ovList = document.getElementById("ovList");
+  function frags(s) { return Array.prototype.slice.call(s.querySelectorAll(".frag")); }
+  function show(n, dir, allFrags) {
+    n = Math.max(0, Math.min(slides.length - 1, n));
+    slides.forEach(function (s, k) { s.classList.remove("active", "back"); if (k === n) { if (dir < 0) s.classList.add("back"); s.classList.add("active"); } });
+    i = n;
+    frags(slides[i]).forEach(function (f) { f.classList.toggle("on", !!allFrags); });
+    progress.style.width = ((i) / (slides.length - 1) * 100) + "%";
+    counter.textContent = (i + 1) + " / " + slides.length;
+    notesBody.innerHTML = "<p>" + (slides[i].getAttribute("data-notes") || "") + "</p>";
+    location.hash = "#" + (i + 1);
+    renderOv();
+  }
+  function next() { var f = frags(slides[i]).filter(function (x) { return !x.classList.contains("on"); }); if (f.length) { f[0].classList.add("on"); return; } if (i < slides.length - 1) show(i + 1, 1, false); }
+  function prev() { var f = frags(slides[i]).filter(function (x) { return x.classList.contains("on"); }); if (f.length) { f[f.length - 1].classList.remove("on"); return; } if (i > 0) show(i - 1, -1, true); }
+  function fit() { var sx = window.innerWidth / 1280, sy = (window.innerHeight - (notesOpen ? window.innerHeight * .34 : 0)) / 720; frame.style.transform = "scale(" + Math.min(sx, sy) * 0.98 + ")"; }
+  function renderOv() {
+    if (!ovList.children.length) slides.forEach(function (s, k) {
+      var t = s.querySelector("h1,h2"); var e = s.querySelector(".eyebrow,.step");
+      var b = el('<li><button><small>' + (k + 1) + (e ? " · " + e.textContent : "") + '</small>' + (t ? t.textContent.replace(/(Red|Amber|Green)$/, "") : "") + '</button></li>');
+      b.querySelector("button").addEventListener("click", function () { toggleOv(false); show(k, 1, false); });
+      ovList.appendChild(b);
+    });
+    Array.prototype.forEach.call(ovList.querySelectorAll("button"), function (b, k) { b.classList.toggle("cur", k === i); });
+  }
+  function toggleNotes() { notesOpen = !notesOpen; notes.classList.toggle("open", notesOpen); fit(); }
+  function toggleOv(force) { ovOpen = typeof force === "boolean" ? force : !ovOpen; overview.classList.toggle("open", ovOpen); if (ovOpen) { renderOv(); var c = ovList.querySelector(".cur"); if (c) c.focus(); } }
+  function full() { if (document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen && document.documentElement.requestFullscreen(); }
+  document.addEventListener("keydown", function (e) {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    if (ovOpen && e.key !== "Escape") return;
+    switch (e.key) {
+      case "ArrowRight": case "PageDown": case " ": case "Enter": e.preventDefault(); next(); break;
+      case "ArrowLeft": case "PageUp": case "Backspace": e.preventDefault(); prev(); break;
+      case "Home": show(0, -1, false); break;
+      case "End": show(slides.length - 1, 1, true); break;
+      case "n": case "N": toggleNotes(); break;
+      case "f": case "F": full(); break;
+      case "Escape": toggleOv(); break;
+    }
+  });
+  document.getElementById("bPrev").addEventListener("click", prev);
+  document.getElementById("bNext").addEventListener("click", next);
+  document.getElementById("bNotes").addEventListener("click", toggleNotes);
+  document.getElementById("bOverview").addEventListener("click", function () { toggleOv(); });
+  document.getElementById("bFull").addEventListener("click", full);
+  var tx = null;
+  document.addEventListener("touchstart", function (e) { tx = e.touches[0].clientX; }, { passive: true });
+  document.addEventListener("touchend", function (e) { if (tx === null) return; var dx = e.changedTouches[0].clientX - tx; if (Math.abs(dx) > 50) { dx < 0 ? next() : prev(); } tx = null; }, { passive: true });
+  window.addEventListener("resize", fit);
+  window.addEventListener("hashchange", function () { var h = parseInt((location.hash || "#1").slice(1), 10); if (!isNaN(h) && h - 1 !== i) show(h - 1, h - 1 > i ? 1 : -1, false); });
+  fit();
+  var start = parseInt((location.hash || "#1").slice(1), 10); show(isNaN(start) ? 0 : start - 1, 1, false);
+  setTimeout(function () { var h = document.getElementById("hint"); if (h) h.style.opacity = "0"; h.style.transition = "opacity 1s"; }, 8000);
+})();
+</script>
+</body>
+</html>
