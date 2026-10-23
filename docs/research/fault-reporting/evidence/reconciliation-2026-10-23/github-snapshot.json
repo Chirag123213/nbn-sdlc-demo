@@ -1,0 +1,1896 @@
+{
+  "retrieved_at_utc": "2026-10-23T10:24:55.099081+00:00",
+  "retrieval_date_melbourne": "23 Oct 2026",
+  "source": "GitHub API via gh; read-only retrieval",
+  "repository": "Chirag123213/nbn-sdlc-demo",
+  "main": {
+    "commit": {
+      "committer": {
+        "date": "2026-10-10T14:28:41Z",
+        "email": "noreply@github.com",
+        "name": "GitHub"
+      },
+      "message": "Feature/ai workflow gates (#71)\n\n* docs: add generic plan-first and tests-first AI instructions to copilot-instructions and CLAUDE\n\n* docs: record AI workflow gate dry-run results\n\n* docs: record independent PoC acceptance verification results"
+    },
+    "sha": "44557a3d8a29771dc3b78af9fdc0c8d5fc5d5fcd"
+  },
+  "main_rules": [
+    {
+      "type": "deletion",
+      "ruleset_source_type": "Repository",
+      "ruleset_source": "Chirag123213/nbn-sdlc-demo",
+      "ruleset_id": 21031502
+    },
+    {
+      "type": "non_fast_forward",
+      "ruleset_source_type": "Repository",
+      "ruleset_source": "Chirag123213/nbn-sdlc-demo",
+      "ruleset_id": 21031502
+    },
+    {
+      "type": "pull_request",
+      "parameters": {
+        "required_approving_review_count": 2,
+        "dismiss_stale_reviews_on_push": false,
+        "required_reviewers": [],
+        "require_code_owner_review": false,
+        "require_last_push_approval": false,
+        "required_review_thread_resolution": false,
+        "require_extra_approval_for_unattributed_changes": true,
+        "allowed_merge_methods": ["squash"]
+      },
+      "ruleset_source_type": "Repository",
+      "ruleset_source": "Chirag123213/nbn-sdlc-demo",
+      "ruleset_id": 21031502
+    },
+    {
+      "type": "required_status_checks",
+      "parameters": {
+        "strict_required_status_checks_policy": false,
+        "do_not_enforce_on_create": false,
+        "required_status_checks": [
+          {
+            "context": "AI Declaration",
+            "integration_id": 15368
+          },
+          {
+            "context": "Lint & Typecheck",
+            "integration_id": 15368
+          },
+          {
+            "context": "Frontend Tests",
+            "integration_id": 15368
+          },
+          {
+            "context": "Backend Unit Tests",
+            "integration_id": 15368
+          },
+          {
+            "context": "Security Scan",
+            "integration_id": 15368
+          }
+        ]
+      },
+      "ruleset_source_type": "Repository",
+      "ruleset_source": "Chirag123213/nbn-sdlc-demo",
+      "ruleset_id": 21031502
+    }
+  ],
+  "main_ruleset": {
+    "id": 21031502,
+    "name": "main",
+    "target": "branch",
+    "source_type": "Repository",
+    "source": "Chirag123213/nbn-sdlc-demo",
+    "enforcement": "active",
+    "conditions": {
+      "ref_name": {
+        "exclude": [],
+        "include": ["~DEFAULT_BRANCH"]
+      }
+    },
+    "rules": [
+      {
+        "type": "deletion"
+      },
+      {
+        "type": "non_fast_forward"
+      },
+      {
+        "type": "pull_request",
+        "parameters": {
+          "required_approving_review_count": 2,
+          "dismiss_stale_reviews_on_push": false,
+          "required_reviewers": [],
+          "require_code_owner_review": false,
+          "require_last_push_approval": false,
+          "required_review_thread_resolution": false,
+          "require_extra_approval_for_unattributed_changes": true,
+          "allowed_merge_methods": ["squash"]
+        }
+      },
+      {
+        "type": "required_status_checks",
+        "parameters": {
+          "strict_required_status_checks_policy": false,
+          "do_not_enforce_on_create": false,
+          "required_status_checks": [
+            {
+              "context": "AI Declaration",
+              "integration_id": 15368
+            },
+            {
+              "context": "Lint & Typecheck",
+              "integration_id": 15368
+            },
+            {
+              "context": "Frontend Tests",
+              "integration_id": 15368
+            },
+            {
+              "context": "Backend Unit Tests",
+              "integration_id": 15368
+            },
+            {
+              "context": "Security Scan",
+              "integration_id": 15368
+            }
+          ]
+        }
+      }
+    ],
+    "node_id": "RRS_lACqUmVwb3NpdG9yec5P0_iDzgFA6k4",
+    "created_at": "2026-08-19T18:27:02.216+10:00",
+    "updated_at": "2026-10-22T11:34:49.513+11:00",
+    "current_user_can_bypass": "never",
+    "_links": {
+      "self": {
+        "href": "https://api.github.com/repos/Chirag123213/nbn-sdlc-demo/rulesets/21031502"
+      },
+      "html": {
+        "href": "https://github.com/Chirag123213/nbn-sdlc-demo/rules/21031502"
+      }
+    }
+  },
+  "main_status": {
+    "sha": "44557a3d8a29771dc3b78af9fdc0c8d5fc5d5fcd",
+    "state": "success",
+    "statuses": [
+      {
+        "context": "Vercel",
+        "state": "success",
+        "target_url": "https://vercel.com/treeko/nbn-sdlc-demo-frontend/9r4GWLwXx98H14QD7XoRamMbJvef",
+        "updated_at": "2026-10-21T20:11:40Z"
+      }
+    ]
+  },
+  "issue_57": {
+    "body": "# FR-01 feature issue\n\n**Title:** Add authenticated fault reporting\n\n## User story\n\nAs a signed-in user, I can submit a fault and retrieve my own reports so I have a durable reference for the problem.\n\n## Acceptance criteria\n\n- **AC1:** A signed-in user can submit category `no-service`, `intermittent` or `slow-speed` and a trimmed description of 10\u20131000 characters.\n- **AC2:** Missing/unknown categories and descriptions outside those limits are rejected server-side without a write.\n- **AC3:** The server stores a unique reference, authenticated owner, server timestamp and initial `submitted` status. Client-supplied owner/status cannot override them.\n- **AC4:** A successful submission shows its reference; the user's report remains retrievable after refresh.\n- **AC5:** Unauthenticated creation/read is rejected; a second user cannot read the first user's report, including direct-ID requests.\n- **AC6:** A failed save displays a useful error and no false success confirmation.\n\n## Approved implementation\n\n- Use the existing frontend Server Action, Firebase Admin and verified session-cookie architecture.\n- Do not change the Express backend.\n- Store reports in the `faultReports` collection with `uid` as the owner field.\n- Use the Firestore document ID as the user-visible reference.\n- List the authenticated user's reports newest-first using a server-side query ordered by `createdAt` descending. Add an index only if the selected query requires one.\n- Keep the existing unauthenticated redirect to `/auth/signin`. Do not swallow framework redirects in a generic storage-error handler.\n- Reject unknown input fields, including forged `uid` and `status`, with strict server-side validation.\n- Use server-only access to `faultReports`; deny direct client reads and writes in Firestore rules. Every Server Action must still authenticate and enforce ownership.\n- Missing and non-owned report IDs return the same user-safe result without exposing report data.\n\n## Scope\n\nProposed files:\n\n- `frontend/src/features/faults/**`\n- `frontend/src/app/(dashboard)/faults/**`\n- `frontend/src/actions/faults.actions.ts`\n- `frontend/src/lib/validations/faults.ts`\n- `frontend/src/types/firestore.ts` (fault-reporting type only)\n- `frontend/src/lib/firebase/firestore.ts` (fault-reporting helper only)\n- `frontend/tests/**` (fault-reporting tests only)\n- `frontend/src/components/layout/Sidebar.tsx` (fault-report navigation entry only)\n- `firebase/firestore.rules` (faultReports rules only)\n- `firebase/firestore.indexes.json` only if the selected query requires it\n- `docs/FIRESTORE-SCHEMA.md` (faultReports schema only)\n- FR-01 evidence files under `docs/research/fault-reporting/`\n\nExcluded: attachments, notifications, technician dispatch, real customer data, NBN integrations, diagnosis, admin triage/status editing, unrelated refactoring and dependency upgrades.\n\n## Dependencies and evidence\n\nDependencies are Firebase Auth/session-cookie verification, Firestore credentials and write access, configured preview/deployment access, and the approved synthetic test accounts. Use synthetic reports only; do not commit credentials or environment files.\n\nRequired checks are `pnpm run lint`, `pnpm run typecheck`, `pnpm run test:all`, `pnpm run build`, relevant security checks, targeted fault-report tests, and an approved mutation comparison. Record failures honestly.\n\n## Human controls\n\n- Approver/run operator: Zafir Hasan\n- Approval time supplied: 27 Sep 9:43pm Melbourne\n- Independent reviewer: Chirag Wadehra\n- Capacity allocation: Pending\n",
+    "comments": [],
+    "number": 57,
+    "state": "OPEN",
+    "title": "Fault reporting feature issue",
+    "url": "https://github.com/Chirag123213/nbn-sdlc-demo/issues/57"
+  },
+  "pr_63": {
+    "additions": 4290,
+    "baseRefName": "main",
+    "commits": [
+      {
+        "authoredDate": "2026-10-01T23:27:19Z",
+        "authors": [
+          {
+            "email": "s4084016@student.rmit.edu.au",
+            "id": "U_kgDOChgyqg",
+            "login": "s4084016",
+            "name": "Zafir Hasan"
+          },
+          {
+            "email": "223556219+Copilot@users.noreply.github.com",
+            "id": "BOT_kgDODVMyew",
+            "login": "Copilot",
+            "name": "Copilot App"
+          }
+        ],
+        "committedDate": "2026-10-01T23:27:19Z",
+        "messageBody": "Co-authored-by: Copilot App <223556219+Copilot@users.noreply.github.com>",
+        "messageHeadline": "feat: add authenticated fault reporting",
+        "oid": "9593f1ee26320b18d62fbd765205553acd12b7ba"
+      },
+      {
+        "authoredDate": "2026-10-01T23:44:44Z",
+        "authors": [
+          {
+            "email": "s4084016@student.rmit.edu.au",
+            "id": "U_kgDOChgyqg",
+            "login": "s4084016",
+            "name": "Zafir Hasan"
+          }
+        ],
+        "committedDate": "2026-10-01T23:44:44Z",
+        "messageBody": "",
+        "messageHeadline": "chore: update dependencies",
+        "oid": "2c19c5d543b217a46a4e6aeb131232b7eb6e0592"
+      },
+      {
+        "authoredDate": "2026-10-02T07:37:33Z",
+        "authors": [
+          {
+            "email": "s4084016@student.rmit.edu.au",
+            "id": "U_kgDOChgyqg",
+            "login": "s4084016",
+            "name": "Zafir Hasan"
+          }
+        ],
+        "committedDate": "2026-10-02T07:37:33Z",
+        "messageBody": "",
+        "messageHeadline": "docs: consolidate FR-01 evidence and record usage estimates",
+        "oid": "d2b6522234c5de2f0428dbc49a5181f418e6971f"
+      }
+    ],
+    "createdAt": "2026-10-01T23:31:06Z",
+    "deletions": 593,
+    "files": [
+      {
+        "path": "backend/package.json",
+        "additions": 2,
+        "deletions": 2,
+        "changeType": "MODIFIED"
+      },
+      {
+        "path": "backend/vitest.config.ts",
+        "additions": 1,
+        "deletions": 5,
+        "changeType": "MODIFIED"
+      },
+      {
+        "path": "docs/FIRESTORE-SCHEMA.md",
+        "additions": 17,
+        "deletions": 0,
+        "changeType": "MODIFIED"
+      },
+      {
+        "path": "docs/research/fault-reporting/credit-log.md",
+        "additions": 7,
+        "deletions": 7,
+        "changeType": "MODIFIED"
+      },
+      {
+        "path": "docs/research/fault-reporting/decisions.md",
+        "additions": 6,
+        "deletions": 0,
+        "changeType": "MODIFIED"
+      },
+      {
+        "path": "docs/research/fault-reporting/evidence/run-2026-09-27/README.md",
+        "additions": 50,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "docs/research/fault-reporting/evidence/run-2026-09-27/ac-matrix.md",
+        "additions": 19,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "docs/research/fault-reporting/evidence/run-2026-09-27/account-creation.md",
+        "additions": 5,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "docs/research/fault-reporting/evidence/run-2026-09-27/adversarial-review-fresh.md",
+        "additions": 32,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "docs/research/fault-reporting/evidence/run-2026-09-27/adversarial-review.md",
+        "additions": 30,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "docs/research/fault-reporting/evidence/run-2026-09-27/chirag-review-checklist.md",
+        "additions": 23,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "docs/research/fault-reporting/evidence/run-2026-09-27/dependency-audit-current.json",
+        "additions": 950,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "docs/research/fault-reporting/evidence/run-2026-09-27/dependency-audit-paths.txt",
+        "additions": 18,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "docs/research/fault-reporting/evidence/run-2026-09-27/dependency-audit-summary.json",
+        "additions": 57,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "docs/research/fault-reporting/evidence/run-2026-09-27/deployment.md",
+        "additions": 27,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "docs/research/fault-reporting/evidence/run-2026-09-27/env-sync.txt",
+        "additions": 45,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "docs/research/fault-reporting/evidence/run-2026-09-27/gates.md",
+        "additions": 23,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "docs/research/fault-reporting/evidence/run-2026-09-27/implementation.md",
+        "additions": 69,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "docs/research/fault-reporting/evidence/run-2026-09-27/integration-results.md",
+        "additions": 52,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "docs/research/fault-reporting/evidence/run-2026-09-27/mutation-proposal.md",
+        "additions": 31,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "docs/research/fault-reporting/evidence/run-2026-09-27/mutation/frontend-mutation-final.json",
+        "additions": 1,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "docs/research/fault-reporting/evidence/run-2026-09-27/mutation/frontend-mutation-final.txt",
+        "additions": 295,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "docs/research/fault-reporting/evidence/run-2026-09-27/mutation/frontend-mutation-revised.json",
+        "additions": 1,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "docs/research/fault-reporting/evidence/run-2026-09-27/mutation/frontend-mutation-revised.txt",
+        "additions": 247,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "docs/research/fault-reporting/evidence/run-2026-09-27/mutation/frontend-mutation.json",
+        "additions": 1,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "docs/research/fault-reporting/evidence/run-2026-09-27/mutation/frontend-mutation.txt",
+        "additions": 388,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "docs/research/fault-reporting/evidence/run-2026-09-27/mutation/gap-analysis.md",
+        "additions": 30,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "docs/research/fault-reporting/evidence/run-2026-09-27/mutation/post-restore-tests.txt",
+        "additions": 15,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "docs/research/fault-reporting/evidence/run-2026-09-27/mutation/post-revision-restore-tests.txt",
+        "additions": 15,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "docs/research/fault-reporting/evidence/run-2026-09-27/mutation/revised-gap-analysis.md",
+        "additions": 28,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "docs/research/fault-reporting/evidence/run-2026-09-27/mutation/seeded-blank-description-final.txt",
+        "additions": 87,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "docs/research/fault-reporting/evidence/run-2026-09-27/mutation/seeded-blank-description-revised.txt",
+        "additions": 62,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "docs/research/fault-reporting/evidence/run-2026-09-27/mutation/seeded-blank-description.txt",
+        "additions": 84,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "docs/research/fault-reporting/evidence/run-2026-09-27/mutation/seeded-direct-id-ownership-final.txt",
+        "additions": 66,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "docs/research/fault-reporting/evidence/run-2026-09-27/mutation/seeded-direct-id-ownership-revised.txt",
+        "additions": 71,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "docs/research/fault-reporting/evidence/run-2026-09-27/mutation/seeded-direct-id-ownership.txt",
+        "additions": 62,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "docs/research/fault-reporting/evidence/run-2026-09-27/planning-exchange.md",
+        "additions": 10,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "docs/research/fault-reporting/evidence/run-2026-09-27/planning-prompt.txt",
+        "additions": 41,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "docs/research/fault-reporting/evidence/run-2026-09-27/post-restoration-tests.txt",
+        "additions": 15,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "docs/research/fault-reporting/evidence/run-2026-09-27/post-revision-test-all-clean.txt",
+        "additions": 30,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "docs/research/fault-reporting/evidence/run-2026-09-27/post-revision-tests-clean.txt",
+        "additions": 15,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "docs/research/fault-reporting/evidence/run-2026-09-27/pr-evidence.md",
+        "additions": 123,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "docs/research/fault-reporting/evidence/run-2026-09-27/readiness.md",
+        "additions": 55,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "docs/research/fault-reporting/evidence/run-2026-09-27/routine-checks.md",
+        "additions": 55,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "docs/research/fault-reporting/evidence/run-2026-09-27/tooling-and-security.md",
+        "additions": 27,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "docs/research/fault-reporting/evidence/run-2026-09-27/usage-and-time-estimates.md",
+        "additions": 55,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "docs/research/fault-reporting/issue-draft.md",
+        "additions": 64,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "firebase/firestore.indexes.json",
+        "additions": 10,
+        "deletions": 1,
+        "changeType": "MODIFIED"
+      },
+      {
+        "path": "firebase/firestore.rules",
+        "additions": 5,
+        "deletions": 0,
+        "changeType": "MODIFIED"
+      },
+      {
+        "path": "frontend/AGENTS.md",
+        "additions": 5,
+        "deletions": 1,
+        "changeType": "MODIFIED"
+      },
+      {
+        "path": "frontend/package.json",
+        "additions": 8,
+        "deletions": 5,
+        "changeType": "MODIFIED"
+      },
+      {
+        "path": "frontend/src/actions/faults.actions.ts",
+        "additions": 75,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "frontend/src/app/(dashboard)/faults/page.tsx",
+        "additions": 24,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "frontend/src/components/layout/Sidebar.tsx",
+        "additions": 2,
+        "deletions": 1,
+        "changeType": "MODIFIED"
+      },
+      {
+        "path": "frontend/src/features/faults/components/FaultReportForm.tsx",
+        "additions": 54,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "frontend/src/features/faults/components/FaultReportList.tsx",
+        "additions": 22,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "frontend/src/features/faults/types.ts",
+        "additions": 8,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "frontend/src/lib/firebase/fault-reports.ts",
+        "additions": 7,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "frontend/src/lib/validations/faults.ts",
+        "additions": 12,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "frontend/src/types/firestore.ts",
+        "additions": 12,
+        "deletions": 2,
+        "changeType": "MODIFIED"
+      },
+      {
+        "path": "frontend/stryker.config.json",
+        "additions": 18,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "frontend/tests/unit/actions/faults.actions.test.ts",
+        "additions": 146,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "frontend/tests/unit/features/faults/components/FaultReportForm.test.tsx",
+        "additions": 45,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "package.json",
+        "additions": 1,
+        "deletions": 1,
+        "changeType": "MODIFIED"
+      },
+      {
+        "path": "pnpm-lock.yaml",
+        "additions": 420,
+        "deletions": 568,
+        "changeType": "MODIFIED"
+      },
+      {
+        "path": "pnpm-workspace.yaml",
+        "additions": 9,
+        "deletions": 0,
+        "changeType": "MODIFIED"
+      }
+    ],
+    "headRefName": "s4084016-fr-01-fault-reporting-plan",
+    "headRefOid": "d2b6522234c5de2f0428dbc49a5181f418e6971f",
+    "isDraft": false,
+    "mergeCommit": {
+      "oid": "bf76905d485864a10a0f5880386bd7d3839aa0fe"
+    },
+    "mergedAt": "2026-10-03T00:48:41Z",
+    "number": 63,
+    "reviews": [
+      {
+        "id": "PRR_kwDOT9P4g88AAAABQUJ_aQ",
+        "author": {
+          "login": "Chirag123213"
+        },
+        "authorAssociation": "OWNER",
+        "body": "Looks good",
+        "submittedAt": "2026-10-02T08:44:25Z",
+        "includesCreatedEdit": false,
+        "reactionGroups": [],
+        "state": "APPROVED",
+        "commit": {
+          "oid": "d2b6522234c5de2f0428dbc49a5181f418e6971f"
+        }
+      },
+      {
+        "id": "PRR_kwDOT9P4g88AAAABQcHh8A",
+        "author": {
+          "login": "9ahmedfr"
+        },
+        "authorAssociation": "COLLABORATOR",
+        "body": "",
+        "submittedAt": "2026-10-03T00:47:37Z",
+        "includesCreatedEdit": false,
+        "reactionGroups": [],
+        "state": "APPROVED",
+        "commit": {
+          "oid": "d2b6522234c5de2f0428dbc49a5181f418e6971f"
+        }
+      }
+    ],
+    "state": "MERGED",
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-02T07:37:56Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/36979573750/job/110750794862",
+        "name": "AI Declaration",
+        "startedAt": "2026-10-02T07:37:53Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-02T07:37:58Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/36979573844/job/110750795072",
+        "name": "hook-contract",
+        "startedAt": "2026-10-02T07:37:53Z",
+        "status": "COMPLETED",
+        "workflowName": "Mutation evidence"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-02T07:38:20Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/36979573750/job/110750794835",
+        "name": "Lint & Typecheck",
+        "startedAt": "2026-10-02T07:37:53Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-02T07:38:30Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/36979573844/job/110750794931",
+        "name": "mutation",
+        "startedAt": "2026-10-02T07:37:53Z",
+        "status": "COMPLETED",
+        "workflowName": "Mutation evidence"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-02T07:38:05Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/36979573750/job/110750794887",
+        "name": "Frontend Tests",
+        "startedAt": "2026-10-02T07:37:53Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-02T07:38:15Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/36979573750/job/110750794652",
+        "name": "Backend Unit Tests",
+        "startedAt": "2026-10-02T07:37:53Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-02T07:38:14Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/36979573750/job/110750794985",
+        "name": "Security Scan",
+        "startedAt": "2026-10-02T07:37:53Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      }
+    ],
+    "title": "feat: add authenticated fault reporting",
+    "updatedAt": "2026-10-03T00:48:42Z",
+    "url": "https://github.com/Chirag123213/nbn-sdlc-demo/pull/63"
+  },
+  "pr_66": {
+    "additions": 22,
+    "baseRefName": "main",
+    "commits": [
+      {
+        "authoredDate": "2026-10-04T10:38:36Z",
+        "authors": [
+          {
+            "email": "ahmedfrahuman@gmail.com",
+            "id": "MDQ6VXNlcjY2NDczNTM3",
+            "login": "9ahmedfr",
+            "name": "9ahmedfr"
+          }
+        ],
+        "committedDate": "2026-10-04T10:38:36Z",
+        "messageBody": "",
+        "messageHeadline": "fix: resolve dependency audit vulnerabilities",
+        "oid": "70848252a46ae0eeda4d2df6e510710a92684eb6"
+      }
+    ],
+    "createdAt": "2026-10-04T10:38:37Z",
+    "deletions": 5,
+    "files": [
+      {
+        "path": ".github/workflows/ci.yml",
+        "additions": 4,
+        "deletions": 1,
+        "changeType": "MODIFIED"
+      },
+      {
+        "path": "pnpm-lock.yaml",
+        "additions": 5,
+        "deletions": 4,
+        "changeType": "MODIFIED"
+      },
+      {
+        "path": "pnpm-workspace.yaml",
+        "additions": 13,
+        "deletions": 0,
+        "changeType": "MODIFIED"
+      }
+    ],
+    "headRefName": "fix/dependency-audit",
+    "headRefOid": "70848252a46ae0eeda4d2df6e510710a92684eb6",
+    "isDraft": false,
+    "mergeCommit": {
+      "oid": "46174b9f5b3e0a3ab057d237f4f522f37b4210df"
+    },
+    "mergedAt": "2026-10-04T10:45:10Z",
+    "number": 66,
+    "reviews": [
+      {
+        "id": "PRR_kwDOT9P4g88AAAABQjIu1A",
+        "author": {
+          "login": "Chirag361"
+        },
+        "authorAssociation": "COLLABORATOR",
+        "body": "Looks Great!",
+        "submittedAt": "2026-10-04T10:41:20Z",
+        "includesCreatedEdit": false,
+        "reactionGroups": [],
+        "state": "APPROVED",
+        "commit": {
+          "oid": "70848252a46ae0eeda4d2df6e510710a92684eb6"
+        }
+      },
+      {
+        "id": "PRR_kwDOT9P4g88AAAABQjJX8A",
+        "author": {
+          "login": "zacclarkson"
+        },
+        "authorAssociation": "COLLABORATOR",
+        "body": "Approving, the busboy bump and checks look fine. Two follow-ups:\n\n- The Summary section is blank. Please fill it in so the reasoning for the audit ignore is in the PR, not only in a code comment.\n- The ignore for GHSA-vfj7-8cjw-p6xm is marked temporary but has no tracking. Please open an issue to remove it once a fixed version is published. It is set in both ci.yml and pnpm-workspace.yaml, so both need to come out together.",
+        "submittedAt": "2026-10-04T10:44:53Z",
+        "includesCreatedEdit": false,
+        "reactionGroups": [],
+        "state": "APPROVED",
+        "commit": {
+          "oid": "70848252a46ae0eeda4d2df6e510710a92684eb6"
+        }
+      }
+    ],
+    "state": "MERGED",
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-04T10:38:47Z",
+        "conclusion": "CANCELLED",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/37196028357/job/111417963243",
+        "name": "AI Declaration",
+        "startedAt": "2026-10-04T10:38:44Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-04T10:38:50Z",
+        "conclusion": "CANCELLED",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/37196032591/job/111417985408",
+        "name": "AI Declaration",
+        "startedAt": "2026-10-04T10:38:50Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-04T10:38:52Z",
+        "conclusion": "CANCELLED",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/37196036209/job/111417988870",
+        "name": "AI Declaration",
+        "startedAt": "2026-10-04T10:38:51Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-04T10:38:55Z",
+        "conclusion": "CANCELLED",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/37196037892/job/111417993337",
+        "name": "AI Declaration",
+        "startedAt": "2026-10-04T10:38:53Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-04T10:38:56Z",
+        "conclusion": "CANCELLED",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/37196039828/job/111418001326",
+        "name": "AI Declaration",
+        "startedAt": "2026-10-04T10:38:56Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-04T10:38:58Z",
+        "conclusion": "CANCELLED",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/37196040825/job/111418005961",
+        "name": "AI Declaration",
+        "startedAt": "2026-10-04T10:38:58Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-04T10:39:00Z",
+        "conclusion": "CANCELLED",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/37196041947/job/111418009366",
+        "name": "AI Declaration",
+        "startedAt": "2026-10-04T10:38:59Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-04T10:39:06Z",
+        "conclusion": "CANCELLED",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/37196043475/job/111418014502",
+        "name": "AI Declaration",
+        "startedAt": "2026-10-04T10:39:03Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-04T10:39:11Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/37196048448/job/111418029243",
+        "name": "AI Declaration",
+        "startedAt": "2026-10-04T10:39:08Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-04T10:38:49Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/37196028347/job/111417963032",
+        "name": "hook-contract",
+        "startedAt": "2026-10-04T10:38:44Z",
+        "status": "COMPLETED",
+        "workflowName": "Mutation evidence"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-04T10:38:49Z",
+        "conclusion": "CANCELLED",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/37196028357/job/111417963384",
+        "name": "Lint & Typecheck",
+        "startedAt": "2026-10-04T10:38:44Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-04T10:38:50Z",
+        "conclusion": "CANCELLED",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/37196032591/job/111417985448",
+        "name": "Lint & Typecheck",
+        "startedAt": "2026-10-04T10:38:50Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-04T10:38:52Z",
+        "conclusion": "CANCELLED",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/37196036209/job/111417988820",
+        "name": "Lint & Typecheck",
+        "startedAt": "2026-10-04T10:38:51Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-04T10:38:55Z",
+        "conclusion": "CANCELLED",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/37196037892/job/111417993292",
+        "name": "Lint & Typecheck",
+        "startedAt": "2026-10-04T10:38:53Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-04T10:38:56Z",
+        "conclusion": "CANCELLED",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/37196039828/job/111418001341",
+        "name": "Lint & Typecheck",
+        "startedAt": "2026-10-04T10:38:56Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-04T10:38:58Z",
+        "conclusion": "CANCELLED",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/37196040825/job/111418006003",
+        "name": "Lint & Typecheck",
+        "startedAt": "2026-10-04T10:38:58Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-04T10:39:00Z",
+        "conclusion": "CANCELLED",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/37196041947/job/111418009286",
+        "name": "Lint & Typecheck",
+        "startedAt": "2026-10-04T10:38:59Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-04T10:39:06Z",
+        "conclusion": "CANCELLED",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/37196043475/job/111418014489",
+        "name": "Lint & Typecheck",
+        "startedAt": "2026-10-04T10:39:03Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-04T10:39:36Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/37196048448/job/111418029252",
+        "name": "Lint & Typecheck",
+        "startedAt": "2026-10-04T10:39:08Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-04T10:39:24Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/37196028347/job/111417962942",
+        "name": "mutation",
+        "startedAt": "2026-10-04T10:38:44Z",
+        "status": "COMPLETED",
+        "workflowName": "Mutation evidence"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-04T10:38:49Z",
+        "conclusion": "CANCELLED",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/37196028357/job/111417963372",
+        "name": "Frontend Tests",
+        "startedAt": "2026-10-04T10:38:44Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-04T10:38:51Z",
+        "conclusion": "CANCELLED",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/37196032591/job/111417985438",
+        "name": "Frontend Tests",
+        "startedAt": "2026-10-04T10:38:50Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-04T10:38:52Z",
+        "conclusion": "CANCELLED",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/37196036209/job/111417988805",
+        "name": "Frontend Tests",
+        "startedAt": "2026-10-04T10:38:51Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-04T10:38:55Z",
+        "conclusion": "CANCELLED",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/37196037892/job/111417993296",
+        "name": "Frontend Tests",
+        "startedAt": "2026-10-04T10:38:53Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-04T10:38:56Z",
+        "conclusion": "CANCELLED",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/37196039828/job/111418001356",
+        "name": "Frontend Tests",
+        "startedAt": "2026-10-04T10:38:56Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-04T10:38:58Z",
+        "conclusion": "CANCELLED",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/37196040825/job/111418005877",
+        "name": "Frontend Tests",
+        "startedAt": "2026-10-04T10:38:58Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-04T10:39:00Z",
+        "conclusion": "CANCELLED",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/37196041947/job/111418009328",
+        "name": "Frontend Tests",
+        "startedAt": "2026-10-04T10:38:59Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-04T10:39:06Z",
+        "conclusion": "CANCELLED",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/37196043475/job/111418014427",
+        "name": "Frontend Tests",
+        "startedAt": "2026-10-04T10:39:03Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-04T10:39:28Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/37196048448/job/111418029285",
+        "name": "Frontend Tests",
+        "startedAt": "2026-10-04T10:39:09Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-04T10:38:49Z",
+        "conclusion": "CANCELLED",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/37196028357/job/111417963337",
+        "name": "Backend Unit Tests",
+        "startedAt": "2026-10-04T10:38:44Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-04T10:38:50Z",
+        "conclusion": "CANCELLED",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/37196032591/job/111417985314",
+        "name": "Backend Unit Tests",
+        "startedAt": "2026-10-04T10:38:50Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-04T10:38:52Z",
+        "conclusion": "CANCELLED",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/37196036209/job/111417988655",
+        "name": "Backend Unit Tests",
+        "startedAt": "2026-10-04T10:38:51Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-04T10:38:55Z",
+        "conclusion": "CANCELLED",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/37196037892/job/111417993152",
+        "name": "Backend Unit Tests",
+        "startedAt": "2026-10-04T10:38:53Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-04T10:38:57Z",
+        "conclusion": "CANCELLED",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/37196039828/job/111418001302",
+        "name": "Backend Unit Tests",
+        "startedAt": "2026-10-04T10:38:56Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-04T10:38:58Z",
+        "conclusion": "CANCELLED",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/37196040825/job/111418005777",
+        "name": "Backend Unit Tests",
+        "startedAt": "2026-10-04T10:38:58Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-04T10:39:00Z",
+        "conclusion": "CANCELLED",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/37196041947/job/111418009319",
+        "name": "Backend Unit Tests",
+        "startedAt": "2026-10-04T10:38:59Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-04T10:39:05Z",
+        "conclusion": "CANCELLED",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/37196043475/job/111418014389",
+        "name": "Backend Unit Tests",
+        "startedAt": "2026-10-04T10:39:03Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-04T10:39:26Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/37196048448/job/111418029368",
+        "name": "Backend Unit Tests",
+        "startedAt": "2026-10-04T10:39:09Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-04T10:38:48Z",
+        "conclusion": "CANCELLED",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/37196028357/job/111417963390",
+        "name": "Security Scan",
+        "startedAt": "2026-10-04T10:38:44Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-04T10:38:50Z",
+        "conclusion": "CANCELLED",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/37196032591/job/111417985188",
+        "name": "Security Scan",
+        "startedAt": "2026-10-04T10:38:50Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-04T10:38:52Z",
+        "conclusion": "CANCELLED",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/37196036209/job/111417988795",
+        "name": "Security Scan",
+        "startedAt": "2026-10-04T10:38:51Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-04T10:38:55Z",
+        "conclusion": "CANCELLED",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/37196037892/job/111417993308",
+        "name": "Security Scan",
+        "startedAt": "2026-10-04T10:38:53Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-04T10:38:56Z",
+        "conclusion": "CANCELLED",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/37196039828/job/111418001371",
+        "name": "Security Scan",
+        "startedAt": "2026-10-04T10:38:56Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-04T10:38:58Z",
+        "conclusion": "CANCELLED",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/37196040825/job/111418005897",
+        "name": "Security Scan",
+        "startedAt": "2026-10-04T10:38:58Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-04T10:39:00Z",
+        "conclusion": "CANCELLED",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/37196041947/job/111418009336",
+        "name": "Security Scan",
+        "startedAt": "2026-10-04T10:38:59Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-04T10:39:06Z",
+        "conclusion": "CANCELLED",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/37196043475/job/111418014319",
+        "name": "Security Scan",
+        "startedAt": "2026-10-04T10:39:04Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-04T10:39:31Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/37196048448/job/111418029193",
+        "name": "Security Scan",
+        "startedAt": "2026-10-04T10:39:10Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      }
+    ],
+    "title": "fix: resolve dependency audit vulnerabilities",
+    "updatedAt": "2026-10-04T10:45:11Z",
+    "url": "https://github.com/Chirag123213/nbn-sdlc-demo/pull/66"
+  },
+  "pr_71": {
+    "additions": 395,
+    "baseRefName": "main",
+    "commits": [
+      {
+        "authoredDate": "2026-10-08T09:38:19Z",
+        "authors": [
+          {
+            "email": "s4014390@student.rmit.edu.au",
+            "id": "U_kgDOChbXNw",
+            "login": "Chirag123213",
+            "name": "Chirag Wadehra"
+          }
+        ],
+        "committedDate": "2026-10-08T09:38:19Z",
+        "messageBody": "\u2026ot-instructions and CLAUDE",
+        "messageHeadline": "docs: add generic plan-first and tests-first AI instructions to copil\u2026",
+        "oid": "7ee88964c272b64c1e9505fc8090fbf80b0b9e0d"
+      },
+      {
+        "authoredDate": "2026-10-08T11:19:36Z",
+        "authors": [
+          {
+            "email": "s4014390@student.rmit.edu.au",
+            "id": "U_kgDOChbXNw",
+            "login": "Chirag123213",
+            "name": "Chirag Wadehra"
+          }
+        ],
+        "committedDate": "2026-10-08T11:19:36Z",
+        "messageBody": "",
+        "messageHeadline": "docs: record AI workflow gate dry-run results",
+        "oid": "6d9ada6612ed41fd2a07dd0a3122a95ffafcd95b"
+      },
+      {
+        "authoredDate": "2026-10-10T13:36:58Z",
+        "authors": [
+          {
+            "email": "s4014390@student.rmit.edu.au",
+            "id": "U_kgDOChbXNw",
+            "login": "Chirag123213",
+            "name": "Chirag Wadehra"
+          }
+        ],
+        "committedDate": "2026-10-10T13:36:58Z",
+        "messageBody": "",
+        "messageHeadline": "docs: record independent PoC acceptance verification results",
+        "oid": "ac2ecb9219a220c44502b27dbc36c8b4be9dd47a"
+      }
+    ],
+    "createdAt": "2026-10-10T13:44:48Z",
+    "deletions": 25,
+    "files": [
+      {
+        "path": ".github/copilot-instructions.md",
+        "additions": 41,
+        "deletions": 12,
+        "changeType": "MODIFIED"
+      },
+      {
+        "path": "CLAUDE.md",
+        "additions": 39,
+        "deletions": 13,
+        "changeType": "MODIFIED"
+      },
+      {
+        "path": "docs/research/ai-workflow-gates/dry-run-results.md",
+        "additions": 76,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "docs/research/ai-workflow-gates/image-1.png",
+        "additions": 0,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "docs/research/ai-workflow-gates/image.png",
+        "additions": 0,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "docs/research/ai-workflow-gates/poc-verification-results.md",
+        "additions": 239,
+        "deletions": 0,
+        "changeType": "ADDED"
+      }
+    ],
+    "headRefName": "feature/ai-workflow-gates",
+    "headRefOid": "ac2ecb9219a220c44502b27dbc36c8b4be9dd47a",
+    "isDraft": false,
+    "mergeCommit": {
+      "oid": "44557a3d8a29771dc3b78af9fdc0c8d5fc5d5fcd"
+    },
+    "mergedAt": "2026-10-10T14:28:42Z",
+    "number": 71,
+    "reviews": [
+      {
+        "id": "PRR_kwDOT9P4g88AAAABRpZsgg",
+        "author": {
+          "login": "SidZng"
+        },
+        "authorAssociation": "COLLABORATOR",
+        "body": "",
+        "submittedAt": "2026-10-10T14:09:19Z",
+        "includesCreatedEdit": false,
+        "reactionGroups": [],
+        "state": "APPROVED",
+        "commit": {
+          "oid": "ac2ecb9219a220c44502b27dbc36c8b4be9dd47a"
+        }
+      },
+      {
+        "id": "PRR_kwDOT9P4g88AAAABRpeZ4g",
+        "author": {
+          "login": "9ahmedfr"
+        },
+        "authorAssociation": "COLLABORATOR",
+        "body": "",
+        "submittedAt": "2026-10-10T14:28:32Z",
+        "includesCreatedEdit": false,
+        "reactionGroups": [],
+        "state": "APPROVED",
+        "commit": {
+          "oid": "ac2ecb9219a220c44502b27dbc36c8b4be9dd47a"
+        }
+      }
+    ],
+    "state": "MERGED",
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-10T13:44:57Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/38056907972/job/114227153729",
+        "name": "AI Declaration",
+        "startedAt": "2026-10-10T13:44:54Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-10T13:45:23Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/38056907972/job/114227153764",
+        "name": "Lint & Typecheck",
+        "startedAt": "2026-10-10T13:44:54Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-10T13:45:11Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/38056907972/job/114227153869",
+        "name": "Frontend Tests",
+        "startedAt": "2026-10-10T13:44:54Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-10T13:45:12Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/38056907972/job/114227153727",
+        "name": "Backend Unit Tests",
+        "startedAt": "2026-10-10T13:44:54Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-10T13:45:11Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/38056907972/job/114227153608",
+        "name": "Security Scan",
+        "startedAt": "2026-10-10T13:44:54Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "StatusContext",
+        "context": "Vercel",
+        "startedAt": "2026-10-10T13:37:50Z",
+        "state": "SUCCESS",
+        "targetUrl": "https://vercel.com/treeko/nbn-sdlc-demo-frontend/6AgL5yLxtEfMnURR5MtuhBF1wzCo"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-10T13:44:54Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://vercel.com/github",
+        "name": "Vercel Preview Comments",
+        "startedAt": "2026-10-10T13:44:54Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      }
+    ],
+    "title": "Feature/ai workflow gates",
+    "updatedAt": "2026-10-10T14:28:42Z",
+    "url": "https://github.com/Chirag123213/nbn-sdlc-demo/pull/71"
+  },
+  "pr_72": {
+    "additions": 593,
+    "baseRefName": "main",
+    "commits": [
+      {
+        "authoredDate": "2026-10-11T11:50:09Z",
+        "authors": [
+          {
+            "email": "s4084016@student.rmit.edu.au",
+            "id": "U_kgDOChgyqg",
+            "login": "s4084016",
+            "name": "Zafir Hasan"
+          },
+          {
+            "email": "codex@openai.com",
+            "id": "U_kgDOD-0LXg",
+            "login": "codex",
+            "name": "OpenAI Codex"
+          }
+        ],
+        "committedDate": "2026-10-11T11:50:09Z",
+        "messageBody": "AI-Assisted: yes\nCo-authored-by: OpenAI Codex <codex@openai.com>",
+        "messageHeadline": "feat(ci): enforce lifecycle safety gates",
+        "oid": "8ed42c117790aabbaebe3f0941d1b8d9bd32318f"
+      }
+    ],
+    "createdAt": "2026-10-11T11:55:52Z",
+    "deletions": 378,
+    "files": [
+      {
+        "path": ".github/workflows/ci.yml",
+        "additions": 34,
+        "deletions": 4,
+        "changeType": "MODIFIED"
+      },
+      {
+        "path": ".github/workflows/deploy.yml",
+        "additions": 6,
+        "deletions": 5,
+        "changeType": "MODIFIED"
+      },
+      {
+        "path": ".github/workflows/mutation.yml",
+        "additions": 8,
+        "deletions": 1,
+        "changeType": "MODIFIED"
+      },
+      {
+        "path": "README.md",
+        "additions": 6,
+        "deletions": 14,
+        "changeType": "MODIFIED"
+      },
+      {
+        "path": "backend/src/lib/errors.ts",
+        "additions": 5,
+        "deletions": 1,
+        "changeType": "MODIFIED"
+      },
+      {
+        "path": "backend/src/lib/zodConverter.ts",
+        "additions": 3,
+        "deletions": 4,
+        "changeType": "MODIFIED"
+      },
+      {
+        "path": "backend/src/middleware/auth.ts",
+        "additions": 1,
+        "deletions": 1,
+        "changeType": "MODIFIED"
+      },
+      {
+        "path": "backend/stryker.config.json",
+        "additions": 1,
+        "deletions": 1,
+        "changeType": "MODIFIED"
+      },
+      {
+        "path": "backend/tests/unit/conventions.test.ts",
+        "additions": 2,
+        "deletions": 2,
+        "changeType": "MODIFIED"
+      },
+      {
+        "path": "docs/modules/git-commits.md",
+        "additions": 3,
+        "deletions": 3,
+        "changeType": "MODIFIED"
+      },
+      {
+        "path": "docs/research/lifecycle-task-map.md",
+        "additions": 63,
+        "deletions": 63,
+        "changeType": "MODIFIED"
+      },
+      {
+        "path": "frontend/package.json",
+        "additions": 2,
+        "deletions": 2,
+        "changeType": "MODIFIED"
+      },
+      {
+        "path": "frontend/src/actions/faults.actions.ts",
+        "additions": 6,
+        "deletions": 2,
+        "changeType": "MODIFIED"
+      },
+      {
+        "path": "frontend/src/app/(auth)/layout.tsx",
+        "additions": 1,
+        "deletions": 1,
+        "changeType": "MODIFIED"
+      },
+      {
+        "path": "frontend/src/app/(dashboard)/faults/page.tsx",
+        "additions": 10,
+        "deletions": 2,
+        "changeType": "MODIFIED"
+      },
+      {
+        "path": "frontend/src/app/(dashboard)/settings/page.tsx",
+        "additions": 2,
+        "deletions": 2,
+        "changeType": "MODIFIED"
+      },
+      {
+        "path": "frontend/src/app/globals.css",
+        "additions": 1,
+        "deletions": 1,
+        "changeType": "MODIFIED"
+      },
+      {
+        "path": "frontend/src/app/layout.tsx",
+        "additions": 1,
+        "deletions": 1,
+        "changeType": "MODIFIED"
+      },
+      {
+        "path": "frontend/src/app/not-found.tsx",
+        "additions": 1,
+        "deletions": 1,
+        "changeType": "MODIFIED"
+      },
+      {
+        "path": "frontend/src/components/layout/PageHeader.tsx",
+        "additions": 1,
+        "deletions": 1,
+        "changeType": "MODIFIED"
+      },
+      {
+        "path": "frontend/src/components/layout/Sidebar.tsx",
+        "additions": 5,
+        "deletions": 7,
+        "changeType": "MODIFIED"
+      },
+      {
+        "path": "frontend/src/components/shared/EmptyState.tsx",
+        "additions": 4,
+        "deletions": 9,
+        "changeType": "MODIFIED"
+      },
+      {
+        "path": "frontend/src/components/shared/ErrorBoundary.tsx",
+        "additions": 2,
+        "deletions": 2,
+        "changeType": "MODIFIED"
+      },
+      {
+        "path": "frontend/src/features/faults/components/FaultReportForm.tsx",
+        "additions": 34,
+        "deletions": 6,
+        "changeType": "MODIFIED"
+      },
+      {
+        "path": "frontend/src/features/faults/components/FaultReportList.tsx",
+        "additions": 4,
+        "deletions": 1,
+        "changeType": "MODIFIED"
+      },
+      {
+        "path": "frontend/src/hooks/useFirestore.ts",
+        "additions": 1,
+        "deletions": 3,
+        "changeType": "MODIFIED"
+      },
+      {
+        "path": "lefthook.yml",
+        "additions": 1,
+        "deletions": 1,
+        "changeType": "MODIFIED"
+      },
+      {
+        "path": "package.json",
+        "additions": 4,
+        "deletions": 1,
+        "changeType": "MODIFIED"
+      },
+      {
+        "path": "pnpm-lock.yaml",
+        "additions": 234,
+        "deletions": 226,
+        "changeType": "MODIFIED"
+      },
+      {
+        "path": "pnpm-workspace.yaml",
+        "additions": 11,
+        "deletions": 9,
+        "changeType": "MODIFIED"
+      },
+      {
+        "path": "scripts/check-commit-msg.js",
+        "additions": 19,
+        "deletions": 1,
+        "changeType": "MODIFIED"
+      },
+      {
+        "path": "scripts/check-commit-msg.test.cjs",
+        "additions": 56,
+        "deletions": 0,
+        "changeType": "ADDED"
+      },
+      {
+        "path": "scripts/lifecycle-guards.test.cjs",
+        "additions": 61,
+        "deletions": 0,
+        "changeType": "ADDED"
+      }
+    ],
+    "headRefName": "inf/repo-lifecycle-safety-gaps",
+    "headRefOid": "8ed42c117790aabbaebe3f0941d1b8d9bd32318f",
+    "isDraft": false,
+    "mergeCommit": null,
+    "mergedAt": null,
+    "number": 72,
+    "reviews": [
+      {
+        "id": "PRR_kwDOT9P4g88AAAABSk993w",
+        "author": {
+          "login": "9ahmedfr"
+        },
+        "authorAssociation": "COLLABORATOR",
+        "body": "",
+        "submittedAt": "2026-10-16T00:51:09Z",
+        "includesCreatedEdit": false,
+        "reactionGroups": [],
+        "state": "APPROVED",
+        "commit": {
+          "oid": "8ed42c117790aabbaebe3f0941d1b8d9bd32318f"
+        }
+      }
+    ],
+    "state": "OPEN",
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-11T11:56:04Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/38137368425/job/114463880952",
+        "name": "Lifecycle Guard Regression Tests",
+        "startedAt": "2026-10-11T11:55:59Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-11T11:56:06Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/38137368431/job/114463880620",
+        "name": "hook-contract",
+        "startedAt": "2026-10-11T11:55:59Z",
+        "status": "COMPLETED",
+        "workflowName": "Mutation evidence"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-11T11:56:19Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/38137368425/job/114463880976",
+        "name": "AI Declaration",
+        "startedAt": "2026-10-11T11:55:59Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-11T11:56:43Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/38137368431/job/114463880749",
+        "name": "mutation",
+        "startedAt": "2026-10-11T11:55:59Z",
+        "status": "COMPLETED",
+        "workflowName": "Mutation evidence"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-11T11:56:30Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/38137368425/job/114463880772",
+        "name": "Lint & Typecheck",
+        "startedAt": "2026-10-11T11:55:59Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-11T11:56:19Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/38137368425/job/114463880876",
+        "name": "Frontend Tests",
+        "startedAt": "2026-10-11T11:55:59Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-11T11:56:17Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/38137368425/job/114463880951",
+        "name": "Backend Unit Tests",
+        "startedAt": "2026-10-11T11:55:59Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-11T11:56:19Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/38137368425/job/114463880932",
+        "name": "Security Scan",
+        "startedAt": "2026-10-11T11:55:59Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "StatusContext",
+        "context": "Vercel",
+        "startedAt": "2026-10-11T11:53:11Z",
+        "state": "SUCCESS",
+        "targetUrl": "https://vercel.com/treeko/nbn-sdlc-demo-frontend/4RHSM256nVmZfmDwTDEZZHihWkou"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-11T11:55:59Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://vercel.com/github",
+        "name": "Vercel Preview Comments",
+        "startedAt": "2026-10-11T11:55:59Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      }
+    ],
+    "title": "feat(ci): enforce lifecycle safety gates",
+    "updatedAt": "2026-10-16T07:21:53Z",
+    "url": "https://github.com/Chirag123213/nbn-sdlc-demo/pull/72"
+  },
+  "pr_72_gate_patches": [
+    {
+      "filename": ".github/workflows/ci.yml",
+      "patch": "@@ -13,12 +13,27 @@ concurrency:\n \n jobs:\n \n+  lifecycle-guard-contract:\n+    name: Lifecycle Guard Regression Tests\n+    runs-on: ubuntu-latest\n+    steps:\n+      - uses: actions/checkout@v4\n+\n+      - uses: actions/setup-node@v4\n+        with:\n+          node-version: 22\n+\n+      - name: Try to bypass lifecycle guards\n+        run: node --test scripts/check-commit-msg.test.cjs scripts/lifecycle-guards.test.cjs\n+\n   ai-declaration:\n     name: AI Declaration\n     if: github.event_name == 'pull_request'\n     runs-on: ubuntu-latest\n \n     steps:\n+      - uses: actions/checkout@v4\n+\n       - name: Validate AI use declaration\n         env:\n           PR_BODY: ${{github.event.pull_request.body}}\n@@ -46,6 +61,21 @@ jobs:\n \n           echo \"AI use declaration is valid.\"\n \n+      - uses: pnpm/action-setup@v4\n+        with:\n+          version: 10\n+\n+      - uses: actions/setup-node@v4\n+        with:\n+          node-version: 22\n+          cache: pnpm\n+\n+      - name: Install dependencies for the required merge gate\n+        run: pnpm install --frozen-lockfile\n+\n+      - name: High severity dependency audit (required merge check)\n+        run: pnpm audit --audit-level=high\n+\n \n   lint-typecheck:\n     name: Lint & Typecheck\n@@ -71,6 +101,9 @@ jobs:\n       - name: Lint\n         run: pnpm run lint\n \n+      - name: Check formatting\n+        run: pnpm run format:check\n+\n       - name: Typecheck\n         run: pnpm run typecheck\n \n@@ -142,7 +175,4 @@ jobs:\n         run: pnpm install --frozen-lockfile\n \n       - name: Dependency vulnerability audit\n-        # Temporary exception for GHSA-vfj7-8cjw-p6xm.\n-        # This is only present through eslint-config-next dev tooling,\n-        # and the advisory references braces >=3.0.4, which is not published.\n-        run: pnpm audit --audit-level=high --ignore=GHSA-vfj7-8cjw-p6xm\n+        run: pnpm audit --audit-level=high"
+    },
+    {
+      "filename": ".github/workflows/deploy.yml",
+      "patch": "@@ -4,7 +4,8 @@ on:\n   push:\n     branches: [main]\n     paths:\n-      - \"firebase/firestore.rules\"\n+      - 'firebase/firestore.rules'\n+      - 'firebase/firestore.indexes.json'\n   workflow_dispatch:\n \n concurrency:\n@@ -14,9 +15,9 @@ concurrency:\n jobs:\n   # Frontend deploys are handled by Vercel's own GitHub integration \u2014 connect\n   # the repo in the Vercel dashboard and it deploys automatically on push.\n-  # This job only handles what Firebase itself owns: Firestore security rules.\n+  # This job handles what Firebase itself owns: Firestore security rules and indexes.\n   deploy-firestore-rules:\n-    name: Deploy Firestore Rules\n+    name: Deploy Firestore Rules and Indexes\n     runs-on: ubuntu-latest\n     environment: production\n     steps:\n@@ -27,10 +28,10 @@ jobs:\n           echo \"${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY_BASE64 }}\" | base64 --decode > /tmp/gcp-sa.json\n           echo \"GOOGLE_APPLICATION_CREDENTIALS=/tmp/gcp-sa.json\" >> $GITHUB_ENV\n \n-      - name: Deploy Firestore rules\n+      - name: Deploy Firestore rules and indexes\n         run: |\n           npx firebase-tools deploy \\\n-            --only firestore:rules \\\n+            --only firestore:rules,firestore:indexes \\\n             --project ${{ secrets.FIREBASE_PROJECT_ID }} \\\n             --non-interactive\n "
+    },
+    {
+      "filename": ".github/workflows/mutation.yml",
+      "patch": "@@ -6,10 +6,17 @@ on:\n       - \"backend/src/**\"\n       - \"backend/tests/**\"\n       - \"backend/stryker.config.json\"\n+      - \"pnpm-workspace.yaml\"\n       - \"backend/vitest.config.ts\"\n       - \"backend/package.json\"\n       - \"pnpm-lock.yaml\"\n       - \".github/workflows/mutation.yml\"\n+      - \".github/workflows/ci.yml\"\n+      - \".github/workflows/deploy.yml\"\n+      - \"lefthook.yml\"\n+      - \"package.json\"\n+      - \"scripts/check-commit-msg*\"\n+      - \"scripts/lifecycle-guards.test.cjs\"\n       - \".github/hooks/**\"\n       - \"scripts/copilot/**\"\n permissions:\n@@ -22,7 +29,7 @@ jobs:\n       - uses: actions/setup-node@v4\n         with:\n           node-version: 22\n-      - run: node --test scripts/copilot/pre-tool-use.test.cjs\n+      - run: node --test scripts/copilot/pre-tool-use.test.cjs scripts/check-commit-msg.test.cjs scripts/lifecycle-guards.test.cjs\n   mutation:\n     runs-on: ubuntu-latest\n     timeout-minutes: 15"
+    },
+    {
+      "filename": "backend/stryker.config.json",
+      "patch": "@@ -9,5 +9,5 @@\n   \"htmlReporter\": { \"fileName\": \"reports/mutation/index.html\" },\n   \"coverageAnalysis\": \"perTest\",\n   \"concurrency\": 2,\n-  \"thresholds\": { \"high\": 80, \"low\": 60, \"break\": 0 }\n+  \"thresholds\": { \"high\": 80, \"low\": 60, \"break\": 10 }\n }"
+    },
+    {
+      "filename": "lefthook.yml",
+      "patch": "@@ -6,7 +6,7 @@ pre-commit:\n     format:\n       glob: '**/*.{ts,tsx,json,md,css}'\n       exclude: '(node_modules|\\.next|\\.git)'\n-      run: npx --yes prettier --write {staged_files} || true\n+      run: ./node_modules/.bin/prettier --write {staged_files}\n \n     lint-frontend:\n       root: 'frontend/'"
+    },
+    {
+      "filename": "pnpm-workspace.yaml",
+      "patch": "@@ -9,16 +9,15 @@ overrides:\n   # versions. Force one version everywhere.\n   '@types/express': '^5.0.1'\n \n-  # next@16.2.12 still bundles its own old postcss internally (separate from\n-  # the patched one Tailwind/Vite already use) \u2014 force it to a patched\n-  # version too. postcss 8.x is backward-compatible within the major.\n+  # Keep transitive Next/PostCSS dependencies on patched compatible versions.\n   postcss: '^8.5.18'\n \n-  # next also bundles an old sharp (image optimization) \u2014 force the patched line.\n-  sharp: '^0.35.4'\n+  # Keep indirect runtime and build dependencies on versions with security fixes.\n+  sharp: '^0.35.5'\n+  'source-map-js': '^1.2.2'\n+  'proxy-addr': '^2.0.8'\n \n-  # js-yaml (CVE-2026-59870) and nanoid highs from `pnpm audit` are disabled\n-  # here \u2014 see README.md \u00a7 Security for the manual fix.\n+  # Pin these transitive packages to releases that include their security fixes.\n   js-yaml: 4.3.2\n   nanoid: '^3.3.18'\n   uuid: '>=11.1.1'\n@@ -33,7 +32,7 @@ overrides:\n   'qs@<6.16.0': '6.16.0'\n   'ip-address@<=10.7.0': '10.7.1'\n \n-  '@fastify/busboy': '3.2.1'\n+  '@fastify/busboy': '3.2.2'\n \n allowBuilds:\n   '@firebase/util': true\n@@ -44,8 +43,11 @@ allowBuilds:\n   unrs-resolver: true\n \n minimumReleaseAgeExclude:\n-  - '@fastify/busboy@3.2.1'\n+  - '@fastify/busboy@3.2.2'\n \n+# The only published braces 3.x release is 3.0.3, but GHSA-vfj7-8cjw-p6xm\n+# lists 3.0.4 as the first patched release. This dev-only transitive advisory\n+# cannot be upgraded until an upstream patched version is published.\n auditConfig:\n   ignoreGhsas:\n     - GHSA-vfj7-8cjw-p6xm"
+    },
+    {
+      "filename": "scripts/check-commit-msg.js",
+      "patch": "@@ -1,6 +1,6 @@\n #!/usr/bin/env node\n /**\n- * Validates commit messages follow Conventional Commits.\n+ * Validates commit messages follow Conventional Commits and record provenance.\n  * Called by Lefthook commit-msg hook.\n  *\n  * Usage: node scripts/check-commit-msg.js <commit-msg-file>\n@@ -15,6 +15,8 @@ if (!msgFile) {\n \n const msg = fs.readFileSync(msgFile, 'utf8').trim()\n const pattern = /^(feat|fix|docs|style|refactor|test|chore|build|ci|perf|revert)(\\(.+\\))?: .{1,100}/\n+const aiAssistedTrailers = msg.match(/^AI-Assisted:\\s*(yes|no)$/gim) ?? []\n+const aiCoauthorTrailer = /^Co-authored-by:\\s+[^\\n]*(?:copilot|claude|anthropic|openai|codex|chatgpt|gemini|cursor)[^\\n]*<[^<>\\s]+@[^<>\\s]+>$/im\n \n if (!pattern.test(msg)) {\n   console.error('\\n\u274c Commit message does not follow Conventional Commits.\\n')\n@@ -28,4 +30,20 @@ if (!pattern.test(msg)) {\n   process.exit(1)\n }\n \n+if (aiAssistedTrailers.length !== 1) {\n+  console.error('\\n\u274c Commit message must include exactly one AI-Assisted: yes|no trailer.\\n')\n+  process.exit(1)\n+}\n+\n+if (/^AI-Assisted:\\s*yes$/im.test(msg) && !aiCoauthorTrailer.test(msg)) {\n+  console.error('\\n\u274c AI-assisted commits must include an AI Co-authored-by trailer.\\n')\n+  console.error('  Example: Co-authored-by: GitHub Copilot <copilot@github.com>\\n')\n+  process.exit(1)\n+}\n+\n+if (/^AI-Assisted:\\s*no$/im.test(msg) && aiCoauthorTrailer.test(msg)) {\n+  console.error('\\n\u274c A commit declaring no AI assistance cannot include an AI co-author.\\n')\n+  process.exit(1)\n+}\n+\n process.exit(0)"
+    }
+  ]
+}
