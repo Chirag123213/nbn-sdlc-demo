@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gates that hold</title>
+<meta name="description" content="The research behind Team 2's gated lifecycle for NBN Co: the question, what was read, how the trial was run, what it found, and what is weak.">
+<style>
+  :root {
+    --bg: #FAFAFA; --surface: #FFFFFF; --surface-2: #F5F5F5; --stroke: #E0E0E0; --stroke-2: #D1D1D1;
+    --text: #242424; --text-2: #424242; --text-3: #707070;
+    --brand: #0F6CBD; --brand-2: #115EA3; --brand-bg: #EBF3FC; --brand-stroke: #B4D6FA;
+    --red: #BC2F32; --red-bg: #FDF3F4; --red-stroke: #EEACB2; --amber: #BC4B09; --amber-bg: #FDF6F3; --amber-stroke: #F4BFAB; --green: #0E700E; --green-bg: #F1FAF1; --green-stroke: #9FD89F;
+    --shadow-4: 0 2px 4px rgba(0,0,0,.14), 0 0 2px rgba(0,0,0,.12);
+    --shadow-8: 0 4px 8px rgba(0,0,0,.14), 0 0 2px rgba(0,0,0,.12);
+    --shadow-16: 0 8px 16px rgba(0,0,0,.14), 0 0 2px rgba(0,0,0,.12);
+    --font: "Segoe UI", "Segoe UI Web (West European)", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    --mono: "Cascadia Code", "Cascadia Mono", Consolas, ui-monospace, Menlo, monospace;
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font); font-size: 16px; line-height: 1.4; overflow: hidden; -webkit-font-smoothing: antialiased; }
+
+  #progress { position: fixed; top: 0; left: 0; height: 4px; background: var(--brand); width: 0; transition: width .25s ease; z-index: 50; }
+  #stage { position: fixed; inset: 0; display: grid; place-items: center; }
+  #frame { width: 1280px; height: 720px; position: relative; transform-origin: center center; }
+  .slide { position: absolute; inset: 0; padding: 64px 88px 72px; display: none; background: var(--bg); }
+  .slide.active { display: block; animation: enter .3s ease both; }
+  @keyframes enter { from { opacity: 0; transform: translateX(16px); } to { opacity: 1; transform: none; } }
+  .slide.back.active { animation-name: enterBack; }
+  @keyframes enterBack { from { opacity: 0; transform: translateX(-16px); } to { opacity: 1; transform: none; } }
+
+  .frag { opacity: 0; transform: translateY(8px); transition: opacity .25s ease, transform .25s ease; }
+  .frag.on { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .slide.active { animation: none; } .frag { transition: none; } #progress { transition: none; } }
+
+  /* chrome */
+  #chrome { position: fixed; left: 0; right: 0; bottom: 0; height: 40px; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; font-size: 12px; color: var(--text-3); z-index: 40; pointer-events: none; }
+  #chrome .l { display: flex; gap: 14px; align-items: center; }
+  #chrome .wm { font-weight: 600; color: var(--text-2); }
+  #chrome button { pointer-events: auto; font: 600 12px var(--font); color: var(--text-2); background: var(--surface); border: 1px solid var(--stroke); border-radius: 4px; padding: 5px 10px; cursor: pointer; }
+  #chrome button:hover { background: var(--surface-2); }
+  #chrome button:focus-visible { outline: 2px solid var(--brand); outline-offset: 1px; }
+  #hint { position: fixed; right: 20px; bottom: 52px; font-size: 12px; color: var(--text-3); z-index: 40; }
+
+  /* notes */
+  #notes { position: fixed; left: 0; right: 0; bottom: 0; max-height: 34vh; overflow: auto; background: var(--surface); border-top: 1px solid var(--stroke); box-shadow: var(--shadow-16); padding: 16px 24px 48px; font-size: 15px; line-height: 1.5; color: var(--text); display: none; z-index: 45; }
+  #notes.open { display: block; }
+  #notes .k { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--brand); font-weight: 600; margin-bottom: 6px; }
+  #notes p { margin: 0 0 8px; max-width: 90ch; }
+
+  /* overview */
+  #overview { position: fixed; inset: 0; background: rgba(250,250,250,.98); z-index: 60; display: none; overflow: auto; padding: 48px; }
+  #overview.open { display: block; }
+  #overview h2 { margin: 0 0 18px; font-size: 20px; font-weight: 600; }
+  #overview ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px; }
+  #overview li button { width: 100%; text-align: left; font: 14px var(--font); color: var(--text); background: var(--surface); border: 1px solid var(--stroke); border-radius: 8px; padding: 12px 14px; cursor: pointer; box-shadow: var(--shadow-4); }
+  #overview li button:hover { border-color: var(--brand); }
+  #overview li button.cur { border-color: var(--brand); background: var(--brand-bg); }
+  #overview li button small { display: block; color: var(--text-3); font-size: 11px; margin-bottom: 3px; }
+
+  /* type */
+  h1 { font-size: 68px; line-height: 1.08; font-weight: 600; letter-spacing: -0.01em; margin: 0 0 20px; }
+  h2 { font-size: 40px; line-height: 1.12; font-weight: 600; letter-spacing: -0.01em; margin: 0 0 22px; }
+  h3 { font-size: 20px; font-weight: 600; margin: 0 0 8px; }
+  p { margin: 0 0 12px; }
+  .sub { font-size: 20px; color: var(--text-2); max-width: 60ch; }
+  .lead { font-size: 22px; max-width: 58ch; line-height: 1.4; }
+  .eyebrow { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--brand); font-weight: 600; margin-bottom: 14px; }
+  .small { font-size: 13px; color: var(--text-2); }
+  .mono { font-family: var(--mono); font-size: .92em; background: var(--surface-2); border: 1px solid var(--stroke); border-radius: 4px; padding: 1px 6px; }
+  .foot { position: absolute; left: 88px; right: 88px; bottom: 28px; font-size: 12px; color: var(--text-3); }
+
+  /* layout helpers */
+  .cols { display: grid; gap: 24px; }
+  .c2 { grid-template-columns: 1fr 1fr; } .c3 { grid-template-columns: repeat(3, 1fr); } .c4 { grid-template-columns: repeat(4, 1fr); }
+  .card { background: var(--surface); border: 1px solid var(--stroke); border-radius: 8px; padding: 18px 20px; box-shadow: var(--shadow-4); }
+  .card.brand { background: var(--brand); color: #fff; border-color: var(--brand); }
+  .card.brand .small, .card.brand h3 { color: #fff; }
+  .card.brand .mono { background: rgba(255,255,255,.14); border-color: rgba(255,255,255,.3); color: #fff; }
+  .big { font-size: 56px; font-weight: 600; line-height: 1; letter-spacing: -0.02em; }
+  .big small { font-size: 16px; font-weight: 400; color: var(--text-2); margin-left: 6px; letter-spacing: 0; }
+  .card.brand .big small { color: rgba(255,255,255,.8); }
+  .num { font-weight: 600; font-variant-numeric: tabular-nums; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  th { text-align: left; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--text-2); font-weight: 600; padding: 8px 12px; border-bottom: 1px solid var(--stroke-2); }
+  td { padding: 9px 12px; border-bottom: 1px solid var(--stroke); vertical-align: top; }
+  tr:last-child td { border-bottom: 0; }
+  table.tight td, table.tight th { padding: 7px 10px; font-size: 14px; }
+
+  .tag { display: inline-block; font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 4px; border: 1px solid transparent; vertical-align: middle; }
+  .tag.Red { color: var(--red); background: var(--red-bg); border-color: var(--red-stroke); }
+  .tag.Amber { color: var(--amber); background: var(--amber-bg); border-color: var(--amber-stroke); }
+  .tag.Green { color: var(--green); background: var(--green-bg); border-color: var(--green-stroke); }
+  .tag.brand { color: var(--brand); background: var(--brand-bg); border-color: var(--brand-stroke); }
+
+  /* section slide */
+  .section { background: var(--brand); color: #fff; }
+  .section .eyebrow { color: rgba(255,255,255,.75); }
+  .section h2 { font-size: 56px; color: #fff; margin-top: 150px; }
+  .section .sub { color: rgba(255,255,255,.85); }
+  .section .n { position: absolute; right: 88px; top: 56px; font-size: 220px; font-weight: 600; line-height: 1; color: rgba(255,255,255,.14); letter-spacing: -0.04em; }
+
+  /* title slide */
+  .title .mark { width: 44px; height: 44px; border-radius: 8px; background: var(--brand); margin-bottom: 40px; position: relative; }
+  .title .mark::after { content: ""; position: absolute; left: 12px; top: 12px; width: 20px; height: 20px; border-radius: 4px; background: #fff; }
+  .title h1 { max-width: 760px; }
+  .title .by { position: absolute; left: 88px; bottom: 72px; font-size: 15px; color: var(--text-2); line-height: 1.6; }
+
+  /* timeline */
+  .tl { position: relative; margin-top: 30px; }
+  .tl::before { content: ""; position: absolute; left: 0; right: 0; top: 14px; height: 2px; background: var(--stroke-2); }
+  .tl .row { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; }
+  .tl .ev { position: relative; padding-top: 34px; font-size: 13.5px; }
+  .tl .ev::before { content: ""; position: absolute; left: 0; top: 8px; width: 14px; height: 14px; border-radius: 50%; background: var(--surface); border: 3px solid var(--brand); }
+  .tl .ev b { display: block; font-size: 13px; color: var(--brand); margin-bottom: 4px; }
+
+  /* monday */
+  .mtrack { display: flex; gap: 8px; margin: 0 0 26px; }
+  .mtrack span { flex: 1; height: 6px; border-radius: 3px; background: var(--stroke); }
+  .mtrack span.done { background: var(--brand-stroke); }
+  .mtrack span.cur { background: var(--brand); }
+  .mon { display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: start; }
+  .mon .step { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--text-2); font-weight: 600; }
+  .mon h2 { margin: 6px 0 6px; font-size: 44px; }
+  .mon h2 .id { color: var(--brand); font-weight: 600; margin-right: 12px; }
+  .mon .who { font-size: 17px; color: var(--text-2); margin-bottom: 18px; }
+  .mon .what { font-size: 19px; line-height: 1.45; max-width: 50ch; }
+  .gcard { background: var(--surface); border: 1px solid var(--stroke); border-left: 4px solid var(--brand); border-radius: 8px; padding: 14px 18px; box-shadow: var(--shadow-4); margin-bottom: 12px; }
+  .gcard .k { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--text-2); font-weight: 600; margin-bottom: 3px; }
+  .gcard .v { font-size: 16px; }
+  .gcard .v .mono { font-size: 13px; }
+
+  /* stage slides */
+  .task { display: grid; grid-template-columns: 56px 1fr 92px 200px; gap: 12px; align-items: center; padding: 8px 12px; border-bottom: 1px solid var(--stroke); font-size: 15px; }
+  .task:last-child { border-bottom: 0; }
+  .task .id { font-weight: 600; color: var(--brand); }
+  .task .h { font-size: 13px; color: var(--text-2); }
+  .rests { font-size: 14.5px; color: var(--text-2); border-left: 3px solid var(--brand); padding: 4px 14px; margin: 16px 0 0; max-width: 100ch; }
+
+  /* bars */
+  .bar { display: grid; grid-template-columns: 170px 1fr 70px; gap: 12px; align-items: center; font-size: 15px; margin: 10px 0; }
+  .bar i { display: block; height: 14px; border-radius: 3px; background: var(--surface-2); border: 1px solid var(--stroke); overflow: hidden; }
+  .bar i b { display: block; height: 100%; background: var(--brand); transition: width .6s ease; }
+  .bar.c i b { background: var(--green); }
+  .bar strong { text-align: right; font-variant-numeric: tabular-nums; }
+
+  ol.pl, ul.pl { margin: 0; padding-left: 20px; font-size: 18px; line-height: 1.5; }
+  ol.pl li, ul.pl li { margin-bottom: 10px; }
+  ol.pl li::marker, ul.pl li::marker { color: var(--brand); } .card.brand ol.pl li::marker { color: #fff; }
+  .quote { font-size: 24px; line-height: 1.4; max-width: 46ch; border-left: 4px solid var(--brand); padding-left: 20px; margin: 10px 0 18px; }
+  .quote + .small { margin-left: 24px; }
+  .kv { display: grid; grid-template-columns: 180px 1fr; gap: 6px 18px; font-size: 15px; }
+  .kv dt { color: var(--text-2); } .kv dd { margin: 0; }
+  .holders .h { display: grid; grid-template-columns: 170px 1fr 1fr; gap: 14px; padding: 10px 12px; border-bottom: 1px solid var(--stroke); font-size: 14.5px; }
+  .holders .h:last-child { border-bottom: 0; }
+  .holders .h b { color: var(--brand); }
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<div id="stage"><div id="frame">
+
+<!-- 1 title -->
+<section class="slide title" data-notes="Thirty minutes. The question, what we read, how we worked, what we found, what it means, what is weak. This follows the paper's sections, so anything he asks has a page.">
+  <div class="mark"></div>
+  <div class="eyebrow">RMIT Capstone 2026 · 20-NBN · SDLC using AI</div>
+  <h1>Gates that hold</h1>
+  <p class="sub">An AI-assisted development lifecycle for NBN Co: grounded in published practice, built three ways, reviewed independently. The research behind it.</p>
+  <div class="by">Team 2: Sidney Zeng, Ahmed Falulur Rahuman, Zac Clarkson, Zafir Hasan, Chirag Wadehra<br>Supervisor Ben Philip · Client representative Alessio Bonti · <span class="mono">github.com/Peepachuu/nbn-sdlc-demo</span></div>
+</section>
+
+<!-- 2 abstract -->
+<section class="slide" data-notes="The paper's abstract in four moves. Say the last line slowly: the hypothesis was not supported, and the result is useful because of what differed instead.">
+  <div class="eyebrow">The research in one slide</div>
+  <h2>Question, method, result</h2>
+  <p class="lead">NBN asked for a lifecycle with a traffic light on each of eight stages. A colour per stage cannot be acted on, and the evidence says AI-written code passes its own tests at rates that make green CI an unsafe gate.</p>
+  <p class="lead frag">We opened the stages into 44 tasks, each with a colour (who decides), a gate (what must be true) and a holder (what makes it hold). We grounded it in 63 audited citations, tested it against two interviews, built the gates into a repository, and ran a pre-registered trial: one brief, one base, three methods, a reviewer who built none of them.</p>
+  <p class="lead frag">The registered hypothesis was not supported. What differed was kind: two builds met twelve of fourteen criteria, passed every check and stored nothing; the gated build met fourteen, held eighteen attacks, and had the test that caught the ownership fault. No automated gate caught the missing data store. A human gate did.</p>
+</section>
+
+<!-- 3 -->
+<section class="slide section"><div class="n">1</div><div class="eyebrow">Part one</div><h2>The question</h2><p class="sub">Why a colour per stage is not enough.</p></section>
+
+<!-- 4 baseline -->
+<section class="slide" data-notes="D2, the team's review of the four workshop recordings, 11 hours 19 minutes. June, four days, two cohorts, about 32 to 35 people a day. Stage 8 was never reached. The facilitator's own words tie the colours to the repository's rules file, which is where our holder idea starts.">
+  <div class="eyebrow">The client baseline</div>
+  <h2>What NBN had before we started</h2>
+  <div class="cols c2">
+    <div>
+      <dl class="kv">
+        <dt>Workshop</dt><dd>June 2026, NBN with RMIT. Four days, two cohorts, about 32 to 35 people a day. One demonstration day and one build day each, on a fault-reporting exercise.</dd>
+        <dt>Output</dt><dd>Eight lifecycle stages, each classified red, yellow or green. Stage 8 not reached. Report dated 13 Aug 2026 (D2).</dd>
+        <dt>Three practices taught</dt><dd>Write the issue with acceptance criteria. State what is out of scope. Separate the instructing role from the building role.</dd>
+      </dl>
+    </div>
+    <div>
+      <p class="quote frag">"As you build the environment and the environment learns from you, you can slowly move some of those yellow tasks into the green area."</p>
+      <p class="small">Facilitator, tying the colours to the repository's rules file. D2 section 4.</p>
+      <p class="quote frag">"The question would be, are all the tests correct?"</p>
+      <p class="small">Left open at stage 7. The whole project is an answer to it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 5 problem -->
+<section class="slide" data-notes="Three sources, ranked. Liu is peer-reviewed scale, 304,362 commits. TOSEM is the one that answers the workshop's open question. Veracode is a vendor report and we say so; Pearce triangulates it.">
+  <div class="eyebrow">The problem</div>
+  <h2>An agent that writes the tests passes its own tests</h2>
+  <div class="cols c3">
+    <div class="card frag"><div class="big">24.2<small>%</small></div><p>of AI-introduced issues still present at repository head; security issues survive most (41.1%). Liu et al. 2026, 304,362 AI-authored commits.</p></div>
+    <div class="card frag"><div class="big">39 to 59<small>%</small></div><p>of LLM-generated test assertions correct, across two datasets. Zhang et al., ACM TOSEM 2025.</p></div>
+    <div class="card frag"><div class="big">45<small>%</small></div><p>of security-relevant tasks where models chose the insecure option. Veracode 2025, vendor report; Pearce et al. (CACM 2025) found about 40% of Copilot programs vulnerable.</p></div>
+  </div>
+  <p class="lead frag" style="margin-top:28px">Three gaps in the baseline. A colour per stage is a policy without a procedure. Green CI is not a safe gate. And most AI "rules" in a repository are text an agent is asked to read.</p>
+</section>
+
+<!-- 6 RQs -->
+<section class="slide" data-notes="Three questions, in the paper's order. RQ1 is the map. RQ2 is the holders. RQ3 is the trial.">
+  <div class="eyebrow">Research questions</div>
+  <h2>Three questions</h2>
+  <div class="cols c3">
+    <div class="card frag"><h3>RQ1</h3><p>Can the eight-stage colour scheme be grounded at task level in published engineering practice, and does it survive that contact?</p></div>
+    <div class="card frag"><h3>RQ2</h3><p>What mechanisms can hold a gate in a GitHub repository, and which hold against an AI agent as well as against a person?</p></div>
+    <div class="card frag"><h3>RQ3</h3><p>On the same feature, from the same brief and base, does the gated lifecycle change what ships compared with an AI-only build and a copy-and-paste build?</p></div>
+  </div>
+</section>
+
+<!-- 7 H1 -->
+<section class="slide" data-notes="Registered 12 October, commit 48fff18, before the protocol and before any build. The measurement rule and the pass condition were fixed then. Limits were stated then too: one builder per method, so builder and method cannot be separated.">
+  <div class="eyebrow">Hypothesis, registered 12 Oct 2026 · <span class="mono">48fff18</span></div>
+  <h2>H1, as committed</h2>
+  <p class="quote">"On the bigger feature, the three builds will end up further apart than they did in trial one, by more than the feature grew."</p>
+  <div class="cols c2" style="margin-top:8px">
+    <div class="card frag"><h3>Measurement</h3><p>Spread on a measure is the highest build's result minus the lowest, divided by feature size: 10 criteria in trial one, 14 in trial two. Three measures decide: issues that escaped review, feature criteria not met, active human minutes.</p></div>
+    <div class="card frag"><h3>Pass condition</h3><p>Supported if trial two's spread per criterion is higher on at least two of the three. Expected directions were written down and are not part of the test. Either result is an observation, not a rate.</p></div>
+  </div>
+</section>
+
+<!-- 8 -->
+<section class="slide section"><div class="n">2</div><div class="eyebrow">Part two</div><h2>What we read</h2><p class="sub">Four source bodies, the empirical literature, and an audit of our own citations.</p></section>
+
+<!-- 9 source bodies -->
+<section class="slide" data-notes="The ranking rule: published practice outranks research for what organisations do; research outranks practice for what AI can do. Each stage's colour verdict in slice 1 says which it rested on.">
+  <div class="eyebrow">Published practice</div>
+  <h2>What each source body gave the map</h2>
+  <table class="tight">
+    <thead><tr><th style="width:120px">Source</th><th>What it says</th><th style="width:260px">Where it landed</th></tr></thead>
+    <tbody>
+      <tr class="frag"><td>Google</td><td>Every change needs a human review approval from someone other than the author. Tests are a review judgement. "Write CLs smaller than you think you need." Releases behind role-based approvals.</td><td>6.4 red; 7.4 red; 5.1 small slices; Design Sprint scaffolds stages 1 to 4</td></tr>
+      <tr class="frag"><td>Microsoft</td><td>SDL: security requirements set by the team, review by someone other than the author. Playbook: Definition of Ready, Minimal Slices, Work Items, design reviews before implementation, ADRs, dev-sec-ops scanning, observability.</td><td>Stage 5 artefacts; 7.5; 8.4; the entry gate's four artefacts</td></tr>
+      <tr class="frag"><td>GitHub</td><td>The Copilot coding agent takes an issue, plans, works on a branch, runs tests, opens a pull request; a human approves workflow runs.</td><td>Stage 6 is this flow with gates named</td></tr>
+      <tr class="frag"><td>DORA</td><td>2024: 1.5% less throughput and 7.2% less stability per 25% more AI adoption. 2025: stability still negative; about 30% have little or no trust in AI code; "AI amplifies what's already there." Capabilities: small batches, CI with required checks, deployment automation.</td><td>Stages 5, 7, 8 deterministic gates; the amplifier thesis in the discussion</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 10 empirical -->
+<section class="slide" data-notes="Speed evidence is contested and the strongest studies on each side have problems we name. Security and test-correctness evidence points one way. That asymmetry is why 7.4 is red and why the trial measured what escaped, not how fast.">
+  <div class="eyebrow">Empirical evidence</div>
+  <h2>Contested on speed, one way on quality</h2>
+  <div class="cols c2">
+    <div class="card">
+      <h3>Speed</h3>
+      <p class="small">Peng et al. 2023: 55.8% faster on a bounded task (RCT, n = 95 freelancers). Cui et al. 2025: 26.08% more pull requests (three firms, n = 4,867). METR 2025: 19% slower on mature repositories while believing 20% faster (RCT, n = 16). GitHub's own RCT: small authoring-quality gains, self-reported.</p>
+      <p class="small frag">Flags we carry: the pro-AI trial used an artificial task; the anti-AI trial calls itself a snapshot; the vendor trial is the vendor's.</p>
+    </div>
+    <div class="card">
+      <h3>Quality and tests</h3>
+      <p class="small">Veracode: insecure option 45% of the time, Java 72%, XSS 86%. Apiiro: CVSS 7+ findings about 2.5 times more frequent. Pearce: about 40% vulnerable. Liu: a quarter of AI-introduced issues survive to head. Amro and Alalfi: Copilot review gave "fewer than 20 comments, most of which addressed spelling or minor style issues" and missed SQL injection and XSS.</p>
+      <p class="small frag">Zhang (TOSEM): assertions right 39 to 59% of the time. Schäfer: coverage can be high while correctness is not. Requirements and UX studies: stories less diverse, personas "susceptible to caricature", accessibility critique at 69 to 71% recall. So stages 2 and 4 went amber, not green.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 11 audit -->
+<section class="slide" data-notes="We audited ourselves before anyone else could. Every falsifiable claim in slice 1, fetched live. Fifteen edits, all made. These five are the ones that would have embarrassed us.">
+  <div class="eyebrow">Citation audit</div>
+  <h2>63 claims, each fetched and checked</h2>
+  <div class="cols c4" style="margin-bottom:22px">
+    <div class="card"><div class="big">48</div><p class="small">verified</p></div>
+    <div class="card"><div class="big">14</div><p class="small">partly verified, corrected</p></div>
+    <div class="card"><div class="big">1</div><p class="small">misattributed, re-sourced</p></div>
+    <div class="card"><div class="big">0</div><p class="small">fabricated</p></div>
+  </div>
+  <table class="tight frag">
+    <thead><tr><th>Before</th><th>After</th></tr></thead>
+    <tbody>
+      <tr><td>Assertion-generation study, TOSEM 2024</td><td>TOSEM 2025 (published Feb 2025)</td></tr>
+      <tr><td>Pearce et al., CACM Jan 2025</td><td>CACM vol. 68 no. 2, Feb 2025</td></tr>
+      <tr><td>DORA 2025 announcement, 23 Sep</td><td>24 Sep 2025</td></tr>
+      <tr><td>SDL "shift-left" sentence quoted as Microsoft's</td><td>A securityjourney.com blog; re-sourced to Microsoft's SDL practices without the quote</td></tr>
+      <tr><td>Cui et al., "n = 4,800, +26%"</td><td>n = 4,867, +26.08%</td></tr>
+    </tbody>
+  </table>
+  <p class="foot">docs/research/citation-audit.md. The paper's section 2 uses the corrected values; the full 92-entry list is docs/research/references.md.</p>
+</section>
+
+<!-- 12 -->
+<section class="slide section"><div class="n">3</div><div class="eyebrow">Part three</div><h2>How we worked</h2><p class="sub">Three sprints. The order of commits is the method.</p></section>
+
+<!-- 13 timeline -->
+<section class="slide" data-notes="Everything here has a commit or a dated file. The order from 10 October on is the pre-registration: criteria, then prediction, then protocol, then builds, then freeze, then review. Nothing in the protocol was written after a build was seen.">
+  <div class="eyebrow">Timeline</div>
+  <h2>15 August to 20 October</h2>
+  <div class="tl"><div class="row">
+    <div class="ev"><b>15 Aug</b>Brief from NBN: manual, demonstration, governance and token model, learning path.</div>
+    <div class="ev"><b>31 Aug</b>Supervisor review: colours belong to tasks, not stages.</div>
+    <div class="ev"><b>Sep</b>Three research slices, two source notes, citation audit, interviews 12 and 17 Sep, the map (D4), ADR-002 scope.</div>
+    <div class="ev"><b>25 Sep to 2 Oct</b>Trial one, three builds for the client showcase. Proof of concept FR-01 with Copilot CLI.</div>
+    <div class="ev"><b>10 to 17 Oct</b>Criteria frozen 10 Oct. Prediction 12 Oct. Protocol 17 Oct. Builds 17 to 18 Oct, frozen 22:27.</div>
+    <div class="ev"><b>18 to 20 Oct</b>Decision-5 marking before any build was read. Offline checks 18 Oct. Attacks, mutation, seeds 20 Oct.</div>
+  </div></div>
+  <p class="small" style="margin-top:40px">Commits: criteria <span class="mono">f43ca98</span> · prediction <span class="mono">48fff18</span> · protocol <span class="mono">ba9b489</span> with decisions <span class="mono">c25005b</span> · base <span class="mono">6af6a5b</span> (tag <span class="mono">trial2-base</span>) · frozen heads <span class="mono">f1611e0</span>, <span class="mono">ed173dc</span>, <span class="mono">40c65f5</span>.</p>
+</section>
+
+<!-- 14 map construction -->
+<section class="slide" data-notes="Three attributes per task. The holder list came out of reconciling four modules written by four people; the sixth label is the finding. ADR-002 is why stages 1 to 4 are an entry gate and not a procedure.">
+  <div class="eyebrow">Method · the map</div>
+  <h2>Three attributes per task, six holders</h2>
+  <div class="cols c2">
+    <div>
+      <dl class="kv">
+        <dt>Colour</dt><dd>Who decides. Red: a human. Amber: AI drafts, a human approves. Green: AI runs, a deterministic check holds.</dd>
+        <dt>Gate</dt><dd>A countable condition that must be true before the next task starts.</dd>
+        <dt>Holder</dt><dd>What makes the gate hold. Hook (git) · Hook (agent) · CI check (required) · CI check (advisory) · Platform rule · Human. And the label for the absence of one: No gate.</dd>
+        <dt>Scope (ADR-002)</dt><dd>Stages 6 and 7 in full; 5 and 8 to their handoffs; stages 1 to 4 as an entry gate of four artefacts. Reason: the evidence concentrates where AI writes and ships code, and five people cannot specify eight stages to operational depth in two sprints.</dd>
+      </dl>
+    </div>
+    <div class="card brand frag">
+      <h3>The rule a green row must meet</h3>
+      <p>A green task without a hook, a check or a rule named is an amber task mislabelled. Instruction files, prompt files, skills and an agent's own summary are No gate: whether an agent complies with them is up to the agent.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 15 repository -->
+<section class="slide" data-notes="What was in the trial two base. Two of our own Sprint 1 findings drove it: no early commit carried AI attribution, and a two-approval rule targeted no branches. The AI Attribution check is the one that turns a declaration into something checkable.">
+  <div class="eyebrow">Method · the instrumented repository at <span class="mono">6af6a5b</span></div>
+  <h2>The gates, as files</h2>
+  <div class="holders card" style="padding:4px 8px">
+    <div class="h frag"><b>Hook (git)</b><span>lefthook pre-commit: secret scan, placeholder check, prettier, eslint. commit-msg: Conventional, 100 characters, lower-case scope.</span><span class="mono" style="font-size:12px">lefthook.yml · scripts/check-commit-msg.js</span></div>
+    <div class="h frag"><b>Hook (agent)</b><span>Denies the agent git push, --no-verify, -n, LEFTHOOK=0, core.hooksPath, and returns the reason.</span><span class="mono" style="font-size:12px">.github/hooks/copilot-guard.json → scripts/copilot/pre-tool-use.cjs</span></div>
+    <div class="h frag"><b>CI check (required)</b><span>AI Declaration · AI Attribution (declared AI use needs a Co-authored-by trailer naming the agent; title must be Conventional) · Lint &amp; Typecheck · Frontend Tests · Backend Unit Tests · Security Scan.</span><span class="mono" style="font-size:12px">.github/workflows/ci.yml</span></div>
+    <div class="h frag"><b>CI check (advisory)</b><span>Mutation evidence: Stryker on the backend, hook contract tests. Reports, never blocks.</span><span class="mono" style="font-size:12px">.github/workflows/mutation.yml</span></div>
+    <div class="h frag"><b>Platform rule</b><span>Two approving reviews, author excluded; squash only; no force push; no delete; the six checks required.</span><span class="mono" style="font-size:12px">main ruleset on the three trial repositories</span></div>
+    <div class="h frag"><b>No gate</b><span>CLAUDE.md, copilot-instructions.md, AGENTS.md, prompt files, skills.</span><span class="mono" style="font-size:12px">text</span></div>
+  </div>
+</section>
+
+<!-- 16 trial design -->
+<section class="slide" data-notes="Trial one had known weaknesses: no fixed attack list, times from memory, a base with open gaps. Trial two removed each one in an order git records. Builders did not see the test jobs or attacks until their build was frozen.">
+  <div class="eyebrow">Method · trial two design</div>
+  <h2>One brief, one base, three methods</h2>
+  <div class="cols c3">
+    <div class="card"><h3>Lane A · AI only</h3><p class="small">Codex, GPT-5.6 Sol high. Instruction files removed first, as the method requires. No human review step.</p></div>
+    <div class="card"><h3>Lane B · copy and paste</h3><p class="small">ChatGPT in a browser and the editor. Nothing binds a chat window; the git hooks still run on the machine.</p></div>
+    <div class="card"><h3>Lane C · the gated lifecycle</h3><p class="small">Codex, GPT-5.6 Sol high, with the plan approval, the hooks, the agent hook, the six checks and the ruleset.</p></div>
+  </div>
+  <dl class="kv frag" style="margin-top:22px">
+    <dt>Feature</dt><dd>Technician dispatch: record a fault and an access requirement at a premises, offer only technicians whose skills and equipment satisfy both, schedule a visit. 14 feature criteria, 3 record criteria, an out-of-scope list. Frozen 10 Oct.</dd>
+    <dt>Base</dt><dd><span class="mono">6af6a5b</span>, cut from main with trial one's feature removed and the hook, CI and ruleset gaps closed. Shared fixture: four technicians, three faults, three access requirements.</dd>
+    <dt>Rules</dt><dd>Same three builders as trial one. Four-hour estimate, six-hour cap, setup logged apart. Test jobs and attacks withheld until freeze. Freeze declared by the project manager at 22:27 on 18 Oct; the reviewer recorded the heads at that minute.</dd>
+  </dl>
+</section>
+
+<!-- 17 protocol -->
+<section class="slide" data-notes="The protocol was committed before the first clock-on. Decision 5 is the marking of which attacks trial one also ran, done on 18 October before any build was opened, so the escaped-issue count compared with the prediction uses only checks both trials ran.">
+  <div class="eyebrow">Method · the review protocol, committed 17 Oct</div>
+  <h2>Same checks, same order, every build</h2>
+  <div class="cols c4">
+    <div class="card frag"><div class="big">17</div><p class="small">test jobs, one per criterion, each with a pass condition and an evidence file name</p></div>
+    <div class="card frag"><div class="big">18</div><p class="small">attacks in a fixed order: cross-requester reads and writes, forged owner, forged match, no valid match, invalid status, double submit, hard delete, out-of-scope surfaces, default deny, signed out, keyboard, colour, secrets, dependencies, fresh clone, declaration</p></div>
+    <div class="card frag"><div class="big">1 + 2</div><p class="small">one mutation run per build, formula stated, no threshold; two seeded faults applied by hand: S1 owner check removed, S2 access-equipment check always passes</p></div>
+    <div class="card frag"><div class="big">9 × 3</div><p class="small">finding categories and severities fixed in advance; review order by pull-request opening time; nothing read from one build into the next</p></div>
+  </div>
+  <p class="lead frag" style="margin-top:26px">The reviewer is a team member who wrote the map and the protocol and built none of the three. That is a limitation, stated, and the pre-commitment is what constrains it.</p>
+</section>
+
+<!-- 18 labels -->
+<section class="slide" data-notes="Every number in the record carries one of these. When Ben asks where a figure came from, the label is the answer. Trial one's minutes are Estimate. Trial two's are from the builders' clocks and the reviewer's tool timestamps.">
+  <div class="eyebrow">Method · measures</div>
+  <h2>Every figure carries a provenance label</h2>
+  <table>
+    <thead><tr><th style="width:160px">Label</th><th>Meaning</th><th style="width:380px">Example</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Run</strong></td><td>Reproducible from a committed artefact</td><td>Hooks, CI jobs, ruleset at <span class="mono">6af6a5b</span></td></tr>
+      <tr><td><strong>Run once</strong></td><td>Observed once, recorded, evidence file named</td><td>Each attack result; each mutation run; the 44-task count</td></tr>
+      <tr><td><strong>Estimate</strong></td><td>A person's recollection, named</td><td>Trial one minutes, written from memory two days later</td></tr>
+      <tr><td><strong>Documented</strong></td><td>Stated in a source, not exercised here</td><td>Stages 1 to 4; progressive rollout; the dry run's approval step</td></tr>
+    </tbody>
+  </table>
+  <p class="small frag" style="margin-top:18px">Mutation score is killed divided by valid mutants. Both the configured scope and the feature-files-only figure are reported, because 73 mutants in the configured scope sit in base files no build touched.</p>
+</section>
+
+<!-- 19 -->
+<section class="slide section"><div class="n">4</div><div class="eyebrow">Part four</div><h2>What we found</h2><p class="sub">RQ1 the map. RQ2 the holders. RQ3 the trial. Then the hypothesis.</p></section>
+
+<!-- 20 RQ1 map -->
+<section class="slide" data-notes="44 tasks: 16 red, 16 amber, 12 green. Against the baseline: stage 2's only green became amber; stage 4's journey mapping became amber; stage 8 was classified from DORA and progressive delivery. Two verdicts are 'source silent' and say so.">
+  <div class="eyebrow">RQ1 · the map</div>
+  <h2>44 tasks. 16 red, 16 amber, 12 green.</h2>
+  <div class="cols c4" id="mapgrid" style="gap:12px"></div>
+  <p class="small frag" style="margin-top:18px">What changed from the baseline: stage 2, the workshop's only green, became mixed on the requirements evidence (drafting stays green, criteria amber, anchors and acceptance red); stage 4's journey mapping went amber; stages 5 to 7 were confirmed amber overall and split into tasks of all three colours; stage 8, unreached at the workshop, is green for preview and rollout mechanics, amber for monitoring, red for promotion and incidents. The stage order held as a taxonomy of concerns, not a sequence.</p>
+</section>
+
+<!-- 21 RQ2 holders -->
+<section class="slide" data-notes="Established by running, not reading. The dry run quote is the one to read aloud. Then the CLAUDE.md heading on main: by our own taxonomy it holds nothing, and we list it as an open fix rather than hide it.">
+  <div class="eyebrow">RQ2 · what holds a gate</div>
+  <h2>Three things we established by running them</h2>
+  <ul class="pl">
+    <li class="frag">A git hook binds every tool and every person who installed the repository. A person can skip it with <span class="mono">--no-verify</span>. The agent hook closes that for the agent and tells it why.</li>
+    <li class="frag">An agent hook binds only the tool it is installed in and fails open after its timeout. Nothing binds a chat window in a browser. Lane B had the git hooks and nothing else.</li>
+    <li class="frag">Instruction files are not gates. In the dry run of the plan-approval step, the agent "stopped and waited for approval" as asked, and the record says the gate "was demonstrated through agent behaviour, not through a deterministic enforcement mechanism".</li>
+  </ul>
+  <div class="cols c2 frag" style="margin-top:20px">
+    <div class="card"><h3>On main today</h3><p class="small"><span class="mono">CLAUDE.md</span> titles its instruction text "Mandatory AI Development Gates". By the taxonomy it is No gate. Listed as an open correction.</p></div>
+    <div class="card"><h3>Ruleset, main vs trial</h3><p class="small">The team's shared repository requires only AI Declaration. The trial template required all six, but only lane B kept that ruleset; lanes A and C built in a fresh repository and a fork with none. The six-check gate was proved on one trial repository.</p></div>
+  </div>
+</section>
+
+<!-- 22 interviews -->
+<section class="slide" data-notes="Both interviews: scoped autonomy, human validation, human responsibility. They differ on provenance. Each finding has a task and a trial two observation. The model-record row is the one the gate caught.">
+  <div class="eyebrow">Interviews, 12 and 17 Sep · each finding traced to a gate</div>
+  <h2>What practitioners said, and what the trial showed</h2>
+  <table class="tight">
+    <thead><tr><th>Finding</th><th style="width:150px">Task</th><th>Trial two</th></tr></thead>
+    <tbody>
+      <tr class="frag"><td>Passing AI-generated tests does not prove the requirement</td><td>7.4, mutation and seeds</td><td>Two builds green on CI with no data store. Kill rates 52 to 67% on feature files.</td></tr>
+      <tr class="frag"><td>The team does not identify AI-written code in the repository / the other records the model per story</td><td>6.3, trailer and declaration</td><td>All lanes carried a trailer and passed both checks. Two records named GPT-5 against the lane rule; the gate surfaced the disagreement.</td></tr>
+      <tr class="frag"><td>Small, well-scoped tasks; unrestricted agent access avoided</td><td>5.3, out-of-scope list; agent hook</td><td>Lane A rebuilt the home page and layout around the feature once the instruction files were gone.</td></tr>
+      <tr class="frag"><td>Large features start with a plan; data design is checked before accepting</td><td>6.1; 7.4</td><td>The lane with the plan step persisted data and checked ownership. The two without stored nothing.</td></tr>
+    </tbody>
+  </table>
+  <p class="foot">Sample: two experienced developers, one cautious setting, one AI-intensive. No junior, no NBN developer. Stated as a limitation.</p>
+</section>
+
+<!-- 23 PoC + trial one -->
+<section class="slide" data-notes="Context, with labels. Trial one is the baseline the prediction uses; its minutes are Estimate and its escaped count is under reconciliation against the run sheet. The proof of concept is where the mutation and seed method was first run.">
+  <div class="eyebrow">Before trial two</div>
+  <h2>Proof of concept and trial one, labelled</h2>
+  <div class="cols c2">
+    <div class="card">
+      <h3>Proof of concept FR-01 · 27 Sep to 2 Oct</h3>
+      <p class="small">One builder, Copilot CLI, six criteria, all met with evidence. 5 backend and 24 frontend tests. Frontend mutation 63.64% after implementation, 73.86% after a focused test revision. Both seeded faults caught after the revision.</p>
+      <p class="small">Time about 240 minutes generating, about 35 reviewing: <strong>Estimate</strong>. Usage 69.05 AI Credits: partial.</p>
+    </div>
+    <div class="card">
+      <h3>Trial one · showcase, 1 Oct</h3>
+      <table class="tight">
+        <thead><tr><th></th><th>A</th><th>B</th><th>C</th><th>Label</th></tr></thead>
+        <tbody>
+          <tr><td>Criteria met of 10</td><td>9</td><td>10</td><td>10</td><td>Run once</td></tr>
+          <tr><td>Escaped review</td><td>3</td><td>1</td><td>0</td><td>Run once; run sheet reads 4, 1, 1</td></tr>
+          <tr><td>Active minutes</td><td>11</td><td>94</td><td>43</td><td>Estimate, from memory</td></tr>
+          <tr><td>Cost, A$100/h + tokens</td><td>30.11</td><td>163.72</td><td>76.94</td><td>Run once; B's tokens estimated</td></tr>
+        </tbody>
+      </table>
+      <p class="small frag" style="margin-top:8px">People's time was 61, 96 and 93% of cost. The cheapest build per criterion was the one nobody reviewed, and it let the most through.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 24 trial two criteria -->
+<section class="slide" data-notes="Say it plainly: A and B work on screen and forget everything on reload. Both pull requests ticked AC01 and AC11 as passing. Lane A's dispatch page is also public. Lane C writes through a Server Action that checks the session and re-checks owner, status and match inside a transaction.">
+  <div class="eyebrow">RQ3 · trial two · criteria</div>
+  <h2>12, 12, 14 of 14</h2>
+  <div class="cols c3">
+    <div class="card"><h3>Lane A · AI only</h3><div class="big">12<small>/ 14</small></div><p class="small">Fails AC01 (request visible afterwards) and AC11 (stored dispatch record). State lives in React. A reload returns an empty form. The dispatch page is reachable signed out.</p></div>
+    <div class="card"><h3>Lane B · copy and paste</h3><div class="big">12<small>/ 14</small></div><p class="small">The same two failures. Nothing leaves the page. Behind sign-in. One cited screenshot missing from its record.</p></div>
+    <div class="card"><h3>Lane C · gated</h3><div class="big">14<small>/ 14</small></div><p class="small">Firestore via Server Actions. Session checked on every write; scheduling inside a transaction that re-checks owner, status and match.</p></div>
+  </div>
+  <p class="lead frag" style="margin-top:26px">The two failures in A and B are the same two, and both builders ticked them as passing. Six CI checks were green on all three.</p>
+</section>
+
+<!-- 25 attacks -->
+<section class="slide" data-notes="In lane C every direct Firestore access got permission denied, signed in or out; the Server Action refused the forged, cross-owner, duplicate and extra-field calls; the signed-out call was redirected before the action ran. In A and B most data attacks had no surface, because there is no store. AT12 landed in A.">
+  <div class="eyebrow">RQ3 · trial two · the eighteen attacks</div>
+  <h2>Where each lane held</h2>
+  <table class="tight">
+    <thead><tr><th style="width:290px">Attack group</th><th>A</th><th>B</th><th>C</th></tr></thead>
+    <tbody>
+      <tr class="frag"><td>Direct data access: cross-requester read, write, owner change, delete, undefined collection, default deny (AT01 to AT04, AT09, AT11)</td><td>No surface: nothing stored</td><td>No surface: nothing stored</td><td>Held. Firestore returned permission denied in every case</td></tr>
+      <tr class="frag"><td>Forged calls through the form: wrong technician, no valid match, invalid status, double submit, extra fields (AT05 to AT08)</td><td>Match enforced in the browser only</td><td>Held where it applied</td><td>Held. Server Action refused each; a second schedule and an unknown id refused</td></tr>
+      <tr class="frag"><td>Signed out (AT12)</td><td><strong>Landed.</strong> Dispatch page public</td><td>Held</td><td>Held. Redirected before the action ran</td></tr>
+      <tr class="frag"><td>Scope, keyboard, colour, secrets, dependencies, fresh clone, declaration (AT10, AT13 to AT18)</td><td>Held</td><td>Held</td><td>Held</td></tr>
+    </tbody>
+  </table>
+  <p class="foot">Keyboard check run in part on all lanes: the review tooling cannot drive native date controls; the pass rests on DOM inspection. Evidence: docs/research/trial-two/review/&lt;lane&gt;/evidence/.</p>
+</section>
+
+<!-- 26 tests -->
+<section class="slide" data-notes="Feature files only; the configured scope includes 73 base mutants no lane touched. B's matching function scored 100 percent. S1 applies only to C, which caught it with one test, written before the fault was seeded. The first two mutation attempts were invalid for configuration reasons and are kept in the record.">
+  <div class="eyebrow">RQ3 · trial two · tests, mutation, seeds</div>
+  <h2>Would the tests notice?</h2>
+  <div class="cols c2">
+    <div>
+      <h3>Feature tests added</h3>
+      <div class="bar"><span>A · AI only</span><i><b style="width:31%"></b></i><strong>11</strong></div>
+      <div class="bar"><span>B · copy and paste</span><i><b style="width:22%"></b></i><strong>8</strong></div>
+      <div class="bar c"><span>C · gated</span><i><b style="width:100%"></b></i><strong>36</strong></div>
+      <h3 style="margin-top:20px">Mutation kill rate, feature files</h3>
+      <div class="bar"><span>A</span><i><b style="width:52%"></b></i><strong>52.0%</strong></div>
+      <div class="bar"><span>B</span><i><b style="width:67%"></b></i><strong>66.9%</strong></div>
+      <div class="bar c"><span>C</span><i><b style="width:65%"></b></i><strong>65.0%</strong></div>
+      <p class="small">Configured scope: 41.8, 42.5, 53.0%.</p>
+    </div>
+    <div>
+      <div class="card frag"><h3>Seed S2 · access check always passes</h3><p>Caught in every lane: 5, 6 and 7 failing tests.</p></div>
+      <div class="card frag" style="margin-top:12px"><h3>Seed S1 · owner check removed</h3><p>Applies only to lane C, which caught it with one test: <em>"rejects a cross-owner scheduling attempt without revealing the request."</em> Written before the seed, because the method asks for a test per criterion first.</p></div>
+      <div class="card frag" style="margin-top:12px"><h3>What no suite tested for</h3><p>Whether anything was stored. Green on all three.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 27 findings -->
+<section class="slide" data-notes="Five findings per lane. All escaped: caught before merge by any gate, in any lane, zero. The hooks and CI caught nothing because every builder complied with them. Their value was comparability. Provenance: the gate did its job by surfacing a disagreement in the model name.">
+  <div class="eyebrow">RQ3 · trial two · findings, provenance, time</div>
+  <h2>Five findings each. Caught before merge: none.</h2>
+  <div class="cols c3">
+    <div class="card frag"><h3>Lane A</h3><p class="small">1 high (public page) · 2 medium (nothing stored; match in the browser only) · 2 low</p></div>
+    <div class="card frag"><h3>Lane B</h3><p class="small">2 medium (the same two) · 3 low (including a cited screenshot missing)</p></div>
+    <div class="card frag"><h3>Lane C</h3><p class="small">5 low, all record gaps and test coverage</p></div>
+  </div>
+  <dl class="kv frag" style="margin-top:22px">
+    <dt>Counted for H1</dt><dd>Four per lane under the decision-5 marking, all escaped.</dd>
+    <dt>Provenance</dt><dd>Every lane carried a Co-authored-by trailer and passed AI Declaration and AI Attribution. Lane A's record and lane C's PR declaration name GPT-5 against the lane rule of GPT-5.6 Sol. The gate surfaced it; that is its function.</dd>
+    <dt>Builder time</dt><dd>9 min 13 s (A) · 62 min (B) · 57 min plus 32 min setup logged apart (C). Builders' own clocks.</dd>
+    <dt>Reviewer time</dt><dd>About 70, 60 and 75 minutes per build from tool timestamps, against a protocol estimate of 210.</dd>
+  </dl>
+</section>
+
+<!-- 28 H1 -->
+<section class="slide" data-notes="Lead with 'not supported'. One measure of three. If Sidney's reconciliation moves trial one to 4, 1, 1 the spread is still 0.30 and the conclusion stands. Then turn the page: what the count missed is the next part.">
+  <div class="eyebrow">The hypothesis</div>
+  <h2>H1 is not supported</h2>
+  <table>
+    <thead><tr><th>Measure</th><th>Trial one (10 criteria)</th><th>Trial two (14 criteria)</th><th style="width:170px">Grew faster than size?</th></tr></thead>
+    <tbody>
+      <tr class="frag"><td>Issues that escaped, on checks both trials ran</td><td>3, 1, 0 · spread 0.30 per criterion</td><td>4, 4, 4 · 0.00</td><td><strong>No</strong></td></tr>
+      <tr class="frag"><td>Feature criteria not met</td><td>1, 0, 0 · 0.10</td><td>2, 2, 0 · 0.14</td><td>Yes</td></tr>
+      <tr class="frag"><td>Active human minutes</td><td>11, 94, 43 · 8.3</td><td>9, 62, 57 · 3.8 (5.7 with C's setup)</td><td><strong>No</strong></td></tr>
+    </tbody>
+  </table>
+  <p class="lead frag" style="margin-top:26px">One measure of three. The registered threshold was two. A reconciled trial one baseline of 4, 1, 1 gives the same spread and the same answer.</p>
+</section>
+
+<!-- 29 -->
+<section class="slide section"><div class="n">5</div><div class="eyebrow">Part five</div><h2>What it means</h2><p class="sub">What the count missed, which holders did the work, and what is weak.</p></section>
+
+<!-- 30 kind -->
+<section class="slide" data-notes="The registered measure counts a missing screenshot and a missing database as one each. On that count the lanes tied. By kind they did not. The gap sits at the two human gates, 6.1 and 7.4, which methods A and B do not have.">
+  <div class="eyebrow">Discussion</div>
+  <h2>The count tied. The kind did not.</h2>
+  <div class="cols c2">
+    <div class="card"><h3>What the measure saw</h3><p>Four escaped issues per lane. A missing screenshot and a missing persistence layer each count one.</p></div>
+    <div class="card brand frag"><h3>What a reader sees</h3><p>Two lanes shipped a feature that met twelve criteria on screen, passed six checks, carried a correct AI declaration, and had no data store. One lane persisted every request, refused every forged call, and had written the ownership test before the fault was seeded.</p></div>
+  </div>
+  <p class="lead frag" style="margin-top:28px">The prediction asked whether the gap would widen. The data answers where the gap sits: at the plan approval (6.1), where a reviewer asks where the data goes, and at the test judgement (7.4), where a reviewer reloads the page. Methods A and B do not have those gates. Method C does, and its builder also wrote the data design the gates then protected.</p>
+</section>
+
+<!-- 31 holders did the work -->
+<section class="slide" data-notes="In order of how often they fired in lane C. None needed a rule change; the lane never opened a client path to feature data. The hooks and CI caught nothing because every builder complied. Their value was that the three records are comparable.">
+  <div class="eyebrow">Discussion</div>
+  <h2>Which holders did the work</h2>
+  <div class="cols c2">
+    <div>
+      <h3>In lane C, by how often they fired</h3>
+      <ol class="pl" style="font-size:17px">
+        <li class="frag">The base's default-deny Firestore rules: every direct access.</li>
+        <li class="frag">The Server Action's re-check of owner, status and match inside a transaction: every forged call.</li>
+        <li class="frag">The zod strict schema: extra fields.</li>
+        <li class="frag">The session check with redirect: signed out.</li>
+      </ol>
+    </div>
+    <div class="card frag">
+      <h3>The hooks and CI</h3>
+      <p>Caught nothing in any lane. Every builder complied with them. What they bought was comparability: three Conventional histories, three declared agents, three fresh-clone runs with the same result, and one disagreement about a model name that would otherwise be invisible.</p>
+      <p class="small">An automated gate that never fires is not evidence it holds. It is evidence that nobody tried the door.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 31b what the gates buy -->
+<section class="slide" data-notes="The 'so what' slide. The client's thesis split: checks hold, context does not. Review time was equal across lanes; its yield was not. Do not claim less review time. Claim where it lands, what moves to machines, and that A and B are unfinished.">
+  <div class="eyebrow">Discussion</div>
+  <h2>What the gates buy</h2>
+  <div class="cols c2">
+    <div class="card"><h3>The client's thesis, tested</h3><p class="small">A stage moves to green with automated checks or more context. Checks held in every lane. Context did not: the plan-first instruction files were honoured by choice in the dry run and removed in lane A without consequence. Green needs a holder; nothing an agent is asked to read counts.</p></div>
+    <div class="card frag"><h3>Review yield, not review time</h3><p class="small">About 70, 60 and 75 reviewer minutes per lane. In A and B the hour bought a defect list headed by a missing data store. In C it confirmed 14 criteria, 18 attacks and a caught seed. Same hour, different purchase.</p></div>
+    <div class="card frag"><h3>Two unfinished features</h3><p class="small">Nine minutes bought a build that forgets everything on reload. The unit that matters is time to a correct feature, and the rework cycle was not measured. Trial one: the cheapest build per criterion let the most through.</p></div>
+    <div class="card frag"><h3>Where review does get lighter</h3><p class="small">The mechanical part moved to machines: format, lint, secrets, commit form, declaration, trailer, typecheck, tests, audit. The human keeps two judgements. And smaller diffs: lane A rebuilt the home page nobody asked for. Not measured per lane; not claimed.</p></div>
+  </div>
+  <p class="lead frag" style="margin-top:22px">The lifecycle does not remove the price of reviewing AI output. It stops the price being paid for a build that fails the brief.</p>
+</section>
+
+<!-- 32 against literature -->
+<section class="slide" data-notes="Consistent with DORA's amplifier thesis, with the test-correctness literature, and with Ben's own interview finding. It does not support the stronger claim that gating reduces defect counts in general; one feature and three builders cannot carry that.">
+  <div class="eyebrow">Discussion</div>
+  <h2>Against what we read</h2>
+  <table>
+    <thead><tr><th style="width:300px">Source</th><th>What it said</th><th>What the trial showed</th></tr></thead>
+    <tbody>
+      <tr class="frag"><td>DORA 2025: "AI amplifies what's already there"</td><td>Adoption correlates with throughput; stability still negative</td><td>The gated method amplified a builder who designed for persistence and ownership. The ungated methods amplified speed: lane A finished in nine minutes.</td></tr>
+      <tr class="frag"><td>Zhang (TOSEM); Schäfer</td><td>Assertions right about half the time; coverage without correctness</td><td>Green suites at 52 to 67% kill rate; two suites that could not detect the absence of a database because they never tested for one.</td></tr>
+      <tr class="frag"><td>Interview 1, 12 Sep</td><td>Passing AI-generated tests does not prove the requirement</td><td>Two builds, fourteen ticks, six green checks, no store.</td></tr>
+      <tr class="frag"><td>Not shown</td><td colspan="2">That gating reduces defect counts in general. One feature, three builders. The result is an observation, as the prediction said it would be.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 33 threats -->
+<section class="slide" data-notes="Say these before he does. The builder-method confound is the big one, and lane C's builder authored the method. The reviewer wrote the protocol; the pre-commitment constrains that and does not remove it.">
+  <div class="eyebrow">Threats to validity</div>
+  <h2>What is weak, in our words first</h2>
+  <div class="cols c3">
+    <div class="card frag"><h3>Internal</h3><p class="small">One builder per method: builder and method cannot be separated. Lane C's builder authored the gated method. The reviewer built none of the three but wrote the map and the protocol; the protocol, the decision-5 marking and the frozen heads were committed before any build was read. Builders prepared their own start states with the PM's agreement; recorded as dated amendments.</p></div>
+    <div class="card frag"><h3>Construct</h3><p class="small">An escaped issue counts as one whatever its severity. The trial one baseline was written from memory. The keyboard criterion was checked in part. The first mutation attempts were invalid for a configuration reason, recorded and rerun.</p></div>
+    <div class="card frag"><h3>External</h3><p class="small">Three builds, one feature, four-hour windows, student plans, no NBN developer interviewed. Stages 1 to 4 and 8.2 to 8.6 are mapped and cited and were never run. Observations, not rates.</p></div>
+  </div>
+  <p class="small frag" style="margin-top:20px">Also open: the six-check gate was proved on the trial repositories, not the shared one; the hourly rate behind every cost figure was never agreed with the client; two repository files overstate enforcement and are listed for correction; two verdicts in the map are "source silent" and say so.</p>
+</section>
+
+<!-- 34 -->
+<section class="slide section"><div class="n">6</div><div class="eyebrow">Part six</div><h2>What a team takes away</h2><p class="sub">Install once. Decide four things every time.</p></section>
+
+<!-- 35 conclusion -->
+<section class="slide" data-notes="The conclusion of the paper. The automated gates made three builds comparable and caught nothing. The gates that catch a missing data store are human ones, and only the gated method schedules them.">
+  <div class="eyebrow">Conclusion</div>
+  <h2>Install once, decide four things every time</h2>
+  <div class="cols c2">
+    <div class="card"><h3>Install once</h3><p class="small">The git hooks, the agent hook, the six CI checks, the pull request template, the ruleset. All files in the repository, except the ruleset, which belongs to the repository and does not follow the code. The manual's section 3 lists each with its path.</p></div>
+    <div class="card brand"><h3>Decide every time</h3>
+      <ol class="pl" style="font-size:16px;color:#fff">
+        <li class="frag">The issue has testable criteria and an out-of-scope list (5.3).</li>
+        <li class="frag">No code before an approved plan (6.1).</li>
+        <li class="frag">Two people who did not write it approve (6.4).</li>
+        <li class="frag">Someone asks whether the tests would fail if the code were wrong, and reloads the page (7.4).</li>
+      </ol>
+    </div>
+  </div>
+  <p class="lead frag" style="margin-top:26px">A traffic light belongs on the task and must name what holds it, or it is a wish.</p>
+</section>
+
+<!-- 36 evidence index -->
+<section class="slide" data-notes="If he wants to open anything, these are the paths. The paper and the manual are in docs/white-paper.">
+  <div class="eyebrow">Where everything is</div>
+  <h2>Evidence index</h2>
+  <table class="tight">
+    <tbody>
+      <tr><td>Research paper; manual for stages 5 to 8; terms</td><td class="mono">docs/white-paper/research-paper.md · 03-manual-stages-5-8.md · terms.md</td></tr>
+      <tr><td>Map, 44 tasks, holders</td><td class="mono">docs/research/lifecycle-task-map.md · docs/reports/module-reconciliation.md §4</td></tr>
+      <tr><td>Practice per stage; 63 citations audited; full reference list</td><td class="mono">docs/research/slice1-spine.md · citation-audit.md · references.md</td></tr>
+      <tr><td>Workshop review; interviews; scope</td><td class="mono">docs/reports/D2-NBN-workshop-review-report.pdf · docs/research/interviews/ · docs/adr/002-scope.md</td></tr>
+      <tr><td>The gates in the base</td><td class="mono">lefthook.yml · .github/hooks/copilot-guard.json · scripts/copilot/pre-tool-use.cjs · .github/workflows/ci.yml at 6af6a5b</td></tr>
+      <tr><td>Criteria, prediction, protocol</td><td class="mono">docs/research/trial-two/acceptance-criteria.md (f43ca98) · predictions.md (48fff18) · attacks-and-test-jobs.md</td></tr>
+      <tr><td>Frozen heads, results, reviewer time; per-lane records and evidence</td><td class="mono">docs/research/trial-two/review/README.md · {ai-only,copy-paste,gated}/review.md · evidence/</td></tr>
+      <tr><td>Proof of concept; trial one</td><td class="mono">docs/research/fault-reporting/ · success-metrics-poc-results.md · white paper ch. 7</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 37 end -->
+<section class="slide title" data-notes="">
+  <div class="mark"></div>
+  <h1 style="font-size:56px">Questions</h1>
+  <p class="sub">Gates that hold. The hypothesis was not supported; the gap sits at the human gates.</p>
+  <div class="by">Team 2 · RMIT Capstone 2026 · <span class="mono">github.com/Peepachuu/nbn-sdlc-demo</span></div>
+</section>
+
+</div></div>
+
+<div id="chrome">
+  <div class="l"><span class="wm">Team 2 · Gates that hold</span><span id="counter"></span></div>
+  <div class="l"><button id="bPrev" aria-label="Previous">‹</button><button id="bNext" aria-label="Next">›</button><button id="bNotes">Notes</button><button id="bOverview">Overview</button><button id="bFull">Full screen</button></div>
+</div>
+<div id="hint">→ next · ← back · N notes · Esc overview · F full screen</div>
+<aside id="notes" aria-live="polite"><div class="k">Notes</div><div id="notesBody"></div></aside>
+<div id="overview" role="dialog" aria-label="Slide overview"><h2>Slides</h2><ol id="ovList"></ol></div>
+
+<script>
+(function () {
+  var mapCounts = [["Ideation and business case",2,2,1],["Requirements and discovery",2,1,2],["Solution design and architecture",2,3,0],["UX design and prototyping",4,2,2],["Development planning",2,2,1],["Development and build",1,2,2],["Testing and QA",1,2,2],["Deployment and iteration",2,2,2]];
+  var frame = document.getElementById("frame");
+  function el(html) { var t = document.createElement("template"); t.innerHTML = html.trim(); return t.content.firstChild; }
+  var mg = document.getElementById("mapgrid");
+  mapCounts.forEach(function (m, i) {
+    var t = m[1] + m[2] + m[3];
+    mg.appendChild(el('<div class="card frag" style="padding:14px 16px"><div class="small" style="margin-bottom:2px">Stage ' + (i + 1) + '</div><h3 style="font-size:16px;min-height:44px">' + m[0] + '</h3>' +
+      '<div style="display:flex;height:10px;border-radius:3px;overflow:hidden;margin:6px 0 8px"><span style="flex:' + m[1] + ';background:var(--red)"></span><span style="flex:' + m[2] + ';background:#DA3B01"></span><span style="flex:' + m[3] + ';background:var(--green)"></span></div>' +
+      '<div class="small">' + t + ' tasks · ' + m[1] + ' red · ' + m[2] + ' amber · ' + m[3] + ' green</div></div>'));
+  });
+
+  var slides = Array.prototype.slice.call(document.querySelectorAll(".slide"));
+  var i = 0, notesOpen = false, ovOpen = false;
+  var progress = document.getElementById("progress"), counter = document.getElementById("counter"), notes = document.getElementById("notes"), notesBody = document.getElementById("notesBody"), overview = document.getElementById("overview"), ovList = document.getElementById("ovList");
+  function frags(s) { return Array.prototype.slice.call(s.querySelectorAll(".frag")); }
+  function show(n, dir, allFrags) {
+    n = Math.max(0, Math.min(slides.length - 1, n));
+    slides.forEach(function (s, k) { s.classList.remove("active", "back"); if (k === n) { if (dir < 0) s.classList.add("back"); s.classList.add("active"); } });
+    i = n;
+    frags(slides[i]).forEach(function (f) { f.classList.toggle("on", !!allFrags); });
+    progress.style.width = ((i) / (slides.length - 1) * 100) + "%";
+    counter.textContent = (i + 1) + " / " + slides.length;
+    notesBody.innerHTML = "<p>" + (slides[i].getAttribute("data-notes") || "") + "</p>";
+    location.hash = "#" + (i + 1);
+    renderOv();
+  }
+  function next() { var f = frags(slides[i]).filter(function (x) { return !x.classList.contains("on"); }); if (f.length) { f[0].classList.add("on"); return; } if (i < slides.length - 1) show(i + 1, 1, false); }
+  function prev() { var f = frags(slides[i]).filter(function (x) { return x.classList.contains("on"); }); if (f.length) { f[f.length - 1].classList.remove("on"); return; } if (i > 0) show(i - 1, -1, true); }
+  function fit() { var sx = window.innerWidth / 1280, sy = (window.innerHeight - (notesOpen ? window.innerHeight * .34 : 0)) / 720; frame.style.transform = "scale(" + Math.min(sx, sy) * 0.98 + ")"; }
+  function renderOv() {
+    if (!ovList.children.length) slides.forEach(function (s, k) {
+      var t = s.querySelector("h1,h2"); var e = s.querySelector(".eyebrow");
+      var b = el('<li><button><small>' + (k + 1) + (e ? " · " + e.textContent : "") + '</small>' + (t ? t.textContent : "") + '</button></li>');
+      b.querySelector("button").addEventListener("click", function () { toggleOv(false); show(k, 1, false); });
+      ovList.appendChild(b);
+    });
+    Array.prototype.forEach.call(ovList.querySelectorAll("button"), function (b, k) { b.classList.toggle("cur", k === i); });
+  }
+  function toggleNotes() { notesOpen = !notesOpen; notes.classList.toggle("open", notesOpen); fit(); }
+  function toggleOv(force) { ovOpen = typeof force === "boolean" ? force : !ovOpen; overview.classList.toggle("open", ovOpen); if (ovOpen) { renderOv(); var c = ovList.querySelector(".cur"); if (c) c.focus(); } }
+  function full() { if (document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen && document.documentElement.requestFullscreen(); }
+  document.addEventListener("keydown", function (e) {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    if (ovOpen && e.key !== "Escape") return;
+    switch (e.key) {
+      case "ArrowRight": case "PageDown": case " ": case "Enter": e.preventDefault(); next(); break;
+      case "ArrowLeft": case "PageUp": case "Backspace": e.preventDefault(); prev(); break;
+      case "Home": show(0, -1, false); break;
+      case "End": show(slides.length - 1, 1, true); break;
+      case "n": case "N": toggleNotes(); break;
+      case "f": case "F": full(); break;
+      case "Escape": toggleOv(); break;
+    }
+  });
+  document.getElementById("bPrev").addEventListener("click", prev);
+  document.getElementById("bNext").addEventListener("click", next);
+  document.getElementById("bNotes").addEventListener("click", toggleNotes);
+  document.getElementById("bOverview").addEventListener("click", function () { toggleOv(); });
+  document.getElementById("bFull").addEventListener("click", full);
+  var tx = null;
+  document.addEventListener("touchstart", function (e) { tx = e.touches[0].clientX; }, { passive: true });
+  document.addEventListener("touchend", function (e) { if (tx === null) return; var dx = e.changedTouches[0].clientX - tx; if (Math.abs(dx) > 50) { dx < 0 ? next() : prev(); } tx = null; }, { passive: true });
+  window.addEventListener("resize", fit);
+  window.addEventListener("hashchange", function () { var h = parseInt((location.hash || "#1").slice(1), 10); if (!isNaN(h) && h - 1 !== i) show(h - 1, h - 1 > i ? 1 : -1, false); });
+  fit();
+  var start = parseInt((location.hash || "#1").slice(1), 10); show(isNaN(start) ? 0 : start - 1, 1, false);
+  setTimeout(function () { var h = document.getElementById("hint"); if (h) { h.style.transition = "opacity 1s"; h.style.opacity = "0"; } }, 8000);
+})();
+</script>
+</body>
+</html>
