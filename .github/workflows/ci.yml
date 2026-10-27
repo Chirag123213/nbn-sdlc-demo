@@ -13,12 +13,27 @@ concurrency:
 
 jobs:
 
+  lifecycle-guard-contract:
+    name: Lifecycle Guard Regression Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Try to bypass lifecycle guards
+        run: node --test scripts/check-commit-msg.test.cjs scripts/lifecycle-guards.test.cjs
+
   ai-declaration:
     name: AI Declaration
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v4
+
       - name: Validate AI use declaration
         env:
           PR_BODY: ${{github.event.pull_request.body}}
@@ -46,6 +61,21 @@ jobs:
 
           echo "AI use declaration is valid."
 
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies for the required merge gate
+        run: pnpm install --frozen-lockfile
+
+      - name: High severity dependency audit (required merge check)
+        run: pnpm audit --audit-level=high
+
 
   lint-typecheck:
     name: Lint & Typecheck
@@ -70,6 +100,9 @@ jobs:
 
       - name: Lint
         run: pnpm run lint
+
+      - name: Check formatting
+        run: pnpm run format:check
 
       - name: Typecheck
         run: pnpm run typecheck
@@ -142,7 +175,4 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Dependency vulnerability audit
-        # Temporary exception for GHSA-vfj7-8cjw-p6xm.
-        # This is only present through eslint-config-next dev tooling,
-        # and the advisory references braces >=3.0.4, which is not published.
-        run: pnpm audit --audit-level=high --ignore=GHSA-vfj7-8cjw-p6xm
+        run: pnpm audit --audit-level=high

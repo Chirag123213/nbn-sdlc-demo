@@ -11,7 +11,9 @@ type FaultReportWithReference = FaultReport & { reference: string }
 
 const REPORT_NOT_FOUND_ERROR = 'Fault report not found'
 
-export async function createFaultReport(input: unknown): Promise<ActionResult<{ reference: string }>> {
+export async function createFaultReport(
+  input: unknown
+): Promise<ActionResult<{ reference: string }>> {
   const session = await requireAuth()
   const parsed = createFaultReportSchema.safeParse(input)
 
@@ -57,7 +59,9 @@ export async function listFaultReports(): Promise<ActionResult<FaultReportWithRe
   }
 }
 
-export async function getFaultReport(reference: string): Promise<ActionResult<FaultReportWithReference>> {
+export async function getFaultReport(
+  reference: string
+): Promise<ActionResult<FaultReportWithReference>> {
   const session = await requireAuth()
 
   try {

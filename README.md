@@ -114,8 +114,9 @@ Restart the dev server after changing `.env` — `NEXT_PUBLIC_*` variables are b
 | `'next' is not recognized` / `Command "next" not found` | Run `pnpm install` from the **repo root**. If it persists, delete all `node_modules` folders and reinstall. |
 | Ignored build scripts warning from pnpm | Build approvals live in `pnpm-workspace.yaml` (`allowBuilds`) — re-run `pnpm install`. |
 | "Missing or insufficient permissions" | Firestore security rules don't allow that access — add rules in `firebase/firestore.rules`, then deploy them (`npx firebase-tools deploy --only firestore:rules`). |
-| Commit rejected | Message must be Conventional Commits (`feat: …`, `fix: …`). |
-| Your PR shows a red **Security Scan** check | The required Security Scan job has failed. Open the GitHub Actions job logs to determine whether Gitleaks detected a possible secret or the dependency vulnerability audit failed. Resolve the finding and rerun the checks before merging. See [Security](docs/SECURITY.md). |
+| Commit rejected | Message must use Conventional Commits and include exactly one `AI-Assisted: yes` or `AI-Assisted: no` trailer. AI-assisted commits also need an AI `Co-authored-by` trailer; a commit declaring no AI assistance must not include an AI co-author. |
+| Your PR shows a red **AI Declaration** check | Check that the PR body selects exactly one AI-use declaration and inspect the failed job output. This branch also runs `pnpm audit --audit-level=high` inside that check, so dependency advisories can make it fail. |
+| Your PR shows a red **Security Scan** check | Open the GitHub Actions job logs to determine whether Gitleaks detected a possible secret or the dependency vulnerability audit failed. Resolve the finding and rerun the checks before merging. See [Security](docs/SECURITY.md). |
 More beginner-oriented pitfalls: [docs/GUIDE.md § Common pitfalls](docs/GUIDE.md#6-common-pitfalls).
 
 ## Project Structure
@@ -173,28 +174,26 @@ These automated safeguards complement, rather than replace, human security revie
 
 ### Dependency vulnerability management
 
-The repository runs dependency vulnerability auditing as part of its required `Security Scan` GitHub Actions job.
+The `Security Scan` GitHub Actions job runs secret scanning and dependency vulnerability auditing. The lifecycle-safety branch also runs the dependency audit inside its required `AI Declaration` PR check. Inspect the logs of the check that failed to identify the cause.
 
-Earlier security reviews identified high-severity findings involving `js-yaml` (CVE-2026-59870) and `nanoid`. Dependency overrides for these packages have since been added to `pnpm-workspace.yaml`, so they should not be presented as outstanding manual fixes.
+The dependency audit uses `pnpm audit --audit-level=high`. The `Security Scan` command inherited from `main` also passes `--ignore=GHSA-vfj7-8cjw-p6xm`; the same exception is recorded as `auditConfig.ignoreGhsas` in `pnpm-workspace.yaml`.
 
-The configured overrides include:
+The workspace configuration already includes overrides for `js-yaml` and `nanoid`:
 
 ```yaml
 js-yaml: 4.3.2
 nanoid: '^3.3.18'
 ```
 
-The CI dependency audit uses:
+These are configured overrides, rather than outstanding manual setup steps. Determine the current vulnerability status from the latest GitHub Actions audit results.
 
-```bash
-pnpm audit --audit-level=high --ignore=GHSA-vfj7-8cjw-p6xm
-```
+### Temporary dependency audit exception
 
-The ignored advisory is a documented temporary exception associated with development tooling. Other findings that cause the configured audit to fail will also fail the required `Security Scan` job.
+The documented exception is `GHSA-vfj7-8cjw-p6xm`, associated with `braces@3.0.3` through `eslint-config-next` development tooling. The exception is configured in `pnpm-workspace.yaml`; it does not suppress other advisories.
 
-The current vulnerability status should be determined from the latest GitHub Actions audit results rather than the historical findings recorded in this README.
+Recheck the upstream advisory and published package versions before changing this exception. Remove it when the affected dependency can be updated to a patched release, then rerun the audit.
 
-For dependency changes, developers should review the reported vulnerabilities, evaluate safe fixes, update dependency configuration where appropriate and rerun the required checks before merging.
+For dependency changes, review the reported findings, update the dependency configuration where appropriate and rerun the required checks before merging.
 
 ## Git Workflow
 

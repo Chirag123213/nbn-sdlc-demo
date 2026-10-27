@@ -6,7 +6,7 @@ pre-commit:
     format:
       glob: '**/*.{ts,tsx,json,md,css}'
       exclude: '(node_modules|\.next|\.git)'
-      run: npx --yes prettier --write {staged_files} || true
+      run: ./node_modules/.bin/prettier --write {staged_files}
 
     lint-frontend:
       root: 'frontend/'
