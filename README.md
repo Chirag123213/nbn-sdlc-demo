@@ -64,7 +64,7 @@ The system diagrams are in [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 ### 1. Bootstrap
 
 ```bash
-git clone https://github.com/Peepachuu/nbn-sdlc-demo
+git clone https://github.com/Chirag123213/nbn-sdlc-demo
 cd nbn-sdlc-demo
 pnpm run bootstrap
 ```
@@ -114,9 +114,9 @@ Restart the dev server after changing `.env` — `NEXT_PUBLIC_*` variables are b
 | `'next' is not recognized` / `Command "next" not found` | Run `pnpm install` from the **repo root**. If it persists, delete all `node_modules` folders and reinstall. |
 | Ignored build scripts warning from pnpm | Build approvals live in `pnpm-workspace.yaml` (`allowBuilds`) — re-run `pnpm install`. |
 | "Missing or insufficient permissions" | Firestore security rules don't allow that access — add rules in `firebase/firestore.rules`, then deploy them (`npx firebase-tools deploy --only firestore:rules`). |
-| Commit rejected | Message must use Conventional Commits and declare `AI-Assisted: yes` or `AI-Assisted: no`; AI-assisted commits also need an AI `Co-authored-by` trailer. |
-| Your PR shows a red **AI Declaration** check | The required PR check also runs `pnpm audit --audit-level=high`; inspect the job output for dependency advisories. |
-
+| Commit rejected | Message must use Conventional Commits and include exactly one `AI-Assisted: yes` or `AI-Assisted: no` trailer. AI-assisted commits also need an AI `Co-authored-by` trailer; a commit declaring no AI assistance must not include an AI co-author. |
+| Your PR shows a red **AI Declaration** check | Check that the PR body selects exactly one AI-use declaration and inspect the failed job output. This branch also runs `pnpm audit --audit-level=high` inside that check, so dependency advisories can make it fail. |
+| Your PR shows a red **Security Scan** check | Open the GitHub Actions job logs to determine whether Gitleaks detected a possible secret or the dependency vulnerability audit failed. Resolve the finding and rerun the checks before merging. See [Security](docs/SECURITY.md). |
 More beginner-oriented pitfalls: [docs/GUIDE.md § Common pitfalls](docs/GUIDE.md#6-common-pitfalls).
 
 ## Project Structure
@@ -166,17 +166,34 @@ pnpm run validate         # Check for unreplaced template placeholders
 
 ## Security
 
-Security is enforced in independent layers — Claude Code guard hooks, HTTP hardening (helmet/CORS/rate limits), token + session-cookie auth, Zod input validation, default-deny Firestore rules, and CI scanning (`pnpm audit`). See [docs/SECURITY.md](docs/SECURITY.md).
+Security is enforced through multiple layers, including Claude Code security hooks, HTTP hardening, Firebase authentication, Zod input validation, Firestore security rules and GitHub Actions security scanning.
 
-### Dependency audit exception
+The active `main` ruleset requires the `Security Scan` job to pass before merging. This job runs Gitleaks secret scanning and dependency vulnerability auditing. It forms one of the five required CI checks, alongside AI Declaration, Lint & Typecheck, Frontend Tests and Backend Unit Tests.
 
-CI runs `pnpm audit --audit-level=high` inside the required **AI Declaration** PR check. The current lockfile updates patched Next.js, `proxy-addr`, `sharp`, `source-map-js`, and `@fastify/busboy` to fixed versions. One dev-only advisory is explicitly ignored because no patched `braces` 3.x release is published yet:
+These automated safeguards complement, rather than replace, human security review. See [Security](docs/SECURITY.md) and [CI/CD](docs/CI-CD.md) for details.
 
-| Package | Issue | Pulled in by |
-|---------|-------|--------------|
-| `braces@3.0.3` | GHSA-vfj7-8cjw-p6xm; advisory lists `3.0.4` as patched, but the registry currently publishes no `3.0.4` | `eslint-config-next` → `fast-glob` (development lint tooling) |
+### Dependency vulnerability management
 
-The exception is listed as `auditConfig.ignoreGhsas` in `pnpm-workspace.yaml`. Recheck the registry and remove it once a patched `braces` release is available.
+The `Security Scan` GitHub Actions job runs secret scanning and dependency vulnerability auditing. The lifecycle-safety branch also runs the dependency audit inside its required `AI Declaration` PR check. Inspect the logs of the check that failed to identify the cause.
+
+The dependency audit uses `pnpm audit --audit-level=high`. The `Security Scan` command inherited from `main` also passes `--ignore=GHSA-vfj7-8cjw-p6xm`; the same exception is recorded as `auditConfig.ignoreGhsas` in `pnpm-workspace.yaml`.
+
+The workspace configuration already includes overrides for `js-yaml` and `nanoid`:
+
+```yaml
+js-yaml: 4.3.2
+nanoid: '^3.3.18'
+```
+
+These are configured overrides, rather than outstanding manual setup steps. Determine the current vulnerability status from the latest GitHub Actions audit results.
+
+### Temporary dependency audit exception
+
+The documented exception is `GHSA-vfj7-8cjw-p6xm`, associated with `braces@3.0.3` through `eslint-config-next` development tooling. The exception is configured in `pnpm-workspace.yaml`; it does not suppress other advisories.
+
+Recheck the upstream advisory and published package versions before changing this exception. Remove it when the affected dependency can be updated to a patched release, then rerun the audit.
+
+For dependency changes, review the reported findings, update the dependency configuration where appropriate and rerun the required checks before merging.
 
 ## Git Workflow
 
@@ -189,7 +206,21 @@ The exception is listed as `auditConfig.ignoreGhsas` in `pnpm-workspace.yaml`. R
 
 Use the Claude Code skills `/git-feature`, `/git-hotfix`, `/git-release`. Details: [docs/GIT-WORKFLOW.md](docs/GIT-WORKFLOW.md).
 
-> **Enforcement gap, checked 3 September 2026.** The table above is the agreed process, not a rule the server applies. The repository has one ruleset, named "main", and it is active, but its branch target list is empty and it carries no required status checks, so nothing currently stops a direct push to `main` or a merge on a failing CI run. The live gates are the lefthook commit-msg check and the four CI jobs as advisory status. Fixing the ruleset needs repository admin. Full finding and evidence: [research slice 2, "Gaps recorded", item 3](docs/research/slice2-build-modules.md#gaps-recorded).
+**Branch protection and CI enforcement — verified 22 October 2026.** The repository's active GitHub `main` ruleset protects the default branch and requires changes to enter through pull requests.
+
+All five GitHub Actions checks are required before merging:
+
+- `AI Declaration`
+- `Lint & Typecheck`
+- `Frontend Tests`
+- `Backend Unit Tests`
+- `Security Scan`
+
+The ruleset also requires **two approving reviews**, permits **squash merging only**, and prevents force pushes and deletion of `main`.
+
+**Gate and holder: CI check (required), Platform rule and Human.** GitHub enforces the configured CI and merge restrictions, while human reviewers remain accountable for evaluating the implementation and its verification evidence.
+
+**Historical note:** Research conducted on 3 September 2026 identified an enforcement gap when the ruleset lacked the necessary branch targets and required CI checks. That historical finding is preserved in [research slice 2, "Gaps recorded", item 3](docs/research/slice2-build-modules.md#gaps-recorded). The active ruleset has since been corrected, so the original finding no longer describes the current enforcement state.
 
 ## Claude Code Harness
 
