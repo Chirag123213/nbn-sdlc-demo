@@ -1,0 +1,30 @@
+Seed S2, lane A, 20 Oct 2026. Fresh clone at f1611e0. Change: in src/features/technician-dispatch/matching.ts, accessCompatible forced to true (every technician passes the access check). Then: npx vitest run
+
+diff --git a/frontend/src/features/technician-dispatch/matching.ts b/frontend/src/features/technician-dispatch/matching.ts
+index 402dad4..b2620d6 100644
+--- a/frontend/src/features/technician-dispatch/matching.ts
++++ b/frontend/src/features/technician-dispatch/matching.ts
+@@ -30,9 +30,7 @@ export function findTechnicianMatches(
+       requirement.satisfiedBy.find((option) =>
+         option.every((equipment) => technician.equipment.includes(equipment))
+       ) ?? []
+-    const accessCompatible = requirement.satisfiedBy.some((option) =>
+-      option.every((equipment) => technician.equipment.includes(equipment))
+-    )
++    const accessCompatible = true // SEED S2: access check always passes
+ 
+     return {
+       technician,
+
+ ❯ tests/unit/features/technician-dispatch/TechnicianDispatchFlow.test.tsx (5 tests | 2 failed) 1627ms
+     × shows text and icons for match requirements and compatibility results 330ms
+     × does not offer an incompatible pit-job selection 280ms
+ ❯ tests/unit/features/technician-dispatch/matching.test.ts (6 tests | 3 failed) 20ms
+     × rejects a second-storey technician without a ladder or elevated work platform 8ms
+     × rejects a pit job without pit-access capability 1ms
+     × does not invent a valid combination when none satisfies the whole job 5ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+ ❯ Object.getElementError ../node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ Object.getElementError ../node_modules/@testing-library/dom/dist/config.js:37:19
+ Test Files  2 failed | 1 passed (3)
+      Tests  5 failed | 12 passed (17)

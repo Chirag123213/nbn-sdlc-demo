@@ -1,0 +1,5 @@
+TJ01 persistence check, lane A, 20 Oct 2026 10:21 AEDT, preview https://nbn-run2-ai-only-git-featur-2d4761-ahmedfrahuman-9613s-projects.vercel.app/dispatch
+- J1 raised (F1, R0), T1 selected, visit scheduled 2026-10-22 8:00-12:00, reference DSP-T1-20261022 shown.
+- Network log for the whole flow: only static assets and DELETE /api/auth/session. No POST, no Server Action call, no Firestore traffic.
+- Reload of /dispatch: Step 1 empty form. No list of requests anywhere in the app. The request and the dispatch are gone.
+- /dispatch loaded with no sign-in and no redirect (AT12).

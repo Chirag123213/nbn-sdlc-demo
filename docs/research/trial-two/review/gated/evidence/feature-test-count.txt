@@ -1,0 +1,4 @@
+Base 6af6a5b: backend 5 tests, frontend 6 tests (git grep of it/test blocks).
+Final commit 40c65f5: backend 5, frontend 42 (pnpm run test:all, 18 Oct 2026 23:12).
+Feature tests = frontend total minus 6 base = 36.
+Files: `DispatchFlow.test.tsx`, `actions.test.ts`, `matching.test.ts`, `validation.test.ts` (36 tests by Vitest count; 25 `it` blocks, the rest from `it.each`)

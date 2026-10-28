@@ -1,0 +1,43 @@
+===== ahmed  9ahmedfr/nbn-run2-ai-only#10
+-- merge-base with 6af6a5b: 6af6a5b  (base commit 6af6a5b in history: yes)
+-- co-authored-by trailers:
+5af6de8 OpenAI Codex (GPT-5) <noreply@openai.com>
+2e57433 OpenAI Codex <noreply@openai.com>
+-- commits:
+f1611e0 2026-10-18T00:04:48+11:00 docs: record technician dispatch preview
+c1e9bf8 2026-10-18T00:03:13+11:00 test: record technician dispatch evidence
+5af6de8 2026-10-18T00:01:04+11:00 feat: add technician dispatch flow
+ccfb2ca 2026-10-17T23:09:35+11:00 Merge pull request #8 from 9ahmedfr/codex/lane-a-setup
+0ddfce0 2026-10-17T23:09:19+11:00 chore: validate updated setup PR declaration
+2e57433 2026-10-17T23:08:45+11:00 chore: record AI assistance for trial setup
+a9cf63b 2026-10-17T23:07:50+11:00 chore: configure Ahmed trial Firebase project
+c938643 2026-10-17T20:47:45+11:00 chore: prepare lane A trial baseline
+-- checks on head:
+AI Attribution	pass	5s	https://github.com/9ahmedfr/nbn-run2-ai-only/actions/runs/39035059287/job/117403174469	
+AI Declaration	pass	3s	https://github.com/9ahmedfr/nbn-run2-ai-only/actions/runs/39035059287/job/117403174324	
+Backend Unit Tests	pass	19s	https://github.com/9ahmedfr/nbn-run2-ai-only/actions/runs/39035059287/job/117403174326	
+Frontend Tests	pass	17s	https://github.com/9ahmedfr/nbn-run2-ai-only/actions/runs/39035059287/job/117403174486	
+GitGuardian Security Checks	pass	0	https://dashboard.gitguardian.com	
+Lint & Typecheck	pass	25s	https://github.com/9ahmedfr/nbn-run2-ai-only/actions/runs/39035059287/job/117403174304	
+Security Scan	pass	15s	https://github.com/9ahmedfr/nbn-run2-ai-only/actions/runs/39035059287/job/117403174180	
+Vercel	pass	0	https://vercel.com/ahmedfrahuman-9613s-projects/nbn-run2-ai-only/EUmb41PaeUGFrn2UxpvRakCBoFY7	Deployment has completed
+Vercel Preview Comments	pass	0	https://vercel.com/github	
+-- AC checklist lines in PR body:
+## Preview
+- Vercel preview: [Open the technician-dispatch flow](https://nbn-run2-ai-only-git-featur-2d4761-ahmedfrahuman-9613s-projects.vercel.app/dispatch) (Vercel project access controls apply).
+- [x] T2-AC01 — Pass — [evidence](https://github.com/9ahmedfr/nbn-run2-ai-only/blob/feature/technician-dispatch/docs/research/technician-dispatch/evidence/T2-AC01.png)
+- [x] T2-AC02 — Pass — [evidence](https://github.com/9ahmedfr/nbn-run2-ai-only/blob/feature/technician-dispatch/docs/research/technician-dispatch/evidence/T2-AC02.png)
+- [x] T2-AC03 — Pass — [evidence](https://github.com/9ahmedfr/nbn-run2-ai-only/blob/feature/technician-dispatch/docs/research/technician-dispatch/evidence/T2-AC03.png)
+- [x] T2-AC04 — Pass — [evidence](https://github.com/9ahmedfr/nbn-run2-ai-only/blob/feature/technician-dispatch/docs/research/technician-dispatch/evidence/T2-AC04.png)
+- [x] T2-AC05 — Pass — [evidence](https://github.com/9ahmedfr/nbn-run2-ai-only/blob/feature/technician-dispatch/docs/research/technician-dispatch/evidence/T2-AC05.png)
+- [x] T2-AC06 — Pass — [evidence](https://github.com/9ahmedfr/nbn-run2-ai-only/blob/feature/technician-dispatch/docs/research/technician-dispatch/evidence/T2-AC06.png)
+- [x] T2-AC07 — Pass — [evidence](https://github.com/9ahmedfr/nbn-run2-ai-only/blob/feature/technician-dispatch/docs/research/technician-dispatch/evidence/T2-AC07.png)
+- [x] T2-AC08 — Pass — [evidence](https://github.com/9ahmedfr/nbn-run2-ai-only/blob/feature/technician-dispatch/docs/research/technician-dispatch/evidence/T2-AC08.png)
+- [x] T2-AC09 — Pass — [evidence](https://github.com/9ahmedfr/nbn-run2-ai-only/blob/feature/technician-dispatch/docs/research/technician-dispatch/evidence/T2-AC09.png)
+- [x] T2-AC10 — Pass — [evidence](https://github.com/9ahmedfr/nbn-run2-ai-only/blob/feature/technician-dispatch/docs/research/technician-dispatch/evidence/T2-AC10.png)
+- [x] T2-AC11 — Pass — [evidence](https://github.com/9ahmedfr/nbn-run2-ai-only/blob/feature/technician-dispatch/docs/research/technician-dispatch/evidence/T2-AC11.png)
+- [x] T2-AC12 — Pass — [evidence](https://github.com/9ahmedfr/nbn-run2-ai-only/blob/feature/technician-dispatch/docs/research/technician-dispatch/evidence/T2-AC12.png)
+- [x] T2-AC13 — Pass — [evidence](https://github.com/9ahmedfr/nbn-run2-ai-only/blob/feature/technician-dispatch/docs/research/technician-dispatch/evidence/T2-AC13.png)
+- [x] T2-AC14 — Pass — [evidence](https://github.com/9ahmedfr/nbn-run2-ai-only/blob/feature/technician-dispatch/docs/research/technician-dispatch/evidence/T2-AC14.png)
+- [ ] No AI-assisted tools were used to create this change.
+- [x] AI-assisted tools were used to create this change.

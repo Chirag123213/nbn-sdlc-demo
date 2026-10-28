@@ -1,0 +1,41 @@
+===== chirag  Chirag123213/nbn-run2-copy-paste-1#11
+-- merge-base with 6af6a5b: 6af6a5b  (base commit 6af6a5b in history: yes)
+-- co-authored-by trailers:
+0108492 ChatGPT GPT-5.6 Sol <noreply@openai.com>
+-- commits:
+ed173dc 2026-10-18T11:36:58+11:00 docs: add token usage and trial two run log
+6a756c4 2026-10-18T01:15:25+11:00 docs: add model-setting.png
+0108492 2026-10-18T00:57:27+11:00 feat: add technician dispatch flow
+8aa27a3 2026-10-17T19:04:29+11:00 chore: trigger Vercel preview
+0f5bf42 2026-10-17T18:53:24+11:00 refactor: add firebase and technicians.json file, along with deleting irrelevant files to this method B.
+-- checks on head:
+AI Attribution	pass	6s	https://github.com/Chirag123213/nbn-run2-copy-paste-1/actions/runs/39083426039/job/117544930500	
+AI Declaration	pass	3s	https://github.com/Chirag123213/nbn-run2-copy-paste-1/actions/runs/39083426039/job/117544930302	
+Backend Unit Tests	pass	19s	https://github.com/Chirag123213/nbn-run2-copy-paste-1/actions/runs/39083426039/job/117544930733	
+Frontend Tests	pass	16s	https://github.com/Chirag123213/nbn-run2-copy-paste-1/actions/runs/39083426039/job/117544930465	
+Lint & Typecheck	pass	26s	https://github.com/Chirag123213/nbn-run2-copy-paste-1/actions/runs/39083426039/job/117544930472	
+Security Scan	pass	20s	https://github.com/Chirag123213/nbn-run2-copy-paste-1/actions/runs/39083426039/job/117544930496	
+Vercel	pass	0	https://vercel.com/chirag123213/nbn-run2-copy-paste/H8k4Qh9SrQybJRN8jggej2DkiTCg	Deployment has completed
+Vercel Preview Comments	pass	0	https://vercel.com/github	
+hook-contract	pass	7s	https://github.com/Chirag123213/nbn-run2-copy-paste-1/actions/runs/39083426017/job/117544930266	
+mutation	pass	36s	https://github.com/Chirag123213/nbn-run2-copy-paste-1/actions/runs/39083426017/job/117544930105	
+-- AC checklist lines in PR body:
+## Preview
+Vercel preview: https://nbn-run2-copy-paste-rkxdmer7p-chirag123213.vercel.app
+- [x] T2-AC01 — Create a dispatch request — evidence: `docs/research/technician-dispatch/evidence/T2-AC01.png`
+- [x] T2-AC02 — Record the fault — evidence: `docs/research/technician-dispatch/evidence/T2-AC02.png`
+- [x] T2-AC03 — Record access and equipment needs — evidence: `docs/research/technician-dispatch/evidence/T2-AC03.png`
+- [x] T2-AC04 — Match the technician to the fault — evidence: `docs/research/technician-dispatch/evidence/T2-AC04.png`
+- [x] T2-AC05 — Match the equipment to the job — evidence: `docs/research/technician-dispatch/evidence/T2-AC05.png`
+- [x] T2-AC06 — Reject an invalid second-storey match — evidence: `docs/research/technician-dispatch/evidence/T2-AC06.png`
+- [x] T2-AC07 — Accept a compatible second-storey match — evidence: `docs/research/technician-dispatch/evidence/T2-AC07.png`
+- [x] T2-AC08 — Reject an invalid pit-job match — evidence: `docs/research/technician-dispatch/evidence/T2-AC08.png`
+- [x] T2-AC09 — Do not invent a compatible match — evidence: `docs/research/technician-dispatch/evidence/T2-AC09.png`
+- [x] T2-AC10 — Schedule a valid dispatch — evidence: `docs/research/technician-dispatch/evidence/T2-AC10.png`
+- [x] T2-AC11 — Record the dispatch result — evidence: `docs/research/technician-dispatch/evidence/T2-AC11.png`
+- [x] T2-AC12 — Show equipment requirements accessibly — evidence: `docs/research/technician-dispatch/evidence/T2-AC12.png`
+- [x] T2-AC13 — Keyboard access — evidence: `docs/research/technician-dispatch/evidence/T2-AC13.png`
+- [x] T2-AC14 — No colour-only information — evidence: `docs/research/technician-dispatch/evidence/T2-AC14.png`
+- [ ] No AI-assisted tools were used to create this change.
+- [x] AI-assisted tools were used to create this change.
+For AI-assisted changes, record the information available to the reviewer.

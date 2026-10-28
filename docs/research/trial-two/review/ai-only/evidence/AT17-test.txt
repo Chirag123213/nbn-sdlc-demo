@@ -1,0 +1,39 @@
+
+> garage-boilerplate@0.1.0 test:all C:\Users\zac\AppData\Local\Temp\claude\C--Users-zac-Documents-projects-nbn-sdlc-demo\54b9f3d5-93b3-4ddf-bc37-7fd149d033e2\scratchpad\review\ahmed
+> pnpm run test && pnpm run test:component
+
+
+> garage-boilerplate@0.1.0 test C:\Users\zac\AppData\Local\Temp\claude\C--Users-zac-Documents-projects-nbn-sdlc-demo\54b9f3d5-93b3-4ddf-bc37-7fd149d033e2\scratchpad\review\ahmed
+> pnpm --filter backend test
+
+
+> backend@0.1.0 test C:\Users\zac\AppData\Local\Temp\claude\C--Users-zac-Documents-projects-nbn-sdlc-demo\54b9f3d5-93b3-4ddf-bc37-7fd149d033e2\scratchpad\review\ahmed\backend
+> vitest run tests/unit
+
+
+ RUN  v4.1.11 C:/Users/zac/AppData/Local/Temp/claude/C--Users-zac-Documents-projects-nbn-sdlc-demo/54b9f3d5-93b3-4ddf-bc37-7fd149d033e2/scratchpad/review/ahmed/backend
+
+
+ Test Files  2 passed (2)
+      Tests  5 passed (5)
+   Start at  23:11:38
+   Duration  2.99s (transform 129ms, setup 58ms, import 2.15s, tests 34ms, environment 0ms)
+
+
+> garage-boilerplate@0.1.0 test:component C:\Users\zac\AppData\Local\Temp\claude\C--Users-zac-Documents-projects-nbn-sdlc-demo\54b9f3d5-93b3-4ddf-bc37-7fd149d033e2\scratchpad\review\ahmed
+> pnpm --filter frontend test
+
+
+> frontend@0.1.0 test C:\Users\zac\AppData\Local\Temp\claude\C--Users-zac-Documents-projects-nbn-sdlc-demo\54b9f3d5-93b3-4ddf-bc37-7fd149d033e2\scratchpad\review\ahmed\frontend
+> vitest run
+
+
+ RUN  v4.1.11 C:/Users/zac/AppData/Local/Temp/claude/C--Users-zac-Documents-projects-nbn-sdlc-demo/54b9f3d5-93b3-4ddf-bc37-7fd149d033e2/scratchpad/review/ahmed/frontend
+
+
+ Test Files  3 passed (3)
+      Tests  17 passed (17)
+   Start at  23:11:42
+   Duration  18.42s (transform 264ms, setup 9.78s, import 1.86s, tests 3.79s, environment 28.37s)
+
+exit 0

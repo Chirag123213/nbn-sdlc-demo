@@ -1,0 +1,729 @@
+=== chirag start 2026-10-19T23:42:05Z at ed173dc
+
+ RUN  v4.1.11 /tmp/claude-0/-home-claude/a5537b04-ab69-5f89-8629-d930cdf9e9d4/scratchpad/review/chirag/frontend
+
+
+ Test Files  3 passed (3)
+      Tests  14 passed (14)
+   Start at  10:42:06
+   Duration  3.08s (transform 202ms, setup 388ms, import 355ms, tests 634ms, environment 1.22s)
+
+--- stryker
+10:42:10 (6336) INFO ProjectReader Found 6 of 65 file(s) to be mutated.
+10:42:10 (6336) INFO Instrumenter Instrumented 6 source file(s) with 200 mutant(s)
+10:42:10 (6336) INFO ConcurrencyTokenProvider Creating 2 test runner process(es).
+10:42:11 (6336) INFO Sandbox In place mode is enabled, Stryker will be overriding YOUR files. Find your backup at: .stryker-tmp/backup-qIcfCO
+10:42:12 (6336) INFO DryRunExecutor Starting initial test run (vitest test runner with "perTest" coverage analysis). This may take a while.
+10:42:17 (6336) INFO DryRunExecutor Initial test run succeeded. Ran 20 tests in 5 seconds (net 667.5654499999998 ms, overhead 4608.43455 ms).
+10:44:34 (6336) WARN MutationTestReportHelper Test file "/tmp/claude-0/-home-claude/a5537b04-ab69-5f89-8629-d930cdf9e9d4/scratchpad/review/chirag/frontend/.stryker-tmp/backup-qIcfCO/tests/unit/lib/utils.test.ts" not found in input files, but did receive test result for it. This shouldn't happen.
+All tests
+  .stryker-tmp/backup-qIcfCO/tests/unit/lib/utils.test.ts
+    ✘ cn merges class names (covered 0)
+    ✘ cn resolves tailwind conflicts (last wins) (covered 0)
+    ✘ cn handles conditional classes (covered 0)
+    ✘ truncate returns string unchanged when shorter than limit (covered 0)
+    ✘ truncate truncates and appends ellipsis when over limit (covered 0)
+    ✘ truncate returns full string when exactly at limit (covered 0)
+  tests/unit
+    features/technician-dispatch
+      matching.test.ts
+        ✓ technician dispatch matching requires the technician to support the recorded fault (killed 6)
+        ✓ technician dispatch matching rejects a second-storey technician without ladder or elevated work platform access (killed 2)
+        ~ technician dispatch matching accepts a second-storey technician with compatible fault and equipment (covered 18)
+        ~ technician dispatch matching rejects pit jobs when the fault-compatible technician lacks pit access (covered 16)
+        ~ technician dispatch matching accepts a pit job only when the fault-compatible technician has pit access (covered 18)
+        ~ technician dispatch matching does not invent a match when no fixture combination satisfies both requirements (covered 16)
+      TechnicianDispatchFlow.test.tsx
+        ✓ TechnicianDispatchFlow creates a request, presents only valid matches and records a scheduled dispatch (killed 75)
+        ✓ TechnicianDispatchFlow shows a no-match message instead of an incompatible combination (killed 2)
+    lib/utils.test.ts
+      ✘ cn merges class names (covered 0)
+      ✘ cn resolves tailwind conflicts (last wins) (covered 0)
+      ✘ cn handles conditional classes (covered 0)
+      ✘ truncate returns string unchanged when shorter than limit (covered 0)
+      ✘ truncate truncates and appends ellipsis when over limit (covered 0)
+      ✘ truncate returns full string when exactly at limit (covered 0)
+[NoCoverage] StringLiteral
+src/actions/auth.actions.ts:8:29
+-   const SESSION_COOKIE_NAME = '__session'
++   const SESSION_COOKIE_NAME = ""
+[NoCoverage] BlockStatement
+src/actions/auth.actions.ts:14:42
+-   export async function getServerSession() {
+-     const cookieStore = await cookies()
+-     const sessionCookie = cookieStore.get(SESSION_COOKIE_NAME)?.value
+-     if (!sessionCookie) return null
+-     try {
+-       const decoded = await adminAuth.verifySessionCookie(sessionCookie, true)
+-       return decoded
+-     } catch {
+-       return null
+-     }
+-   }
++   export async function getServerSession() {}
+[NoCoverage] OptionalChaining
+src/actions/auth.actions.ts:16:25
+-     const sessionCookie = cookieStore.get(SESSION_COOKIE_NAME)?.value
++     const sessionCookie = cookieStore.get(SESSION_COOKIE_NAME).value
+[NoCoverage] BooleanLiteral
+src/actions/auth.actions.ts:18:7
+-     if (!sessionCookie) return null
++     if (sessionCookie) return null
+[NoCoverage] ConditionalExpression
+src/actions/auth.actions.ts:18:7
+-     if (!sessionCookie) return null
++     if (true) return null
+[NoCoverage] ConditionalExpression
+src/actions/auth.actions.ts:18:7
+-     if (!sessionCookie) return null
++     if (false) return null
+[NoCoverage] BlockStatement
+src/actions/auth.actions.ts:20:7
+-     try {
+-       const decoded = await adminAuth.verifySessionCookie(sessionCookie, true)
+-       return decoded
+-     } catch {
++     try {} catch {
+[NoCoverage] BooleanLiteral
+src/actions/auth.actions.ts:21:72
+-       const decoded = await adminAuth.verifySessionCookie(sessionCookie, true)
++       const decoded = await adminAuth.verifySessionCookie(sessionCookie, false)
+[NoCoverage] BlockStatement
+src/actions/auth.actions.ts:23:11
+-     } catch {
+-       return null
+-     }
++     } catch {}
+[NoCoverage] BlockStatement
+src/actions/auth.actions.ts:32:37
+-   export async function requireAuth() {
+-     const session = await getServerSession()
+-     if (!session) {
+-       redirect('/auth/signin')
+-     }
+-     return session
+-   }
++   export async function requireAuth() {}
+[NoCoverage] BooleanLiteral
+src/actions/auth.actions.ts:34:7
+-     if (!session) {
++     if (session) {
+[NoCoverage] ConditionalExpression
+src/actions/auth.actions.ts:34:7
+-     if (!session) {
++     if (true) {
+[NoCoverage] ConditionalExpression
+src/actions/auth.actions.ts:34:7
+-     if (!session) {
++     if (false) {
+[NoCoverage] BlockStatement
+src/actions/auth.actions.ts:34:17
+-     if (!session) {
+-       redirect('/auth/signin')
+-     }
++     if (!session) {}
+[NoCoverage] StringLiteral
+src/actions/auth.actions.ts:35:14
+-       redirect('/auth/signin')
++       redirect("")
+[NoCoverage] BlockStatement
+src/actions/auth.actions.ts:43:62
+-   export async function serverSignOut(): Promise<ActionResult> {
+-     try {
+-       const cookieStore = await cookies()
+-       cookieStore.delete(SESSION_COOKIE_NAME)
+-       return { success: true }
+-     } catch {
+-       return { success: false, error: 'Failed to sign out' }
+-     }
+-   }
++   export async function serverSignOut(): Promise<ActionResult> {}
+[NoCoverage] BlockStatement
+src/actions/auth.actions.ts:44:7
+-     try {
+-       const cookieStore = await cookies()
+-       cookieStore.delete(SESSION_COOKIE_NAME)
+-       return { success: true }
+-     } catch {
++     try {} catch {
+[NoCoverage] ObjectLiteral
+src/actions/auth.actions.ts:47:12
+-       return { success: true }
++       return {}
+[NoCoverage] BooleanLiteral
+src/actions/auth.actions.ts:47:23
+-       return { success: true }
++       return { success: false }
+[NoCoverage] BlockStatement
+src/actions/auth.actions.ts:48:11
+-     } catch {
+-       return { success: false, error: 'Failed to sign out' }
+-     }
++     } catch {}
+[NoCoverage] ObjectLiteral
+src/actions/auth.actions.ts:49:12
+-       return { success: false, error: 'Failed to sign out' }
++       return {}
+[NoCoverage] BooleanLiteral
+src/actions/auth.actions.ts:49:23
+-       return { success: false, error: 'Failed to sign out' }
++       return { success: true, error: 'Failed to sign out' }
+[NoCoverage] StringLiteral
+src/actions/auth.actions.ts:49:37
+-       return { success: false, error: 'Failed to sign out' }
++       return { success: false, error: "" }
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:44:9
+-         : 'No additional equipment'
++         : ""
+[NoCoverage] BlockStatement
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:130:7
+-       ) {
+-         return
+-       }
++       ) {}
+[NoCoverage] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:281:35
+-                       updateRequest('notes', event.target.value)
++                       updateRequest("", event.target.value)
+[NoCoverage] OptionalChaining
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:378:31
+-                                 submittedRequest?.faultId}
++                                 submittedRequest.faultId}
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:37:11
+-       .join(' ')
++       .join("")
+Tests ran:
+    TechnicianDispatchFlow creates a request, presents only valid matches and records a scheduled dispatch
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:42:5
+-       items.length > 0
++       true
+Tests ran:
+    TechnicianDispatchFlow creates a request, presents only valid matches and records a scheduled dispatch
+[Survived] EqualityOperator
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:42:5
+-       items.length > 0
++       items.length >= 0
+Tests ran:
+    TechnicianDispatchFlow creates a request, presents only valid matches and records a scheduled dispatch
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:43:43
+-         ? items.map(humaniseEquipment).join(' + ')
++         ? items.map(humaniseEquipment).join("")
+Tests ran:
+    TechnicianDispatchFlow creates a request, presents only valid matches and records a scheduled dispatch
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:61:68
+-     const [selectedTechnicianId, setSelectedTechnicianId] = useState('')
++     const [selectedTechnicianId, setSelectedTechnicianId] = useState("Stryker was here!")
+Tests ran:
+    TechnicianDispatchFlow creates a request, presents only valid matches and records a scheduled dispatch
+    TechnicianDispatchFlow shows a no-match message instead of an incompatible combination
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:62:46
+-     const [visitDate, setVisitDate] = useState('')
++     const [visitDate, setVisitDate] = useState("Stryker was here!")
+Tests ran:
+    TechnicianDispatchFlow creates a request, presents only valid matches and records a scheduled dispatch
+    TechnicianDispatchFlow shows a no-match message instead of an incompatible combination
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:63:46
+-     const [visitTime, setVisitTime] = useState('')
++     const [visitTime, setVisitTime] = useState("Stryker was here!")
+Tests ran:
+    TechnicianDispatchFlow creates a request, presents only valid matches and records a scheduled dispatch
+    TechnicianDispatchFlow shows a no-match message instead of an incompatible combination
+[Survived] ArrowFunction
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:76:27
+-       ? fixture.faults.find((fault) => fault.id === submittedRequest.faultId)
++       ? fixture.faults.find(() => undefined)
+Tests ran:
+    TechnicianDispatchFlow creates a request, presents only valid matches and records a scheduled dispatch
+    TechnicianDispatchFlow shows a no-match message instead of an incompatible combination
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:76:38
+-       ? fixture.faults.find((fault) => fault.id === submittedRequest.faultId)
++       ? fixture.faults.find((fault) => true)
+Tests ran:
+    TechnicianDispatchFlow creates a request, presents only valid matches and records a scheduled dispatch
+    TechnicianDispatchFlow shows a no-match message instead of an incompatible combination
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:76:38
+-       ? fixture.faults.find((fault) => fault.id === submittedRequest.faultId)
++       ? fixture.faults.find((fault) => false)
+Tests ran:
+    TechnicianDispatchFlow creates a request, presents only valid matches and records a scheduled dispatch
+    TechnicianDispatchFlow shows a no-match message instead of an incompatible combination
+[Survived] EqualityOperator
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:76:38
+-       ? fixture.faults.find((fault) => fault.id === submittedRequest.faultId)
++       ? fixture.faults.find((fault) => fault.id !== submittedRequest.faultId)
+Tests ran:
+    TechnicianDispatchFlow creates a request, presents only valid matches and records a scheduled dispatch
+    TechnicianDispatchFlow shows a no-match message instead of an incompatible combination
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:86:16
+-       (match) => match.technician.id === selectedTechnicianId
++       (match) => true
+Tests ran:
+    TechnicianDispatchFlow creates a request, presents only valid matches and records a scheduled dispatch
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:95:29
+-       setSelectedTechnicianId('')
++       setSelectedTechnicianId("Stryker was here!")
+Tests ran:
+    TechnicianDispatchFlow creates a request, presents only valid matches and records a scheduled dispatch
+    TechnicianDispatchFlow shows a no-match message instead of an incompatible combination
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:96:18
+-       setVisitDate('')
++       setVisitDate("Stryker was here!")
+Tests ran:
+    TechnicianDispatchFlow creates a request, presents only valid matches and records a scheduled dispatch
+    TechnicianDispatchFlow shows a no-match message instead of an incompatible combination
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:97:18
+-       setVisitTime('')
++       setVisitTime("Stryker was here!")
+Tests ran:
+    TechnicianDispatchFlow creates a request, presents only valid matches and records a scheduled dispatch
+    TechnicianDispatchFlow shows a no-match message instead of an incompatible combination
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:104:9
+-       if (!selectedAccessRequirement) return
++       if (false) return
+Tests ran:
+    TechnicianDispatchFlow creates a request, presents only valid matches and records a scheduled dispatch
+    TechnicianDispatchFlow shows a no-match message instead of an incompatible combination
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:116:29
+-       setSelectedTechnicianId('')
++       setSelectedTechnicianId("Stryker was here!")
+Tests ran:
+    TechnicianDispatchFlow creates a request, presents only valid matches and records a scheduled dispatch
+    TechnicianDispatchFlow shows a no-match message instead of an incompatible combination
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:117:18
+-       setVisitDate('')
++       setVisitDate("Stryker was here!")
+Tests ran:
+    TechnicianDispatchFlow creates a request, presents only valid matches and records a scheduled dispatch
+    TechnicianDispatchFlow shows a no-match message instead of an incompatible combination
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:118:18
+-       setVisitTime('')
++       setVisitTime("Stryker was here!")
+Tests ran:
+    TechnicianDispatchFlow creates a request, presents only valid matches and records a scheduled dispatch
+    TechnicianDispatchFlow shows a no-match message instead of an incompatible combination
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:126:7
+-         !submittedRequest ||
+-         !selectedMatch ||
+-         !visitDate ||
+-         !visitTime
++         false
+Tests ran:
+    TechnicianDispatchFlow creates a request, presents only valid matches and records a scheduled dispatch
+[Survived] LogicalOperator
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:126:7
+-         !submittedRequest ||
+-         !selectedMatch ||
+-         !visitDate ||
+-         !visitTime
++         (!submittedRequest || !selectedMatch || !visitDate) && !visitTime
+Tests ran:
+    TechnicianDispatchFlow creates a request, presents only valid matches and records a scheduled dispatch
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:126:7
+-         !submittedRequest ||
+-         !selectedMatch ||
+-         !visitDate ||
++         false ||
+Tests ran:
+    TechnicianDispatchFlow creates a request, presents only valid matches and records a scheduled dispatch
+[Survived] LogicalOperator
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:126:7
+-         !submittedRequest ||
+-         !selectedMatch ||
+-         !visitDate ||
++         (!submittedRequest || !selectedMatch) && !visitDate ||
+Tests ran:
+    TechnicianDispatchFlow creates a request, presents only valid matches and records a scheduled dispatch
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:126:7
+-         !submittedRequest ||
+-         !selectedMatch ||
++         false ||
+Tests ran:
+    TechnicianDispatchFlow creates a request, presents only valid matches and records a scheduled dispatch
+[Survived] LogicalOperator
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:126:7
+-         !submittedRequest ||
+-         !selectedMatch ||
++         !submittedRequest && !selectedMatch ||
+Tests ran:
+    TechnicianDispatchFlow creates a request, presents only valid matches and records a scheduled dispatch
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:269:33
+-                     Request notes{' '}
++                     Request notes{""}
+Tests ran:
+    TechnicianDispatchFlow creates a request, presents only valid matches and records a scheduled dispatch
+    TechnicianDispatchFlow shows a no-match message instead of an incompatible combination
+[Survived] ArrowFunction
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:280:29
+-                     onChange={(event: ChangeEvent<HTMLTextAreaElement>) =>
+-                       updateRequest('notes', event.target.value)
++                     onChange={() => undefined
+Tests ran:
+    TechnicianDispatchFlow creates a request, presents only valid matches and records a scheduled dispatch
+    TechnicianDispatchFlow shows a no-match message instead of an incompatible combination
+[Survived] ConditionalExpression
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:348:23
+-                         selectedTechnicianId === match.technician.id
++                         false
+Tests ran:
+    TechnicianDispatchFlow creates a request, presents only valid matches and records a scheduled dispatch
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:376:42
+-                               Suitable for{' '}
++                               Suitable for{""}
+Tests ran:
+    TechnicianDispatchFlow creates a request, presents only valid matches and records a scheduled dispatch
+[Survived] LogicalOperator
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:377:30
+-                               {submittedFault?.name ??
+-                                 submittedRequest?.faultId}
++                               {submittedFault?.name && submittedRequest?.faultId}
+Tests ran:
+    TechnicianDispatchFlow creates a request, presents only valid matches and records a scheduled dispatch
+[Survived] OptionalChaining
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:377:30
+-                               {submittedFault?.name ??
++                               {submittedFault.name ??
+Tests ran:
+    TechnicianDispatchFlow creates a request, presents only valid matches and records a scheduled dispatch
+[Survived] BooleanLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:435:31
+-                       disabled={!selectedMatch}
++                       disabled={selectedMatch}
+Tests ran:
+    TechnicianDispatchFlow creates a request, presents only valid matches and records a scheduled dispatch
+    TechnicianDispatchFlow shows a no-match message instead of an incompatible combination
+[Survived] BooleanLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:456:31
+-                       disabled={!selectedMatch}
++                       disabled={selectedMatch}
+Tests ran:
+    TechnicianDispatchFlow creates a request, presents only valid matches and records a scheduled dispatch
+    TechnicianDispatchFlow shows a no-match message instead of an incompatible combination
+[Survived] OptionalChaining
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:556:24
+-                         {submittedAccessRequirement?.name ??
++                         {submittedAccessRequirement.name ??
+Tests ran:
+    TechnicianDispatchFlow creates a request, presents only valid matches and records a scheduled dispatch
+[Survived] ObjectLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:26:40
+-   const EMPTY_REQUEST: DispatchRequest = {
+-     premises: '',
+-     faultId: '',
+-     accessRequirementId: '',
+-     notes: '',
+-   }
++   const EMPTY_REQUEST: DispatchRequest = {}
+Ran all tests for this mutant.
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:28:12
+-     faultId: '',
++     faultId: "Stryker was here!",
+Ran all tests for this mutant.
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:29:24
+-     accessRequirementId: '',
++     accessRequirementId: "Stryker was here!",
+Ran all tests for this mutant.
+[Survived] StringLiteral
+src/features/technician-dispatch/components/TechnicianDispatchFlow.tsx:30:10
+-     notes: '',
++     notes: "Stryker was here!",
+Ran all tests for this mutant.
+[NoCoverage] ObjectLiteral
+src/lib/validations/auth.ts:3:37
+-   export const loginSchema = z.object({
+-     email: z.string().email('Please enter a valid email address'),
+-     password: z.string().min(1, 'Password is required'),
+-   })
++   export const loginSchema = z.object({})
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:4:27
+-     email: z.string().email('Please enter a valid email address'),
++     email: z.string().email(""),
+[NoCoverage] MethodExpression
+src/lib/validations/auth.ts:5:13
+-     password: z.string().min(1, 'Password is required'),
++     password: z.string().max(1, 'Password is required'),
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:5:31
+-     password: z.string().min(1, 'Password is required'),
++     password: z.string().min(1, ""),
+[NoCoverage] ObjectLiteral
+src/lib/validations/auth.ts:9:11
+-     .object({
+-       displayName: z
+-         .string()
+-         .min(2, 'Name must be at least 2 characters')
+-         .max(50, 'Name must be less than 50 characters'),
+-       email: z.string().email('Please enter a valid email address'),
+-       password: z
+-         .string()
+-         .min(8, 'Password must be at least 8 characters')
+-         .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
+-         .regex(/[0-9]/, 'Password must contain at least one number'),
+-       confirmPassword: z.string(),
+-     })
++     .object({})
+[NoCoverage] MethodExpression
+src/lib/validations/auth.ts:10:18
+-       displayName: z
+-         .string()
+-         .min(2, 'Name must be at least 2 characters')
+-         .max(50, 'Name must be less than 50 characters'),
++       displayName: z.string().min(2, 'Name must be at least 2 characters').min(50, 'Name must be less than 50 characters'),
+[NoCoverage] MethodExpression
+src/lib/validations/auth.ts:10:18
+-       displayName: z
+-         .string()
+-         .min(2, 'Name must be at least 2 characters')
++       displayName: z.string().max(2, 'Name must be at least 2 characters')
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:12:15
+-         .min(2, 'Name must be at least 2 characters')
++         .min(2, "")
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:13:16
+-         .max(50, 'Name must be less than 50 characters'),
++         .max(50, ""),
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:14:29
+-       email: z.string().email('Please enter a valid email address'),
++       email: z.string().email(""),
+[NoCoverage] MethodExpression
+src/lib/validations/auth.ts:15:15
+-       password: z
+-         .string()
+-         .min(8, 'Password must be at least 8 characters')
++       password: z.string().max(8, 'Password must be at least 8 characters')
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:17:15
+-         .min(8, 'Password must be at least 8 characters')
++         .min(8, "")
+[NoCoverage] Regex
+src/lib/validations/auth.ts:18:14
+-         .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
++         .regex(/[^A-Z]/, 'Password must contain at least one uppercase letter')
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:18:23
+-         .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
++         .regex(/[A-Z]/, "")
+[NoCoverage] Regex
+src/lib/validations/auth.ts:19:14
+-         .regex(/[0-9]/, 'Password must contain at least one number'),
++         .regex(/[^0-9]/, 'Password must contain at least one number'),
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:19:23
+-         .regex(/[0-9]/, 'Password must contain at least one number'),
++         .regex(/[0-9]/, ""),
+[NoCoverage] ArrowFunction
+src/lib/validations/auth.ts:22:11
+-     .refine((data) => data.password === data.confirmPassword, {
++     .refine(() => undefined, {
+[NoCoverage] ConditionalExpression
+src/lib/validations/auth.ts:22:21
+-     .refine((data) => data.password === data.confirmPassword, {
++     .refine((data) => true, {
+[NoCoverage] ConditionalExpression
+src/lib/validations/auth.ts:22:21
+-     .refine((data) => data.password === data.confirmPassword, {
++     .refine((data) => false, {
+[NoCoverage] EqualityOperator
+src/lib/validations/auth.ts:22:21
+-     .refine((data) => data.password === data.confirmPassword, {
++     .refine((data) => data.password !== data.confirmPassword, {
+[NoCoverage] ObjectLiteral
+src/lib/validations/auth.ts:22:61
+-     .refine((data) => data.password === data.confirmPassword, {
+-       message: 'Passwords do not match',
+-       path: ['confirmPassword'],
+-     })
++     .refine((data) => data.password === data.confirmPassword, {})
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:23:14
+-       message: 'Passwords do not match',
++       message: "",
+[NoCoverage] ArrayDeclaration
+src/lib/validations/auth.ts:24:11
+-       path: ['confirmPassword'],
++       path: [],
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:24:12
+-       path: ['confirmPassword'],
++       path: [""],
+[NoCoverage] ObjectLiteral
+src/lib/validations/auth.ts:27:45
+-   export const resetPasswordSchema = z.object({
+-     email: z.string().email('Please enter a valid email address'),
+-   })
++   export const resetPasswordSchema = z.object({})
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:28:27
+-     email: z.string().email('Please enter a valid email address'),
++     email: z.string().email(""),
+[NoCoverage] ObjectLiteral
+src/lib/validations/auth.ts:32:11
+-     .object({
+-       displayName: z
+-         .string()
+-         .min(2, 'Name must be at least 2 characters')
+-         .max(50, 'Name must be less than 50 characters'),
+-       email: z.string().email('Please enter a valid email address'),
+-       password: z
+-         .string()
+-         .min(8, 'Password must be at least 8 characters')
+-         .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
+-         .regex(/[0-9]/, 'Password must contain at least one number'),
+-       confirmPassword: z.string(),
+-     })
++     .object({})
+[NoCoverage] MethodExpression
+src/lib/validations/auth.ts:33:18
+-       displayName: z
+-         .string()
+-         .min(2, 'Name must be at least 2 characters')
+-         .max(50, 'Name must be less than 50 characters'),
++       displayName: z.string().min(2, 'Name must be at least 2 characters').min(50, 'Name must be less than 50 characters'),
+[NoCoverage] MethodExpression
+src/lib/validations/auth.ts:33:18
+-       displayName: z
+-         .string()
+-         .min(2, 'Name must be at least 2 characters')
++       displayName: z.string().max(2, 'Name must be at least 2 characters')
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:35:15
+-         .min(2, 'Name must be at least 2 characters')
++         .min(2, "")
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:36:16
+-         .max(50, 'Name must be less than 50 characters'),
++         .max(50, ""),
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:37:29
+-       email: z.string().email('Please enter a valid email address'),
++       email: z.string().email(""),
+[NoCoverage] MethodExpression
+src/lib/validations/auth.ts:38:15
+-       password: z
+-         .string()
+-         .min(8, 'Password must be at least 8 characters')
++       password: z.string().max(8, 'Password must be at least 8 characters')
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:40:15
+-         .min(8, 'Password must be at least 8 characters')
++         .min(8, "")
+[NoCoverage] Regex
+src/lib/validations/auth.ts:41:14
+-         .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
++         .regex(/[^A-Z]/, 'Password must contain at least one uppercase letter')
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:41:23
+-         .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
++         .regex(/[A-Z]/, "")
+[NoCoverage] Regex
+src/lib/validations/auth.ts:42:14
+-         .regex(/[0-9]/, 'Password must contain at least one number'),
++         .regex(/[^0-9]/, 'Password must contain at least one number'),
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:42:23
+-         .regex(/[0-9]/, 'Password must contain at least one number'),
++         .regex(/[0-9]/, ""),
+[NoCoverage] ArrowFunction
+src/lib/validations/auth.ts:45:11
+-     .refine((data) => data.password === data.confirmPassword, {
++     .refine(() => undefined, {
+[NoCoverage] ConditionalExpression
+src/lib/validations/auth.ts:45:21
+-     .refine((data) => data.password === data.confirmPassword, {
++     .refine((data) => true, {
+[NoCoverage] ConditionalExpression
+src/lib/validations/auth.ts:45:21
+-     .refine((data) => data.password === data.confirmPassword, {
++     .refine((data) => false, {
+[NoCoverage] EqualityOperator
+src/lib/validations/auth.ts:45:21
+-     .refine((data) => data.password === data.confirmPassword, {
++     .refine((data) => data.password !== data.confirmPassword, {
+[NoCoverage] ObjectLiteral
+src/lib/validations/auth.ts:45:61
+-     .refine((data) => data.password === data.confirmPassword, {
+-       message: 'Passwords do not match',
+-       path: ['confirmPassword'],
+-     })
++     .refine((data) => data.password === data.confirmPassword, {})
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:46:14
+-       message: 'Passwords do not match',
++       message: "",
+[NoCoverage] ArrayDeclaration
+src/lib/validations/auth.ts:47:11
+-       path: ['confirmPassword'],
++       path: [],
+[NoCoverage] StringLiteral
+src/lib/validations/auth.ts:47:12
+-       path: ['confirmPassword'],
++       path: [""],
+[NoCoverage] MethodExpression
+src/lib/validations/common.ts:3:25
+-   export const idSchema = z.string().min(1, 'ID is required')
++   export const idSchema = z.string().max(1, 'ID is required')
+[NoCoverage] StringLiteral
+src/lib/validations/common.ts:3:43
+-   export const idSchema = z.string().min(1, 'ID is required')
++   export const idSchema = z.string().min(1, "")
+[NoCoverage] ObjectLiteral
+src/lib/validations/common.ts:5:42
+-   export const paginationSchema = z.object({
+-     page: z.coerce.number().int().positive().default(1),
+-     limit: z.coerce.number().int().positive().max(100).default(20),
+-   })
++   export const paginationSchema = z.object({})
+[NoCoverage] MethodExpression
+src/lib/validations/common.ts:7:10
+-     limit: z.coerce.number().int().positive().max(100).default(20),
++     limit: z.coerce.number().int().positive().min(100).default(20),
+Ran 1.11 tests per mutant on average.
+-------------------------------|------------------|----------|-----------|------------|----------|----------|
+                               | % Mutation score |          |           |            |          |          |
+File                           |  total | covered | # killed | # timeout | # survived | # no cov | # errors |
+-------------------------------|--------|---------|----------|-----------|------------|----------|----------|
+All files                      |  42.50 |   69.11 |       85 |         0 |         38 |       77 |        0 |
+ actions                       |   0.00 |    0.00 |        0 |         0 |          0 |       23 |        0 |
+  auth.actions.ts              |   0.00 |    0.00 |        0 |         0 |          0 |       23 |        0 |
+ features                      |  66.93 |   69.11 |       85 |         0 |         38 |        4 |        0 |
+  technician-dispatch          |  66.93 |   69.11 |       85 |         0 |         38 |        4 |        0 |
+   components                  |  61.11 |   63.46 |       66 |         0 |         38 |        4 |        0 |
+    TechnicianDispatchFlow.tsx |  61.11 |   63.46 |       66 |         0 |         38 |        4 |        0 |
+   matching.ts                 | 100.00 |  100.00 |       19 |         0 |          0 |        0 |        0 |
+ lib                           |   0.00 |    0.00 |        0 |         0 |          0 |       50 |        0 |
+  validations                  |   0.00 |    0.00 |        0 |         0 |          0 |       50 |        0 |
+   auth.ts                     |   0.00 |    0.00 |        0 |         0 |          0 |       46 |        0 |
+   common.ts                   |   0.00 |    0.00 |        0 |         0 |          0 |        4 |        0 |
+-------------------------------|--------|---------|----------|-----------|------------|----------|----------|
+10:44:34 (6336) INFO MutationTestReportHelper Final mutation score of 42.50 is greater than or equal to break threshold 0
+10:44:34 (6336) INFO JsonReporter Your report can be found at: file:///tmp/claude-0/-home-claude/a5537b04-ab69-5f89-8629-d930cdf9e9d4/scratchpad/review/chirag/frontend/reports/mutation/frontend.json
+10:44:34 (6336) INFO HtmlReporter Your report can be found at: file:///tmp/claude-0/-home-claude/a5537b04-ab69-5f89-8629-d930cdf9e9d4/scratchpad/review/chirag/frontend/reports/mutation/frontend.html
+10:44:34 (6336) INFO MutationTestExecutor Done in 2 minutes and 24 seconds.
+10:44:34 (6336) INFO Sandbox Resetting your original files from .stryker-tmp/backup-qIcfCO.
+=== chirag end 2026-10-19T23:44:34Z exit 0
