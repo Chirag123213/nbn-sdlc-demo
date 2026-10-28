@@ -1,0 +1,185 @@
+{
+  "checkedAtUtc": "2026-10-27T23:15:59.699Z",
+  "target": "https://nbn-sdlc-demo-frontend.vercel.app",
+  "firebaseProject": "nbn-sdlc-demo",
+  "testUid": "ac2-audit-20261028-8d75bc6adc09",
+  "methodology": "Authenticated direct deployed Server Action calls; explicit JSON input lengths; independently inspect writes scoped to the fresh synthetic UID. No source changes.",
+  "cases": [
+    {
+      "name": "missing category",
+      "rawLength": 10,
+      "trimmedLength": 10,
+      "httpStatus": 200,
+      "response": {
+        "success": false,
+        "error": "Invalid option: expected one of \"no-service\"|\"intermittent\"|\"slow-speed\""
+      },
+      "writes": 0,
+      "storedLength": null,
+      "expectedSuccess": false,
+      "passed": true
+    },
+    {
+      "name": "unknown category",
+      "rawLength": 10,
+      "trimmedLength": 10,
+      "httpStatus": 200,
+      "response": {
+        "success": false,
+        "error": "Invalid option: expected one of \"no-service\"|\"intermittent\"|\"slow-speed\""
+      },
+      "writes": 0,
+      "storedLength": null,
+      "expectedSuccess": false,
+      "passed": true
+    },
+    {
+      "name": "null category",
+      "rawLength": 10,
+      "trimmedLength": 10,
+      "httpStatus": 200,
+      "response": {
+        "success": false,
+        "error": "Invalid option: expected one of \"no-service\"|\"intermittent\"|\"slow-speed\""
+      },
+      "writes": 0,
+      "storedLength": null,
+      "expectedSuccess": false,
+      "passed": true
+    },
+    {
+      "name": "blank",
+      "rawLength": 0,
+      "trimmedLength": 0,
+      "httpStatus": 200,
+      "response": {
+        "success": false,
+        "error": "Too small: expected string to have >=10 characters"
+      },
+      "writes": 0,
+      "storedLength": null,
+      "expectedSuccess": false,
+      "passed": true
+    },
+    {
+      "name": "whitespace only",
+      "rawLength": 12,
+      "trimmedLength": 0,
+      "httpStatus": 200,
+      "response": {
+        "success": false,
+        "error": "Too small: expected string to have >=10 characters"
+      },
+      "writes": 0,
+      "storedLength": null,
+      "expectedSuccess": false,
+      "passed": true
+    },
+    {
+      "name": "9 characters",
+      "rawLength": 9,
+      "trimmedLength": 9,
+      "httpStatus": 200,
+      "response": {
+        "success": false,
+        "error": "Too small: expected string to have >=10 characters"
+      },
+      "writes": 0,
+      "storedLength": null,
+      "expectedSuccess": false,
+      "passed": true
+    },
+    {
+      "name": "10 characters",
+      "rawLength": 10,
+      "trimmedLength": 10,
+      "httpStatus": 200,
+      "response": {
+        "success": true,
+        "data": {
+          "reference": "gerCmkkww5lhtgZaXDlQ"
+        }
+      },
+      "writes": 1,
+      "storedLength": 10,
+      "expectedSuccess": true,
+      "passed": true
+    },
+    {
+      "name": "1000 characters",
+      "rawLength": 1000,
+      "trimmedLength": 1000,
+      "httpStatus": 200,
+      "response": {
+        "success": true,
+        "data": {
+          "reference": "poxvgEfGybscmgjPjnul"
+        }
+      },
+      "writes": 1,
+      "storedLength": 1000,
+      "expectedSuccess": true,
+      "passed": true
+    },
+    {
+      "name": "1001 characters",
+      "rawLength": 1001,
+      "trimmedLength": 1001,
+      "httpStatus": 200,
+      "response": {
+        "success": false,
+        "error": "Too big: expected string to have <=1000 characters"
+      },
+      "writes": 0,
+      "storedLength": null,
+      "expectedSuccess": false,
+      "passed": true
+    },
+    {
+      "name": "1000 trimmed; 1004 raw",
+      "rawLength": 1004,
+      "trimmedLength": 1000,
+      "httpStatus": 200,
+      "response": {
+        "success": true,
+        "data": {
+          "reference": "5k6ClEOqaDx1dCaDai0A"
+        }
+      },
+      "writes": 1,
+      "storedLength": 1000,
+      "expectedSuccess": true,
+      "passed": true
+    },
+    {
+      "name": "1001 trimmed; 1005 raw",
+      "rawLength": 1005,
+      "trimmedLength": 1001,
+      "httpStatus": 200,
+      "response": {
+        "success": false,
+        "error": "Too big: expected string to have <=1000 characters"
+      },
+      "writes": 0,
+      "storedLength": null,
+      "expectedSuccess": false,
+      "passed": true
+    }
+  ],
+  "cleanup": {
+    "deletedSyntheticReports": 3,
+    "remainingSyntheticReports": 0,
+    "deletedSyntheticAccount": true
+  },
+  "renderedMaxLength1000": true,
+  "actionId": "404900c8a02dc89fbbf3a43335b19ca9490daf5c31",
+  "allCasesPassed": true,
+  "sourceComparison": {
+    "schemaGitBlobAtOriginalFeatureMergeAndCurrentMain": "22c7e92a78417e2b9bea4bfed2d48be7bf212acd",
+    "currentMainCommitObserved": "17698da40d86f2bccf09178836b3d44feaaa6bac",
+    "currentMainActionMatchesLocalAfterTypeScriptPrint": true,
+    "liveAliasCommitNotIndependentlyExposed": true
+  },
+  "fixtureCodeSha256": "1ed8459db637b9d0afd2c7870a4be52fbae0691d2453a4ef757c5a2f68741e55",
+  "publicFaultFormBundleSha256": "2126ca60681cf43b1d5260f2655a4993d4f6f84ae38670983edca340944b50fc"
+}

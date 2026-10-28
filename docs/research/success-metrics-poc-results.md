@@ -5,7 +5,7 @@
 **Run:** FR-01 fault-reporting proof of concept  
 **Source metric set:** `docs/research/success-metrics-stages-5-8.md`
 
-**Later evidence, 23 Oct 2026:** The tables below retain the original assessment and its evidence limits. PR #63 subsequently has verified approval/merge/CI records, and Chirag's 10 Oct 2026 deployed verification supplies acceptance observations while failing AC2. The [dated reconciliation](fault-reporting/evidence/reconciliation-2026-10-23/README.md) preserves the later GitHub snapshot and Zafir's confirmations; [chapter 4](../white-paper/04-proof-of-concept.md) reports those results and remaining gaps. The retrospective time figures labelled **Measured** below are treated as **Estimate** in chapter 4, following the white paper's evidence labels. Per-stage readings remain unavailable, and Zafir confirmed that no AC2 correction or retest was done.
+**Update, 28 Oct 2026 (Zafir):** I consolidate later PR, CI and AC2 evidence in [chapter 4](../white-paper/04-proof-of-concept.md). I report retrospective time figures as estimates; stage readings remain unavailable. The original tables below retain their historical assessment.
 
 ## Purpose
 
