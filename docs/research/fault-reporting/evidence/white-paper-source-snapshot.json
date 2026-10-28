@@ -1,0 +1,434 @@
+{
+  "description": "Selected chapter evidence, consolidated from the dated GitHub records. Full original API snapshot remains recoverable from the Git commit/path below.",
+  "github_retrieval": {
+    "retrieved_at_utc": "2026-10-23T10:24:55.099081+00:00",
+    "retrieval_date_melbourne": "23 Oct 2026",
+    "source": "GitHub API via gh; read-only retrieval",
+    "repository": "Chirag123213/nbn-sdlc-demo"
+  },
+  "full_original_snapshot": {
+    "commit": "c15dc3b",
+    "path": "docs/research/fault-reporting/evidence/reconciliation-2026-10-23/github-snapshot.json"
+  },
+  "main_at_23_oct": "44557a3d8a29771dc3b78af9fdc0c8d5fc5d5fcd",
+  "main_rules_at_23_oct": [
+    {
+      "type": "deletion",
+      "ruleset_source_type": "Repository",
+      "ruleset_source": "Chirag123213/nbn-sdlc-demo",
+      "ruleset_id": 21031502
+    },
+    {
+      "type": "non_fast_forward",
+      "ruleset_source_type": "Repository",
+      "ruleset_source": "Chirag123213/nbn-sdlc-demo",
+      "ruleset_id": 21031502
+    },
+    {
+      "type": "pull_request",
+      "parameters": {
+        "required_approving_review_count": 2,
+        "dismiss_stale_reviews_on_push": false,
+        "required_reviewers": [],
+        "require_code_owner_review": false,
+        "require_last_push_approval": false,
+        "required_review_thread_resolution": false,
+        "require_extra_approval_for_unattributed_changes": true,
+        "allowed_merge_methods": ["squash"]
+      },
+      "ruleset_source_type": "Repository",
+      "ruleset_source": "Chirag123213/nbn-sdlc-demo",
+      "ruleset_id": 21031502
+    },
+    {
+      "type": "required_status_checks",
+      "parameters": {
+        "strict_required_status_checks_policy": false,
+        "do_not_enforce_on_create": false,
+        "required_status_checks": [
+          {
+            "context": "AI Declaration",
+            "integration_id": 15368
+          },
+          {
+            "context": "Lint & Typecheck",
+            "integration_id": 15368
+          },
+          {
+            "context": "Frontend Tests",
+            "integration_id": 15368
+          },
+          {
+            "context": "Backend Unit Tests",
+            "integration_id": 15368
+          },
+          {
+            "context": "Security Scan",
+            "integration_id": 15368
+          }
+        ]
+      },
+      "ruleset_source_type": "Repository",
+      "ruleset_source": "Chirag123213/nbn-sdlc-demo",
+      "ruleset_id": 21031502
+    }
+  ],
+  "ruleset_updated_at": "2026-10-22T11:34:49.513+11:00",
+  "main_status_at_23_oct": {
+    "sha": "44557a3d8a29771dc3b78af9fdc0c8d5fc5d5fcd",
+    "state": "success",
+    "statuses": [
+      {
+        "context": "Vercel",
+        "state": "success",
+        "target_url": "https://vercel.com/treeko/nbn-sdlc-demo-frontend/9r4GWLwXx98H14QD7XoRamMbJvef",
+        "updated_at": "2026-10-21T20:11:40Z"
+      }
+    ]
+  },
+  "pr_63": {
+    "number": 63,
+    "title": "feat: add authenticated fault reporting",
+    "url": "https://github.com/Chirag123213/nbn-sdlc-demo/pull/63",
+    "state": "MERGED",
+    "headRefOid": "d2b6522234c5de2f0428dbc49a5181f418e6971f",
+    "mergedAt": "2026-10-03T00:48:41Z",
+    "mergeCommit": {
+      "oid": "bf76905d485864a10a0f5880386bd7d3839aa0fe"
+    },
+    "reviews": [
+      {
+        "author": {
+          "login": "Chirag123213"
+        },
+        "state": "APPROVED",
+        "submittedAt": "2026-10-02T08:44:25Z",
+        "commit": {
+          "oid": "d2b6522234c5de2f0428dbc49a5181f418e6971f"
+        }
+      },
+      {
+        "author": {
+          "login": "9ahmedfr"
+        },
+        "state": "APPROVED",
+        "submittedAt": "2026-10-03T00:47:37Z",
+        "commit": {
+          "oid": "d2b6522234c5de2f0428dbc49a5181f418e6971f"
+        }
+      }
+    ],
+    "checks": [
+      {
+        "name": "AI Declaration",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/36979573750/job/110750794862"
+      },
+      {
+        "name": "hook-contract",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/36979573844/job/110750795072"
+      },
+      {
+        "name": "Lint & Typecheck",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/36979573750/job/110750794835"
+      },
+      {
+        "name": "mutation",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/36979573844/job/110750794931"
+      },
+      {
+        "name": "Frontend Tests",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/36979573750/job/110750794887"
+      },
+      {
+        "name": "Backend Unit Tests",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/36979573750/job/110750794652"
+      },
+      {
+        "name": "Security Scan",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/36979573750/job/110750794985"
+      }
+    ]
+  },
+  "pr_66": {
+    "number": 66,
+    "title": "fix: resolve dependency audit vulnerabilities",
+    "url": "https://github.com/Chirag123213/nbn-sdlc-demo/pull/66",
+    "state": "MERGED",
+    "headRefOid": "70848252a46ae0eeda4d2df6e510710a92684eb6",
+    "mergedAt": "2026-10-04T10:45:10Z",
+    "mergeCommit": {
+      "oid": "46174b9f5b3e0a3ab057d237f4f522f37b4210df"
+    },
+    "reviews": [
+      {
+        "author": {
+          "login": "Chirag361"
+        },
+        "state": "APPROVED",
+        "submittedAt": "2026-10-04T10:41:20Z",
+        "commit": {
+          "oid": "70848252a46ae0eeda4d2df6e510710a92684eb6"
+        }
+      },
+      {
+        "author": {
+          "login": "zacclarkson"
+        },
+        "state": "APPROVED",
+        "submittedAt": "2026-10-04T10:44:53Z",
+        "commit": {
+          "oid": "70848252a46ae0eeda4d2df6e510710a92684eb6"
+        }
+      }
+    ],
+    "checks": [
+      {
+        "name": "AI Declaration",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/37196048448/job/111418029243"
+      },
+      {
+        "name": "hook-contract",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/37196028347/job/111417963032"
+      },
+      {
+        "name": "Lint & Typecheck",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/37196048448/job/111418029252"
+      },
+      {
+        "name": "mutation",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/37196028347/job/111417962942"
+      },
+      {
+        "name": "Frontend Tests",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/37196048448/job/111418029285"
+      },
+      {
+        "name": "Backend Unit Tests",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/37196048448/job/111418029368"
+      },
+      {
+        "name": "Security Scan",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/37196048448/job/111418029193"
+      }
+    ]
+  },
+  "pr_71": {
+    "number": 71,
+    "title": "Feature/ai workflow gates",
+    "url": "https://github.com/Chirag123213/nbn-sdlc-demo/pull/71",
+    "state": "MERGED",
+    "headRefOid": "ac2ecb9219a220c44502b27dbc36c8b4be9dd47a",
+    "mergedAt": "2026-10-10T14:28:42Z",
+    "mergeCommit": {
+      "oid": "44557a3d8a29771dc3b78af9fdc0c8d5fc5d5fcd"
+    },
+    "reviews": [
+      {
+        "author": {
+          "login": "SidZng"
+        },
+        "state": "APPROVED",
+        "submittedAt": "2026-10-10T14:09:19Z",
+        "commit": {
+          "oid": "ac2ecb9219a220c44502b27dbc36c8b4be9dd47a"
+        }
+      },
+      {
+        "author": {
+          "login": "9ahmedfr"
+        },
+        "state": "APPROVED",
+        "submittedAt": "2026-10-10T14:28:32Z",
+        "commit": {
+          "oid": "ac2ecb9219a220c44502b27dbc36c8b4be9dd47a"
+        }
+      }
+    ],
+    "checks": [
+      {
+        "name": "AI Declaration",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/38056907972/job/114227153729"
+      },
+      {
+        "name": "Lint & Typecheck",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/38056907972/job/114227153764"
+      },
+      {
+        "name": "Frontend Tests",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/38056907972/job/114227153869"
+      },
+      {
+        "name": "Backend Unit Tests",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/38056907972/job/114227153727"
+      },
+      {
+        "name": "Security Scan",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/38056907972/job/114227153608"
+      },
+      {
+        "context": "Vercel",
+        "state": "SUCCESS",
+        "targetUrl": "https://vercel.com/treeko/nbn-sdlc-demo-frontend/6AgL5yLxtEfMnURR5MtuhBF1wzCo"
+      },
+      {
+        "name": "Vercel Preview Comments",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://vercel.com/github"
+      }
+    ]
+  },
+  "pr_72_at_23_oct": {
+    "number": 72,
+    "title": "feat(ci): enforce lifecycle safety gates",
+    "url": "https://github.com/Chirag123213/nbn-sdlc-demo/pull/72",
+    "state": "OPEN",
+    "headRefOid": "8ed42c117790aabbaebe3f0941d1b8d9bd32318f",
+    "mergedAt": null,
+    "mergeCommit": null,
+    "reviews": [
+      {
+        "author": {
+          "login": "9ahmedfr"
+        },
+        "state": "APPROVED",
+        "submittedAt": "2026-10-16T00:51:09Z",
+        "commit": {
+          "oid": "8ed42c117790aabbaebe3f0941d1b8d9bd32318f"
+        }
+      }
+    ],
+    "checks": [
+      {
+        "name": "Lifecycle Guard Regression Tests",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/38137368425/job/114463880952"
+      },
+      {
+        "name": "hook-contract",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/38137368431/job/114463880620"
+      },
+      {
+        "name": "AI Declaration",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/38137368425/job/114463880976"
+      },
+      {
+        "name": "mutation",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/38137368431/job/114463880749"
+      },
+      {
+        "name": "Lint & Typecheck",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/38137368425/job/114463880772"
+      },
+      {
+        "name": "Frontend Tests",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/38137368425/job/114463880876"
+      },
+      {
+        "name": "Backend Unit Tests",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/38137368425/job/114463880951"
+      },
+      {
+        "name": "Security Scan",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Chirag123213/nbn-sdlc-demo/actions/runs/38137368425/job/114463880932"
+      },
+      {
+        "context": "Vercel",
+        "state": "SUCCESS",
+        "targetUrl": "https://vercel.com/treeko/nbn-sdlc-demo-frontend/4RHSM256nVmZfmDwTDEZZHihWkou"
+      },
+      {
+        "name": "Vercel Preview Comments",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://vercel.com/github"
+      }
+    ]
+  },
+  "pr_72_gate_patches_at_23_oct": [
+    {
+      "filename": ".github/workflows/ci.yml",
+      "patch": "@@ -13,12 +13,27 @@ concurrency:\n \n jobs:\n \n+  lifecycle-guard-contract:\n+    name: Lifecycle Guard Regression Tests\n+    runs-on: ubuntu-latest\n+    steps:\n+      - uses: actions/checkout@v4\n+\n+      - uses: actions/setup-node@v4\n+        with:\n+          node-version: 22\n+\n+      - name: Try to bypass lifecycle guards\n+        run: node --test scripts/check-commit-msg.test.cjs scripts/lifecycle-guards.test.cjs\n+\n   ai-declaration:\n     name: AI Declaration\n     if: github.event_name == 'pull_request'\n     runs-on: ubuntu-latest\n \n     steps:\n+      - uses: actions/checkout@v4\n+\n       - name: Validate AI use declaration\n         env:\n           PR_BODY: ${{github.event.pull_request.body}}\n@@ -46,6 +61,21 @@ jobs:\n \n           echo \"AI use declaration is valid.\"\n \n+      - uses: pnpm/action-setup@v4\n+        with:\n+          version: 10\n+\n+      - uses: actions/setup-node@v4\n+        with:\n+          node-version: 22\n+          cache: pnpm\n+\n+      - name: Install dependencies for the required merge gate\n+        run: pnpm install --frozen-lockfile\n+\n+      - name: High severity dependency audit (required merge check)\n+        run: pnpm audit --audit-level=high\n+\n \n   lint-typecheck:\n     name: Lint & Typecheck\n@@ -71,6 +101,9 @@ jobs:\n       - name: Lint\n         run: pnpm run lint\n \n+      - name: Check formatting\n+        run: pnpm run format:check\n+\n       - name: Typecheck\n         run: pnpm run typecheck\n \n@@ -142,7 +175,4 @@ jobs:\n         run: pnpm install --frozen-lockfile\n \n       - name: Dependency vulnerability audit\n-        # Temporary exception for GHSA-vfj7-8cjw-p6xm.\n-        # This is only present through eslint-config-next dev tooling,\n-        # and the advisory references braces >=3.0.4, which is not published.\n-        run: pnpm audit --audit-level=high --ignore=GHSA-vfj7-8cjw-p6xm\n+        run: pnpm audit --audit-level=high"
+    },
+    {
+      "filename": ".github/workflows/deploy.yml",
+      "patch": "@@ -4,7 +4,8 @@ on:\n   push:\n     branches: [main]\n     paths:\n-      - \"firebase/firestore.rules\"\n+      - 'firebase/firestore.rules'\n+      - 'firebase/firestore.indexes.json'\n   workflow_dispatch:\n \n concurrency:\n@@ -14,9 +15,9 @@ concurrency:\n jobs:\n   # Frontend deploys are handled by Vercel's own GitHub integration \u2014 connect\n   # the repo in the Vercel dashboard and it deploys automatically on push.\n-  # This job only handles what Firebase itself owns: Firestore security rules.\n+  # This job handles what Firebase itself owns: Firestore security rules and indexes.\n   deploy-firestore-rules:\n-    name: Deploy Firestore Rules\n+    name: Deploy Firestore Rules and Indexes\n     runs-on: ubuntu-latest\n     environment: production\n     steps:\n@@ -27,10 +28,10 @@ jobs:\n           echo \"${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY_BASE64 }}\" | base64 --decode > /tmp/gcp-sa.json\n           echo \"GOOGLE_APPLICATION_CREDENTIALS=/tmp/gcp-sa.json\" >> $GITHUB_ENV\n \n-      - name: Deploy Firestore rules\n+      - name: Deploy Firestore rules and indexes\n         run: |\n           npx firebase-tools deploy \\\n-            --only firestore:rules \\\n+            --only firestore:rules,firestore:indexes \\\n             --project ${{ secrets.FIREBASE_PROJECT_ID }} \\\n             --non-interactive\n "
+    },
+    {
+      "filename": ".github/workflows/mutation.yml",
+      "patch": "@@ -6,10 +6,17 @@ on:\n       - \"backend/src/**\"\n       - \"backend/tests/**\"\n       - \"backend/stryker.config.json\"\n+      - \"pnpm-workspace.yaml\"\n       - \"backend/vitest.config.ts\"\n       - \"backend/package.json\"\n       - \"pnpm-lock.yaml\"\n       - \".github/workflows/mutation.yml\"\n+      - \".github/workflows/ci.yml\"\n+      - \".github/workflows/deploy.yml\"\n+      - \"lefthook.yml\"\n+      - \"package.json\"\n+      - \"scripts/check-commit-msg*\"\n+      - \"scripts/lifecycle-guards.test.cjs\"\n       - \".github/hooks/**\"\n       - \"scripts/copilot/**\"\n permissions:\n@@ -22,7 +29,7 @@ jobs:\n       - uses: actions/setup-node@v4\n         with:\n           node-version: 22\n-      - run: node --test scripts/copilot/pre-tool-use.test.cjs\n+      - run: node --test scripts/copilot/pre-tool-use.test.cjs scripts/check-commit-msg.test.cjs scripts/lifecycle-guards.test.cjs\n   mutation:\n     runs-on: ubuntu-latest\n     timeout-minutes: 15"
+    },
+    {
+      "filename": "backend/stryker.config.json",
+      "patch": "@@ -9,5 +9,5 @@\n   \"htmlReporter\": { \"fileName\": \"reports/mutation/index.html\" },\n   \"coverageAnalysis\": \"perTest\",\n   \"concurrency\": 2,\n-  \"thresholds\": { \"high\": 80, \"low\": 60, \"break\": 0 }\n+  \"thresholds\": { \"high\": 80, \"low\": 60, \"break\": 10 }\n }"
+    },
+    {
+      "filename": "lefthook.yml",
+      "patch": "@@ -6,7 +6,7 @@ pre-commit:\n     format:\n       glob: '**/*.{ts,tsx,json,md,css}'\n       exclude: '(node_modules|\\.next|\\.git)'\n-      run: npx --yes prettier --write {staged_files} || true\n+      run: ./node_modules/.bin/prettier --write {staged_files}\n \n     lint-frontend:\n       root: 'frontend/'"
+    },
+    {
+      "filename": "pnpm-workspace.yaml",
+      "patch": "@@ -9,16 +9,15 @@ overrides:\n   # versions. Force one version everywhere.\n   '@types/express': '^5.0.1'\n \n-  # next@16.2.12 still bundles its own old postcss internally (separate from\n-  # the patched one Tailwind/Vite already use) \u2014 force it to a patched\n-  # version too. postcss 8.x is backward-compatible within the major.\n+  # Keep transitive Next/PostCSS dependencies on patched compatible versions.\n   postcss: '^8.5.18'\n \n-  # next also bundles an old sharp (image optimization) \u2014 force the patched line.\n-  sharp: '^0.35.4'\n+  # Keep indirect runtime and build dependencies on versions with security fixes.\n+  sharp: '^0.35.5'\n+  'source-map-js': '^1.2.2'\n+  'proxy-addr': '^2.0.8'\n \n-  # js-yaml (CVE-2026-59870) and nanoid highs from `pnpm audit` are disabled\n-  # here \u2014 see README.md \u00a7 Security for the manual fix.\n+  # Pin these transitive packages to releases that include their security fixes.\n   js-yaml: 4.3.2\n   nanoid: '^3.3.18'\n   uuid: '>=11.1.1'\n@@ -33,7 +32,7 @@ overrides:\n   'qs@<6.16.0': '6.16.0'\n   'ip-address@<=10.7.0': '10.7.1'\n \n-  '@fastify/busboy': '3.2.1'\n+  '@fastify/busboy': '3.2.2'\n \n allowBuilds:\n   '@firebase/util': true\n@@ -44,8 +43,11 @@ allowBuilds:\n   unrs-resolver: true\n \n minimumReleaseAgeExclude:\n-  - '@fastify/busboy@3.2.1'\n+  - '@fastify/busboy@3.2.2'\n \n+# The only published braces 3.x release is 3.0.3, but GHSA-vfj7-8cjw-p6xm\n+# lists 3.0.4 as the first patched release. This dev-only transitive advisory\n+# cannot be upgraded until an upstream patched version is published.\n auditConfig:\n   ignoreGhsas:\n     - GHSA-vfj7-8cjw-p6xm"
+    },
+    {
+      "filename": "scripts/check-commit-msg.js",
+      "patch": "@@ -1,6 +1,6 @@\n #!/usr/bin/env node\n /**\n- * Validates commit messages follow Conventional Commits.\n+ * Validates commit messages follow Conventional Commits and record provenance.\n  * Called by Lefthook commit-msg hook.\n  *\n  * Usage: node scripts/check-commit-msg.js <commit-msg-file>\n@@ -15,6 +15,8 @@ if (!msgFile) {\n \n const msg = fs.readFileSync(msgFile, 'utf8').trim()\n const pattern = /^(feat|fix|docs|style|refactor|test|chore|build|ci|perf|revert)(\\(.+\\))?: .{1,100}/\n+const aiAssistedTrailers = msg.match(/^AI-Assisted:\\s*(yes|no)$/gim) ?? []\n+const aiCoauthorTrailer = /^Co-authored-by:\\s+[^\\n]*(?:copilot|claude|anthropic|openai|codex|chatgpt|gemini|cursor)[^\\n]*<[^<>\\s]+@[^<>\\s]+>$/im\n \n if (!pattern.test(msg)) {\n   console.error('\\n\u274c Commit message does not follow Conventional Commits.\\n')\n@@ -28,4 +30,20 @@ if (!pattern.test(msg)) {\n   process.exit(1)\n }\n \n+if (aiAssistedTrailers.length !== 1) {\n+  console.error('\\n\u274c Commit message must include exactly one AI-Assisted: yes|no trailer.\\n')\n+  process.exit(1)\n+}\n+\n+if (/^AI-Assisted:\\s*yes$/im.test(msg) && !aiCoauthorTrailer.test(msg)) {\n+  console.error('\\n\u274c AI-assisted commits must include an AI Co-authored-by trailer.\\n')\n+  console.error('  Example: Co-authored-by: GitHub Copilot <copilot@github.com>\\n')\n+  process.exit(1)\n+}\n+\n+if (/^AI-Assisted:\\s*no$/im.test(msg) && aiCoauthorTrailer.test(msg)) {\n+  console.error('\\n\u274c A commit declaring no AI assistance cannot include an AI co-author.\\n')\n+  process.exit(1)\n+}\n+\n process.exit(0)"
+    }
+  ],
+  "follow_up_at_28_oct": {
+    "retrieved_date_melbourne": "28 Oct 2026",
+    "source_command": "gh pr view 72 --repo Chirag123213/nbn-sdlc-demo --json state,mergedAt,mergeCommit,url",
+    "pr_72": {
+      "state": "MERGED",
+      "mergedAt": "2026-10-27T22:18:07Z",
+      "mergeCommit": {
+        "oid": "17698da40d86f2bccf09178836b3d44feaaa6bac"
+      },
+      "url": "https://github.com/Peepachuu/nbn-sdlc-demo/pull/72"
+    }
+  },
+  "browser_observations_28_oct": {
+    "method": "Isolated real-browser fixture with the unchanged form required/minLength 10/maxLength 1000 attributes; FormData inspection only, no real fault submission.",
+    "keyboard": {
+      "attempted_input": "999 A characters, then B, then Z",
+      "retained_length": 1000,
+      "last_character": "B",
+      "contains_final_Z": false,
+      "equals_first_1000": true,
+      "browser_validity": true
+    },
+    "automated_paste_helper": {
+      "retained_length": 1001,
+      "tooLong": false,
+      "browser_validity": true
+    },
+    "clipboard_shortcut": {
+      "retained_length": 1001
+    },
+    "limitation": "Automated paste observations do not reconstruct the original manual paste or establish all browsers behave the same."
+  }
+}
